@@ -36,7 +36,7 @@ const update = (object: any) => {
 }
 
 
-const destroy = (id: ID): Promise<void> => {
+const destroy = (id: any): Promise<void> => {
   return axios.post(`${'destroy_vehicle_maker'}/${id}`).then(() => { })
 }
 
