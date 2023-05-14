@@ -1,18 +1,42 @@
 import { Formik } from 'formik';
-import { KTCard, KTCardBody, ResponeApiCheck, initialResponseError } from '../../../../../../../_metronic/helpers';
+import { KTCard, KTCardBody, QUERIES, ResponeApiCheck, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
-import { roleSchema } from './validationForm';
-import { update } from '../core/_requests';
+//import { update } from '../core/_requests';
 import { useLocation } from 'react-router-dom';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
-import { useNavigate } from 'react-router-dom';
-import { ListGroupsPath } from '../../routes/RoutesNames';
-const Edit = () => {
-    const  navigate=useNavigate();
+import { AccountForm } from './AccountForm';
+import { getAccountCar } from '../core/_requests';
+import { useQuery } from 'react-query';
+import * as Yup from 'yup'
+import { ListLoading } from '../../../../components/table/loading/ListLoading';
+const roleSchema = Yup.object().shape({
+    email: Yup.string()
+        .email('Wrong email format')
+        .min(3, 'Minimum 3 symbols')
+        .max(50, 'Maximum 50 symbols')
+        .required('Email is required'),
+    password: Yup.string()
+        .required('Field is required'),
+
+
+})
+
+const AccountVehicle = () => {
     const location = useLocation();
-    const data: any = location.state;
+    const id: any = location.state;
     const { showNotification } = useNotification();
 
+
+    const {
+        data: acountData,
+        isLoading,
+    } = useQuery(
+        `${QUERIES.VEHICLES_MAKER_LIST_VALUES + id}`,
+        () => {
+            return getAccountCar(id)
+        },
+
+    )
     return (
         <KTCard>
 
@@ -20,16 +44,12 @@ const Edit = () => {
                 <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
-                    initialValues={data}
+                    initialValues={acountData?.data || {}}
                     initialStatus={{ edit: true }}
                     onSubmit={async (values, { setSubmitting }) => {
                         setSubmitting(true)
                         try {
-                            const res: ResponeApiCheck = await update(values);
-                            if(res.result=='success'){
-                                navigate(ListGroupsPath)
-                            }
-                            showNotification(res)
+
                         } catch (ex) {
                             showNotification({ error_description: ex, ...initialResponseError })
                             console.error(ex)
@@ -42,14 +62,14 @@ const Edit = () => {
                     }}
                 >
 
-                    <Form />
+                    <AccountForm />
                 </Formik>
 
-
             </KTCardBody>
-
+            {isLoading && <ListLoading />}
         </KTCard>
+
     );
 }
 
-export default Edit;
+export default AccountVehicle;

@@ -29,8 +29,8 @@ const create = (object: any) => {
   //.then((response: Response<VehicleType>) => response.data)
 }
 //VehicleMaker
-const update = (object: any) => {
-  return axios.post(`update_vehicle_maker/${object.id}`, object)
+const update = (object: any ,id:any) => {
+  return axios.post(`update_vehicle_maker/${id}`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   // .then((response: ResponeApiCheck) => response)
 }

@@ -16,10 +16,15 @@ const ListFilter = () => {
   const intl = useIntl();
   const { updateState } = useQueryRequest()
   const { isLoading } = useQueryResponse()
-  const [displayname, setDisplayName] = useState<string | undefined>("")
-  const [vehicletype, setVehicletype] = useState<string | undefined>(null)
-  const [seats, SetSeats] = useState<string | undefined>(null)
-  const [isenable, setIsenable] = useState<boolean | undefined>(null)
+  const [maker, setMaker] = useState<string | undefined>("")
+  const [model, setModel] = useState<string | undefined>("")
+  const [type, setType] = useState<string | undefined>(null)
+  const [color, setColor] = useState<string | undefined>(null)
+  const [license_plate, setLicensePlate] = useState<string | undefined>(null)
+  const [gps_code, setGpsCode] = useState<string | undefined>(null)
+  const [group, setGroup] = useState<string | undefined>(null)
+
+  const [in_service, setInService] = useState<boolean | undefined>(null)
 
 
 
@@ -34,7 +39,7 @@ const ListFilter = () => {
   const filterData = () => {
    
     updateState({
-      filtter: { displayname, vehicletype, seats, isenable },
+      filtter: {maker, model, type, color,gps_code,license_plate,group, in_service },
       ...initialQueryState,
     })
   }
@@ -44,18 +49,18 @@ const ListFilter = () => {
         {/* begin::Input group */}
         <div className="row">
           <div className="col">
-            <InputFilter value={displayname} setValue={setDisplayName} title={intl.formatMessage({ id: 'display_name' })} />
+            <InputFilter value={maker} setValue={setMaker} title={intl.formatMessage({ id: 'maker' })} />
           </div>
           <div className="col">
-            <InputFilter value={vehicletype} setValue={setVehicletype} title={intl.formatMessage({ id: 'vechile_type' })} />
+            <InputFilter value={model} setValue={setModel} title={intl.formatMessage({ id: 'model' })} />
           </div>
         </div>
         <div className="row">
           <div className="col">
-            <InputFilter value={seats} setValue={SetSeats} title={intl.formatMessage({ id: 'no_seats' })} />
+            <InputFilter value={type} setValue={setType} title={intl.formatMessage({ id: 'type' })} />
           </div>
           <div className="col">
-            <CheckBoxFilter value={isenable} setValue={setIsenable} title={intl.formatMessage({ id: 'is_enable' })} />
+            <CheckBoxFilter value={in_service} setValue={setInService} title={intl.formatMessage({ id: 'in_service' })} />
           </div>
         </div>
 

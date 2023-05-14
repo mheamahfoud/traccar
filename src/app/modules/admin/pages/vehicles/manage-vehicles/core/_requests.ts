@@ -21,7 +21,7 @@ const getList = (query: string, page: number): Promise<VehicleQueryResponse> => 
     })
 }
 
-const create = (object: VehicleQueryResponse) => {
+const create = (object: Vehicle) => {
   return axios
     .post('store_vehicle', object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
@@ -34,6 +34,13 @@ const create = (object: VehicleQueryResponse) => {
 //   // .then((response: ResponeApiCheck) => response)
 // }
 
+const getAccountCar = (id: ID) => {
+  return axios
+    .get(`${'cars_account'}/${id}`)
+    .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
+  //.then((response: Response<VehicleType>) => response.data)
+}
+
 
 const destroy = (id: ID): Promise<void> => {
   return axios.post(`${'destroyVehicle'}/${id}`).then(() => { })
@@ -44,4 +51,4 @@ const destroySelectedItems = (selectedIds: Array<ID>): Promise<void> => {
   return axios.all(requests).then(() => { })
 }
 
-export { getList, destroy, destroySelectedItems, create }
+export { getList, destroy, destroySelectedItems, create ,getAccountCar}

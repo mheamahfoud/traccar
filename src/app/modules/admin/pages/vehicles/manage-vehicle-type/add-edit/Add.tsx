@@ -26,7 +26,9 @@ const Add = () => {
                             // values['icon']=values['icon_file'];
                             // delete values['icon_file']
                             const res: ResponeApiCheck = await create(values);
-                            navigate(ListTypesPath)
+                            if(res.result=='success'){
+                                navigate(ListTypesPath)
+                            }
                             showNotification(res)
                         } catch (ex) {
                             showNotification({ error_description: ex, ...initialResponseError })

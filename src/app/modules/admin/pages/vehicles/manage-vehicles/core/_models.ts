@@ -28,6 +28,11 @@ export type Vehicle = {
   "displayname": string,
   "color": string,
   "group": string,
+  "insurance_number"?:null,
+  "documents"?:null,
+  "exp_date"?:"2022-07-28",
+  "exp_name"?:"exp_name",
+  "exp_amount"?:"3000"
 }
 
 
@@ -64,7 +69,11 @@ export const initialVehicle: Vehicle = {
   "displayname": null,
   "color": null,
   "group": null,
+  "insurance_number":null,
+  "documents":null,
+  "exp_date":null,
+  "exp_name":null,
+  "exp_amount":null
 }
-
 
 

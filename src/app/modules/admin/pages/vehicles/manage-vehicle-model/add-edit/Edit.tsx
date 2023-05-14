@@ -26,7 +26,9 @@ const Edit = () => {
                         setSubmitting(true)
                         try {
                             const res: ResponeApiCheck = await update(values);
-                            navigate(ListModelsPath)
+                            if(res.result=='success'){
+                                navigate(ListModelsPath)
+                            }
                             showNotification(res)
                         } catch (ex) {
                             showNotification({ error_description: ex, ...initialResponseError })

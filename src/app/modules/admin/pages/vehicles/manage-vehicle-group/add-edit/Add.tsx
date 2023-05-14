@@ -24,7 +24,10 @@ const Add = () => {
                         setSubmitting(true)
                         try {
                             const res: ResponeApiCheck = await create(values);
-                            navigate(ListGroupsPath)
+                            if(res.result=='success'){
+                                navigate(ListGroupsPath)
+                            }
+                           
                             showNotification(res)
                         } catch (ex) {
                             showNotification({ error_description: ex, ...initialResponseError })

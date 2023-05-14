@@ -29,7 +29,9 @@ const Edit = () => {
                             //delete values['icon_file']
                             const res: ResponeApiCheck = await update(values);
                             showNotification(res)
-                            navigate(ListTypesPath)
+                            if(res.result=='success'){
+                                navigate(ListTypesPath)
+                            }
                         } catch (ex) {
                             showNotification({ error_description: ex, ...initialResponseError })
                             console.error(ex)

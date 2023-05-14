@@ -14,40 +14,36 @@ const Edit = () => {
     const { showNotification } = useNotification();
 
     return (
-        <KTCard>
 
-            <KTCardBody className='py-4'>
-                <Formik
-                    enableReinitialize={true}
-                    validationSchema={roleSchema}
-                    initialValues={data}
-                    initialStatus={{ edit: true }}
-                    onSubmit={async (values, { setSubmitting }) => {
-                        setSubmitting(true)
-                        try {
-                            //values['icon']=values['icon_file'];
-                            //delete values['icon_file']
-                          //  const res: ResponeApiCheck = await update(values);
-                           // showNotification(res)
-                        } catch (ex) {
-                            showNotification({ error_description: ex, ...initialResponseError })
-                            console.error(ex)
-                        } finally {
-                            setSubmitting(true)
-                        }
-                    }}
-                    onReset={(values) => {
-                        console.log('Formik onReset');
-                    }}
-                >
+        <Formik
+            enableReinitialize={true}
+           // validationSchema={roleSchema}
+            initialValues={data}
+            initialStatus={{ edit: true }}
+            onSubmit={async (values, { setSubmitting }) => {
+                setSubmitting(true)
+                try {
+                    //values['icon']=values['icon_file'];
+                    //delete values['icon_file']
+                    //  const res: ResponeApiCheck = await update(values);
+                    // showNotification(res)
+                } catch (ex) {
+                    showNotification({ error_description: ex, ...initialResponseError })
+                    console.error(ex)
+                } finally {
+                    setSubmitting(true)
+                }
+            }}
+            onReset={(values) => {
+                console.log('Formik onReset');
+            }}
+        >
 
-                    <Form />
-                </Formik>
+            <Form />
+        </Formik>
 
 
-            </KTCardBody>
 
-        </KTCard>
     );
 }
 

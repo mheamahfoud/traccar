@@ -27,9 +27,12 @@ const Edit = () => {
                         try {
                             const formData = new FormData();
                             addFieldsToFormData(formData,values )
-                            const res: ResponeApiCheck = await update(formData);
-                            navigate(ListMakerPath)
+                            const res: ResponeApiCheck = await update(formData,values.id);
+                            if(res.result=='success'){
+                                navigate(ListMakerPath)
+                            }
                             showNotification(res)
+                           
                         } catch (ex) {
                             showNotification({ error_description: ex, ...initialResponseError })
                             console.error(ex)

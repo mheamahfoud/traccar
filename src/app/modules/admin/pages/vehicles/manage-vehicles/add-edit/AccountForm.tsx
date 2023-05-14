@@ -1,4 +1,4 @@
-import { FC} from 'react'
+import { FC } from 'react'
 import { useFormikContext } from 'formik'
 import { ListLoading } from '../../../../components/table/loading/ListLoading'
 import SubmitButton from '../../../../components/buttons/SubmitButton'
@@ -6,16 +6,15 @@ import ResetButton from '../../../../components/buttons/ResetButton'
 import { useIntl } from 'react-intl'
 import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
 import FormikFile from '../../../../components/formik/FormikFile'
-import FormikSwitch from '../../../../components/formik/FormikCheckBox'
 
 
-const Form: FC = () => {
+
+const AccountForm: FC = () => {
     const intel = useIntl()
     const { handleSubmit, resetForm, isSubmitting, isValid, touched } = useFormikContext();
-
     return (
         <>
-            <form className='form' onSubmit={handleSubmit} noValidate>
+            <form className='form' onSubmit={handleSubmit} noValidate >
                 {/* begin::Scroll */}
                 <div
                     className='d-flex flex-column scroll-y me-n7 pe-7'
@@ -23,49 +22,21 @@ const Form: FC = () => {
                     <div className='row'>
                         <div className='col-md-6 col-sm-12'>
                             <FormikInputLabel
-                                title={intel.formatMessage({ id: 'display_name' })}
-                                name={'displayname'}
+                                title={intel.formatMessage({ id: 'email' })}
+                                name={'email'}
                                 isRequired={true}
                             />
                         </div>
                         <div className='col-md-6 col-sm-12'>
                             <FormikInputLabel
-                                title={intel.formatMessage({ id: 'vehicle_type' })}
-                                name={'vehicletype'}
+                                title={intel.formatMessage({ id: 'password' })}
+                                name={'password'}
                                 isRequired={true}
                             />
                         </div>
 
                     </div>
-                    <div className='row'>
-                        <div className='col-md-6 col-sm-12'>
-                            <FormikInputLabel
-                                title={intel.formatMessage({ id: 'no_seats' })}
-                                name={'seats'}
-                                type='number'
-                                isRequired={true}
-                            />
-                        </div>
-                        <div className='col-md-6 col-sm-12'>
-                            <FormikSwitch
-                                title={intel.formatMessage({ id: 'is_enable' })}
-                                name={'isenable'}
-                            />
-                        </div>
-                    </div>
 
-
-                    <div className='row'>
-                        <div className='col-md-6 col-sm-12'>
-                            <FormikFile
-                                title={intel.formatMessage({ id: 'icon' })}
-                                name={'icon'}
-                                isRequired={false}
-
-                            />
-                        </div>
-                      
-                    </div>
 
                 </div>
                 {/* begin::Actions */}
@@ -87,4 +58,4 @@ const Form: FC = () => {
     )
 }
 
-export { Form }
+export { AccountForm }

@@ -2,6 +2,7 @@ import { useFormikContext } from 'formik';
 import clsx from 'clsx'
 import { Image, } from "react-bootstrap";
 import { useState } from 'react';
+import { toAbsoluteServerUrl } from '../../../../../_metronic/helpers';
 interface props {
     title: string,
     name: string,
@@ -9,18 +10,14 @@ interface props {
 }
 const FormikInputLabel = (props: props) => {
     const { title, name, isRequired } = props;
+    
     const { errors, touched, getFieldProps, isSubmitting, setFieldValue, values } = useFormikContext();
-    const [uploadedImage, setUploadedImage] = useState(values[name]);
+    const [uploadedImage, setUploadedImage] = useState(toAbsoluteServerUrl(values[name]));
 
     const handleChange = (event) => {
         if (event.target.files && event.target.files[0]) {
             setFieldValue(props.name+ '_file', event.target.files[0]);
             const fileReader = new FileReader();
-            fileReader.onload = () => {
-                if (fileReader.readyState === 2) {
-                 //   setFieldValue(props.name+ '_file', fileReader.result);
-                }
-            };
             fileReader.readAsDataURL(event.target.files[0]);
             setUploadedImage(URL.createObjectURL(event.target.files[0]));
         }
@@ -31,7 +28,7 @@ const FormikInputLabel = (props: props) => {
             <label className={`${isRequired ? 'required' : ''} fw-bold fs-6 mb-2`}>{title}</label>
             <input
                 placeholder={title}
-                {...getFieldProps({ name })}
+               // {...getFieldProps({ name })}
                 type={"file"}
                 name={name}
             
