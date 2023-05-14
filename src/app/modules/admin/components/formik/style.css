@@ -1,0 +1,11 @@
+.select2-container {
+    box-sizing: border-box;
+    display: inline;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+    background-color: '#f9f9f9';
+    border-color: '#f9f9f9';
+    color:'#5e6278';
+    transition: color 0.2s ease;
+}
