@@ -50,18 +50,7 @@ const Form: FC = () => {
                         </div>
 
                     </div>
-                    <div className='row'>
-                        <div className='col-md-6 col-sm-12'>
-                            <FormikInputDate
-                                title={intel.formatMessage({ id: 'make' })}
-                                name={'make_id'}
-                                isRequired={true}
-                               
-                            />
-                        </div>
-                      
-
-                    </div>
+             
 
                 </div>
                 

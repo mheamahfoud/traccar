@@ -5,8 +5,11 @@ import { initialVehicleType } from '../core/_models';
 import { roleSchema } from './validationForm';
 import { create } from '../core/_requests';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
+import { useNavigate } from 'react-router-dom';
+import { ListTypesPath } from '../../routes/RoutesNames';
 
 const Add = () => {
+    const navigate = useNavigate();
     const { showNotification } = useNotification();
     return (
         <KTCard>
@@ -23,6 +26,7 @@ const Add = () => {
                             // values['icon']=values['icon_file'];
                             // delete values['icon_file']
                             const res: ResponeApiCheck = await create(values);
+                            navigate(ListTypesPath)
                             showNotification(res)
                         } catch (ex) {
                             showNotification({ error_description: ex, ...initialResponseError })

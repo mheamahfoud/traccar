@@ -1,12 +1,15 @@
 import { Formik } from 'formik';
-import { KTCard, KTCardBody, ResponeApiCheck, initialResponseError } from '../../../../../../../_metronic/helpers';
+import { KTCard, KTCardBody, ResponeApiCheck, addFieldsToFormData, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
 import { initialVehicleMaker } from '../core/_models';
 import { roleSchema } from './validationForm';
 import { create } from '../core/_requests';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
+import { useNavigate } from 'react-router-dom';
+import { ListMakerPath } from '../../routes/RoutesNames';
 
 const Add = () => {
+    const navigate = useNavigate()
     const { showNotification } = useNotification();
     return (
         <KTCard>
@@ -18,9 +21,12 @@ const Add = () => {
                     initialValues={initialVehicleMaker}
                     initialStatus={{ edit: false }}
                     onSubmit={async (values, { setSubmitting }) => {
+                        const formData = new FormData();
+                        addFieldsToFormData(formData,values )
                         setSubmitting(true)
                         try {
-                            const res: ResponeApiCheck = await create(values);
+                            const res: ResponeApiCheck = await create(formData);
+                            navigate(ListMakerPath)
                             showNotification(res)
                         } catch (ex) {
                             showNotification({ error_description: ex, ...initialResponseError })
@@ -35,7 +41,7 @@ const Add = () => {
                     }}
                 >
 
-                    <Form  />
+                    <Form />
                 </Formik>
 
 

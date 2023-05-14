@@ -5,8 +5,11 @@ import { initialVehicleModel } from '../core/_models';
 import { roleSchema } from './validationForm';
 import { create } from '../core/_requests';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
+import { ListGroupsPath } from '../../routes/RoutesNames';
+import { useNavigate } from 'react-router-dom';
 
 const Add = () => {
+    const  navigate=useNavigate();
     const { showNotification } = useNotification();
     return (
         <KTCard>
@@ -21,6 +24,7 @@ const Add = () => {
                         setSubmitting(true)
                         try {
                             const res: ResponeApiCheck = await create(values);
+                            navigate(ListGroupsPath)
                             showNotification(res)
                         } catch (ex) {
                             showNotification({ error_description: ex, ...initialResponseError })

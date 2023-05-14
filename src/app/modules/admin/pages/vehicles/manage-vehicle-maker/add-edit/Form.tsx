@@ -14,7 +14,7 @@ const Form: FC= () => {
     const { handleSubmit, resetForm, isSubmitting, isValid, touched } = useFormikContext();
     return (
         <>
-            <form className='form' onSubmit={handleSubmit} noValidate>
+            <form className='form' onSubmit={handleSubmit} noValidate encType="multipart/form-data">
                 {/* begin::Scroll */}
                 <div
                     className='d-flex flex-column scroll-y me-n7 pe-7'

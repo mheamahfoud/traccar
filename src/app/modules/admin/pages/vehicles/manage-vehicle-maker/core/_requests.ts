@@ -22,27 +22,27 @@ const getList = (query: string, page: number): Promise<VehicleMakerQueryResponse
     })
 }
 
-const create = (object: VehicleMaker) => {
+const create = (object: any) => {
   return axios
     .post('store_vehicle_maker', object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   //.then((response: Response<VehicleType>) => response.data)
 }
-
-const update = (object: VehicleMaker) => {
+//VehicleMaker
+const update = (object: any) => {
   return axios.post(`update_vehicle_maker/${object.id}`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   // .then((response: ResponeApiCheck) => response)
 }
 
 
-const deleteUser = (userId: ID): Promise<void> => {
-  return axios.delete(`${'delete'}/${userId}`).then(() => { })
+const destroy = (id: ID): Promise<void> => {
+  return axios.post(`${'destroy_vehicle_maker'}/${id}`).then(() => { })
 }
 
-const deleteSelectedUsers = (userIds: Array<ID>): Promise<void> => {
-  const requests = userIds.map((id) => axios.delete(`${'delete'}/${id}`))
+const destroySelectedItems = (selectedIds: Array<ID>): Promise<void> => {
+  const requests = selectedIds.map((id) => axios.post(`${'destroy_vehicle_maker'}/${id}`))
   return axios.all(requests).then(() => { })
 }
 
-export { getList, deleteUser, deleteSelectedUsers, create, update }
+export { getList, destroy, destroySelectedItems, create, update }

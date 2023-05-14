@@ -116,7 +116,9 @@
    "int_mileage":"Initial Mileage(km)",
    "lic_exp_date":"Licence Expiry Date",
    "reg_exp_date":"Registration Expiry Date",
-   "vehicle_image":"Vehicle Image"
+   "vehicle_image":"Vehicle Image",
+   "edit":"Edit",
+   "delete":"Delete"
 
 
  

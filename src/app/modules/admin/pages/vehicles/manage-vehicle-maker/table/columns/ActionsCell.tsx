@@ -6,7 +6,7 @@ import { MenuComponent } from '../../../../../../../../_metronic/assets/ts/compo
 import { ID, KTIcon, QUERIES, optionAlertConfirm } from '../../../../../../../../_metronic/helpers'
 import { useListView } from '../../core/ListViewProvider'
 import { useQueryResponse, useQueryResponseData } from '../../core/QueryResponseProvider'
-import { deleteUser } from '../../core/_requests'
+import { destroy } from '../../core/_requests'
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 import { EditMakerPath,  } from '../../../routes/RoutesNames'
@@ -40,10 +40,10 @@ const ActionsCell: FC<Props> = ({ id }) => {
       }
     });
   }
-  const deleteItem = useMutation(() => deleteUser(id), {
+  const deleteItem = useMutation(() => destroy(id), {
     onSuccess: () => {
       // ✅ update detail view directly
-      queryClient.invalidateQueries([`${QUERIES.VEHICLES_TYPES}-${query}`])
+      queryClient.invalidateQueries([`${QUERIES.VEHICLES_MAKER}-${query}`])
     },
     onError: () => {
 

@@ -14,10 +14,11 @@ const FormikInputLabel = (props: props) => {
 
     const handleChange = (event) => {
         if (event.target.files && event.target.files[0]) {
+            setFieldValue(props.name+ '_file', event.target.files[0]);
             const fileReader = new FileReader();
             fileReader.onload = () => {
                 if (fileReader.readyState === 2) {
-                    setFieldValue(props.name+ '_file', fileReader.result);
+                 //   setFieldValue(props.name+ '_file', fileReader.result);
                 }
             };
             fileReader.readAsDataURL(event.target.files[0]);
@@ -33,6 +34,7 @@ const FormikInputLabel = (props: props) => {
                 {...getFieldProps({ name })}
                 type={"file"}
                 name={name}
+            
                 onChange={handleChange}
                 className={clsx(
                     'form-control form-control-solid mb-3 mb-lg-0',

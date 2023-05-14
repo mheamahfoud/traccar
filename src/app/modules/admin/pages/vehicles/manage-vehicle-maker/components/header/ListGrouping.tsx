@@ -2,7 +2,7 @@ import { useQueryClient, useMutation } from 'react-query'
 import { QUERIES, optionAlertConfirm } from '../../../../../../../../_metronic/helpers'
 import { useListView } from '../../core/ListViewProvider'
 import { useQueryResponse } from '../../core/QueryResponseProvider'
-import { deleteSelectedUsers } from '../../core/_requests'
+import { destroySelectedItems } from '../../core/_requests'
 import { useState } from 'react'
 import Swal from 'sweetalert2'
 import { ListGroupingHoc } from '../../../../../components/table/header/ListGrouping'
@@ -14,7 +14,7 @@ const ListGrouping = () => {
   const queryClient = useQueryClient()
   const { query } = useQueryResponse()
 
-  const deleteSelectedItems = useMutation(() => deleteSelectedUsers(selected), {
+  const deleteSelectedItems = useMutation(() => destroySelectedItems(selected), {
     // 💡 response of the mutation is passed to onSuccess
     onSuccess: () => {
       // ✅ update detail view directly

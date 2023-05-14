@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { KTCard, KTCardBody, ResponeApiCheck, initialResponseError } from '../../../../../../../_metronic/helpers';
+import { KTCard, KTCardBody, ResponeApiCheck, addFieldsToFormData, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
 import { roleSchema } from './validationForm';
 import { update } from '../core/_requests';
@@ -25,7 +25,9 @@ const Edit = () => {
                     onSubmit={async (values, { setSubmitting }) => {
                         setSubmitting(true)
                         try {
-                            const res: ResponeApiCheck = await update(values);
+                            const formData = new FormData();
+                            addFieldsToFormData(formData,values )
+                            const res: ResponeApiCheck = await update(formData);
                             navigate(ListMakerPath)
                             showNotification(res)
                         } catch (ex) {

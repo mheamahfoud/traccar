@@ -4,6 +4,7 @@ export type VehicleMaker = {
   id: number
   make: string,
   image: string,
+  image_file:any
 }
 
 
@@ -13,6 +14,7 @@ export const initialVehicleMaker: VehicleMaker = {
   id: 0,
   make: '',
   image: '',
+  image_file:null,
  
 }
 
