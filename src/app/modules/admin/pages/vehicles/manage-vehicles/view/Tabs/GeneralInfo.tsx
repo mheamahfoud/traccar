@@ -22,61 +22,9 @@ const GeneralInfo = () => {
             >
      
                 <div className='separator separator-dashed my-5'></div>
-                <div className='row'>
-                    <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikSelectInput
-                            title={intel.formatMessage({ id: 'make' })}
-                            name={'make_id'}
-                            isRequired={true}
-                            options={makerList?.data || []}
-                        />
-                    </div>
-                    <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikSelectInput
-                            title={intel.formatMessage({ id: 'model' })}
-                            name={'model_id'}
-                            isRequired={true}
-                            options={modelList?.data || []}
-                        />
-                    </div>
+         
 
-                    <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikSelectInput
-                            title={intel.formatMessage({ id: 'color' })}
-                            name={'color_id'}
-                            isRequired={true}
-                            options={colorList?.data || []}
-                        />
-                    </div>
-                </div>
-
-                <div className='row'>
-                    <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikSelectInput
-                            title={intel.formatMessage({ id: 'engine_type' })}
-                            name={'engine_type'}
-                            isRequired={true}
-                            options={engineTypeList?.data || []}
-                        />
-                    </div>
-                    <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikSelectInput
-                            title={intel.formatMessage({ id: 'type' })}
-                            name={'type_id'}
-                            isRequired={true}
-                            options={typeList?.data || []}
-                        />
-                    </div>
-
-                    <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikSelectInput
-                            title={intel.formatMessage({ id: 'group' })}
-                            name={'group_id'}
-                            isRequired={true}
-                            options={groupList?.data || []}
-                        />
-                    </div>
-                </div>
+             
 
          
 

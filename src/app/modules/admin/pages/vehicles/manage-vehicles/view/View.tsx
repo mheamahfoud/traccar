@@ -31,7 +31,7 @@ const View = () => {
                 <CustomAppBar labels={['generalInfo', 'physicalInfo', 'insurance', 'purchase_info',]} setSelectedTab={setTab} selectedTab={tab} />
                 <div className='card-body py-4'>
                     <div className='tab-content pt-3'>
-                        <TabWrapper index={0} selectedTab={tab}>
+                        {/* <TabWrapper index={0} selectedTab={tab}>
                             <GeneralInfo />
                         </TabWrapper>
                         <TabWrapper index={1} selectedTab={tab}>
@@ -45,7 +45,7 @@ const View = () => {
 
                         <TabWrapper index={3} selectedTab={tab}>
                             <Purchase />
-                        </TabWrapper>
+                        </TabWrapper> */}
 
 
 
