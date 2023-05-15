@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl';
-import FormikInputLabel from '../../../../../components/formik/FormikInputLabel';
-const PhysicalInfo = () => {
+import InputDetail from '../../../../../components/fields/InputDetail';
+const PhysicalInfo = ({...props}) => {
+    const {data}=props;
 //#endregion fetch data
     const intel = useIntl()
     return (
@@ -13,19 +14,17 @@ const PhysicalInfo = () => {
 
                 <div className='row'>
                     <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikInputLabel
+                        <InputDetail
                             title={intel.formatMessage({ id: 'horse_power' })}
-                            name={'horse_power'}
-                            isRequired={true}
-                            type='number'
+                            text={data['horse_power']}
+                          
                         />
                     </div>
                     <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikInputLabel
+                        <InputDetail
                             title={intel.formatMessage({ id: 'average_km_l' })}
-                            name={'average'}
-                            isRequired={true}
-                            type='number'
+                            text={data['average']}
+                          
                         />
                     </div>
 
@@ -33,11 +32,10 @@ const PhysicalInfo = () => {
 
 
                     <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikInputLabel
+                        <InputDetail
                             title={intel.formatMessage({ id: 'int_mileage' })}
-                            name={'int_mileage'}
-                            isRequired={false}
-                            type='number'
+                            text={data['int_mileage']}
+                          
                         />
                     </div>
 
@@ -47,26 +45,25 @@ const PhysicalInfo = () => {
 
                 <div className='row'>
                     <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikInputLabel
+                        <InputDetail
                             title={intel.formatMessage({ id: 'year' })}
-                            name={'year'}
-                            isRequired={true}
-                            type='number'
+                            text={data['year']}
+                           
                         />
                     </div>
 
                     <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikInputLabel
+                        <InputDetail
                             title={intel.formatMessage({ id: 'vin' })}
-                            name={'vin'}
-                            isRequired={true}
+                            text={data['vin']}
+                          
                         />
                     </div>
                     <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikInputLabel
+                        <InputDetail
                             title={intel.formatMessage({ id: 'gps_code' })}
-                            name={'gps_code'}
-                            isRequired={true}
+                            text={data['gps_code']}
+                       
 
                         />
                     </div>

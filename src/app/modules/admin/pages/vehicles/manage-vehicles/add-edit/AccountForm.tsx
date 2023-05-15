@@ -5,7 +5,7 @@ import SubmitButton from '../../../../components/buttons/SubmitButton'
 import ResetButton from '../../../../components/buttons/ResetButton'
 import { useIntl } from 'react-intl'
 import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
-import FormikFile from '../../../../components/formik/FormikFile'
+
 
 
 

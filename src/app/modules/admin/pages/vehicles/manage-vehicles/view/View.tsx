@@ -16,6 +16,7 @@ const View = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [data, setData] = useState<any>(location.state);
+    
     const [tab, setTab] = useState(0)
     useEffect(() => {
         setData({
@@ -31,6 +32,20 @@ const View = () => {
                 <CustomAppBar labels={['generalInfo', 'physicalInfo', 'insurance', 'purchase_info',]} setSelectedTab={setTab} selectedTab={tab} />
                 <div className='card-body py-4'>
                     <div className='tab-content pt-3'>
+                        <TabWrapper index={0} selectedTab={tab}>
+                            <GeneralInfo data={data} />
+                        </TabWrapper>
+
+                        <TabWrapper index={1} selectedTab={tab}>
+                            <PhysicalInfo  data={data} />
+                        </TabWrapper>
+
+                        <TabWrapper index={2} selectedTab={tab}>
+                            <Insurance  data={data}/>
+                        </TabWrapper>
+                        <TabWrapper index={3} selectedTab={tab}>
+                            <Purchase data={data} />
+                        </TabWrapper> 
                         {/* <TabWrapper index={0} selectedTab={tab}>
                             <GeneralInfo />
                         </TabWrapper>

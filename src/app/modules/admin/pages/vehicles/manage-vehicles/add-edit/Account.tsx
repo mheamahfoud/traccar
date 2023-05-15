@@ -1,20 +1,21 @@
 import { Formik } from 'formik';
-import { KTCard, KTCardBody, QUERIES, ResponeApiCheck, initialResponseError } from '../../../../../../../_metronic/helpers';
+import { KTCard, KTCardBody, QUERIES, ResponeApiCheck, SuccessMsg, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
 //import { update } from '../core/_requests';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
 import { AccountForm } from './AccountForm';
-import { getAccountCar } from '../core/_requests';
+import { SaveAccountCar, getAccountCar } from '../core/_requests';
 import { useQuery } from 'react-query';
 import * as Yup from 'yup'
 import { ListLoading } from '../../../../components/table/loading/ListLoading';
+import { ListVehiclesPath } from '../../routes/RoutesNames';
 const roleSchema = Yup.object().shape({
-    email: Yup.string()
-        .email('Wrong email format')
-        .min(3, 'Minimum 3 symbols')
-        .max(50, 'Maximum 50 symbols')
-        .required('Email is required'),
+    //email: Yup.string()
+       // .email('Wrong email format')
+      //  .min(3, 'Minimum 3 symbols')
+     //   .max(50, 'Maximum 50 symbols')
+      //  .required('Email is required'),
     password: Yup.string()
         .required('Field is required'),
 
@@ -22,6 +23,7 @@ const roleSchema = Yup.object().shape({
 })
 
 const AccountVehicle = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     const id: any = location.state;
     const { showNotification } = useNotification();
@@ -31,10 +33,11 @@ const AccountVehicle = () => {
         data: acountData,
         isLoading,
     } = useQuery(
-        `${QUERIES.VEHICLES_MAKER_LIST_VALUES + id}`,
+        `${QUERIES.VEHICLES_ACCOUNT_INFO_PASSWORD + id}`,
         () => {
             return getAccountCar(id)
         },
+      //  { cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false }
 
     )
     return (
@@ -44,12 +47,21 @@ const AccountVehicle = () => {
                 <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
-                    initialValues={acountData?.data || {}}
+                    initialValues={acountData?.data ||{}}
                     initialStatus={{ edit: true }}
                     onSubmit={async (values, { setSubmitting }) => {
+                        delete values['email']
                         setSubmitting(true)
                         try {
-
+                            const res: ResponeApiCheck = await SaveAccountCar(values,id);
+                            if(res.result=='success'){
+                                navigate(ListVehiclesPath)
+                                showNotification(SuccessMsg)
+                            }
+                            else{
+                                showNotification(res)
+                            }
+                           
                         } catch (ex) {
                             showNotification({ error_description: ex, ...initialResponseError })
                             console.error(ex)

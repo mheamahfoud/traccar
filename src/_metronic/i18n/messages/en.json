@@ -120,5 +120,7 @@
   "exp_amount": "Expense Ampunt",
   "physicalInfo": "Physical Info",
   "account":"Account",
-  "view":"View"
+  "view":"View",
+  "email":"Email",
+  "password":"Password"
 }

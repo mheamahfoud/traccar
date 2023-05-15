@@ -1,18 +1,12 @@
-import React from 'react';
-import FormikInputLabel from '../../../../../components/formik/FormikInputLabel';
-import FormikFile from '../../../../../components/formik/FormikFile';
-import FormikSelectInput from '../../../../../components/formik/FormikSelectInput';
-import clsx from 'clsx';
+
+
 import { useIntl } from 'react-intl';
-import { useQuery } from 'react-query';
-import { getColorList, getEngineTypeList, getGroupList, getMakerList, getModelList, getTypeList } from '../../../core/_requests';
-import { QUERIES } from '../../../../../../../../_metronic/helpers';
-import FormikSwitch from '../../../../../components/formik/FormikCheckBox';
 import { FieldDocument, FieldImage } from '../../../../../../../../_metronic/utlis/formik';
+import InputDetail from '../../../../../components/fields/InputDetail';
 
-const Insurance = () => {
+const Insurance = ({ ...props }) => {
 
-
+    const { data } = props;
     //#endregion fetch data
     const intel = useIntl()
     return (
@@ -24,32 +18,30 @@ const Insurance = () => {
             <div className='separator separator-dashed my-5'></div>
             <div className='row'>
                 <div className='col-md-6 col-sm-6 col-xs-12'>
-                    <FormikInputLabel
+                    <InputDetail
                         title={intel.formatMessage({ id: 'insurance_number' })}
-                        name={'insurance_number'}
-                        isRequired={false}
-                        type='number'
+                        text={data['insurance_number']}
+
                     />
                 </div>
                 <div className='col-md-6 col-sm-6 col-xs-12'>
-                    <FormikInputLabel
+                    <InputDetail
                         title={intel.formatMessage({ id: 'exp_date' })}
-                        name={'exp_date'}
-                        isRequired={false}
-                        type='date'
+                        text={data['exp_date']}
+
                     />
                 </div>
 
-                <div className='col-md-6 col-sm-6 col-xs-12'>
+                {/* <div className='col-md-6 col-sm-6 col-xs-12'>
                     <FormikFile
                         title={intel.formatMessage({ id: 'documents' })}
-                        name={'documents'}
+                        name={'documents']}
                         isRequired={false}
                         fieldFile={FieldDocument}
                        
 
                     />
-                </div>
+                </div> */}
 
             </div>
 

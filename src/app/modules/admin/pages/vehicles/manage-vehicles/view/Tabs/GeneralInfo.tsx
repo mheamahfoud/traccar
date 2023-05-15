@@ -1,16 +1,9 @@
-import React from 'react';
-import FormikInputLabel from '../../../../../components/formik/FormikInputLabel';
-import FormikFile from '../../../../../components/formik/FormikFile';
-import FormikSelectInput from '../../../../../components/formik/FormikSelectInput';
-import clsx from 'clsx';
 import { useIntl } from 'react-intl';
-import { useQuery } from 'react-query';
-import { getColorList, getEngineTypeList, getGroupList, getMakerList, getModelList, getTypeList } from '../../../core/_requests';
-import { QUERIES } from '../../../../../../../../_metronic/helpers';
-import FormikSwitch from '../../../../../components/formik/FormikCheckBox';
-import { FieldImage } from '../../../../../../../../_metronic/utlis/formik';
-
-const GeneralInfo = () => {
+import ImageDetail from '../../../../../components/fields/ImageDetail';
+import CheckBoxDetail from '../../../../../components/fields/CheckBoxDetail';
+import InputDetail from '../../../../../components/fields/InputDetail';
+const GeneralInfo = ({...props}) => {
+    const {data}=props;
     //#region fetch data
 
 //#endregion fetch data
@@ -22,9 +15,55 @@ const GeneralInfo = () => {
             >
      
                 <div className='separator separator-dashed my-5'></div>
-         
+                <div className='row'>
+                    <div className='col-md-4 col-sm-6 col-xs-12'>
+                        <InputDetail
+                            title={intel.formatMessage({ id: 'make' })}
+                            text={data['make_id']}
+                  
+                        />
+                    </div>
+                    <div className='col-md-4 col-sm-6 col-xs-12'>
+                        <InputDetail
+                            title={intel.formatMessage({ id: 'model' })}
+                            text={data['model_id']}
+                         
+                        />
+                    </div>
 
-             
+                    <div className='col-md-4 col-sm-6 col-xs-12'>
+                        <InputDetail
+                            title={intel.formatMessage({ id: 'color' })}
+                            text={data['color_id']}
+                      
+                        />
+                    </div>
+                </div>
+
+                <div className='row'>
+                    <div className='col-md-4 col-sm-6 col-xs-12'>
+                        <InputDetail
+                            title={intel.formatMessage({ id: 'engine_type' })}
+                            text={data['engine_type']}
+                          
+                        />
+                    </div>
+                    <div className='col-md-4 col-sm-6 col-xs-12'>
+                        <InputDetail
+                            title={intel.formatMessage({ id: 'type' })}
+                            text={data['type_id']}
+                         
+                        />
+                    </div>
+
+                    <div className='col-md-4 col-sm-6 col-xs-12'>
+                        <InputDetail
+                            title={intel.formatMessage({ id: 'group' })}
+                            text={data['group_id']}
+                        
+                        />
+                    </div>
+                </div>
 
          
 
@@ -34,30 +73,27 @@ const GeneralInfo = () => {
 
                 <div className='row'>
                     <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikInputLabel
+                        <InputDetail
                             title={intel.formatMessage({ id: 'license_plate' })}
-                            name={'license_plate'}
-                            isRequired={true}
+                            text={data['license_plate']}
+                         
 
                         />
                     </div>
 
                     <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikInputLabel
+                        <InputDetail
                             title={intel.formatMessage({ id: 'lic_exp_date' })}
-                            name={'lic_exp_date'}
-                            isRequired={false}
-                            type={'date'}
+                            text={data['lic_exp_date']}
+                         
                         />
                     </div>
 
 
                     <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikInputLabel
+                        <InputDetail
                             title={intel.formatMessage({ id: 'reg_exp_date' })}
-                            name={'reg_exp_date'}
-                            isRequired={false}
-                            type={'date'}
+                            text={data['reg_exp_date']}
 
                         />
                     </div>
@@ -66,18 +102,18 @@ const GeneralInfo = () => {
                 <div className='separator separator-dashed my-5'></div>
                 <div className='row'>
                     <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikFile
+                        <ImageDetail
                             title={intel.formatMessage({ id: 'vehicle_image' })}
-                            name={'vehicle_image'}
-                            isRequired={false}
-                            fieldFile={FieldImage}
+                            imgSrc={data['vehicle_image']}
+                         
                         />
                     </div>
 
                     <div className='col-md-4 col-sm-6 col-xs-12'>
-                        <FormikSwitch
+                        <CheckBoxDetail
                             title={intel.formatMessage({ id: 'in_service' })}
-                            name={'in_service'}
+                            value={true}
+                            //value={data['in_service']}
                         />
                     </div>
 
