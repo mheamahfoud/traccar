@@ -19,7 +19,7 @@ const Form: FC = () => {
             </div>
             <div className='card card-custom'>
                 <CustomAppBar labels={['generalInfo','physicalInfo', 'insurance', 'purchase_info',]} setSelectedTab={setTab} selectedTab={tab} />
-                <form className='form' onSubmit={handleSubmit} noValidate>
+                <form className='form' onSubmit={handleSubmit} noValidate encType="multipart/form-data">
                     <div className='card-body py-4'>
                         <div className='tab-content pt-3'>
                             <TabWrapper index={0} selectedTab={tab}>

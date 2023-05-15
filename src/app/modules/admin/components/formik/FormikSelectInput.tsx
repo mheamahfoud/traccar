@@ -24,7 +24,7 @@ const FormikSelectInput = (props: props) => {
                     
                     options.map((item) => {
                         return (
-                            <option value={item.value}>{item.text}</option>
+                            <option value={item.value.toString()}>{item.text}</option>
                         )
                     })
                 }

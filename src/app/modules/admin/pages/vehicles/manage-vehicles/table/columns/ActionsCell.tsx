@@ -9,7 +9,7 @@ import { useQueryResponse, useQueryResponseData } from '../../core/QueryResponse
 import { destroy, getAccountCar } from '../../core/_requests'
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
-import { AccountVehiclesPath, EditMakerPath, EditModelPath, EditVehiclesPath, } from '../../../routes/RoutesNames'
+import { AccountVehiclesPath, EditMakerPath, EditModelPath, EditVehiclesPath, ViewVehiclesPath, } from '../../../routes/RoutesNames'
 import { useIntl } from 'react-intl'
 type Props = {
   id: ID
@@ -55,7 +55,8 @@ const ActionsCell: FC<Props> = ({ id }) => {
       navigate(AccountVehiclesPath,{ state: id })
   }
   const handleView = () => {
-
+    const data = items.find(x => x.id == id);
+    navigate(ViewVehiclesPath, { state: data })
   }
   return (
     <>

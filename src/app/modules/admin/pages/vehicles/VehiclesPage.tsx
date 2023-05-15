@@ -31,6 +31,7 @@ import { ManageGroupsListWrapper } from './manage-vehicle-group/List';
 import { ListColorsPath, ListGroupsPath, ListMakerPath, ListModelsPath, ListVehiclesPath, colorsBreadcrumbs, groupsBreadcrumbs, makersBreadcrumbs, modelssBreadcrumbs, typesBreadcrumbs, vehiclesBreadcrumbs } from './routes/RoutesNames';
 import { ManageVehiclesListWrapper } from './manage-vehicles/List';
 import AccountVehicle from './manage-vehicles/add-edit/Account';
+import View from './manage-vehicles/view/View';
 //import { ManageVehiclesListWrapper } from './manage-vehicles/List';
 
 
@@ -74,6 +75,17 @@ const VechilesPage = () => {
             </>
           }
         />
+
+        <Route
+          path='view-vehicle'
+          element={
+            <>
+              <PageTitle breadcrumbs={vehiclesBreadcrumbs}>{intl.formatMessage({ id: "edit_object" }, { name: intl.formatMessage({ id: "vehicle" }) })}</PageTitle>
+              <View />
+            </>
+          }
+        />
+
         <Route
           path='account-vehicle'
           element={
@@ -83,7 +95,7 @@ const VechilesPage = () => {
             </>
           }
         />
-
+        
 
 
         //#endregion

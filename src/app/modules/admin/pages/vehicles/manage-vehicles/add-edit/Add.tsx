@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { KTCard, KTCardBody, ResponeApiCheck, initialResponseError } from '../../../../../../../_metronic/helpers';
+import {  ResponeApiCheck, addFieldsToFormData, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
 import { initialVehicle } from '../core/_models';
 import { roleSchema } from './validationForm';
@@ -15,16 +15,19 @@ const Add = () => {
 
         <Formik
             enableReinitialize={false}
-          //  validationSchema={roleSchema}
+           validationSchema={roleSchema}
             initialValues={initialVehicle}
             initialStatus={{ edit: false }}
             onSubmit={async (values, { setSubmitting }) => {
+                delete values['id']
+                const formData = new FormData();
+                addFieldsToFormData(formData,values )
                 setSubmitting(true)
                 try {
                     console.log(values)
                     // values['icon']=values['icon_file'];
                     // delete values['icon_file']
-                    const res: ResponeApiCheck = await create(values);
+                    const res: ResponeApiCheck = await create(formData);
                     if(res.result=='success'){
                         navigate(ListVehiclesPath)
                     }

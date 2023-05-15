@@ -30,7 +30,7 @@ const Edit = () => {
                            
                             //values['icon']=values['icon_file'];
                             //delete values['icon_file']
-                            const res: ResponeApiCheck = await update(values);
+                            const res: ResponeApiCheck = await update(formData,values?.id);
                             showNotification(res)
                             if(res.result=='success'){
                                 navigate(ListTypesPath)

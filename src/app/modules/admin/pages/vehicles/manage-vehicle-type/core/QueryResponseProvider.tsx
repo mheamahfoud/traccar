@@ -58,7 +58,11 @@ const useQueryResponseData = () => {
     return []
   }
 
-  return response?.data || []
+  return response?.data.map((item, index) => {
+    return {
+      ...item, index: index+1
+    }
+  })  || []
 }
 
 const useQueryResponsePagination = () => {

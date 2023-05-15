@@ -28,7 +28,7 @@ const Add = () => {
                  
                             // values['icon']=values['icon_file'];
                             // delete values['icon_file']
-                            const res: ResponeApiCheck = await create(values);
+                            const res: ResponeApiCheck = await create(formData);
                             if(res.result=='success'){
                                 navigate(ListTypesPath)
                             }
