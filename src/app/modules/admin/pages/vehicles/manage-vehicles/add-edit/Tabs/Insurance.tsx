@@ -8,6 +8,7 @@ import { useQuery } from 'react-query';
 import { getColorList, getEngineTypeList, getGroupList, getMakerList, getModelList, getTypeList } from '../../../core/_requests';
 import { QUERIES } from '../../../../../../../../_metronic/helpers';
 import FormikSwitch from '../../../../../components/formik/FormikCheckBox';
+import { FieldDocument, FieldImage } from '../../../../../../../../_metronic/utlis/formik';
 
 const Insurance = () => {
 
@@ -44,6 +45,8 @@ const Insurance = () => {
                         title={intel.formatMessage({ id: 'documents' })}
                         name={'documents'}
                         isRequired={false}
+                        fieldFile={FieldDocument}
+                       
 
                     />
                 </div>

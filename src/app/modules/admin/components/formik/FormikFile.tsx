@@ -6,20 +6,22 @@ import { toAbsoluteServerUrl } from '../../../../../_metronic/helpers';
 interface props {
     title: string,
     name: string,
-    isRequired: boolean
+    isRequired: boolean,
+    fieldFile:any
 }
 const FormikInputLabel = (props: props) => {
-    const { title, name, isRequired } = props;
+    const { title, name, isRequired ,fieldFile} = props;
     
     const { errors, touched, getFieldProps, isSubmitting, setFieldValue, values } = useFormikContext();
-    const [uploadedImage, setUploadedImage] = useState(toAbsoluteServerUrl(values[name]));
+    const [uploadedImage, setUploadedImage] = useState<any>(toAbsoluteServerUrl(values[name]));
 
     const handleChange = (event) => {
         if (event.target.files && event.target.files[0]) {
-            setFieldValue(props.name+ '_file', event.target.files[0]);
+            setFieldValue(fieldFile, event.target.files[0]);
             const fileReader = new FileReader();
             fileReader.readAsDataURL(event.target.files[0]);
-            setUploadedImage(URL.createObjectURL(event.target.files[0]));
+            const url :any=URL.createObjectURL(event.target.files[0])
+            setUploadedImage(url);
         }
     }
     return (

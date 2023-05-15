@@ -7,6 +7,7 @@ import { useIntl } from 'react-intl'
 import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
 import FormikFile from '../../../../components/formik/FormikFile'
 import FormikSwitch from '../../../../components/formik/FormikCheckBox'
+import { FieldImage } from '../../../../../../../_metronic/utlis/formik'
 
 
 const Form: FC = () => {
@@ -15,7 +16,7 @@ const Form: FC = () => {
 
     return (
         <>
-            <form className='form' onSubmit={handleSubmit} noValidate>
+            <form className='form' onSubmit={handleSubmit} noValidate encType="multipart/form-data">
                 {/* begin::Scroll */}
                 <div
                     className='d-flex flex-column scroll-y me-n7 pe-7'
@@ -61,6 +62,7 @@ const Form: FC = () => {
                                 title={intel.formatMessage({ id: 'icon' })}
                                 name={'icon'}
                                 isRequired={false}
+                                fieldFile={FieldImage}
 
                             />
                         </div>

@@ -148,6 +148,13 @@ const optionAlertConfirm: any = {
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, delete it!',
 }
+ const addFieldsToFormData = (formData, fields) => {
+  Object.keys(fields).forEach(key => {
+    formData.append(key, fields[key]);
+  });
+};
+
+
 
 export {
   createResponseContext,
@@ -161,5 +168,6 @@ export {
   isNotEmpty,
   extractPageNumber,
   ConvertStringToObject,
-  optionAlertConfirm
+  optionAlertConfirm,
+  addFieldsToFormData
 }

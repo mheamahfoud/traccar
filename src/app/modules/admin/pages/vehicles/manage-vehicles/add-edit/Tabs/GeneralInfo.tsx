@@ -8,6 +8,7 @@ import { useQuery } from 'react-query';
 import { getColorList, getEngineTypeList, getGroupList, getMakerList, getModelList, getTypeList } from '../../../core/_requests';
 import { QUERIES } from '../../../../../../../../_metronic/helpers';
 import FormikSwitch from '../../../../../components/formik/FormikCheckBox';
+import { FieldImage } from '../../../../../../../../_metronic/utlis/formik';
 
 const GeneralInfo = () => {
     //#region fetch data
@@ -174,7 +175,7 @@ const GeneralInfo = () => {
                             title={intel.formatMessage({ id: 'vehicle_image' })}
                             name={'vehicle_image'}
                             isRequired={false}
-
+                            fieldFile={FieldImage}
                         />
                     </div>
 

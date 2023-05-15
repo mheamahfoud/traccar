@@ -6,6 +6,7 @@ import ResetButton from '../../../../components/buttons/ResetButton'
 import { useIntl } from 'react-intl'
 import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
 import FormikFile from '../../../../components/formik/FormikFile'
+import { FieldImage } from '../../../../../../../_metronic/utlis/formik'
 
 
 
@@ -32,6 +33,7 @@ const Form: FC= () => {
                                 title={intel.formatMessage({ id: 'image' })}
                                 name={'image'}
                                 isRequired={false}
+                                fieldFile={FieldImage}
 
                             />
                         </div>

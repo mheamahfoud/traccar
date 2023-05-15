@@ -8,6 +8,7 @@ export type VehicleType = {
   icon?: string | null
   isenable?: boolean
   seats?: number,
+  image_file?:any
 }
 
 
@@ -25,6 +26,7 @@ export const initialVehicleType: VehicleType = {
   icon: null,
   isenable: false,
   seats: null,
+  image_file:null,
 }
 
 

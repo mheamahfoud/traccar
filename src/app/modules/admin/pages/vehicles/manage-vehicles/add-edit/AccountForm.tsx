@@ -25,6 +25,7 @@ const AccountForm: FC = () => {
                                 title={intel.formatMessage({ id: 'email' })}
                                 name={'email'}
                                 isRequired={true}
+                                disabled={true}
                             />
                         </div>
                         <div className='col-md-6 col-sm-12'>
