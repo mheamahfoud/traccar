@@ -38,7 +38,7 @@ const Form: FC = () => {
                                 title={intel.formatMessage({ id: 'make' })}
                                 name={'make_id'}
                                 isRequired={true}
-                                options={makerList?.data || []}
+                                options={makerList || []}
                             />
                         </div>
                         <div className='col-md-6 col-sm-12'>

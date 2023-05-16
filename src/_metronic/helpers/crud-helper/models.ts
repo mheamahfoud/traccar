@@ -4,7 +4,7 @@ export type ID = undefined | null | number
 
 
 export type ResponeApiCheck = {
-  data: string | null;
+  data: any;
   error_description: string | null,
   result: 'success' | 'error';
 }

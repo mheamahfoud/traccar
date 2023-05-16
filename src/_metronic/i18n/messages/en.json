@@ -122,5 +122,6 @@
   "account":"Account",
   "view":"View",
   "email":"Email",
-  "password":"Password"
+  "password":"Password",
+  "station":"Station"
 }

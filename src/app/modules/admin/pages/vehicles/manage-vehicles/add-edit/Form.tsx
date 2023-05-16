@@ -29,10 +29,10 @@ const Form: FC = () => {
                                 <PhysicalInfo />
                             </TabWrapper>
 
-
+{/* 
                             <TabWrapper index={2} selectedTab={tab}>
                                 <Insurance />
-                            </TabWrapper>
+                            </TabWrapper> */}
 
                             <TabWrapper index={3} selectedTab={tab}>
                                 <Purchase/>

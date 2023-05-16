@@ -1,10 +1,11 @@
 import { useFormikContext } from 'formik';
+import { SelectList } from '../../pages/vehicles/core/_models';
 interface props {
     title: string,
     name: string,
     type?: string,
     isRequired: boolean,
-    options: any[]
+    options?: SelectList[]
 }
 const FormikSelectInput = (props: props) => {
     const { title, name, isRequired, options } = props;
@@ -24,7 +25,7 @@ const FormikSelectInput = (props: props) => {
                     
                     options.map((item) => {
                         return (
-                            <option value={item.value.toString()}>{item.text}</option>
+                            <option value={item?.value?.toString()}>{item.text}</option>
                         )
                     })
                 }

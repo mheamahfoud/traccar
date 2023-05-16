@@ -11,20 +11,29 @@ import { ListVehiclesPath } from '../../routes/RoutesNames';
 import { useNavigate } from 'react-router-dom';
 import { update } from '../core/_requests';
 import { useEffect, useState } from 'react';
+import { ListLoading } from '../../../../components/table/loading/ListLoading';
 const Edit = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [data, setData] = useState<any>(location.state);
+    const payloadData = location.state;
+    const [data, setData] = useState<any>(payloadData);
+
     useEffect(() => {
-        setData({
-            ...data, insurance_number: data.meta_data.ins_number, exp_date: data.meta_data.ins_exp_date
+        if (data) {
+            setData({
+                ...data, insurance_number: data.meta_data.ins_number, exp_date: data.meta_data.ins_exp_date
+            }
+            )
         }
-        )
-    }, [])
+        else {
+            navigate(ListVehiclesPath)
+        }
+
+    }, [data, payloadData])
     const { showNotification } = useNotification();
     return (
 
-        <Formik
+        data && <Formik
             enableReinitialize={true}
             // validationSchema={roleSchema}
             initialValues={data}
@@ -52,6 +61,7 @@ const Edit = () => {
         >
 
             <Form />
+
         </Formik>
 
 

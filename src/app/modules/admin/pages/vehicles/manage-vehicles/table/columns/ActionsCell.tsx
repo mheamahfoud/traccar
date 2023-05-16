@@ -55,8 +55,7 @@ const ActionsCell: FC<Props> = ({ id }) => {
       navigate(AccountVehiclesPath,{ state: id })
   }
   const handleView = () => {
-    const data = items.find(x => x.id == id);
-    navigate(ViewVehiclesPath, { state: data })
+    navigate(ViewVehiclesPath, { state: id })
   }
   return (
     <>

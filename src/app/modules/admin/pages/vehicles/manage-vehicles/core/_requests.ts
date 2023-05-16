@@ -46,6 +46,12 @@ const SaveAccountCar = (object :any ,id: ID) => {
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   //.
 }
+const getVehicleInfo = (id: ID) => {
+  return axios
+    .get(`${'one_vehicle'}/${id}`)
+    .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
+  //.
+}
 const destroy = (id: ID): Promise<void> => {
   return axios.post(`${'destroyVehicle'}/${id}`).then(() => { })
 }
@@ -55,4 +61,4 @@ const destroySelectedItems = (selectedIds: Array<ID>): Promise<void> => {
   return axios.all(requests).then(() => { })
 }
 
-export { getList, destroy, destroySelectedItems, create,update ,getAccountCar,SaveAccountCar}
+export { getList, destroy, destroySelectedItems, create,update ,getAccountCar,SaveAccountCar,getVehicleInfo}

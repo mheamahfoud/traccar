@@ -5,7 +5,7 @@ import FormikSelectInput from '../../../../../components/formik/FormikSelectInpu
 import clsx from 'clsx';
 import { useIntl } from 'react-intl';
 import { useQuery } from 'react-query';
-import { getColorList, getEngineTypeList, getGroupList, getMakerList, getModelList, getTypeList } from '../../../core/_requests';
+import { getColorList, getEngineTypeList, getGroupList, getMakerList, getModelList, getStationList, getTypeList } from '../../../core/_requests';
 import { QUERIES } from '../../../../../../../../_metronic/helpers';
 import FormikSwitch from '../../../../../components/formik/FormikCheckBox';
 import { FieldImage } from '../../../../../../../../_metronic/utlis/formik';
@@ -66,6 +66,16 @@ const GeneralInfo = () => {
         },
 
     )
+    const {
+        data: stationList,
+    } = useQuery(
+        `${QUERIES.VEHICLES_STATION_LIST_VALUES}`,
+        () => {
+            return getStationList()
+        },
+
+    )
+    
 //#endregion fetch data
     const intel = useIntl()
     return (
@@ -81,7 +91,7 @@ const GeneralInfo = () => {
                             title={intel.formatMessage({ id: 'make' })}
                             name={'make_id'}
                             isRequired={true}
-                            options={makerList?.data || []}
+                            options={makerList|| []}
                         />
                     </div>
                     <div className='col-md-4 col-sm-6 col-xs-12'>
@@ -89,7 +99,7 @@ const GeneralInfo = () => {
                             title={intel.formatMessage({ id: 'model' })}
                             name={'model_id'}
                             isRequired={true}
-                            options={modelList?.data || []}
+                            options={modelList|| []}
                         />
                     </div>
 
@@ -98,7 +108,7 @@ const GeneralInfo = () => {
                             title={intel.formatMessage({ id: 'color' })}
                             name={'color_id'}
                             isRequired={true}
-                            options={colorList?.data || []}
+                            options={colorList|| []}
                         />
                     </div>
                 </div>
@@ -109,7 +119,7 @@ const GeneralInfo = () => {
                             title={intel.formatMessage({ id: 'engine_type' })}
                             name={'engine_type'}
                             isRequired={true}
-                            options={engineTypeList?.data || []}
+                            options={engineTypeList|| []}
                         />
                     </div>
                     <div className='col-md-4 col-sm-6 col-xs-12'>
@@ -117,7 +127,7 @@ const GeneralInfo = () => {
                             title={intel.formatMessage({ id: 'type' })}
                             name={'type_id'}
                             isRequired={true}
-                            options={typeList?.data || []}
+                            options={typeList|| []}
                         />
                     </div>
 
@@ -126,13 +136,22 @@ const GeneralInfo = () => {
                             title={intel.formatMessage({ id: 'group' })}
                             name={'group_id'}
                             isRequired={true}
-                            options={groupList?.data || []}
+                            options={groupList|| []}
                         />
                     </div>
                 </div>
 
-         
-
+                <div className='row'>
+                    <div className='col-md-4 col-sm-6 col-xs-12'>
+                        <FormikSelectInput
+                            title={intel.formatMessage({ id: 'station' })}
+                            name={'station_id'}
+                            isRequired={true}
+                            options={stationList || []}
+                        />
+                    </div>
+                    </div>
+                
 
                 <h3>license Info</h3>
                 <div className='separator separator-dashed my-5'></div>
