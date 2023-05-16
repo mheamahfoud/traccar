@@ -1,6 +1,6 @@
 import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
 import qs from 'qs'
-import { ID, QueryResponseContextProps, QueryState } from './models'
+import { ID, QueryResponseContextProps, QueryState, ResponeApiCheck } from './models'
 
 function createResponseContext<T>(initialState: QueryResponseContextProps<T>) {
   return createContext(initialState)
@@ -148,6 +148,17 @@ const optionAlertConfirm: any = {
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, delete it!',
 }
+const addFieldsToFormData = (formData, fields) => {
+  Object.keys(fields).forEach(key => {
+    formData.append(key, fields[key]);
+  });
+};
+
+export const SuccessMsg : ResponeApiCheck = {
+  result: 'success',
+  data: 'Proccess Successfully',
+  error_description:''
+}
 
 export {
   createResponseContext,
@@ -161,5 +172,6 @@ export {
   isNotEmpty,
   extractPageNumber,
   ConvertStringToObject,
-  optionAlertConfirm
+  optionAlertConfirm,
+  addFieldsToFormData
 }

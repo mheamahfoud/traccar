@@ -6,6 +6,8 @@ const Vechiles = '/admin/vehicles/';
 export const ListVehiclesPath = Vechiles + 'manage-vehicles';
 export const AddVehiclesPath = Vechiles + 'add-vehicle';
 export const EditVehiclesPath = Vechiles + 'edit-vehicle';
+export const ViewVehiclesPath = Vechiles + 'view-vehicle';
+export const AccountVehiclesPath = Vechiles + 'account-vehicle';
 
 
 export const ListTypesPath = Vechiles + 'vehicle-types';
@@ -37,8 +39,8 @@ export const EditGroupsPath = Vechiles + 'edit-vehicle-groups';
 
 export const vehiclesBreadcrumbs: Array<PageLink> = [
     {
-        title: 'Home',
-        path: '/',
+        title: 'Manage Vehicle',
+        path: ListVehiclesPath,
         isSeparator: false,
         isActive: false,
     },

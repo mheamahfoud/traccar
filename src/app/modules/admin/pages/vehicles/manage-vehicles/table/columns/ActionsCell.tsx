@@ -6,10 +6,10 @@ import { MenuComponent } from '../../../../../../../../_metronic/assets/ts/compo
 import { ID, KTIcon, QUERIES, optionAlertConfirm } from '../../../../../../../../_metronic/helpers'
 import { useListView } from '../../core/ListViewProvider'
 import { useQueryResponse, useQueryResponseData } from '../../core/QueryResponseProvider'
-import { destroy } from '../../core/_requests'
+import { destroy, getAccountCar } from '../../core/_requests'
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
-import { EditMakerPath, EditModelPath,  } from '../../../routes/RoutesNames'
+import { AccountVehiclesPath, EditMakerPath, EditModelPath, EditVehiclesPath, ViewVehiclesPath, } from '../../../routes/RoutesNames'
 import { useIntl } from 'react-intl'
 type Props = {
   id: ID
@@ -27,8 +27,8 @@ const ActionsCell: FC<Props> = ({ id }) => {
   }, [])
 
   const handleEdit = () => {
-    const data = items.find(x=>x.id==id);
-    navigate(EditModelPath,{ state: data })
+    const data = items.find(x => x.id == id);
+    navigate(EditVehiclesPath, { state: data })
   }
 
   const handleDelete = () => {
@@ -50,6 +50,14 @@ const ActionsCell: FC<Props> = ({ id }) => {
     }
   })
 
+  const handleAccount = async () => {
+
+      navigate(AccountVehiclesPath,{ state: id })
+  }
+  const handleView = () => {
+    const data = items.find(x => x.id == id);
+    navigate(ViewVehiclesPath, { state: data })
+  }
   return (
     <>
       <a
@@ -75,7 +83,19 @@ const ActionsCell: FC<Props> = ({ id }) => {
           </a>
         </div>
         {/* end::Menu item */}
+        <div className='menu-item px-3'>
+          <a
+            className='menu-link px-3'
+            data-kt-users-table-filter='delete_row'
+            //onClick={async () => await deleteItem.mutateAsync()}
+            onClick={handleAccount}
+          >
+            {
+              intl.formatMessage({ id: 'account' })
+            }
 
+          </a>
+        </div>
         {/* begin::Menu item */}
         <div className='menu-item px-3'>
           <a
@@ -86,6 +106,19 @@ const ActionsCell: FC<Props> = ({ id }) => {
           >
             {
               intl.formatMessage({ id: 'delete' })
+            }
+
+          </a>
+        </div>
+        <div className='menu-item px-3'>
+          <a
+            className='menu-link px-3'
+            data-kt-users-table-filter='delete_row'
+            //onClick={async () => await deleteItem.mutateAsync()}
+            onClick={handleView}
+          >
+            {
+              intl.formatMessage({ id: 'view' })
             }
 
           </a>

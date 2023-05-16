@@ -26,7 +26,9 @@ const Add = () => {
                         setSubmitting(true)
                         try {
                             const res: ResponeApiCheck = await create(formData);
-                            navigate(ListMakerPath)
+                            if(res.result=='success'){
+                                navigate(ListMakerPath)
+                            }
                             showNotification(res)
                         } catch (ex) {
                             showNotification({ error_description: ex, ...initialResponseError })

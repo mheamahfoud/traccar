@@ -12,7 +12,7 @@ import {
   WithChildren,
 } from '../../../../../../../_metronic/helpers'
 
-import { getList} from './_requests'
+import { getList } from './_requests'
 import { Vehicle } from './_models'
 import { useQueryRequest } from './QueryRequestProvider'
 
@@ -38,7 +38,7 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
   } = useQuery(
     `${QUERIES.VEHICLES_TYPES}-${query}`,
     () => {
-      return getList(query,state.page_num)
+      return getList(query, state.page_num)
     },
     { cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false }
   )
@@ -58,7 +58,13 @@ const useQueryResponseData = () => {
     return []
   }
 
-  return response?.data || []
+  return response?.data
+  // .map((item, index) => {
+  //   return {
+  //     ...item, index: index+1
+  //   }
+  // }) 
+  || []
 }
 
 const useQueryResponsePagination = () => {

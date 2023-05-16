@@ -6,11 +6,11 @@ const API_URL = process.env.REACT_APP_API_URL
 //export const GET_USER_BY_ACCESSTOKEN_URL = `${API_URL}/verify_token`
 //export const LOGIN_URL = `${API_URL}/login`
 
-export const GET_USER_BY_ACCESSTOKEN_URL = `${API_URL}/start_auth`
-export const LOGIN_URL = `${API_URL}/login`
+export const GET_USER_BY_ACCESSTOKEN_URL = `/start_auth`
+export const LOGIN_URL = `/login`
 
-export const REGISTER_URL = `${API_URL}/register`
-export const REQUEST_PASSWORD_URL = `${API_URL}/forgot_password`
+export const REGISTER_URL = `/register`
+export const REQUEST_PASSWORD_URL = `/forgot_password`
 
 //update
 // Server should return AuthModel
@@ -73,7 +73,7 @@ export async function getUserByToken(token: string): Promise<any> {
 }
 
 export async function getSessionGPS(): Promise<SessionGpsModel> {
-  const response: any = await fetch("/api/session", {
+  const response: any = await fetch("http://173.249.51.233:8082/api/session", {
     method: "POST",
     body: new URLSearchParams(
       `email=${encodeURIComponent(
@@ -91,7 +91,7 @@ export async function getServerGPS(): Promise<any> {
   let email = "test@test.test";
   let password = "test";
   const auth1: any = btoa(`${email}:${password}`);
-  const response: any = await fetch("/api/server", {
+  const response: any = await fetch("http://173.249.51.233:8082/api/server", {
     credentials: 'include',
     headers: {
       Authorization: `Basic ${auth1}`,

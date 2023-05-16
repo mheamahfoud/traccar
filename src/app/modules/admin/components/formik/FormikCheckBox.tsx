@@ -26,7 +26,7 @@ const FormikSwitch = (props: props) => {
                         )}
                         defaultChecked={values[name]}
                         onChange={() => {
-                            setFieldValue(name, !values[name]);
+                            setFieldValue(name, values[name] ? 0 :1);
                         }}
                     />
                     {touched[name] && errors[name] && (

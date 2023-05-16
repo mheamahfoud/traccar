@@ -1,11 +1,11 @@
 import { FC } from 'react'
 
 type Props = {
-  isenable?: boolean
+  in_service?: boolean
 }
-const EnableCell: FC<Props> = ({ isenable }) => (
+const EnableCell: FC<Props> = ({ in_service }) => (
   <>
-    {isenable ? <div className='badge badge-light-success fw-bolder'>Enabled</div>
+    {in_service ? <div className='badge badge-light-success fw-bolder'>Enabled</div>
       : <div className=' badge badge-danger fw-bolder'>Disabled</div>}
   </>
 )

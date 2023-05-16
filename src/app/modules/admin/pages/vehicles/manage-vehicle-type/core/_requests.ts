@@ -22,15 +22,15 @@ const getList = (query: string, page: number): Promise<VehicleTypeQueryResponse>
 }
 
 
-const create = (object: VehicleType) => {
+const create = (object: any) => {
   return axios
     .post('store_vehicle_type', object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   //.then((response: Response<VehicleType>) => response.data)
 }
 
-const update = (object: VehicleType) => {
-  return axios.post(`update_vehicle_type/${object.id}`, object)
+const update = (object: any,id:ID) => {
+  return axios.post(`update_vehicle_type/${id}`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   // .then((response: ResponeApiCheck) => response)
 }

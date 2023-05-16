@@ -19,10 +19,12 @@ const FormikSelectInput = (props: props) => {
                 placeholder={title}
                 {...getFieldProps({ name })}
                 className="form-select form-select-solid form-select-lg">
+                    <option value={""}>Select OPtion</option>
                 {
+                    
                     options.map((item) => {
                         return (
-                            <option value={item.value}>{item.text}</option>
+                            <option value={item.value.toString()}>{item.text}</option>
                         )
                     })
                 }

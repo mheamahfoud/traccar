@@ -4,10 +4,11 @@ interface props {
     title: string,
     name: string,
     type?:string,
-    isRequired:boolean
+    isRequired:boolean,
+    disabled?:boolean
 }
 const FormikInputLabel = (props :props) => {
-    const { title, name ,type,isRequired} = props;
+    const { title, name ,type,isRequired,disabled} = props;
     const { errors, touched, getFieldProps, isSubmitting } = useFormikContext();
     return (
         <div className='fv-row mb-7'>
@@ -26,7 +27,7 @@ const FormikInputLabel = (props :props) => {
                     }
                 )}
                 autoComplete='off'
-                disabled={isSubmitting}
+                disabled={isSubmitting || disabled}
             />
             {touched[name] && errors[name] && (
                 <div className='fv-plugins-message-container'>

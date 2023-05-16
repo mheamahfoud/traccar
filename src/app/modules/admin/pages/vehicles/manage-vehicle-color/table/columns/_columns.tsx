@@ -13,12 +13,12 @@ const columnsTable :  ReadonlyArray<Column<VehicleColor>> = [
     Cell: ({...props}) => <SelectionCell id={props.data[props.row.index].id} />,
   },
   {
-    Header: (props) => <CustomHeader<VehicleType> tableProps={props} title={'#'} className='min-w-125px' />,
+    Header: (props) => <CustomHeader<VehicleColor> tableProps={props} title={'#'} className='min-w-125px' />,
     accessor: 'id',
   },
 
   {
-    Header: (props) => <CustomHeader<VehicleType>  tableProps={props} title={<Localize value='color' />} className='min-w-125px' />,
+    Header: (props) => <CustomHeader<VehicleColor>  tableProps={props} title={<Localize value='color' />} className='min-w-125px' />,
     accessor: 'color',
   },
 
@@ -26,7 +26,7 @@ const columnsTable :  ReadonlyArray<Column<VehicleColor>> = [
   
   {
     Header: (props) => (
-      <CustomHeader<VehicleType>  tableProps={props} title='Actions' className='text-end min-w-100px' />
+      <CustomHeader<VehicleColor>  tableProps={props} title='Actions' className='text-end min-w-100px' />
     ),
     id: 'actions',
     Cell: ({...props}) => <ActionsCell id={props.data[props.row.index].id} />,

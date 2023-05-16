@@ -19,7 +19,7 @@ export const roleSchema = Yup.object().shape({
     
     horse_power: Yup.number()
     .required('Field is required'),
-    engine_type: Yup.number()
+    engine_type: Yup.string()
     .required('Field is required'),
     year: Yup.number()
     .required('Field is required'),

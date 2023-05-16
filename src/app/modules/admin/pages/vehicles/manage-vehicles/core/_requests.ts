@@ -21,20 +21,31 @@ const getList = (query: string, page: number): Promise<VehicleQueryResponse> => 
     })
 }
 
-const create = (object: VehicleQueryResponse) => {
+const create = (object: any) => {
   return axios
     .post('store_vehicle', object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   //.then((response: Response<VehicleType>) => response.data)
 }
 
-// const update = (object: VehicleQueryResponse) => {
-//   return axios.post(`update_vehicle/${object.id}`, object)
-//     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
-//   // .then((response: ResponeApiCheck) => response)
-// }
+const update = (object: any,id:ID) => {
+  return axios.post(`update_vehicle/${id}`, object)
+    .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
+  // .then((response: ResponeApiCheck) => response)
+}
 
-
+const getAccountCar = (id: ID) => {
+  return axios
+    .get(`${'cars_account'}/${id}`)
+    .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
+  //.then((response: Response<VehicleType>) => response.data)
+}
+const SaveAccountCar = (object :any ,id: ID) => {
+  return axios
+    .post(`${'cars_account'}/${id}`,object)
+    .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
+  //.
+}
 const destroy = (id: ID): Promise<void> => {
   return axios.post(`${'destroyVehicle'}/${id}`).then(() => { })
 }
@@ -44,4 +55,4 @@ const destroySelectedItems = (selectedIds: Array<ID>): Promise<void> => {
   return axios.all(requests).then(() => { })
 }
 
-export { getList, destroy, destroySelectedItems, create }
+export { getList, destroy, destroySelectedItems, create,update ,getAccountCar,SaveAccountCar}

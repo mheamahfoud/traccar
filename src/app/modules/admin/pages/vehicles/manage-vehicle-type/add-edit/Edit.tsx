@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { KTCard, KTCardBody, ResponeApiCheck, initialResponseError } from '../../../../../../../_metronic/helpers';
+import { KTCard, KTCardBody, ResponeApiCheck, addFieldsToFormData, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
 import { roleSchema } from './validationForm';
 import { update } from '../core/_requests';
@@ -23,13 +23,18 @@ const Edit = () => {
                     initialValues={data}
                     initialStatus={{ edit: true }}
                     onSubmit={async (values, { setSubmitting }) => {
+                        const formData = new FormData();
+                        addFieldsToFormData(formData,values )
                         setSubmitting(true)
                         try {
+                           
                             //values['icon']=values['icon_file'];
                             //delete values['icon_file']
-                            const res: ResponeApiCheck = await update(values);
+                            const res: ResponeApiCheck = await update(formData,values?.id);
                             showNotification(res)
-                            navigate(ListTypesPath)
+                            if(res.result=='success'){
+                                navigate(ListTypesPath)
+                            }
                         } catch (ex) {
                             showNotification({ error_description: ex, ...initialResponseError })
                             console.error(ex)

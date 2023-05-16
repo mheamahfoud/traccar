@@ -1,7 +1,4 @@
 export const toAbsoluteUrl = (pathname: string) => process.env.PUBLIC_URL + pathname
-export const toAbsoluteServerUrl = (pathname: string) => process.env.REACT_APP_API_URL_IMAGE + pathname
-export const addFieldsToFormData = (formData, fields) => {
-    Object.keys(fields).forEach(key => {
-      formData.append(key, fields[key]);
-    });
-  };
+export const toAbsoluteServerUrl = (pathname: string) =>'https://tmbo.app/cars/fleet/uploads/'  + pathname
+
+//https://tmbo.app/cars/fleet/uploads/

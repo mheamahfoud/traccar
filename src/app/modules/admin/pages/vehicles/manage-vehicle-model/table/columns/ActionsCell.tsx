@@ -43,7 +43,7 @@ const ActionsCell: FC<Props> = ({ id }) => {
   const deleteItem = useMutation(() => destroy(id), {
     onSuccess: () => {
       // ✅ update detail view directly
-      queryClient.invalidateQueries([`${QUERIES.VEHICLES_TYPES}-${query}`])
+      queryClient.invalidateQueries([`${QUERIES.VEHICLES_MODELS}-${query}`])
     },
     onError: () => {
 

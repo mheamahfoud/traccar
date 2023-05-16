@@ -1,5 +1,5 @@
 import { number } from 'yup'
-import {ID, Response} from '../../../../../../../_metronic/helpers'
+import { ID, Response } from '../../../../../../../_metronic/helpers'
 export type Vehicle = {
   id?: ID
   "cars_id": number,
@@ -11,7 +11,7 @@ export type Vehicle = {
   "lic_exp_date": string,
   "reg_exp_date": string,
   "vehicle_image": string,
-  "engine_type": string,
+  "engine_type"?: string,
   "horse_power": number,
   "vin": string,
   "license_plate": string,
@@ -28,6 +28,18 @@ export type Vehicle = {
   "displayname": string,
   "color": string,
   "group": string,
+  "insurance_number"?: number,
+  "documents"?: any,
+  "exp_date"?: string,
+  "exp_name"?: string,
+  "exp_amount"?: number,
+  "meta_data": {
+    "driver_id": any,
+    "average": any,
+    "ins_number": any,
+    "ins_exp_date": any,
+    "udf": any
+  }
 }
 
 
@@ -64,7 +76,18 @@ export const initialVehicle: Vehicle = {
   "displayname": null,
   "color": null,
   "group": null,
+  "insurance_number": null,
+  "documents": null,
+  "exp_date": null,
+  "exp_name": null,
+  "exp_amount": null,
+  "meta_data": {
+    "driver_id": null,
+    "average": null,
+    "ins_number": null,
+    "ins_exp_date": null,
+    "udf": null
+  }
 }
-
 
 

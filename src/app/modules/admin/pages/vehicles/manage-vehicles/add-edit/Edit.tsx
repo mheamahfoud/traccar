@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { KTCard, KTCardBody, ResponeApiCheck, initialResponseError } from '../../../../../../../_metronic/helpers';
+import { KTCard, KTCardBody, ResponeApiCheck, addFieldsToFormData, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
 import { initialVehicle } from '../core/_models';
 import { roleSchema } from './validationForm';
@@ -7,47 +7,55 @@ import { roleSchema } from './validationForm';
 import { useLocation } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
-
+import { ListVehiclesPath } from '../../routes/RoutesNames';
+import { useNavigate } from 'react-router-dom';
+import { update } from '../core/_requests';
+import { useEffect, useState } from 'react';
 const Edit = () => {
+    const navigate = useNavigate();
     const location = useLocation();
-    const data: any = location.state;
+    const [data, setData] = useState<any>(location.state);
+    useEffect(() => {
+        setData({
+            ...data, insurance_number: data.meta_data.ins_number, exp_date: data.meta_data.ins_exp_date
+        }
+        )
+    }, [])
     const { showNotification } = useNotification();
-
     return (
-        <KTCard>
 
-            <KTCardBody className='py-4'>
-                <Formik
-                    enableReinitialize={true}
-                    validationSchema={roleSchema}
-                    initialValues={data}
-                    initialStatus={{ edit: true }}
-                    onSubmit={async (values, { setSubmitting }) => {
-                        setSubmitting(true)
-                        try {
-                            //values['icon']=values['icon_file'];
-                            //delete values['icon_file']
-                          //  const res: ResponeApiCheck = await update(values);
-                           // showNotification(res)
-                        } catch (ex) {
-                            showNotification({ error_description: ex, ...initialResponseError })
-                            console.error(ex)
-                        } finally {
-                            setSubmitting(true)
-                        }
-                    }}
-                    onReset={(values) => {
-                        console.log('Formik onReset');
-                    }}
-                >
+        <Formik
+            enableReinitialize={true}
+            // validationSchema={roleSchema}
+            initialValues={data}
+            initialStatus={{ edit: true }}
+            onSubmit={async (values, { setSubmitting }) => {
+                const formData = new FormData();
+                addFieldsToFormData(formData, values)
+                setSubmitting(true)
+                try {
+                    const res: ResponeApiCheck = await update(formData, values?.id);
+                    if (res.result == 'success') {
+                        navigate(ListVehiclesPath)
+                    }
+                    showNotification(res)
+                } catch (ex) {
+                    showNotification({ error_description: ex, ...initialResponseError })
+                    console.error(ex)
+                } finally {
+                    setSubmitting(true)
+                }
+            }}
+            onReset={(values) => {
+                console.log('Formik onReset');
+            }}
+        >
 
-                    <Form />
-                </Formik>
+            <Form />
+        </Formik>
 
 
-            </KTCardBody>
 
-        </KTCard>
     );
 }
 
