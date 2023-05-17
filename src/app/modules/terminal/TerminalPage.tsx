@@ -32,4 +32,4 @@ const TerminalPage = () => (
   </StyledEngineProvider>
 )
 
-export { TerminalPage }
+export default TerminalPage ;

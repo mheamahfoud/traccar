@@ -66,8 +66,11 @@
   "ECOMMERCE.CUSTOMERS.UPDATE_STATUS.MESSAGE": "Selected customers status have successfully been updated",
   "ECOMMERCE.CUSTOMERS.EDIT.UPDATE_MESSAGE": "Customer has been updated",
   "ECOMMERCE.CUSTOMERS.EDIT.ADD_MESSAGE": "Customer has been created",
+  
+  "manage_object":"Manage {name}",
   "add_object": "Add {name}",
   "edit_object": "Edit {name}",
+
   "type": "Type",
   "icon": "Icon",
   "display_name": "Display Name",
@@ -123,5 +126,13 @@
   "view":"View",
   "email":"Email",
   "password":"Password",
-  "station":"Station"
+  "station":"Station",
+  "stations":"Stations",
+  "move_Map":"Move To Map"
+ 
+
+
+
+
+  
 }

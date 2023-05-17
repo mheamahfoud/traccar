@@ -8,6 +8,9 @@ import { adsManagerReducer as adsManager } from './ads/adsManager';
 import { truckPathReducer as truckPath } from '../app/modules/driver/store/truckPath';
 import { pageTimeManagereReducer  as  pageTimeManager } from './pageTimes/index';
 import { terminalPathReducer as terminalPath } from '../app/modules/terminal/store/terminalPath';
+
+import { layoutManagerReducer as layoutManager } from './layout';
+
 import throttleMiddleware from './throttleMiddleware';
 
 const reducer = combineReducers({
@@ -18,7 +21,8 @@ const reducer = combineReducers({
   truckPath,
   adsManager,
   pageTimeManager,
-  terminalPath
+  terminalPath,
+  layoutManager
 
 });
 
@@ -29,6 +33,7 @@ export {truckPathActions} from '../app/modules/driver/store/truckPath';
 export {terminalPathsActions} from '../app/modules/terminal/store/terminalPath';
 export {adsManagerActions} from './ads/adsManager';
 export {pageTimeManagerActions} from './pageTimes/index';
+export {layoutManagerActions} from './layout';
 export default configureStore({
   reducer,
   middleware: (getDefaultMiddleware: any) => getDefaultMiddleware({ serializableCheck: false }).concat(throttleMiddleware),

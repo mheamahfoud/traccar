@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
-import { FC, useContext, useState, useEffect, useMemo } from 'react'
-import { useQuery } from 'react-query'
+import React from 'react'
+import {FC, useContext, useState, useEffect, useMemo} from 'react'
+import {useQuery} from 'react-query'
 import {
   createResponseContext,
+  createResponseContext1,
   initialQueryResponse,
+  initialQueryResponse1,
   initialQueryState,
   PaginationState,
   QUERIES,
@@ -12,15 +14,13 @@ import {
   WithChildren,
 } from '../../../../../../../_metronic/helpers'
 
-import { getList } from './_requests'
-import { Vehicle } from './_models'
-import { useQueryRequest } from './QueryRequestProvider'
+import {getList} from './_requests'
+import {Station} from './_models'
+import {useQueryRequest} from './QueryRequestProvider'
 
-
-const QueryResponseContext = createResponseContext<Vehicle>(initialQueryResponse)
-const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
-
-  const { state } = useQueryRequest()
+export const QueryResponseContext = createResponseContext<Station>(initialQueryResponse)
+const QueryResponseProvider: FC<WithChildren> = ({children}) => {
+  const {state} = useQueryRequest()
   const [isLoading, setLoading] = useState<boolean>(false)
   const [query, setQuery] = useState<string>(stringifyRequestQuery(state))
   const updatedQuery = useMemo(() => stringifyRequestQuery(state), [state])
@@ -36,15 +36,17 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
     refetch,
     data: response,
   } = useQuery(
-    `${QUERIES.VEHICLES_TYPES}-${query}`,
+    `${QUERIES.VEHICLES_COLORS}-${query}`,
     () => {
-      return getList(query, state.page_num)
+      return getList()
     },
-    { cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false }
+    {cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false}
   )
 
   return (
-    <QueryResponseContext.Provider value={{ isLoading: isFetching||isLoading,setLoading, refetch, response, query }}>
+    <QueryResponseContext.Provider
+      value={{isLoading: isFetching || isLoading, setLoading, refetch, response, query}}
+    >
       {children}
     </QueryResponseContext.Provider>
   )
@@ -53,18 +55,12 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
 const useQueryResponse = () => useContext(QueryResponseContext)
 
 const useQueryResponseData = () => {
-  const { response } = useQueryResponse()
+  const {response} = useQueryResponse()
   if (!response) {
     return []
   }
 
-  return response?.data
-  // .map((item, index) => {
-  //   return {
-  //     ...item, index: index+1
-  //   }
-  // }) 
-  || []
+  return response?.data || []
 }
 
 const useQueryResponsePagination = () => {
@@ -73,7 +69,7 @@ const useQueryResponsePagination = () => {
     ...initialQueryState,
   }
 
-  const { response } = useQueryResponse()
+  const {response} = useQueryResponse()
   if (!response || !response.payload || !response.payload.pagination) {
     return defaultPaginationState
   }
@@ -82,14 +78,19 @@ const useQueryResponsePagination = () => {
 }
 
 const useQueryResponseLoading = (): boolean => {
-  const { isLoading } = useQueryResponse()
+  const {isLoading} = useQueryResponse()
   return isLoading
 }
 
+const useQueryResponseSetLoading = () => {
+  const {setLoading} = useQueryResponse()
+  return setLoading
+}
 export {
   QueryResponseProvider,
   useQueryResponse,
   useQueryResponseData,
   useQueryResponsePagination,
   useQueryResponseLoading,
+  useQueryResponseSetLoading,
 }

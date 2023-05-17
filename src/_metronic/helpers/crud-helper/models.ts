@@ -65,17 +65,19 @@ export const initialQueryRequest: QueryRequestContextProps = {
 export type QueryResponseContextProps<T> = {
   response?: Response<Array<T>> | undefined
   refetch: () => void
-  isLoading: boolean
+  isLoading: boolean,
+  setLoading: Dispatch<SetStateAction<boolean>>
   query: string
 }
 export type QueryResponseContextProps1<T> = {
-  response?: Response<Record<string, T>> | undefined
+  response?: Response<Array<T>> | undefined
   refetch: () => void
-  isLoading: boolean
+  isLoading: boolean,
+  setLoading: Dispatch<SetStateAction<boolean>>
   query: string
 }
-export const initialQueryResponse = { refetch: () => { }, isLoading: false, query: '' }
-
+export const initialQueryResponse = { refetch: () => { }, isLoading: false,setLoading: () => { }, query: '' }
+export const initialQueryResponse1 = {refetch: () => { }, setLoading: () => { }, isLoading: false, query: '' }
 export type ListViewContextProps = {
   selected: Array<ID>
   onSelect: (selectedId: ID) => void

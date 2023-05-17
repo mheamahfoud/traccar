@@ -16,9 +16,11 @@ import {
 import {PageDataProvider} from './core'
 import {reInitMenu} from '../helpers'
 import {ToolbarWrapper} from './components/toolbar'
+import { useSelector } from 'react-redux'
 
 const MasterLayout = () => {
   const location = useLocation()
+  const showToolbar = useSelector((state: any) => state.layoutManager.showToolbar);
   useEffect(() => {
     reInitMenu()
   }, [location.key])
@@ -31,10 +33,10 @@ const MasterLayout = () => {
             <HeaderWrapper />
             <div className='app-wrapper flex-column flex-row-fluid' id='kt_app_wrapper'>
               <Sidebar />
-              <div className='app-main flex-column flex-row-fluid' id='kt_app_main'>
-                <div className='d-flex flex-column flex-column-fluid'>
-                  <ToolbarWrapper />
-                  <Content>
+              <div className='app-main flex-column flex-row-fluid ' id='kt_app_main'>
+                <div className='d-flex flex-column flex-column-fluid '>
+                 {showToolbar && <ToolbarWrapper />}
+                  <Content >
                     <Outlet />
                   </Content>
                 </div>

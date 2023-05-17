@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react'
-import { useIntl } from 'react-intl'
-import { KTIcon } from '../../../../helpers'
-import { SidebarMenuItemWithSub } from './SidebarMenuItemWithSub'
-import { SidebarMenuItem } from './SidebarMenuItem'
+import {useIntl} from 'react-intl'
+import {KTIcon} from '../../../../helpers'
+import {SidebarMenuItemWithSub} from './SidebarMenuItemWithSub'
+import {SidebarMenuItem} from './SidebarMenuItem'
 
 const SidebarMenuMain = () => {
   const intl = useIntl()
@@ -13,42 +13,65 @@ const SidebarMenuMain = () => {
       <SidebarMenuItem
         to='/dashboard'
         icon='element-11'
-        title={intl.formatMessage({ id: 'MENU.DASHBOARD' })}
+        title={intl.formatMessage({id: 'MENU.DASHBOARD'})}
         fontIcon='bi-app-indicator'
       />
       <SidebarMenuItem to='/builder' icon='switch' title='Layout Builder' fontIcon='bi-layers' />
-
-
-
-
-
-
       <SidebarMenuItemWithSub to='/error' title='Errors' fontIcon='bi-sticky' icon='cross-circle'>
         <SidebarMenuItem to='/error/404' title='Error 404' hasBullet={true} />
         <SidebarMenuItem to='/error/500' title='Error 500' hasBullet={true} />
       </SidebarMenuItemWithSub>
-
       <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Admin</span>
         </div>
       </div>
+
       <SidebarMenuItemWithSub
         to='/admin/vehicles'
         icon='abstract-28'
         title='Manage Vehicles'
         fontIcon='bi-layers'
       >
-           <SidebarMenuItem to='/admin/vehicles/manage-vehicles' title={intl.formatMessage({id:"manage_vehicles"})} hasBullet={true} />
-        <SidebarMenuItem to='/admin/vehicles/vehicle-types' title={intl.formatMessage({id:"vehicle_types"})} hasBullet={true} />
-        <SidebarMenuItem to='/admin/vehicles/vehicle-makers' title={intl.formatMessage({id:"vehicle_makers"})} hasBullet={true} />
-        <SidebarMenuItem to='/admin/vehicles/vehicle-models' title={intl.formatMessage({id:"vehicle_models"})}  hasBullet={true} />
-        <SidebarMenuItem to='/admin/vehicles/vehicle-colors' title={intl.formatMessage({id:"vehicle_colors"})} hasBullet={true} />
-        <SidebarMenuItem to='/admin/vehicles/vehicle-groups' title={intl.formatMessage({id:"vehicle_groups"})}  hasBullet={true} />
-     
+        <SidebarMenuItem
+          to='/admin/vehicles/manage-vehicles'
+          title={intl.formatMessage({id: 'manage_vehicles'})}
+          hasBullet={true}
+        />
+        <SidebarMenuItem
+          to='/admin/vehicles/vehicle-types'
+          title={intl.formatMessage({id: 'vehicle_types'})}
+          hasBullet={true}
+        />
+        <SidebarMenuItem
+          to='/admin/vehicles/vehicle-makers'
+          title={intl.formatMessage({id: 'vehicle_makers'})}
+          hasBullet={true}
+        />
+        <SidebarMenuItem
+          to='/admin/vehicles/vehicle-models'
+          title={intl.formatMessage({id: 'vehicle_models'})}
+          hasBullet={true}
+        />
+        <SidebarMenuItem
+          to='/admin/vehicles/vehicle-colors'
+          title={intl.formatMessage({id: 'vehicle_colors'})}
+          hasBullet={true}
+        />
+        <SidebarMenuItem
+          to='/admin/vehicles/vehicle-groups'
+          title={intl.formatMessage({id: 'vehicle_groups'})}
+          hasBullet={true}
+        />
       </SidebarMenuItemWithSub>
-
-
+ 
+      <SidebarMenuItem
+        to='/admin/stations/manage-stations'
+        icon='abstract-28'
+        title={intl.formatMessage({id: 'manage_object'},{name: intl.formatMessage({id:'stations'})})}
+        fontIcon='bi-layers'
+      />
+      
       <SidebarMenuItemWithSub
         to='/crafted/pages'
         title='Pages'
@@ -147,4 +170,4 @@ const SidebarMenuMain = () => {
   )
 }
 
-export { SidebarMenuMain }
+export {SidebarMenuMain}

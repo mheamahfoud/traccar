@@ -257,5 +257,5 @@ const VechilesPage = () => {
 
   )
 }
+export default VechilesPage
 
-export { VechilesPage }

@@ -51,7 +51,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
   const direction = `${id}-direction`;
 
   const theme = useTheme();
-  const desktop = useMediaQuery(theme.breakpoints.up('md'));
+  const desktop =true;// useMediaQuery(theme.breakpoints.up('md'));
   const iconScale = useAttributePreference('iconScale', desktop ? 0.75 : 1);
 
   const devices = useSelector((state) => state.devices.items);

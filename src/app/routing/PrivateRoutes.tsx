@@ -1,18 +1,17 @@
-import { lazy, FC, Suspense } from 'react'
-import { Route, Routes, Navigate } from 'react-router-dom'
-import { MasterLayout } from '../../_metronic/layout/MasterLayout'
+import {lazy, FC, Suspense} from 'react'
+import {Route, Routes, Navigate} from 'react-router-dom'
+import {MasterLayout} from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
-import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
-import { MenuTestPage } from '../pages/MenuTestPage'
-import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
-import { WithChildren } from '../../_metronic/helpers'
+import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
+import {MenuTestPage} from '../pages/MenuTestPage'
+import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
+import {WithChildren} from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import MyPage from '../pages/MyPage'
-import { useAuth } from '../modules/auth'
-import { UserType } from '../../_metronic/utlis/constants'
-import { CarPage } from '../modules/driver'
-import { TerminalPage } from '../modules/terminal/TerminalPage'
-import {VechilesPage} from '../modules/admin/pages/vehicles/VehiclesPage'
+import {useAuth} from '../modules/auth'
+import {UserType} from '../../_metronic/utlis/constants'
+
+import {CarPage} from '../modules/driver'
 
 
 const PrivateRoutes = () => {
@@ -22,18 +21,21 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
-  const { currentUser } = useAuth()
+
+  const VechilesPage = lazy(() => import('../modules/admin/pages/vehicles'))
+  const StationPage = lazy(() => import('../modules/admin/pages/stations'))
+  const TerminalPage= lazy(() => import('../modules/terminal/TerminalPage')) 
+  const {currentUser} = useAuth()
   return (
     <Routes>
       //#region Admin
-      {
-        currentUser?.type == UserType.ADMIN &&
+      {currentUser?.type == UserType.ADMIN && (
         <Route element={<MasterLayout />}>
           <Route index element={<Navigate to='/dashboard' />} />
           {/* Redirect to Dashboard after success login/registartion */}
           <Route path='auth/*' element={<Navigate to='/dashboard' />} />
           {/* Pages */}
-          <Route path="/my-page" element={<MyPage />} />
+          <Route path='/my-page' element={<MyPage />} />
 
           <Route path='dashboard' element={<DashboardWrapper />} />
           <Route path='builder' element={<BuilderPageWrapper />} />
@@ -79,7 +81,7 @@ const PrivateRoutes = () => {
               </SuspensedView>
             }
           />
-          
+
           <Route
             path='/admin/vehicles/*'
             element={
@@ -88,6 +90,16 @@ const PrivateRoutes = () => {
               </SuspensedView>
             }
           />
+
+          <Route
+            path='/admin/stations/*'
+            element={
+              <SuspensedView>
+                <StationPage />
+              </SuspensedView>
+            }
+          />
+
           <Route
             path='apps/user-management/*'
             element={
@@ -97,47 +109,47 @@ const PrivateRoutes = () => {
             }
           />
           {/* Page Not Found */}
-
         </Route>
-      }
-      //#endregion
-
-      //#region  Car
-      {currentUser?.type == UserType.CAR &&
+      )}
+      //#endregion //#region Car
+      {currentUser?.type == UserType.CAR && (
         <Route path='auth/*' element={<Navigate to='/car' />} />
-      }
-      {currentUser?.type == UserType.CAR &&
-        <Route path='/' element={<Navigate to='/car' />} />
-      }
-      {currentUser?.type == UserType.CAR && <Route path='car/*' element={
-        <SuspensedView>
-          <CarPage />
-        </SuspensedView>
-      } >
-      </Route>}
-      //#endregion
-      //#region Terminal
-      {currentUser?.type == UserType.TERMINAL &&
-
+      )}
+      {currentUser?.type == UserType.CAR && <Route path='/' element={<Navigate to='/car' />} />}
+      {currentUser?.type == UserType.CAR && (
+        <Route
+          path='car/*'
+          element={
+            <SuspensedView>
+              <CarPage />
+            </SuspensedView>
+          }
+        ></Route>
+      )}
+      //#endregion //#region Terminal
+      {currentUser?.type == UserType.TERMINAL && (
         <Route path='auth/*' element={<Navigate to='/terminal' />} />
-      }
-      {currentUser?.type == UserType.TERMINAL &&
+      )}
+      {currentUser?.type == UserType.TERMINAL && (
         <Route path='/' element={<Navigate to='/terminal' />} />
-      }
-      {currentUser?.type == UserType.TERMINAL && <Route path='terminal/*' element={
-        <SuspensedView>
-          <TerminalPage />
-        </SuspensedView>
-      } >
-      </Route>}
-
-//#endregion
+      )}
+      {currentUser?.type == UserType.TERMINAL && (
+        <Route
+          path='terminal/*'
+          element={
+            <SuspensedView>
+              <TerminalPage />
+            </SuspensedView>
+          }
+        ></Route>
+      )}
+      //#endregion
       <Route path='*' element={<Navigate to='/error/404' />} />
     </Routes>
   )
 }
 
-const SuspensedView: FC<WithChildren> = ({ children }) => {
+const SuspensedView: FC<WithChildren> = ({children}) => {
   const baseColor = getCSSVariableValue('--bs-primary')
   TopBarProgress.config({
     barColors: {
@@ -149,4 +161,4 @@ const SuspensedView: FC<WithChildren> = ({ children }) => {
   return <Suspense fallback={<TopBarProgress />}>{children}</Suspense>
 }
 
-export { PrivateRoutes }
+export {PrivateRoutes}

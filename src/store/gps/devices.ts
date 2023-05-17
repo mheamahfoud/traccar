@@ -1,11 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit'
 
-import { GetCurrentDevice } from '../../services/traccargps'
-import { stat } from 'fs'
+import {GetCurrentDevice, GetStationInfo} from '../../services/traccargps'
+import {stat} from 'fs'
+import { object } from 'yup'
+import { isEmptyObject } from 'jquery'
 
 interface deviceState {
-  loading: boolean,
-  stations: any,
+  loading: boolean
+  stations: any
   items: any
   selectedId: any
   selectedIds: any
@@ -22,7 +24,7 @@ const initialState: deviceState = {
   error: '',
 }
 
-const { reducer, actions } = createSlice({
+const {reducer, actions} = createSlice({
   name: 'devices',
   initialState,
   reducers: {
@@ -43,18 +45,17 @@ const { reducer, actions } = createSlice({
     },
     selectIds(state, action) {
       state.selectedIds = action.payload
-        ;[state.selectedId] = state.selectedIds
+      ;[state.selectedId] = state.selectedIds
     },
     remove(state, action) {
       delete state.items[action.payload]
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(GetCurrentDevice.pending, (state) => {
-    })
+    builder.addCase(GetCurrentDevice.pending, (state) => {})
 
-    builder.addCase(GetCurrentDevice.fulfilled, (state, { payload }) => {
-      let data = payload;
+    builder.addCase(GetCurrentDevice.fulfilled, (state, {payload}) => {
+      let data = payload
       state.items = {}
       if (payload?.length > 0) {
         state.stations = payload[0].terminal
@@ -63,11 +64,46 @@ const { reducer, actions } = createSlice({
       // state.loading = false
     })
 
-    builder.addCase(GetCurrentDevice.rejected, (state, { payload }) => {
+    builder.addCase(GetCurrentDevice.rejected, (state, {payload}) => {
+      state.error = payload
+    })
+
+    builder.addCase(GetStationInfo.pending, (state) => {})
+
+    builder.addCase(GetStationInfo.fulfilled, (state, {payload}) => {
+      let data = payload
+      let devices=[];
+      devices.push( {
+        "id": 6,
+        "attributes": [],
+        "groupId": 0,
+        "name": "RUH-01",
+        "uniqueId": "863540060245173",
+        "status": "online",
+        "lastUpdate": "2023-05-17T11:27:07.000+00:00",
+        "positionId": 1171953,
+        "geofenceIds": null,
+        "phone": null,
+        "model": "",
+        "contact": null,
+        "category": "bus",
+        "disabled": false,
+        "expirationTime": null
+    },)
+      state.items = {}
+      if (!isEmptyObject(payload)) {
+        state.stations = payload.info;
+        state.staionDevices=devices;
+        devices.forEach((item) => (state.items[item.id] = item))
+      }
+      // state.loading = false
+    })
+
+    builder.addCase(GetStationInfo.rejected, (state, {payload}) => {
       state.error = payload
     })
   },
 })
 
-export { actions as devicesActions }
-export { reducer as devicesReducer }
+export {actions as devicesActions}
+export {reducer as devicesReducer}

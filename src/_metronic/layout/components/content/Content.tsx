@@ -17,7 +17,7 @@ const Content = ({children}: WithChildren) => {
     <div
       id='kt_app_content'
       className={clsx(
-        'app-content flex-column-fluid',
+        'app-content flex-column-fluid h-100 w-100',
         classes.content.join(' '),
         config?.app?.content?.class
       )}
@@ -25,7 +25,7 @@ const Content = ({children}: WithChildren) => {
       {appContentContainer ? (
         <div
           id='kt_app_content_container'
-          className={clsx('app-container', classes.contentContainer.join(' '), {
+          className={clsx('app-container h-100 w-100', classes.contentContainer.join(' '), {
             'container-xxl': appContentContainer === 'fixed',
             'container-fluid': appContentContainer === 'fluid',
           })}

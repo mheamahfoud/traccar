@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-const containsProperty = (object:any, key:any) => object.hasOwnProperty(key) && object[key] !== null;
+const containsProperty = (object:any, key:any) => object?.hasOwnProperty(key) && object[key] !== null;
 
 export const usePreference = (key ?:any, defaultValue?:any)  => useSelector((state:any) => {
   // if (state?.session?.server?.forceSettings) {
@@ -24,12 +24,12 @@ export const usePreference = (key ?:any, defaultValue?:any)  => useSelector((sta
 
 export const useAttributePreference = (key ? :any, defaultValue ?: any) => useSelector((state:any) => {
  
-  if (state.session.server.forceSettings) {
-    if (containsProperty(state.session.server.attributes, key)) {
+  if (state.session?.server?.forceSettings) {
+    if (containsProperty(state.session?.server?.attributes, key)) {
       return state.session.server.attributes[key];
     }
     if (containsProperty(state.session.user.attributes, key)) {
-      return state.session.user.attributes[key];
+      return state.session?.user?.attributes[key];
     }
     return defaultValue;
   }
@@ -37,8 +37,8 @@ export const useAttributePreference = (key ? :any, defaultValue ?: any) => useSe
   if (containsProperty(state.session?.user?.attributes, key)) {
     return state.session.user.attributes[key];
   }
-  if (containsProperty(state.session.server.attributes, key)) {
-    return state.session.server.attributes[key];
+  if (containsProperty(state.session?.server?.attributes, key)) {
+    return state.session?.server?.attributes[key];
   }
   return defaultValue;
 });

@@ -21,7 +21,7 @@ const QueryResponseContext = createResponseContext<VehicleModel>(initialQueryRes
 const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
 
   const { state } = useQueryRequest()
-
+  const [isLoading, setLoading] = useState<boolean>(false)
   const [query, setQuery] = useState<string>(stringifyRequestQuery(state))
   const updatedQuery = useMemo(() => stringifyRequestQuery(state), [state])
 
@@ -44,7 +44,7 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
   )
 
   return (
-    <QueryResponseContext.Provider value={{ isLoading: isFetching, refetch, response, query }}>
+    <QueryResponseContext.Provider value={{ isLoading: isFetching||isLoading,setLoading, refetch, response, query }}>
       {children}
     </QueryResponseContext.Provider>
   )

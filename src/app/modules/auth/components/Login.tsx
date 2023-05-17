@@ -59,7 +59,7 @@ export function Login() {
         // const {data: user} = await getUserByToken(auth.api_token)
         // setCurrentUser(user)
         //certifcate session gps
-
+        const auth: AuthModel = await login(values.email, values.password)
         const resposeServer=await getServerGPS();
         dispatch(sessionActions.updateServer(resposeServer));
 
@@ -67,7 +67,7 @@ export function Login() {
         dispatch(sessionActions.updateUser(resposeSession));
       
 
-        const auth: AuthModel = await login(values.email, values.password)
+      
         saveAuth(auth)
         const data: any = await getUserByToken(auth.api_token)
         setCurrentUser(data)

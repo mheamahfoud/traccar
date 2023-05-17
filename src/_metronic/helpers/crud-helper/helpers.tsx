@@ -1,11 +1,13 @@
 import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
 import qs from 'qs'
-import { ID, QueryResponseContextProps, QueryState, ResponeApiCheck } from './models'
+import { ID, QueryResponseContextProps, QueryResponseContextProps1, QueryState, ResponeApiCheck } from './models'
 
 function createResponseContext<T>(initialState: QueryResponseContextProps<T>) {
   return createContext(initialState)
 }
-
+function createResponseContext1<T>(initialState: QueryResponseContextProps1<T>) {
+  return createContext(initialState)
+}
 function isNotEmpty(obj: unknown) {
   return obj !== undefined && obj !== null && obj !== ''
 }
@@ -173,5 +175,6 @@ export {
   extractPageNumber,
   ConvertStringToObject,
   optionAlertConfirm,
-  addFieldsToFormData
+  addFieldsToFormData,
+  createResponseContext1
 }
