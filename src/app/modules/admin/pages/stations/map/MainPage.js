@@ -17,8 +17,11 @@ import {useAttributePreference} from '../../../../../../_metronic/helpers/common
 import usePersistedState from '../../../../../../_metronic/helpers/common/util/usePersistedState'
 import StatusCard from '../../../../../../_metronic/helpers/common/components/StatusCard'
 import {KTCard} from '../../../../../../_metronic/helpers'
+import {GetStationInfo} from '../../../../../../services/traccargps'
+import {ListLoading} from '../../../components/table/loading/ListLoading'
+import {useLocation} from 'react-router-dom'
 // import { useAttributePreference } from '../common/util/preferences';
-
+import { DeviceLIstTemp } from './DeviceLIstTemp'
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
@@ -27,19 +30,19 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: 'none',
     display: 'flex',
     flexDirection: 'column',
-    // [theme.breakpoints.up('md')]: {
-    //   position: 'fixed',
-    //   left: 0,
-    //   top: 0,
-    //   height: `calc(100% - ${theme.spacing(3)})`,
-    //   width: theme.dimensions.drawerWidthDesktop,
-    //   margin: theme.spacing(1.5),
-    //   zIndex: 3,
-    // },
-    // [theme.breakpoints.down('md')]: {
-    //   height: '100%',
-    //   width: '100%',
-    // },
+    [theme.breakpoints.up('md')]: {
+      position: 'fixed',
+      right: 0,
+      top: '20%',
+      height: `calc(100% - ${theme.spacing(3)})`,
+      width: theme.dimensions.drawerWidthDesktop,
+      margin: theme.spacing(1.5),
+      zIndex: 3,
+    },
+    [theme.breakpoints.down('md')]: {
+      height: '100%',
+      width: '100%',
+    },
   },
   header: {
     pointerEvents: 'auto',
@@ -52,6 +55,9 @@ const useStyles = makeStyles((theme) => ({
   middle: {
     flex: 1,
     display: 'grid',
+    position: 'fixed',
+    right: 0,
+    top: '20%',
   },
   contentMap: {
     pointerEvents: 'auto',
@@ -64,20 +70,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const MapStationPage: FC = () => {
+const MapStationPage = () => {
   const classes = useStyles()
+  const location = useLocation()
+  const station_id = location.state
+  const loading = useSelector((state) => state.devices.loading)
+
   const dispatch = useDispatch()
   const theme = useTheme()
-  const currentDevice = useSelector((state: any) => state.devices.currentDevice)
+  const currentDevice = useSelector((state) => state.devices.currentDevice)
   const desktop = useMediaQuery(theme.breakpoints.up('md'))
 
   const mapOnSelect = useAttributePreference('mapOnSelect', true)
 
-  const selectedDeviceId = useSelector((state: any) => state.devices.selectedId)
-  const positions = useSelector((state: any) => state.session.positions)
+  const selectedDeviceId = useSelector((state) => state.devices.selectedId)
+  const positions = useSelector((state) => state.session.positions)
   const [filteredPositions, setFilteredPositions] = useState([])
   const selectedPosition = filteredPositions.find(
-    (position: any) => selectedDeviceId && position.deviceId === selectedDeviceId
+    (position) => selectedDeviceId && position.deviceId === selectedDeviceId
   )
 
   const [filteredDevices, setFilteredDevices] = useState([])
@@ -116,26 +126,46 @@ const MapStationPage: FC = () => {
       dispatch(layoutManagerActions.setToolbar(true))
     }
   }, [])
-
+  useEffect(() => {
+    dispatch(GetStationInfo(station_id))
+  }, [])
+//alert(JSON.stringify(filteredDevices))
   return (
-    <div className='h-100 w-100'>
-      <MainMap
-        filteredPositions={filteredPositions}
-        selectedPosition={selectedPosition}
-        onEventsClick={onEventsClick}
-      />
+    <>
+      {loading ? (
+        <ListLoading />
+      ) : (
+        <div className='h-100 w-100'>
+          <MainMap
+            filteredPositions={filteredPositions}
+            selectedPosition={selectedPosition}
+            onEventsClick={onEventsClick}
+          />
 
-      {/* <EventsDrawer open={eventsOpen} onClose={() => setEventsOpen(false)} /> */}
-      {selectedDeviceId && (
-        <StatusCard
-          deviceId={selectedDeviceId}
-          position={selectedPosition}
-          onClose={() => dispatch(devicesActions.selectId(null))}
-          desktopPadding={360}
-          //theme.dimensions.drawerWidthDesktop
-        />
+          {/* <Paper square elevation={3} className={classes.header}>
+              { <MainToolbar
+                keyword={keyword}
+                setKeyword={setKeyword}
+              /> }
+            </Paper> */}
+          <DeviceLIstTemp  devices={filteredDevices} keyword={keyword} setKeyword={setKeyword}/>
+          {/* <div className=''>
+            <DeviceList devices={filteredDevices} />
+          </div> */}
+
+          {/* { <EventsDrawer open={eventsOpen} onClose={() => setEventsOpen(false)} /> } */}
+          {selectedDeviceId && (
+            <StatusCard
+              deviceId={selectedDeviceId}
+              position={selectedPosition}
+              onClose={() => dispatch(devicesActions.selectId(null))}
+              desktopPadding={360}
+              //theme.dimensions.drawerWidthDesktop
+            />
+          )}
+        </div>
       )}
-    </div>
+    </>
   )
 }
 

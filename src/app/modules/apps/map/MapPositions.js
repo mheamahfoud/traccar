@@ -227,7 +227,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
       })),
     });
   }, [devices, positions, selectedPosition]);
-
+//
   return null;
 };
 

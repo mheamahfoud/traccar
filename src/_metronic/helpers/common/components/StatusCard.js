@@ -133,14 +133,14 @@ const StatusCard = ({ deviceId, position, onClose, desktopPadding = 0 }) => {
   const [removing, setRemoving] = useState(false);
 
   const handleRemove = useCatch(async (removed) => {
-    if (removed) {
+   /* if (removed) {
       const response = await fetch('/api/devices');
       if (response.ok) {
         dispatch(devicesActions.refresh(await response.json()));
       } else {
         throw Error(await response.text());
       }
-    }
+    }*/
     setRemoving(false);
   });
 

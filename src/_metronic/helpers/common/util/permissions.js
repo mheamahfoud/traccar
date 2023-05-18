@@ -12,7 +12,7 @@ export const useManager = () => useSelector((state) => {
 });
 
 export const useDeviceReadonly = () => useSelector((state) => {
-  const admin = state.session.user.administrator;
+  const admin = state.session?.user?.administrator;
   const serverReadonly = state.session?.server?.readonly;
   const userReadonly = state.session?.user?.readonly;
   const serverDeviceReadonly = state.session?.server?.deviceReadonly;

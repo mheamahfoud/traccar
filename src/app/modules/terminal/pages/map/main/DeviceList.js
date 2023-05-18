@@ -36,14 +36,14 @@ const DeviceList = ({ devices }) => {
     };
   }, []);
 
-  useEffectAsync(async () => {
+  /*useEffectAsync(async () => {
     const response = await fetch('/api/devices');
     if (response.ok) {
       dispatch(devicesActions.refresh(await response.json()));
     } else {
       throw Error(await response.text());
     }
-  }, []);
+  }, []);*/
 
   return (
     <AutoSizer className={classes.list}>

@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 
 export default (keyword, filter, filterSort, filterMap, positions, setFilteredDevices, setFilteredPositions) => {
-  const groups = {} // useSelector((state) => state.groups.items);
+//const groups = {} // useSelector((state) => state.groups.items);
   const devices = useSelector((state :any) => state.devices.items);
   useEffect(() => {
-    const deviceGroups = (device :any) => {
+  /*  const deviceGroups = (device :any) => {
       const groupIds :any = [];
       let { groupId } = device;
       while (groupId) {
@@ -14,16 +14,16 @@ export default (keyword, filter, filterSort, filterMap, positions, setFilteredDe
         groupId = groups[groupId]?.groupId || 0;
       }
       return groupIds;
-    };
+    };*/
 
     const filtered = Object.values(devices)
-      .filter((device:any) => !filter.statuses.length || filter.statuses.includes(device.status))
-      .filter((device:any) => !filter.groups.length || deviceGroups(device).some((id) => filter.groups.includes(id)))
+    //  .filter((device:any) => !filter.statuses.length || filter.statuses.includes(device.status))
+    //  .filter((device:any) => !filter.groups.length || deviceGroups(device).some((id) => filter.groups.includes(id)))
       .filter((device:any) => {
         const lowerCaseKeyword = keyword.toLowerCase();
         return [device.name, device.uniqueId, device.phone, device.model, device.contact].some((s) => s && s.toLowerCase().includes(lowerCaseKeyword));
       });
-    switch (filterSort) {
+   /* switch (filterSort) {
       case 'name':
         filtered.sort((device1:any, device2:any) => device1.name.localeCompare(device2.name));
         break;
@@ -36,7 +36,7 @@ export default (keyword, filter, filterSort, filterMap, positions, setFilteredDe
         break;
       default:
         break;
-    }
+    }*/
     setFilteredDevices(filtered);
     setFilteredPositions(filterMap
       ? filtered.map((device:any) => positions[device.id]).filter(Boolean)

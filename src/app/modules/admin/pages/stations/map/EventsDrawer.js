@@ -6,10 +6,7 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { formatNotificationTitle, formatTime } from '../common/util/formatter';
-import { useTranslation } from '../common/components/LocalizationProvider';
-import { eventsActions } from '../store';
-import { usePreference } from '../common/util/preferences';
+import { usePreference } from '../../../../../../_metronic/helpers/common/util/preferences';
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -68,9 +65,9 @@ const EventsDrawer = ({ open, onClose }) => {
               primary={`${devices[event.deviceId]?.name} • ${formatType(event)}`}
               secondary={formatTime(event.eventTime, 'seconds', hours12)}
             />
-            <IconButton size="small" onClick={() => dispatch(eventsActions.delete(event))}>
+            {/* <IconButton size="small" onClick={() => dispatch(eventsActions.delete(event))}>
               <DeleteIcon fontSize="small" className={classes.negative} />
-            </IconButton>
+            </IconButton> */}
           </ListItemButton>
         ))}
       </List>

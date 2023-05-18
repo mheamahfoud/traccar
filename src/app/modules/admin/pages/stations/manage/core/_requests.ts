@@ -19,8 +19,12 @@ let links = [
       "active": false
   }
 ];
+
+
 const getList = (): Promise<StationQueryResponse> => {
-  return axios.get(`all_station`)
+  return
+  
+  axios.get(`all_station`)
   //  .get(`all_station?${'page=' + page}`, {
     //  ...ConvertStringToObject(query)
   //  })

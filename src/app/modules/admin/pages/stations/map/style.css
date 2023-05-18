@@ -1,0 +1,11 @@
+
+
+.container-list-devices {
+    position: fixed;
+    bottom: 10%;
+    right: 0;
+    width: 500px;
+    height: 100px;
+    z-index: 444;
+    background: white;
+}

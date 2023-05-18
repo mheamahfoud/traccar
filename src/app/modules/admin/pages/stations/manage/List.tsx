@@ -22,7 +22,7 @@ const List = () => {
       <KTCard className='mmeejj'>
         <ListHeader />
         <KTCardBody className='py-4'>
-          <DataTable data={data} columns={columns} />
+          <DataTable data={[{name:'ryadd',id:2}]} columns={columns} />
           <ListPagination isLoading={isLoading} pagination={pagination} updateState={updateState} />
           {isLoading && <ListLoading />}
         </KTCardBody>

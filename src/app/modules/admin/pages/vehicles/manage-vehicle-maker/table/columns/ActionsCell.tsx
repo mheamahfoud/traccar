@@ -1,100 +1,70 @@
-
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { FC, useEffect } from 'react'
-import { useMutation, useQueryClient } from 'react-query'
-import { MenuComponent } from '../../../../../../../../_metronic/assets/ts/components'
-import { ID, KTIcon, QUERIES, optionAlertConfirm } from '../../../../../../../../_metronic/helpers'
-import { useListView } from '../../core/ListViewProvider'
-import { useQueryResponse, useQueryResponseData } from '../../core/QueryResponseProvider'
-import { destroy } from '../../core/_requests'
+import {FC, useEffect} from 'react'
+import {useMutation, useQueryClient} from 'react-query'
+import {MenuComponent} from '../../../../../../../../_metronic/assets/ts/components'
+import {ID, KTIcon, QUERIES, optionAlertConfirm} from '../../../../../../../../_metronic/helpers'
+import {useListView} from '../../core/ListViewProvider'
+import {useQueryResponse, useQueryResponseData, useQueryResponseSetLoading} from '../../core/QueryResponseProvider'
+import {destroy} from '../../core/_requests'
 import Swal from 'sweetalert2'
-import { useNavigate } from "react-router-dom";
-import { EditMakerPath,  } from '../../../routes/RoutesNames'
-import { useIntl } from 'react-intl'
+import {useNavigate} from 'react-router-dom'
+import {EditMakerPath} from '../../../routes/RoutesNames'
+import {useIntl} from 'react-intl'
+import {ActionButton} from '../../../../../components/buttons/ActionButton'
+import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
+import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
 type Props = {
   id: ID
 }
 
-const ActionsCell: FC<Props> = ({ id }) => {
-  const navigate = useNavigate();
-  const { setItemIdForUpdate } = useListView()
-  const { query } = useQueryResponse()
+const ActionsCell: FC<Props> = ({id}) => {
+  const setLoading =useQueryResponseSetLoading();
+  const navigate = useNavigate()
+  const {query} = useQueryResponse()
   const items = useQueryResponseData()
   const queryClient = useQueryClient()
-  const intl = useIntl();
+  const intl = useIntl()
   useEffect(() => {
     MenuComponent.reinitialization()
   }, [])
 
   const handleEdit = () => {
-    const data = items.find(x=>x.id==id);
-    navigate(EditMakerPath,{ state: data })
+    const data = items.find((x) => x.id == id)
+    navigate(EditMakerPath, {state: data})
   }
 
   const handleDelete = () => {
-    Swal.fire(
-      { ...optionAlertConfirm }
-    ).then((result) => {
+    Swal.fire({...optionAlertConfirm}).then((result) => {
       if (result.isConfirmed) {
+        setLoading(true)
         deleteItem.mutateAsync()
       }
-    });
+    })
   }
   const deleteItem = useMutation(() => destroy(id), {
     onSuccess: () => {
+      setLoading(false)
       // ✅ update detail view directly
       queryClient.invalidateQueries([`${QUERIES.VEHICLES_MAKER}-${query}`])
     },
     onError: () => {
-
-    }
+      setLoading(false)
+    },
   })
 
   return (
     <>
-      <a
-        href='#'
-        className='btn btn-light btn-active-light-primary btn-sm'
-        data-kt-menu-trigger='click'
-        data-kt-menu-placement='bottom-end'
-      >
-        Actions
-        <KTIcon iconName='down' className='fs-5 m-0' />
-      </a>
+      <ActionButton />
       {/* begin::Menu */}
-      <div
-        className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4'
-        data-kt-menu='true'
-      >
-        {/* begin::Menu item */}
-        <div className='menu-item px-3'>
-          <a className='menu-link px-3' onClick={handleEdit}>
-            {
-              intl.formatMessage({ id: 'edit' })
-            }
-          </a>
-        </div>
-        {/* end::Menu item */}
+      <MenuActionWrapper>
+        <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
 
-        {/* begin::Menu item */}
-        <div className='menu-item px-3'>
-          <a
-            className='menu-link px-3'
-            data-kt-users-table-filter='delete_row'
-            //onClick={async () => await deleteItem.mutateAsync()}
-            onClick={handleDelete}
-          >
-            {
-              intl.formatMessage({ id: 'delete' })
-            }
+        <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} />
+      </MenuActionWrapper>
 
-          </a>
-        </div>
-        {/* end::Menu item */}
-      </div>
       {/* end::Menu */}
     </>
   )
 }
 
-export { ActionsCell }
+export {ActionsCell}

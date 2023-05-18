@@ -16,6 +16,9 @@ import {useNavigate} from 'react-router-dom'
 import {EditPath, MapPath} from '../../../routes/RoutesNames'
 import {useIntl} from 'react-intl'
 import {GetStationInfo} from '../../../../../../../../services/traccargps'
+import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
+import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
+import {ActionButton} from '../../../../../components/buttons/ActionButton'
 type Props = {
   id: ID
 }
@@ -55,60 +58,19 @@ const ActionsCell: FC<Props> = ({id}) => {
   //   }
   // })
   const handleMap = () => {
-    setLoading(true)
-    dispatch(GetStationInfo(id)).then(() => {
-      setLoading(false)
-      navigate(MapPath)
-    })
-
-    // alert(1)
+    navigate(MapPath, {state: id})
   }
   return (
     <>
-      <a
-        href='#'
-        className='btn btn-light btn-active-light-primary btn-sm'
-        data-kt-menu-trigger='click'
-        data-kt-menu-placement='bottom-end'
-      >
-        Actions
-        <KTIcon iconName='down' className='fs-5 m-0' />
-      </a>
+      <ActionButton />
       {/* begin::Menu */}
-      <div
-        className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4'
-        data-kt-menu='true'
-      >
-        {/* begin::Menu item */}
-        <div className='menu-item px-3'>
-          <a className='menu-link px-3' onClick={handleEdit}>
-            {intl.formatMessage({id: 'edit'})}
-          </a>
-        </div>
-        {/* end::Menu item */}
-        <div className='menu-item px-3'>
-          <a
-            className='menu-link px-3'
-            data-kt-users-table-filter='delete_row'
-            //onClick={async () => await deleteItem.mutateAsync()}
-            onClick={handleMap}
-          >
-            {intl.formatMessage({id: 'move_Map'})}
-          </a>
-        </div>
-        {/* begin::Menu item */}
-        <div className='menu-item px-3'>
-          <a
-            className='menu-link px-3'
-            data-kt-users-table-filter='delete_row'
-            //onClick={async () => await deleteItem.mutateAsync()}
-            onClick={handleDelete}
-          >
-            {intl.formatMessage({id: 'delete'})}
-          </a>
-        </div>
-        {/* end::Menu item */}
-      </div>
+      <MenuActionWrapper>
+        <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
+
+        <MenuActionItem title={intl.formatMessage({id: 'move_Map'})} onCLick={handleMap} />
+
+        <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} />
+      </MenuActionWrapper>
       {/* end::Menu */}
     </>
   )

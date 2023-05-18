@@ -33,8 +33,8 @@ const SocketController = () => {
   const connectSocket = () => {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
 
-    //const socket = new WebSocket(`${protocol}//${window.location.host}/api/socket`)
-     const socket = new WebSocket("ws://173.249.51.233:8082/api/socket");
+    const socket = new WebSocket(`${protocol}//${window.location.host}/api/socket`)
+    // const socket = new WebSocket("ws://173.249.51.233:8082/api/socket");
 
     socketRef.current = socket
 
@@ -56,11 +56,12 @@ const SocketController = () => {
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data)
       if (data.positions) {
-        let temp = data.positions.filter((x: any) => staionDevices.map(x=>x.id).includes(x.deviceId))
+        let temp = data.positions.filter((x: any) =>
+          staionDevices.map((x) => x.id).includes(x.deviceId)
+        )
         if (temp && temp.length > 0) {
           //   dispatch(terminalPathsActions.updateDeviceLocation(temp))
           dispatch(sessionActions.updatePositions(temp))
-     
         }
       }
     }

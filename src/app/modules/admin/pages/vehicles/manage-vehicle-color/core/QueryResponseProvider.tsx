@@ -79,11 +79,15 @@ const useQueryResponseLoading = (): boolean => {
   const { isLoading } = useQueryResponse()
   return isLoading
 }
-
+const useQueryResponseSetLoading = () => {
+  const {setLoading} = useQueryResponse()
+  return setLoading
+}
 export {
   QueryResponseProvider,
   useQueryResponse,
   useQueryResponseData,
   useQueryResponsePagination,
   useQueryResponseLoading,
+  useQueryResponseSetLoading
 }

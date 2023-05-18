@@ -90,13 +90,64 @@ const {reducer, actions} = createSlice({
         "disabled": false,
         "expirationTime": null
     },)
+    devices.push( {
+      "id":4,
+      "attributes": [],
+      "groupId": 0,
+      "name": "RUH-01",
+      "uniqueId": "863540060245173",
+      "status": "online",
+      "lastUpdate": "2023-05-17T11:27:07.000+00:00",
+      "positionId": 1171953,
+      "geofenceIds": null,
+      "phone": null,
+      "model": "",
+      "contact": null,
+      "category": "bus",
+      "disabled": false,
+      "expirationTime": null
+  },)
+  devices.push( {
+    "id": 5,
+    "attributes": [],
+    "groupId": 0,
+    "name": "RUH-01",
+    "uniqueId": "863540060245173",
+    "status": "online",
+    "lastUpdate": "2023-05-17T11:27:07.000+00:00",
+    "positionId": 1171953,
+    "geofenceIds": null,
+    "phone": null,
+    "model": "",
+    "contact": null,
+    "category": "bus",
+    "disabled": false,
+    "expirationTime": null
+},)
+devices.push( {
+  "id": 8,
+  "attributes": [],
+  "groupId": 0,
+  "name": "RUH-01",
+  "uniqueId": "863540060245173",
+  "status": "online",
+  "lastUpdate": "2023-05-17T11:27:07.000+00:00",
+  "positionId": 1171953,
+  "geofenceIds": null,
+  "phone": null,
+  "model": "",
+  "contact": null,
+  "category": "bus",
+  "disabled": false,
+  "expirationTime": null
+},)
       state.items = {}
       if (!isEmptyObject(payload)) {
-        state.stations = payload.info;
+        state.stations =[] ;//payload.info;
         state.staionDevices=devices;
         devices.forEach((item) => (state.items[item.id] = item))
       }
-      // state.loading = false
+       state.loading = false
     })
 
     builder.addCase(GetStationInfo.rejected, (state, {payload}) => {

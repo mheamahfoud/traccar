@@ -12,15 +12,17 @@ import Battery20Icon from '@mui/icons-material/Battery20';
 import BatteryCharging20Icon from '@mui/icons-material/BatteryCharging20';
 import ErrorIcon from '@mui/icons-material/Error';
 import moment from 'moment';
-import { devicesActions } from '../store';
+
 import {
   formatAlarm, formatBoolean, formatPercentage, formatStatus, getStatusColor,
-} from '../common/util/formatter';
-import { useTranslation } from '../common/components/LocalizationProvider';
-import { mapIconKey, mapIcons } from '../map/core/preloadImages';
-import { useAdministrator } from '../common/util/permissions';
-import { ReactComponent as EngineIcon } from '../resources/images/data/engine.svg';
-import { useAttributePreference } from '../common/util/preferences';
+} from '../../../../../../_metronic/helpers/common/util/formatter';
+
+import { useAdministrator } from '../../../../../../_metronic/helpers/common/util/permissions';
+import { useTranslation } from '../../../../../../_metronic/helpers/common/components/LocalizationProvider';
+import { mapIconKey, mapIcons } from '../../../../apps/map/core/preloadImages';
+import { useAttributePreference } from '../../../../../../_metronic/helpers/common/util/preferences';
+import { devicesActions } from '../../../../../../store';
+import { ReactComponent as EngineIcon } from '../../../../../../_metronic/helpers/resources/images/data/engine.svg';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -47,17 +49,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DeviceRow = ({ data, index, style }) => {
+const DeviceRow = ({ item, index }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const t = useTranslation();
 
   const admin = useAdministrator();
 
-  const item = data[index];
-  const position = useSelector((state) => state.session.positions[item.id]);
+  const position = useSelector((state) => state?.session?.positions[item.id]);
 
-  const geofences = useSelector((state) => state.geofences.items);
+  const geofences = useSelector((state) => state?.geofences?.items);
 
   const devicePrimary = useAttributePreference('devicePrimary', 'name');
   const deviceSecondary = useAttributePreference('deviceSecondary', '');
@@ -89,7 +90,7 @@ const DeviceRow = ({ data, index, style }) => {
   };
 
   return (
-    <div style={style}>
+    <div>
       <ListItemButton
         key={item.id}
         onClick={() => dispatch(devicesActions.selectId(item.id))}
@@ -108,13 +109,13 @@ const DeviceRow = ({ data, index, style }) => {
         />
         {position && (
           <>
-            {position.attributes.hasOwnProperty('alarm') && (
+            {/* {position.attributes.hasOwnProperty('alarm') && (
               <Tooltip title={`${t('eventAlarm')}: ${formatAlarm(position.attributes.alarm, t)}`}>
                 <IconButton size="small">
                   <ErrorIcon fontSize="small" className={classes.negative} />
                 </IconButton>
               </Tooltip>
-            )}
+            )} */}
             {position.attributes.hasOwnProperty('ignition') && (
               <Tooltip title={`${t('positionIgnition')}: ${formatBoolean(position.attributes.ignition, t)}`}>
                 <IconButton size="small">
@@ -126,7 +127,7 @@ const DeviceRow = ({ data, index, style }) => {
                 </IconButton>
               </Tooltip>
             )}
-            {position.attributes.hasOwnProperty('batteryLevel') && (
+            {/* {position.attributes.hasOwnProperty('batteryLevel') && (
               <Tooltip title={`${t('positionBatteryLevel')}: ${formatPercentage(position.attributes.batteryLevel)}`}>
                 <IconButton size="small">
                   {position.attributes.batteryLevel > 70 ? (
@@ -144,7 +145,7 @@ const DeviceRow = ({ data, index, style }) => {
                   )}
                 </IconButton>
               </Tooltip>
-            )}
+            )} */}
           </>
         )}
       </ListItemButton>
