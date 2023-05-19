@@ -3,9 +3,12 @@
 .container-list-devices {
     position: fixed;
     bottom: 10%;
-    right: 0;
-    width: 500px;
+    left: 300px;
+    width: 700px;
     height: 100px;
-    z-index: 444;
+    z-index: 5000;
     background: white;
+    align-items: center;
+    gap: 20px;
+    padding: 0 10px;
 }

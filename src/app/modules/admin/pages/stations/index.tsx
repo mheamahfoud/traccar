@@ -9,6 +9,7 @@ import {ManageListWrapper} from './manage/List'
 import MapStationPage from './map/MainPage'
 import theme from '../../../../../_metronic/helpers/common/theme'
 import SocketController from './manage/core/SocketController'
+import ReplayPage from '../reports/replyPage'
 
 const StationPage = () => {
   const intl = useIntl()
@@ -67,6 +68,14 @@ const StationPage = () => {
                 element={
                   
                     <MapStationPage />
+                  
+                }
+              />
+                  <Route
+                path='map-reply'
+                element={
+                  
+                    <ReplayPage />
                   
                 }
               />

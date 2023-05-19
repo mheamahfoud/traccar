@@ -226,8 +226,9 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         properties: createFeature(devices, position, selectedPosition && selectedPosition.id),
       })),
     });
-  }, [devices, positions, selectedPosition]);
+  }, [devices, selectedPosition]);
 //
+//positions
   return null;
 };
 

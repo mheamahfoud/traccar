@@ -38,7 +38,7 @@ const QueryResponseProvider: FC<WithChildren> = ({children}) => {
   } = useQuery(
     `${QUERIES.VEHICLES_COLORS}-${query}`,
     () => {
-      return getList()
+      return getList(query,state.page_num)
     },
     {cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false}
   )

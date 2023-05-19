@@ -1,8 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {useDispatch} from 'react-redux'
 import makeStyles from '@mui/styles/makeStyles'
-import {FixedSizeList} from 'react-window'
-import AutoSizer from 'react-virtualized-auto-sizer'
 import DeviceRow from './DeviceRow'
 import {devicesActions} from '../../../../../../store'
 import {useEffectAsync} from '../../../../../../reactHelper'
@@ -45,7 +43,7 @@ const DeviceList = ({devices}) => {
   // }, []);
 
  
-  return <div>
+  return <div className='d-flex flex-grow justify-conten-center' style={{overflowX:'auto'}}>
     {devices.map((item, index) => {
       return <DeviceRow  item={item}  index={index}/>
      

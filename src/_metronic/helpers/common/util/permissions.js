@@ -21,8 +21,8 @@ export const useDeviceReadonly = () => useSelector((state) => {
 });
 
 export const useRestriction = (key) => useSelector((state) => {
-  const admin = state.session.user.administrator;
-  const serverValue = state.session.server[key];
-  const userValue = state.session.user[key];
-  return !admin && (serverValue || userValue);
+  const admin = state.session?.user?.administrator;
+  //const serverValue = state.session?.server[key];
+ // const userValue = state.session?.user[key];
+  return !admin 
 });

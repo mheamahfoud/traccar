@@ -61,8 +61,9 @@ const SocketController = () => {
         )
         if (temp && temp.length > 0) {
           //   dispatch(terminalPathsActions.updateDeviceLocation(temp))
-          dispatch(sessionActions.updatePositions(temp))
+        
         }
+        dispatch(sessionActions.updatePositions(data.positions))
       }
     }
   }

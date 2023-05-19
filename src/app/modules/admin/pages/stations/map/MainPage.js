@@ -20,8 +20,10 @@ import {KTCard} from '../../../../../../_metronic/helpers'
 import {GetStationInfo} from '../../../../../../services/traccargps'
 import {ListLoading} from '../../../components/table/loading/ListLoading'
 import {useLocation} from 'react-router-dom'
+import { map } from '../../../../apps/map/core/MapView'
 // import { useAttributePreference } from '../common/util/preferences';
 import { DeviceLIstTemp } from './DeviceLIstTemp'
+import { useEffectAsync } from '../../../../../../reactHelper'
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
@@ -126,9 +128,31 @@ const MapStationPage = () => {
       dispatch(layoutManagerActions.setToolbar(true))
     }
   }, [])
-  useEffect(() => {
-    dispatch(GetStationInfo(station_id))
-  }, [])
+  useEffectAsync(async () => {
+
+    const response = await fetch('/api/devices');
+    if (response.ok) {
+      dispatch(devicesActions.refresh(await response.json()));
+    } else {
+      throw Error(await response.text());
+    }
+
+
+
+  }, []);
+  map.on('moveend', () => {
+    const bounds = map.getBounds();
+   // alert(JSON.stringify(positions))
+    //  const visibleDevices = devices.filter(device =>
+    //    isDeviceWithinBounds(device, bounds)
+    //  );
+    dispatch(layoutManagerActions.setToolbar(true))
+    //  console.log('Visible Devices:', visibleDevices);
+    // Perform any actions with the visible devices
+  });
+  // useEffect(() => {
+  //   dispatch(GetStationInfo(station_id))
+  // }, [])
 //alert(JSON.stringify(filteredDevices))
   return (
     <>
@@ -170,3 +194,7 @@ const MapStationPage = () => {
 }
 
 export default MapStationPage
+function isDeviceWithinBounds(device, bounds) {
+  const deviceCoordinates = [device.longitude, device.latitude];
+  return bounds.contains(deviceCoordinates);
+}

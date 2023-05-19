@@ -19,30 +19,48 @@ let links = [
       "active": false
   }
 ];
-
-
-const getList = (): Promise<StationQueryResponse> => {
-  return
-  
-  axios.get(`all_station`)
-  //  .get(`all_station?${'page=' + page}`, {
-    //  ...ConvertStringToObject(query)
-  //  })
+const getList = (query: string, page: number): Promise<StationQueryResponse> => {
+  return axios
+    .post(`list_station?${'page=' + page}`, {
+      ...ConvertStringToObject(query)
+    })
     .then((d: any) => {
       return {
-        data: d.data?.data,
-     //   payload:{}
-        // {
-        //   pagination: {
-        //     page_num:1, //d.data?.data?.current_page,
-        //     page_size: 10 , //d.data?.data?.per_page,
-        //     links:links
-        //    // d.data?.data?.links
-        //   }
-        // }
+        data: d.data?.data?.data,
+        payload: {
+          pagination: {
+            page_num: d.data?.data?.current_page,
+            page_size: d.data?.data?.per_page,
+            links: d.data?.data?.links
+          }
+        }
       }
     })
 }
+
+
+// const getList = (): Promise<StationQueryResponse> => {
+//   return
+  
+//   axios.get(`list_station`)
+//   //  .get(`all_station?${'page=' + page}`, {
+//     //  ...ConvertStringToObject(query)
+//   //  })
+//     .then((d: any) => {
+//       return {
+//         data: d.data?.data,
+//      //   payload:{}
+//         // {
+//         //   pagination: {
+//         //     page_num:1, //d.data?.data?.current_page,
+//         //     page_size: 10 , //d.data?.data?.per_page,
+//         //     links:links
+//         //    // d.data?.data?.links
+//         //   }
+//         // }
+//       }
+//     })
+// }
 
 const create = (object: Station) => {
   return axios

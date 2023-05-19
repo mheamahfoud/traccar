@@ -12,6 +12,7 @@ import { ListLoading } from '../../../components/table/loading/ListLoading'
 
 const List = () => {
   const items = useQueryResponseData()
+
   const isLoading = useQueryResponseLoading()
   const pagination = useQueryResponsePagination()
   const {updateState} = useQueryRequest()
@@ -22,7 +23,7 @@ const List = () => {
       <KTCard className='mmeejj'>
         <ListHeader />
         <KTCardBody className='py-4'>
-          <DataTable data={[{name:'ryadd',id:2}]} columns={columns} />
+          <DataTable data={data} columns={columns} />
           <ListPagination isLoading={isLoading} pagination={pagination} updateState={updateState} />
           {isLoading && <ListLoading />}
         </KTCardBody>

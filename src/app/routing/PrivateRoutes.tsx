@@ -14,6 +14,7 @@ import {UserType} from '../../_metronic/utlis/constants'
 import {CarPage} from '../modules/driver'
 
 
+
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
   const WizardsPage = lazy(() => import('../modules/wizards/WizardsPage'))
@@ -36,7 +37,7 @@ const PrivateRoutes = () => {
           <Route path='auth/*' element={<Navigate to='/dashboard' />} />
           {/* Pages */}
           <Route path='/my-page' element={<MyPage />} />
-
+   
           <Route path='dashboard' element={<DashboardWrapper />} />
           <Route path='builder' element={<BuilderPageWrapper />} />
           <Route path='menu-test' element={<MenuTestPage />} />

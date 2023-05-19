@@ -10,7 +10,7 @@ import { pageTimeManagereReducer  as  pageTimeManager } from './pageTimes/index'
 import { terminalPathReducer as terminalPath } from '../app/modules/terminal/store/terminalPath';
 
 import { layoutManagerReducer as layoutManager } from './layout';
-
+import { reportsReducer as reports } from './reports';
 import throttleMiddleware from './throttleMiddleware';
 
 const reducer = combineReducers({
@@ -22,7 +22,8 @@ const reducer = combineReducers({
   adsManager,
   pageTimeManager,
   terminalPath,
-  layoutManager
+  layoutManager,
+  reports
 
 });
 
@@ -34,6 +35,7 @@ export {terminalPathsActions} from '../app/modules/terminal/store/terminalPath';
 export {adsManagerActions} from './ads/adsManager';
 export {pageTimeManagerActions} from './pageTimes/index';
 export {layoutManagerActions} from './layout';
+export {reportsActions} from './reports';
 export default configureStore({
   reducer,
   middleware: (getDefaultMiddleware: any) => getDefaultMiddleware({ serializableCheck: false }).concat(throttleMiddleware),
