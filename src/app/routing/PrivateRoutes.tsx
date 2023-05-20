@@ -1,17 +1,18 @@
-import {lazy, FC, Suspense} from 'react'
-import {Route, Routes, Navigate} from 'react-router-dom'
-import {MasterLayout} from '../../_metronic/layout/MasterLayout'
+import { lazy, FC, Suspense } from 'react'
+import { Route, Routes, Navigate } from 'react-router-dom'
+import { MasterLayout } from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
-import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
-import {MenuTestPage} from '../pages/MenuTestPage'
-import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
-import {WithChildren} from '../../_metronic/helpers'
+import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
+import { MenuTestPage } from '../pages/MenuTestPage'
+import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
+import { WithChildren } from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import MyPage from '../pages/MyPage'
-import {useAuth} from '../modules/auth'
-import {UserType} from '../../_metronic/utlis/constants'
+import { useAuth } from '../modules/auth'
+import { UserType } from '../../_metronic/utlis/constants'
 
-import {CarPage} from '../modules/driver'
+import { CarPage } from '../modules/driver'
+import PublicMapPage from '../modules/admin/pages/publicMap/map'
 
 
 
@@ -25,8 +26,8 @@ const PrivateRoutes = () => {
 
   const VechilesPage = lazy(() => import('../modules/admin/pages/vehicles'))
   const StationPage = lazy(() => import('../modules/admin/pages/stations'))
-  const TerminalPage= lazy(() => import('../modules/terminal/TerminalPage')) 
-  const {currentUser} = useAuth()
+  const TerminalPage = lazy(() => import('../modules/terminal/TerminalPage'))
+  const { currentUser } = useAuth()
   return (
     <Routes>
       //#region Admin
@@ -37,7 +38,7 @@ const PrivateRoutes = () => {
           <Route path='auth/*' element={<Navigate to='/dashboard' />} />
           {/* Pages */}
           <Route path='/my-page' element={<MyPage />} />
-   
+
           <Route path='dashboard' element={<DashboardWrapper />} />
           <Route path='builder' element={<BuilderPageWrapper />} />
           <Route path='menu-test' element={<MenuTestPage />} />
@@ -100,7 +101,14 @@ const PrivateRoutes = () => {
               </SuspensedView>
             }
           />
-
+          <Route
+            path='/admin/public-map/*'
+            element={
+              <SuspensedView>
+                <PublicMapPage />
+              </SuspensedView>
+            }
+          />
           <Route
             path='apps/user-management/*'
             element={
@@ -150,7 +158,7 @@ const PrivateRoutes = () => {
   )
 }
 
-const SuspensedView: FC<WithChildren> = ({children}) => {
+const SuspensedView: FC<WithChildren> = ({ children }) => {
   const baseColor = getCSSVariableValue('--bs-primary')
   TopBarProgress.config({
     barColors: {
@@ -162,4 +170,4 @@ const SuspensedView: FC<WithChildren> = ({children}) => {
   return <Suspense fallback={<TopBarProgress />}>{children}</Suspense>
 }
 
-export {PrivateRoutes}
+export { PrivateRoutes }

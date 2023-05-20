@@ -1,7 +1,8 @@
 import React, {useEffect, useRef} from 'react'
 import {useDispatch, useSelector, connect} from 'react-redux'
-import {sessionActions} from '../../../../../../../store'
-import {useEffectAsync} from '../../../../../../../reactHelper'
+import { sessionActions } from '../../../../../../store'
+import { useEffectAsync } from '../../../../../../reactHelper'
+
 // import { sessionActions, terminalPathsActions, truckPathActions } from "../../../store";
 
 // import { isObjectEmpty, useEffectAsync } from "../../../reactHelper";
@@ -12,7 +13,7 @@ const logoutCode = 4000
 
 const SocketController = () => {
   const dispatch = useDispatch()
-  const stationDevices = useSelector((state: any) => state.devices.stationDevices)
+  const staionDevices = useSelector((state: any) => state.devices.staionDevices)
   //   const terminalLoc: Coordinate = useSelector((state: any) => state.terminalPath.terminalLoc);
   //   const devicesLocaton: Coordinate = useSelector((state: any) => state.terminalPath.devicesLocaton);
 
@@ -56,15 +57,7 @@ const SocketController = () => {
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data)
       if (data.positions) {
-        let temp = data.positions.filter((x: any) =>
-        stationDevices.map((x) => x.id).includes(x.deviceId)
-        )
-        if (temp && temp.length > 0) {
-          dispatch(sessionActions.updatePositions(temp))
-        //     dispatch(terminalPathsActions.updateDeviceLocation(temp))
-        
-        }
-        //dispatch(sessionActions.updatePositions(data.positions))
+        dispatch(sessionActions.updatePositions(data.positions))
       }
     }
   }

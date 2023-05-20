@@ -72,6 +72,15 @@ const SidebarMenuMain = () => {
         fontIcon='bi-layers'
       />
       
+      <SidebarMenuItem
+        to='/admin/public-map/all'
+        icon='abstract-28'
+        title={intl.formatMessage({id: 'public_map'})}
+        fontIcon='bi-layers'
+      />
+
+      
+
       <SidebarMenuItemWithSub
         to='/crafted/pages'
         title='Pages'

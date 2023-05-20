@@ -349,3 +349,9 @@ export function findKeyWithSmallestValue(obj: { [key: string]: number }): string
 export function isObjectEmpty(obj: Record<string, any>): boolean {
   return Object.keys(obj).length === 0;
 }
+
+
+export function isDeviceWithinBounds(device, bounds) {
+  const deviceCoordinates = [device.longitude, device.latitude];
+  return bounds.contains(deviceCoordinates);
+}

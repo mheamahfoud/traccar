@@ -63,7 +63,7 @@ const MapDefaultCamera = () => {
       }
     //}
   }, [initialized, defaultLatitude, defaultLongitude, defaultZoom,positions])
-
+//positions
   return null
 }
 //

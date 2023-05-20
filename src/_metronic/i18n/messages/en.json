@@ -128,7 +128,8 @@
   "password":"Password",
   "station":"Station",
   "stations":"Stations",
-  "move_Map":"Move To Map"
+  "move_Map":"Move To Map",
+  "public_map":"Public Map"
  
 
 

@@ -20,7 +20,7 @@ export default (keyword, filterDevices, filter, filterSort, filterMap, positions
 
     const filtered = Object.values(devices)
       //.filter()
-      .filter((device: any) => filterDevices.length > 0 ? filterDevices.includes(device.id) : true)
+      .filter((device: any) => filterDevices.includes(device.id))
       //  .filter((device:any) => !filter.groups.length || deviceGroups(device).some((id) => filter.groups.includes(id)))
       .filter((device: any) => {
         const lowerCaseKeyword = keyword.toLowerCase();

@@ -23,7 +23,7 @@ import {useLocation} from 'react-router-dom'
 import { map } from '../../../../apps/map/core/MapView'
 // import { useAttributePreference } from '../common/util/preferences';
 import { DeviceLIstTemp } from './DeviceLIstTemp'
-import { useEffectAsync } from '../../../../../../reactHelper'
+import { isDeviceWithinBounds, useEffectAsync } from '../../../../../../reactHelper'
 import { object } from 'yup'
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const MapStationPage = () => {
+const Main = () => {
   const classes = useStyles()
   const location = useLocation()
   const station_id = location.state
@@ -127,15 +127,33 @@ const MapStationPage = () => {
   )
 
   useEffect(() => {
+    dispatch(devicesActions.initStations([]));
     dispatch(layoutManagerActions.setToolbar(false))
     return () => {
       dispatch(layoutManagerActions.setToolbar(true))
     }
   }, [])
+  //alert(JSON.stringify())
+  useEffectAsync(async () => {
+    const response = await fetch('/api/devices');
+    if (response.ok) {
+      dispatch(devicesActions.refresh(await response.json()));
+    
+    } else {
+      throw Error(await response.text());
+    }
 
-  useEffect(() => {
-    dispatch(GetStationInfo(station_id))
-  }, [])
+  }, []);
+
+  map.on('moveend', () => {
+    const bounds = map.getBounds();
+    const visibleDevices = Object.values(positions).filter(device =>
+      isDeviceWithinBounds(device, bounds)
+    );
+
+    setFilterDevices(visibleDevices.map((item)=>item.deviceId))
+
+  });
 
   return (
     <>
@@ -176,4 +194,6 @@ const MapStationPage = () => {
   )
 }
 
-export default MapStationPage
+export default Main
+
+

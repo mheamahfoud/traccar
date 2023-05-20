@@ -11,7 +11,7 @@ interface deviceState {
   items: any
   selectedId: any
   selectedIds: any
-  staionDevices: any
+  stationDevices: any
   error: any
 }
 const initialState: deviceState = {
@@ -20,7 +20,7 @@ const initialState: deviceState = {
   items: {},
   selectedId: null,
   selectedIds: [],
-  staionDevices: [],
+  stationDevices: [],
   error: '',
 }
 
@@ -51,6 +51,9 @@ const {reducer, actions} = createSlice({
     remove(state, action) {
       delete state.items[action.payload]
     },
+    initStations(state, action) {
+        state.stations=action.payload
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(GetCurrentDevice.pending, (state) => {})
@@ -77,8 +80,8 @@ const {reducer, actions} = createSlice({
 
       state.items = {}
       if (!isEmptyObject(payload)) {
-        state.stations =[] ;//payload.info;
-        state.staionDevices=devices;
+        state.stations =payload.info;
+        state.stationDevices=devices;
         devices.forEach((item) => (state.items[item.id] = item))
       }
        state.loading = false

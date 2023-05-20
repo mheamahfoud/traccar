@@ -1,33 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { GetStationInfo } from '../../services/traccargps';
 interface SessionState {
-    server: any,
-    user: any,
-    socket: any,
-    positions: any,
-    history: any,
-  }
+  server: any,
+  user: any,
+  socket: any,
+  positions: any,
+  history: any,
+}
 
 
-  const initialState: SessionState = {
-    server: null,
-    user: null,
-    socket: null,
-    positions: {},
-    history: {},
-  };
+const initialState: SessionState = {
+  server: null,
+  user: null,
+  socket: null,
+  positions: {},
+  history: {},
+};
 const { reducer, actions } = createSlice({
   name: 'session',
   initialState: initialState,
   reducers: {
-    
+
     updateServer(state, action) {
       console.log(`server :  `)
-     console.log(action.payload)
+      console.log(action.payload)
       state.server = action.payload;
     },
     updateUser(state, action) {
-     console.log(`user : `)
-     console.log(action.payload)
+      console.log(`user : `)
+      console.log(action.payload)
       state.user = action.payload;
     },
     updateSocket(state, action) {
@@ -47,10 +48,21 @@ const { reducer, actions } = createSlice({
         } else {
           state.history = {};
         }
-   
+
       });
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(GetStationInfo.pending, (state) => { })
+
+    builder.addCase(GetStationInfo.fulfilled, (state, { payload }) => {
+      state.positions = {};
+    })
+
+    builder.addCase(GetStationInfo.rejected, (state, { payload }) => {
+      state.error = payload
+    })
+  }
 });
 
 export { actions as sessionActions };
