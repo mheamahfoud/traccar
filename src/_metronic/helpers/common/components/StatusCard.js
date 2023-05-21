@@ -248,7 +248,7 @@ const StatusCard = ({deviceId,position, onClose, desktopPadding = 0,...props}) =
       </div>
       {position && (
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
-          <MenuItem  disabled={!permissions && !permissions?.map(x=>x.code).includes('View_Vehicle_Account')} onClick={()=>{
+          <MenuItem  disabled={!permissions?.map(x=>x.code).includes('View_Vehicle_Account')} onClick={()=>{
             navigate('/car',{state: deviceId})
           }}>{'Move To Car'}</MenuItem>
 
