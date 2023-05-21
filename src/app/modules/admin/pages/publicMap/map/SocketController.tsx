@@ -58,6 +58,7 @@ const SocketController = () => {
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data)
       if (data.positions) {
+  
         if (checkInitPath.current) {
           checkInitPath.current = false
           dispatch(sessionActions.setRefresh())

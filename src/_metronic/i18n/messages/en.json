@@ -137,5 +137,6 @@
   "terminals":"Terminals",
   "longitude":"Longitude",
   "latitude":"Latitude",
-  "move_to_map":"Move To Map"
+  "move_to_map":"Move To Map",
+  "permission":"Permission"
 }
