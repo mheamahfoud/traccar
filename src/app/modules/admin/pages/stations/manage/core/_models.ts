@@ -2,7 +2,8 @@ import {ID, Response} from '../../../../../../../_metronic/helpers'
 
 export type Station = {
   id: number
-  name: string
+  name: string,
+  permissions:any,
 }
 export type Role = {
   id: number
@@ -17,4 +18,5 @@ export type RoleResponse = Array<Role>
 export const initialVehicleModel: Station = {
   id: null,
   name: null,
+  permissions:[]
 }

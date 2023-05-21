@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
 const MapStationPage = () => {
   const classes = useStyles()
   const location = useLocation()
-  const station_id = location.state
+  const station_info = location.state
   const loading = useSelector((state) => state.devices.loading)
 
   const dispatch = useDispatch()
@@ -134,7 +134,7 @@ const MapStationPage = () => {
   }, [])
 
   useEffect(() => {
-    dispatch(GetStationInfo(station_id))
+    dispatch(GetStationInfo(station_info?.id))
   }, [])
 
   return (
@@ -167,6 +167,7 @@ const MapStationPage = () => {
               position={selectedPosition}
               onClose={() => dispatch(devicesActions.selectId(null))}
               desktopPadding={360}
+              permissions={station_info?.permissions}
               //theme.dimensions.drawerWidthDesktop
             />
           )}

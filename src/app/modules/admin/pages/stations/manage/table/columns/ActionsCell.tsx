@@ -19,11 +19,12 @@ import {GetStationInfo} from '../../../../../../../../services/traccargps'
 import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
 import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
 import {ActionButton} from '../../../../../components/buttons/ActionButton'
+import { Station } from '../../core/_models'
 type Props = {
-  id: ID
+  data: Station
 }
 
-const ActionsCell: FC<Props> = ({id}) => {
+const ActionsCell: FC<Props> = ({data}) => {
   const setLoading = useQueryResponseSetLoading()
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -37,7 +38,7 @@ const ActionsCell: FC<Props> = ({id}) => {
   }, [])
 
   const handleEdit = () => {
-    const data = items.find((x) => x.id == id)
+    const data = items.find((x) => x.id == data?.id)
     navigate(EditPath, {state: data})
   }
 
@@ -60,13 +61,12 @@ const ActionsCell: FC<Props> = ({id}) => {
   //   }
   // })
   const handleMap = () => {
-    navigate(MapPath, {state: id})
-  }
 
+    navigate(MapPath, {state: {id:data?.id , permissions:data?.permissions}})
+  }
   const handlePermission = () => {
-    navigate(PermissionPath, {state: id})
+    navigate(PermissionPath, {state: {id:data?.id,permissions:data?.permissions}})
   }
-
 
 
   return (

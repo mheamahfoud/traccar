@@ -114,7 +114,8 @@ const StatusRow = ({name, content}) => {
   )
 }
 
-const StatusCard = ({deviceId, position, onClose, desktopPadding = 0}) => {
+const StatusCard = ({deviceId,position, onClose, desktopPadding = 0,...props}) => {
+  const {permissions}=props;
   const classes = useStyles({desktopPadding})
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -247,9 +248,11 @@ const StatusCard = ({deviceId, position, onClose, desktopPadding = 0}) => {
       </div>
       {position && (
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
-          <MenuItem onClick={()=>{
+          <MenuItem  disabled={!permissions && !permissions.map(x=>x.code).includes('View_Vehicle_Account')} onClick={()=>{
             navigate('/car',{state: deviceId})
           }}>{'Move To Car'}</MenuItem>
+
+          
           <MenuItem onClick={() => navigate(`/position/${position.id}`)}>
             <Typography color='secondary'>{'sharedShowDetails'}</Typography>
           </MenuItem>

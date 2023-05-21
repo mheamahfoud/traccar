@@ -34,6 +34,15 @@ const TerminalLayout = () => {
           )
           dispatch(adsManagerActions.setAds(res?.payload[0]?.ads))
         }
+        else{
+          dispatch(
+            terminalPathsActions.setDevices({
+              devices: [],
+              terminal: [],
+            })
+          )
+          dispatch(adsManagerActions.setAds([]))
+        }
 
         dispatch(GetPageTimes())
       }

@@ -62,7 +62,20 @@ const StationPage = () => {
                 }
               />
               <Route path='map-station' element={<MapStationPage />} />
-              <Route path='permission-station' element={<ManagePermission />} />
+              <Route
+                path='permission-station'
+                element={
+                  <>
+                    <PageTitle breadcrumbs={Breadcrumbs}>
+                      {intl.formatMessage(
+                        {id: 'add_object'},
+                        {name: intl.formatMessage({id: 'permission'})}
+                      )}
+                    </PageTitle>
+                    <ManagePermission />
+                  </>
+                }
+              />
             </Route>
             <Route index element={<Navigate to={ListPath} />} />
           </Routes>

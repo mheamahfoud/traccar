@@ -104,7 +104,7 @@ const {reducer, actions} = createSlice({
     })
     builder.addCase(GetStationInfo.fulfilled, (state, {payload}) => {
       let data = payload
-      let devices = payload.devices.filter((x) => x.id == 6)
+      let devices = payload.devices;//.filter((x) => x.id == 6)
       state.items = {}
       if (!isEmptyObject(payload)) {
         state.stations = payload.info

@@ -12,11 +12,12 @@ import {ActionButton} from '../../../../../components/buttons/ActionButton'
 import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
 import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
 import { EditPath } from '../../../routes/RoutesNames'
+import { Terminal } from '../../core/_models'
 type Props = {
-  id: ID
+  data: Terminal
 }
 
-const ActionsCell: FC<Props> = ({id}) => {
+const ActionsCell: FC<Props> = ({data}) => {
   const navigate = useNavigate()
   const setLoading= useQueryResponseSetLoading();
   const {query} = useQueryResponse()
@@ -28,7 +29,7 @@ const ActionsCell: FC<Props> = ({id}) => {
   }, [])
 
   const handleEdit = () => {
-    const data = items.find((x) => x.id == id)
+    const data = items.find((x) => x.id == data?.id)
     navigate(EditPath, {state: data})
   }
 
@@ -40,7 +41,7 @@ const ActionsCell: FC<Props> = ({id}) => {
       }
     })
   }
-  const deleteItem = useMutation(() => destroy(id), {
+  const deleteItem = useMutation(() => destroy(data?.id), {
     onSuccess: () => {
       setLoading(false)
       // ✅ update detail view directly
@@ -51,7 +52,7 @@ const ActionsCell: FC<Props> = ({id}) => {
     },
   })
   const handleMap = () => {
-    navigate('/terminal', {state: id})
+    navigate('/terminal', {state: data?.id})
   }
   return (
     <>
@@ -60,9 +61,9 @@ const ActionsCell: FC<Props> = ({id}) => {
       <MenuActionWrapper>
         <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
 
-        <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} />
+        <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete}  />
 
-        <MenuActionItem title={intl.formatMessage({id: 'move_to_map'})} onCLick={handleMap} />
+    {   data?.permissions.map(x=>x.code).includes('View_Terminal_Account') &&  <MenuActionItem title={intl.formatMessage({id: 'move_to_map'})} onCLick={handleMap} />}
       </MenuActionWrapper>
       {/* end::Menu */}
     </>

@@ -86,9 +86,9 @@ const getPermissionStation = (id :ID): Promise<RoleResponse> => {
   })
 }
 
-const updatePermission= (object: any) => {
+const updatePermission= (object: any, id) => {
   return axios
-    .post(`store_station_permissions`, object)
+    .post(`store_station_permissions/${id}`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   // .then((response: ResponeApiCheck) => response)
 }

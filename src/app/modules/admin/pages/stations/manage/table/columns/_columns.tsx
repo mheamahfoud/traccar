@@ -29,7 +29,7 @@ const columnsTable :  ReadonlyArray<Column<Station>> = [
       <CustomHeader<VehicleColor>  tableProps={props} title='Actions' className='text-end min-w-100px' />
     ),
     id: 'actions',
-    Cell: ({...props}) => <ActionsCell id={props.data[props.row.index].id} />,
+    Cell: ({...props}) => <ActionsCell data={props.data[props.row.index]} />,
   },
 ]
 

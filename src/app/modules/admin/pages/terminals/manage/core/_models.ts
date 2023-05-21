@@ -8,7 +8,8 @@ export type Terminal = {
   station:string,
   station_id:number,
   longitude:string,
-  latitude:string
+  latitude:string,
+  permissions:any[]
 
 
 
@@ -25,7 +26,8 @@ export const initialVehicleModel: Terminal = {
   station:null,
   station_id:null,
   longitude:null,
-  latitude:null
+  latitude:null,
+  permissions:[]
  
 }
 
