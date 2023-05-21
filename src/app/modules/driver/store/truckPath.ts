@@ -238,6 +238,7 @@ const { reducer, actions } = createSlice({
                     (x) => x.priority == tempNextTerminal.priority - 1
                 ) || initTerminal;
             }
+       
             state.durationStation = durationStation
             state.predectedTime = formatSeconds(durationStation[tempNextTerminal?.id]);
           // state.loading = false;

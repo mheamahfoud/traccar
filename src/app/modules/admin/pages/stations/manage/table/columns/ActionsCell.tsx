@@ -13,7 +13,7 @@ import {
 //import { destroy } from '../../core/_requests'
 import Swal from 'sweetalert2'
 import {useNavigate} from 'react-router-dom'
-import {EditPath, MapPath} from '../../../routes/RoutesNames'
+import {EditPath, MapPath, PermissionPath} from '../../../routes/RoutesNames'
 import {useIntl} from 'react-intl'
 import {GetStationInfo} from '../../../../../../../../services/traccargps'
 import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
@@ -48,6 +48,8 @@ const ActionsCell: FC<Props> = ({id}) => {
       }
     })
   }
+
+
   // const deleteItem = useMutation(() => destroy(id), {
   //   onSuccess: () => {
   //     // ✅ update detail view directly
@@ -60,6 +62,13 @@ const ActionsCell: FC<Props> = ({id}) => {
   const handleMap = () => {
     navigate(MapPath, {state: id})
   }
+
+  const handlePermission = () => {
+    navigate(PermissionPath, {state: id})
+  }
+
+
+
   return (
     <>
       <ActionButton />
@@ -68,7 +77,7 @@ const ActionsCell: FC<Props> = ({id}) => {
         <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
 
         <MenuActionItem title={intl.formatMessage({id: 'move_Map'})} onCLick={handleMap} />
-
+        <MenuActionItem title={intl.formatMessage({id: 'permissions'})} onCLick={handlePermission} />
         <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} />
       </MenuActionWrapper>
       {/* end::Menu */}

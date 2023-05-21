@@ -8,14 +8,12 @@ import {Breadcrumbs, ListPath} from './routes/RoutesNames'
 import {ManageListWrapper} from './manage/List'
 import MapStationPage from './map/MainPage'
 import theme from '../../../../../_metronic/helpers/common/theme'
-import SocketController from './manage/core/SocketController'
-import ReplayPage from '../reports/replyPage'
+import ManagePermission from './manage/add-edit/ManagePermission'
 
 const StationPage = () => {
   const intl = useIntl()
   return (
     <>
-    
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
           <Routes>
@@ -63,22 +61,8 @@ const StationPage = () => {
                   </>
                 }
               />
-              <Route
-                path='map-station'
-                element={
-                  
-                    <MapStationPage />
-                  
-                }
-              />
-                  <Route
-                path='map-reply'
-                element={
-                  
-                    <ReplayPage />
-                  
-                }
-              />
+              <Route path='map-station' element={<MapStationPage />} />
+              <Route path='permission-station' element={<ManagePermission />} />
             </Route>
             <Route index element={<Navigate to={ListPath} />} />
           </Routes>

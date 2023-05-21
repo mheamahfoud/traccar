@@ -1,28 +1,27 @@
-
-import axios, { AxiosResponse } from 'axios'
-import { ConvertStringToObject, ID, ResponeApiCheck, } from '../../../../../../../_metronic/helpers'
-import {  Station, StationQueryResponse } from './_models'
+import axios, {AxiosResponse} from 'axios'
+import {ConvertStringToObject, ID, ResponeApiCheck} from '../../../../../../../_metronic/helpers'
+import {RoleResponse, Station, StationQueryResponse} from './_models'
 let links = [
   {
-      "url": null,
-      "label": "&laquo; Previous",
-      "active": false
+    url: null,
+    label: '&laquo; Previous',
+    active: false,
   },
   {
-      "url": "https://tmbo.app/cars/fleet/api/list_vehicles?page=1",
-      "label": "1",
-      "active": true
+    url: 'https://tmbo.app/cars/fleet/api/list_vehicles?page=1',
+    label: '1',
+    active: true,
   },
   {
-      "url": null,
-      "label": "Next &raquo;",
-      "active": false
-  }
-];
+    url: null,
+    label: 'Next &raquo;',
+    active: false,
+  },
+]
 const getList = (query: string, page: number): Promise<StationQueryResponse> => {
   return axios
     .post(`list_station?${'page=' + page}`, {
-      ...ConvertStringToObject(query)
+      ...ConvertStringToObject(query),
     })
     .then((d: any) => {
       return {
@@ -31,17 +30,16 @@ const getList = (query: string, page: number): Promise<StationQueryResponse> => 
           pagination: {
             page_num: d.data?.data?.current_page,
             page_size: d.data?.data?.per_page,
-            links: d.data?.data?.links
-          }
-        }
+            links: d.data?.data?.links,
+          },
+        },
       }
     })
 }
 
-
 // const getList = (): Promise<StationQueryResponse> => {
 //   return
-  
+
 //   axios.get(`list_station`)
 //   //  .get(`all_station?${'page=' + page}`, {
 //     //  ...ConvertStringToObject(query)
@@ -70,19 +68,38 @@ const create = (object: Station) => {
 }
 
 const update = (object: Station) => {
-  return axios.post(`update_station/${object.id}`, object)
+  return axios
+    .post(`update_station/${object.id}`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   // .then((response: ResponeApiCheck) => response)
 }
 
+const getRoleList = (): Promise<RoleResponse> => {
+  return axios.get(`list_role_station`).then((d: any) => {
+    return d.data?.data
+  })
+}
 
-// const destroy = (id: ID): Promise<void> => {
-//   return axios.post(`${'destroy_vehicle_color'}/${id}`).then(() => { })
-// }
+const getPermissionStation = (id :ID): Promise<RoleResponse> => {
+  return axios.get(`list_station_permissions/${id}`).then((d: any) => {
+    return d.data?.data
+  })
+}
 
-// const destroySelectedItems = (selectedIds: Array<ID>): Promise<void> => {
-//   const requests = selectedIds.map((id) => axios.post(`${'destroy_vehicle_color'}/${id}`))
-//   return axios.all(requests).then(() => { })
-// }
+const updatePermission= (object: any) => {
+  return axios
+    .post(`store_station_permissions`, object)
+    .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
+  // .then((response: ResponeApiCheck) => response)
+}
 
-export { getList  ,create,update}
+//  const destroy = (id: ID): Promise<void> => {
+//    return axios.post(`${'destroy_vehicle_color'}/${id}`).then(() => { })
+//  }
+
+//  const destroySelectedItems = (selectedIds: Array<ID>): Promise<void> => {
+//    const requests = selectedIds.map((id) => axios.post(`${'destroy_vehicle_color'}/${id}`))
+//    return axios.all(requests).then(() => { })
+//  }
+
+export {getList, create, update,getRoleList,getPermissionStation,updatePermission}

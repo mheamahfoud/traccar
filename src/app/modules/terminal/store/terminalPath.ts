@@ -27,7 +27,7 @@ const { reducer, actions } = createSlice({
             //set devices of terminal
             state.devices = action.payload?.devices;
             //set status of devices
-            action.payload?.devices.forEach((item: any) => state.devicesStatus[item] = false);
+            action.payload?.devices?.forEach((item: any) => state.devicesStatus[item] = false);
             //set terminal info
             if (terminal?.length > 0) {
                 state.terminalInfo = terminal[0];

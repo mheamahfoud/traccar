@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { GetStationInfo } from '../../services/traccargps';
+import { stat } from 'fs';
 interface SessionState {
   server: any,
   user: any,
   socket: any,
   positions: any,
   history: any,
+  refresh:boolean,
 }
 
 
@@ -15,6 +17,7 @@ const initialState: SessionState = {
   socket: null,
   positions: {},
   history: {},
+  refresh:false,
 };
 const { reducer, actions } = createSlice({
   name: 'session',
@@ -33,6 +36,12 @@ const { reducer, actions } = createSlice({
     },
     updateSocket(state, action) {
       state.socket = action.payload;
+    },
+    initPositions(state){
+        state.positions={}
+    },
+    setRefresh(state){
+          state.refresh=!state.refresh;
     },
     updatePositions(state, action) {
       const liveRoutes = state.user?.attributes?.mapLiveRoutes || state.server?.attributes?.mapLiveRoutes || 'none';
@@ -60,7 +69,7 @@ const { reducer, actions } = createSlice({
     })
 
     builder.addCase(GetStationInfo.rejected, (state, { payload }) => {
-      state.error = payload
+      //state.error = payload
     })
   }
 });

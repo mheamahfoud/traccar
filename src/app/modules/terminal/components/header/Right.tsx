@@ -53,9 +53,7 @@ const ArrivalTime = styled.div`
 `;
 
 export const Right = () => {
-  const {currentUser} =useAuth()
-  const nextTerminal = useSelector((state :any) => state.truckPath.nextTerminal );
-  const predectedTime =useSelector((state:any) => state.truckPath.predectedTime);
+  const terminalInfo =useSelector((state:any) => state.terminalPath.terminalInfo);
 
   return (
     <Container>
@@ -71,7 +69,7 @@ export const Right = () => {
           </Icon>
         </NextStation> */}
 
-        <HallName>{currentUser?.name}</HallName>
+        <HallName>{terminalInfo?.name}</HallName>
       </Station>
 
       {/* <ArrivalTime>

@@ -133,16 +133,23 @@ const Main = () => {
       dispatch(layoutManagerActions.setToolbar(true))
     }
   }, [])
-  //alert(JSON.stringify())
+
   useEffectAsync(async () => {
-    const response = await fetch('/api/devices');
+    let email = "test@test.test";
+    let password = "test";
+    const auth = btoa(`${email}:${password}`);
+    const response = await fetch('http://173.249.51.233:8082//api/devices', {
+      credentials: 'include',
+      headers: {
+        Authorization: `Basic ${auth}`,
+      },
+    });
     if (response.ok) {
       dispatch(devicesActions.refresh(await response.json()));
     
     } else {
       throw Error(await response.text());
     }
-
   }, []);
 
   map.on('moveend', () => {

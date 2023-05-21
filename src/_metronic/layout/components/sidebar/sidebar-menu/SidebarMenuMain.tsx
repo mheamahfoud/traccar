@@ -64,22 +64,44 @@ const SidebarMenuMain = () => {
           hasBullet={true}
         />
       </SidebarMenuItemWithSub>
- 
+
       <SidebarMenuItem
         to='/admin/stations/manage-stations'
         icon='abstract-28'
-        title={intl.formatMessage({id: 'manage_object'},{name: intl.formatMessage({id:'stations'})})}
+        title={intl.formatMessage(
+          {id: 'manage_object'},
+          {name: intl.formatMessage({id: 'stations'})}
+        )}
         fontIcon='bi-layers'
       />
-      
+      <SidebarMenuItem
+        to='/admin/terminals/manage-terminals'
+        icon='abstract-28'
+        title={intl.formatMessage(
+          {id: 'manage_object'},
+          {name: intl.formatMessage({id: 'terminals'})}
+        )}
+        fontIcon='bi-layers'
+      />
+      <SidebarMenuItemWithSub
+        to='/admin/reports'
+        icon='abstract-28'
+        title='Manage Report'
+        fontIcon='bi-layers'
+      >
+        <SidebarMenuItem
+          to='/admin/reports/reply-map'
+          title={intl.formatMessage({id: 'reply_map'})}
+          hasBullet={true}
+        />
+      </SidebarMenuItemWithSub>
+
       <SidebarMenuItem
         to='/admin/public-map/all'
         icon='abstract-28'
         title={intl.formatMessage({id: 'public_map'})}
         fontIcon='bi-layers'
       />
-
-      
 
       <SidebarMenuItemWithSub
         to='/crafted/pages'

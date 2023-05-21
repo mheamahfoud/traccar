@@ -56,12 +56,7 @@ const getStationList = (): Promise<SelectList[]> => {
   return axios
     .get(`all_station`)
     .then((d: any) => {
-      return d.data?.data?.map((item) => {
-        return {
-          value: item.id,
-          text: item.name
-        }
-      })
+      return d.data?.data
     }
     )
 }

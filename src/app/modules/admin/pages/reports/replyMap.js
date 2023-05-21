@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ReplayPage = () => {
+const ReplayMap = () => {
   const dispatch =useDispatch()
   const t = useTranslation();
   const classes = useStyles();
@@ -109,8 +109,15 @@ const ReplayPage = () => {
     return null;
   });
   useEffectAsync(async () => {
-
-    const response = await fetch('/api/devices');
+    let email = "test@test.test";
+    let password = "test";
+    const auth = btoa(`${email}:${password}`);
+    const response = await fetch('http://173.249.51.233:8082//api/devices', {
+      credentials: 'include',
+      headers: {
+        Authorization: `Basic ${auth}`,
+      },
+    });
     if (response.ok) {
       dispatch(devicesActions.refresh(await response.json()));
     } else {
@@ -250,4 +257,4 @@ const ReplayPage = () => {
   );
 };
 
-export default ReplayPage;
+export default ReplayMap;

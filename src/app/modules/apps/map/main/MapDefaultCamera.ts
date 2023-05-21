@@ -13,27 +13,17 @@ const MapDefaultCamera = () => {
   const defaultLatitude = usePreference('latitude')
   const defaultLongitude = usePreference('longitude')
   const defaultZoom = usePreference('zoom', 0)
-
-  const [initialized, setInitialized] = useState(false)
   useEffect(() => {
-    
-   // if (selectedDeviceId) {
-     // setInitialized(true)
-   // } else 
-  // if (!initialized) {
       if (defaultLatitude && defaultLongitude) {
         map.jumpTo({
           center: [defaultLongitude, defaultLatitude],
           zoom: defaultZoom,
         })
-        setInitialized(true)
       } else {
-  
         const coordinates: any = Object.values(positions).map((item: any) => [
           item.longitude,
           item.latitude,
         ])
-       // alert(JSON.stringify(coordinates))
           stations.map((item, index) => {
           coordinates.push(
             [item.longitude, item.latitude]
@@ -51,18 +41,16 @@ const MapDefaultCamera = () => {
             duration: 0,
             padding: Math.min(canvas.width, canvas.height) * 0.1,
           })
-          setInitialized(true)
         } else if (coordinates.length) {
           const [individual] = coordinates
           map.jumpTo({
             center: individual,
             zoom: Math.max(map.getZoom(),13 ),
           })
-          setInitialized(true)
         }
       }
     //}
-  }, [initialized, defaultLatitude, defaultLongitude, defaultZoom,positions])
+  }, [defaultLatitude, defaultLongitude, defaultZoom,positions])
 //positions
   return null
 }

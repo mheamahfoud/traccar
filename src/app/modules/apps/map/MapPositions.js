@@ -1,78 +1,105 @@
-import { useId, useCallback, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/styles';
-import { map } from './core/MapView';
+import {useId, useCallback, useEffect} from 'react'
+import {useSelector} from 'react-redux'
+import {useMediaQuery} from '@mui/material'
+import {useTheme} from '@mui/styles'
+import {map} from './core/MapView'
 
-import { mapIconKey } from './core/preloadImages';
-import { findFonts } from './core/mapUtil';
+import {mapIconKey} from './core/preloadImages'
+import {findFonts} from './core/mapUtil'
 
-import maplibregl from 'maplibre-gl';
-import { useAttributePreference, usePreference } from '../../../../_metronic/helpers/common/util/preferences';
-import { formatTime, getStatusColor } from '../../../../_metronic/helpers/common/util/formatter';
-import { stations as stations1 } from '../../../../_metronic/utlis/constants';
+import maplibregl from 'maplibre-gl'
+import {
+  useAttributePreference,
+  usePreference,
+} from '../../../../_metronic/helpers/common/util/preferences'
+import {formatTime, getStatusColor} from '../../../../_metronic/helpers/common/util/formatter'
+
 // Generate a random color
 function getRandomColor() {
-  var r = Math.floor(Math.random() * 256); // Random value for red component (0-255)
-  var g = Math.floor(Math.random() * 256); // Random value for green component (0-255)
-  var b = Math.floor(Math.random() * 256); // Random value for blue component (0-255)
-  var color = 'rgb(' + r + ',' + g + ',' + b + ')'; // Construct RGB color string
-  return color;
+  var r = Math.floor(Math.random() * 256) // Random value for red component (0-255)
+  var g = Math.floor(Math.random() * 256) // Random value for green component (0-255)
+  var b = Math.floor(Math.random() * 256) // Random value for blue component (0-255)
+  var color = 'rgb(' + r + ',' + g + ',' + b + ')' // Construct RGB color string
+  return color
 }
 const array = ['red', 'green', 'blue', 'black', 'gray']
-const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleField }) => {
-  const stations =  useSelector((state) => state.devices.stations);
-  var markers = stations.map((item, index) => {
-    return {
-      lngLat: [item.longitude, item.latitude],
-      label: item.name,
-      color: array[index]
+const MapPositions = ({positions, onClick, showStatus, selectedPosition, titleField}) => {
+  const stations = useSelector((state) => state.devices.stations)
+
+  useEffect(() => {
+
+    let markers = [];
+
+
+    const addMarkersToMap = () => {
+      var markers = stations.map((item, index) => {
+        return {
+          lngLat: [item.longitude, item.latitude],
+          label: item.name,
+          color: array[index],
+        }
+      })
+      markers.forEach(function (marker) {
+        var newMarker = new maplibregl.Marker({
+          color: marker.color,
+        })
+          .setLngLat(marker.lngLat)
+          .addTo(map)
+  
+        // Create the label for the marker
+        var label = document.createElement('div')
+        label.className = 'marker-label'
+        label.textContent = marker.label
+        label.style.color = marker.color
+  
+        // Add the label to the marker
+        newMarker.getElement().appendChild(label)
+      })
+    };
+
+    const removeMarkersFromMap = () => {
+      markers.forEach((marker) => {
+       // marker.remove();
+      });
+      markers = [];
+    };
+
+    if (stations.length > 0) {
+      addMarkersToMap();
     }
-  })
-  markers.forEach(function (marker) {
-    var newMarker = new maplibregl.Marker({
-      color: marker.color
-    })
-      .setLngLat(marker.lngLat)
-      .addTo(map);
 
-    // Create the label for the marker
-    var label = document.createElement('div');
-    label.className = 'marker-label';
-    label.textContent = marker.label;
-    label.style.color = marker.color;
+    return () => {
+      removeMarkersFromMap();
+    };
+  }, [stations])
 
-    // Add the label to the marker
-    newMarker.getElement().appendChild(label);
-  });
+  const id = useId()
+  const clusters = `${id}-clusters`
+  const direction = `${id}-direction`
 
-  const id = useId();
-  const clusters = `${id}-clusters`;
-  const direction = `${id}-direction`;
+  const theme = useTheme()
+  const desktop = true // useMediaQuery(theme.breakpoints.up('md'));
+  const iconScale = useAttributePreference('iconScale', desktop ? 0.75 : 1)
 
-  const theme = useTheme();
-  const desktop =true;// useMediaQuery(theme.breakpoints.up('md'));
-  const iconScale = useAttributePreference('iconScale', desktop ? 0.75 : 1);
+  const devices = useSelector((state) => state.devices.items)
 
-  const devices = useSelector((state) => state.devices.items);
-
-  const mapCluster = useAttributePreference('mapCluster', true);
-  const hours12 = usePreference('twelveHourFormat');
-  const directionType = useAttributePreference('mapDirection', 'selected');
+  const mapCluster = useAttributePreference('mapCluster', true)
+  const hours12 = usePreference('twelveHourFormat')
+  const directionType = useAttributePreference('mapDirection', 'selected')
 
   const createFeature = (devices, position, selectedPositionId) => {
-    const device = devices[position.deviceId];
-    let showDirection;
+    const device = devices[position.deviceId]
+    let showDirection
     switch (directionType) {
       case 'none':
-        showDirection = false;
-        break;
+        showDirection = false
+        break
       case 'all':
-        showDirection = true;
-        break;
+        showDirection = true
+        break
       default:
-        showDirection = selectedPositionId === position.id;
-        break;
+        showDirection = selectedPositionId === position.id
+        break
     }
     return {
       id: position.id,
@@ -83,41 +110,50 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
       color: showStatus ? position.attributes.color || getStatusColor(device.status) : 'neutral',
       rotation: position.course,
       direction: showDirection,
-    };
-  };
-
-  const onMouseEnter = () => map.getCanvas().style.cursor = 'pointer';
-  const onMouseLeave = () => map.getCanvas().style.cursor = '';
-
-  const onMapClick = useCallback((event) => {
-    if (!event.defaultPrevented && onClick) {
-      onClick();
     }
-  }, [onClick]);
+  }
 
-  const onMarkerClick = useCallback((event) => {
-    event.preventDefault();
-    const feature = event.features[0];
-    if (onClick) {
-      onClick(feature.properties.id, feature.properties.deviceId);
-    }
-  }, [onClick]);
+  const onMouseEnter = () => (map.getCanvas().style.cursor = 'pointer')
+  const onMouseLeave = () => (map.getCanvas().style.cursor = '')
 
-  const onClusterClick = useCallback((event) => {
-    event.preventDefault();
-    const features = map.queryRenderedFeatures(event.point, {
-      layers: [clusters],
-    });
-    const clusterId = features[0].properties.cluster_id;
-    map.getSource(id).getClusterExpansionZoom(clusterId, (error, zoom) => {
-      if (!error) {
-        map.easeTo({
-          center: features[0].geometry.coordinates,
-          zoom,
-        });
+  const onMapClick = useCallback(
+    (event) => {
+      if (!event.defaultPrevented && onClick) {
+        onClick()
       }
-    });
-  }, [clusters]);
+    },
+    [onClick]
+  )
+
+  const onMarkerClick = useCallback(
+    (event) => {
+      event.preventDefault()
+      const feature = event.features[0]
+      if (onClick) {
+        onClick(feature.properties.id, feature.properties.deviceId)
+      }
+    },
+    [onClick]
+  )
+
+  const onClusterClick = useCallback(
+    (event) => {
+      event.preventDefault()
+      const features = map.queryRenderedFeatures(event.point, {
+        layers: [clusters],
+      })
+      const clusterId = features[0].properties.cluster_id
+      map.getSource(id).getClusterExpansionZoom(clusterId, (error, zoom) => {
+        if (!error) {
+          map.easeTo({
+            center: features[0].geometry.coordinates,
+            zoom,
+          })
+        }
+      })
+    },
+    [clusters]
+  )
 
   useEffect(() => {
     map.addSource(id, {
@@ -129,7 +165,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
       cluster: mapCluster,
       clusterMaxZoom: 14,
       clusterRadius: 50,
-    });
+    })
     map.addLayer({
       id,
       type: 'symbol',
@@ -150,7 +186,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         'text-halo-color': 'white',
         'text-halo-width': 1,
       },
-    });
+    })
     map.addLayer({
       id: clusters,
       type: 'symbol',
@@ -163,16 +199,12 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         'text-font': findFonts(map),
         'text-size': 14,
       },
-    });
+    })
     map.addLayer({
       id: direction,
       type: 'symbol',
       source: id,
-      filter: [
-        'all',
-        ['!has', 'point_count'],
-        ['==', 'direction', true],
-      ],
+      filter: ['all', ['!has', 'point_count'], ['==', 'direction', true]],
       layout: {
         'icon-image': 'direction',
         'icon-size': iconScale,
@@ -180,56 +212,58 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         'icon-rotate': ['get', 'rotation'],
         'icon-rotation-alignment': 'map',
       },
-    });
+    })
 
-    map.on('mouseenter', id, onMouseEnter);
-    map.on('mouseleave', id, onMouseLeave);
-    map.on('mouseenter', clusters, onMouseEnter);
-    map.on('mouseleave', clusters, onMouseLeave);
-    map.on('click', id, onMarkerClick);
-    map.on('click', clusters, onClusterClick);
-    map.on('click', onMapClick);
+    map.on('mouseenter', id, onMouseEnter)
+    map.on('mouseleave', id, onMouseLeave)
+    map.on('mouseenter', clusters, onMouseEnter)
+    map.on('mouseleave', clusters, onMouseLeave)
+    map.on('click', id, onMarkerClick)
+    map.on('click', clusters, onClusterClick)
+    map.on('click', onMapClick)
 
     return () => {
-      map.off('mouseenter', id, onMouseEnter);
-      map.off('mouseleave', id, onMouseLeave);
-      map.off('mouseenter', clusters, onMouseEnter);
-      map.off('mouseleave', clusters, onMouseLeave);
-      map.off('click', id, onMarkerClick);
-      map.off('click', clusters, onClusterClick);
-      map.off('click', onMapClick);
+      map.off('mouseenter', id, onMouseEnter)
+      map.off('mouseleave', id, onMouseLeave)
+      map.off('mouseenter', clusters, onMouseEnter)
+      map.off('mouseleave', clusters, onMouseLeave)
+      map.off('click', id, onMarkerClick)
+      map.off('click', clusters, onClusterClick)
+      map.off('click', onMapClick)
 
       if (map.getLayer(id)) {
-        map.removeLayer(id);
+        map.removeLayer(id)
       }
       if (map.getLayer(clusters)) {
-        map.removeLayer(clusters);
+        map.removeLayer(clusters)
       }
       if (map.getLayer(direction)) {
-        map.removeLayer(direction);
+        map.removeLayer(direction)
       }
       if (map.getSource(id)) {
-        map.removeSource(id);
+        map.removeSource(id)
       }
-    };
-  }, [mapCluster, clusters, direction, onMarkerClick, onClusterClick]);
+    }
+  }, [mapCluster, clusters, direction, onMarkerClick, onClusterClick])
 
   useEffect(() => {
     map.getSource(id).setData({
       type: 'FeatureCollection',
-      features: positions.filter((it) => devices.hasOwnProperty(it.deviceId)).map((position) => ({
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [position.longitude, position.latitude],
-        },
-        properties: createFeature(devices, position, selectedPosition && selectedPosition.id),
-      })),
-    });
-  }, [devices, selectedPosition,positions]);
-//
-//positions
-  return null;
-};
+      features: positions
+        .filter((it) => devices.hasOwnProperty(it.deviceId))
+        .map((position) => ({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [position.longitude, position.latitude],
+          },
+          properties: createFeature(devices, position, selectedPosition && selectedPosition.id),
+        })),
+    })
+  }, [devices, selectedPosition, positions])
+  //
+  //positions
+  return null
+}
 
-export default MapPositions;
+export default MapPositions

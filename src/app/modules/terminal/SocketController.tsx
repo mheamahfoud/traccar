@@ -14,6 +14,7 @@ const logoutCode = 4000;
 const SocketController = () => {
   const dispatch = useDispatch();
   const devices = useSelector((state: any) => state.terminalPath.devices);
+
   const terminalLoc: Coordinate = useSelector((state: any) => state.terminalPath.terminalLoc);
   const devicesLocaton: Coordinate = useSelector((state: any) => state.terminalPath.devicesLocaton);
 
@@ -41,7 +42,7 @@ const SocketController = () => {
     // const socket = new WebSocket(
     //   `${protocol}//${window.location.host}/api/socket`
     // );
-    const socket = new WebSocket("ws://173.249.51.233:8082/api/socket");
+  const socket = new WebSocket("ws://173.249.51.233:8082/api/socket");
 
     socketRef.current = socket;
 
@@ -65,7 +66,7 @@ const SocketController = () => {
       const data = JSON.parse(event.data);
       if (data.positions) {
         let temp = data.positions.filter(
-          (x: any) => devices.includes(x.deviceId)
+          (x: any) => devices?.includes(x.deviceId)
         );
         if (temp && temp.length > 0) {
           dispatch(terminalPathsActions.updateDeviceLocation(temp))

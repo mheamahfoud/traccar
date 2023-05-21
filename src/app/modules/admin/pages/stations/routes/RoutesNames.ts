@@ -7,6 +7,8 @@ export const AddPath = baseRoute + 'add-station';
 export const EditPath = baseRoute + 'edit-station';
 export const MapPath = baseRoute + 'map-station';
 
+export const PermissionPath = baseRoute + 'permission-station';
+
 export const Breadcrumbs: Array<PageLink> = [
   {
     title: 'Manage Stations',

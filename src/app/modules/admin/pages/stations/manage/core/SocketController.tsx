@@ -12,7 +12,8 @@ const logoutCode = 4000
 
 const SocketController = () => {
   const dispatch = useDispatch()
-  const stationDevices = useSelector((state: any) => state.devices.stationDevices)
+  const stationDevices = useSelector((state: any) => state.devices.stationDevices);
+  const checkInitPath = useRef(true)
   //   const terminalLoc: Coordinate = useSelector((state: any) => state.terminalPath.terminalLoc);
   //   const devicesLocaton: Coordinate = useSelector((state: any) => state.terminalPath.devicesLocaton);
 
@@ -33,8 +34,8 @@ const SocketController = () => {
   const connectSocket = () => {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
 
-    const socket = new WebSocket(`${protocol}//${window.location.host}/api/socket`)
-    // const socket = new WebSocket("ws://173.249.51.233:8082/api/socket");
+   // const socket = new WebSocket(`${protocol}//${window.location.host}/api/socket`)
+     const socket = new WebSocket("ws://173.249.51.233:8082/api/socket");
 
     socketRef.current = socket
 
@@ -60,9 +61,11 @@ const SocketController = () => {
         stationDevices.map((x) => x.id).includes(x.deviceId)
         )
         if (temp && temp.length > 0) {
+          if (checkInitPath.current) {
+            checkInitPath.current = false;
+            dispatch(sessionActions.initPositions())
+          }
           dispatch(sessionActions.updatePositions(temp))
-        //     dispatch(terminalPathsActions.updateDeviceLocation(temp))
-        
         }
         //dispatch(sessionActions.updatePositions(data.positions))
       }
@@ -70,6 +73,7 @@ const SocketController = () => {
   }
 
   useEffectAsync(async () => {
+ 
     connectSocket()
     return () => {
       const socket = socketRef.current
