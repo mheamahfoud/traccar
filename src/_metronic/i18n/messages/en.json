@@ -138,5 +138,11 @@
   "longitude":"Longitude",
   "latitude":"Latitude",
   "move_to_map":"Move To Map",
-  "permission":"Permission"
+  "permission":"Permission",
+  "date":"Date",
+  "trip":"Trip",
+  "trips":"Trips",
+  "trip_path":"Trip Path",
+  "passenger":"passenger",
+  "note":"Note"
 }
