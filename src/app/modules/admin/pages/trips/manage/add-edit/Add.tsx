@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { KTCard, KTCardBody, ResponeApiCheck, initialResponseError } from '../../../../../../../_metronic/helpers';
+import { KTCard, KTCardBody, ResponeApiCheck, deleteAttributeObjArray, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
 import { initialAddTrip } from '../core/_models';
 import { roleSchema } from './validationForm';
@@ -22,7 +22,9 @@ const Add = () => {
                     initialValues={initialAddTrip}
                     initialStatus={{ edit: false }}
                     onSubmit={async (values, { setSubmitting }) => {
+                        deleteAttributeObjArray(values,'vehicles','path')
                         console.log(values)
+                       // delete values[path]
                         setSubmitting(true)
                         try {
                             //const res: ResponeApiCheck = await create(values);

@@ -115,3 +115,19 @@ export const initialResponseError: ResponeApiCheck = {
   error_description: '',
   result: 'error'
 }
+
+
+
+export type SelectList = {
+  value: number,
+  text: string,
+
+}
+
+export type SelectListQueryResponse = Response<Array<SelectList>>
+
+export const initialVehicleModel: SelectList = {
+  "value": null,
+  "text": null
+
+}

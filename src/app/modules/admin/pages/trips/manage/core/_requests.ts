@@ -1,7 +1,7 @@
 
 import axios, { AxiosResponse } from 'axios'
-import { ConvertStringToObject, ID, ResponeApiCheck, } from '../../../../../../../_metronic/helpers'
-import {  Trip, TripQueryResponse } from './_models'
+import { ConvertStringToObject, ID, ResponeApiCheck, SelectList, } from '../../../../../../../_metronic/helpers'
+import { Trip, TripQueryResponse } from './_models'
 const getList = (query: string, page: number): Promise<TripQueryResponse> => {
   return axios
     .post(`all_trip?${'page=' + page}`, {
@@ -44,4 +44,28 @@ const destroySelectedItems = (selectedIds: Array<ID>): Promise<void> => {
   return axios.all(requests).then(() => { })
 }
 
-export { getList, destroy, destroySelectedItems, create, update }
+const geRegionTripCars = (region_id: string): Promise<SelectList[]> => {
+  return axios
+    .get(`region_trip_cars/${region_id}`)
+    .then((d: any) => {
+      return d.data?.data.map((item) => {
+        return {
+          value: item.id,
+          text: item.name
+        }
+      })
+    })
+}
+const geRegionTrips = (region_id: string): Promise<SelectList[]> => {
+  return axios
+    .get(`region_trip/${region_id}`)
+    .then((d: any) => {
+      return d.data?.data.map((item) => {
+        return {
+          value: item.id,
+          text: item.name
+        }
+      })
+    })
+}
+export { getList, destroy, destroySelectedItems, create, update,geRegionTrips,geRegionTripCars }

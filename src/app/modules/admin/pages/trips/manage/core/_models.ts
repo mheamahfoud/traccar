@@ -53,13 +53,16 @@ export type Path = {
   cars_id: string,
   other_to: string,
   time_in: string,
-  passenger: number[]
+  passenger: number[],
+  vehicles:any[],
+  fromAddresses:any []
 }
 export type AddTrip = {
   type: number,
   date: string,
   note: string,
-  path: Path[]
+  path: Path[],
+
 }
 
 export const initialPath: Path = {
@@ -68,7 +71,9 @@ export const initialPath: Path = {
   cars_id: null,
   other_to: null,
   time_in: null,
-  passenger: []
+  passenger: [],
+  vehicles:null,
+  fromAddresses:null
 }
 export const initialAddTrip: AddTrip = {
   date: null,
@@ -80,7 +85,9 @@ export const initialAddTrip: AddTrip = {
     cars_id: null,
     other_to: null,
     time_in: null,
-    passenger: []
+    passenger: [],
+    vehicles:null,
+    fromAddresses:null
   }]
 
 

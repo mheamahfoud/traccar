@@ -11,19 +11,37 @@ import { getStationList } from '../../../vehicles/core/_requests'
 import { useQuery } from 'react-query'
 import { initialPath, tripTypeList } from '../core/_models'
 import IconButton from '../../../../components/buttons/IconButton'
+import { getPassengers, getRegiosList } from '../../../core/commonRequests'
+import { geRegionTrips, geRegionTripCars } from '../core/_requests'
+import FormikCustomSelectInput from '../../../../components/formik/FormikCustomSelectInput'
 
 const Form: FC = () => {
+  const { handleSubmit, resetForm, isSubmitting, isValid, touched, values, setFieldValue } = useFormikContext()
+
+  //#region api
   const {
-    data: stationList,
+    data: regiosList,
   } = useQuery(
-    `${QUERIES.VEHICLES_STATION_LIST_VALUES}`,
+    `${QUERIES.ALL_REGIOS_LIST_VALUES}+kiscsacki`,
     () => {
-      return getStationList()
+      return getRegiosList()
     },
   )
+  const {
+    data: passengersList,
+  } = useQuery(
+    `${QUERIES.ALL_PASSENGER_LIST_VALUES}`,
+    () => {
+      return getPassengers()
+    },
+  )
+
+
+
+
+  //#endregion
   const intel = useIntl()
 
-  const { handleSubmit, resetForm, isSubmitting, isValid, touched, values, setFieldValue } = useFormikContext()
   return (
     <>
       {<form className='form' onSubmit={handleSubmit} noValidate>
@@ -80,22 +98,40 @@ const Form: FC = () => {
                     <Fragment key={index} >
                       <div className='row'>
                         <div className='col-md-10 col-sm-12 row'>
+
+                          <div className='col-md-6 col-sm-12'>
+                            <FormikCustomSelectInput
+                              title={intel.formatMessage({ id: 'region' })}
+                              name={`path.${index}.region`}
+                              isRequired={true}
+                              relatedField={[`path.${index}.vehicles`, `path.${index}.fromAddresses`]}
+                              callApi={[geRegionTripCars, geRegionTrips]}
+                              options={regiosList || []}
+                            />
+                          </div>
                           <div className='col-md-6 col-sm-12'>
                             <FormikSelectInput
-                              title={intel.formatMessage({ id: 'passenger' })}
-                              name={`path.${index}.passenger`}
+                              title={intel.formatMessage({ id: 'vehicles' })}
+                              name={`path.${index}.cars_id`}
                               isRequired={true}
-                              options={tripTypeList}
+                              options={values['path'][index]?.vehicles || []}
+                            />
+                          </div>
+                          <div className='col-md-6 col-sm-12'>
+                            <FormikSelectInput
+                              title={intel.formatMessage({ id: 'from_address' })}
+                              name={`path.${index}.from_address`}
+                              isRequired={true}
+                              options={values['path'][index]?.fromAddresses || []}
                             />
                           </div>
                           <div className='col-md-6 col-sm-12'>
                             <FormikInputLabel
-                              title={intel.formatMessage({ id: 'to' })}
+                              title={intel.formatMessage({ id: 'to_address' })}
                               name={`path.${index}.to`}
                               isRequired={false}
                             />
                           </div>
-
                           <div className='col-md-6 col-sm-12'>
                             <FormikInputLabel
                               title={intel.formatMessage({ id: 'time_in' })}
@@ -104,38 +140,12 @@ const Form: FC = () => {
                               type='time'
                             />
                           </div>
-
-
                           <div className='col-md-6 col-sm-12'>
                             <FormikSelectInput
                               title={intel.formatMessage({ id: 'passenger' })}
                               name={`path.${index}.passenger`}
                               isRequired={true}
-                              options={tripTypeList}
-                            />
-                          </div>
-                          <div className='col-md-6 col-sm-12'>
-                            <FormikSelectInput
-                              title={intel.formatMessage({ id: 'passenger' })}
-                              name={`path.${index}.passenger`}
-                              isRequired={true}
-                              options={tripTypeList}
-                            />
-                          </div>
-                          <div className='col-md-6 col-sm-12'>
-                            <FormikSelectInput
-                              title={intel.formatMessage({ id: 'passenger' })}
-                              name={`path.${index}.passenger`}
-                              isRequired={true}
-                              options={tripTypeList}
-                            />
-                          </div>
-                          <div className='col-md-6 col-sm-12'>
-                            <FormikSelectInput
-                              title={intel.formatMessage({ id: 'passenger' })}
-                              name={`path.${index}.passenger`}
-                              isRequired={true}
-                              options={tripTypeList}
+                              options={passengersList || []}
                             />
                           </div>
                         </div>
@@ -161,14 +171,7 @@ const Form: FC = () => {
                         </div>
 
 
-                        {/* <div className='col-md-6 col-sm-12'>
-                          <FormikSelectInput
-                            title={intel.formatMessage({ id: 'station' })}
-                            name={'station_id'}
-                            isRequired={true}
-                            options={stationList}
-                          />
-                        </div>  */}
+
                       </div>
 
 

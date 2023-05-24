@@ -162,6 +162,13 @@ export const SuccessMsg : ResponeApiCheck = {
   error_description:''
 }
 
+
+function deleteAttributeObjArray(obj: any, attributeName: string, arrayAttr : string): void {
+  for (const item of obj[arrayAttr]) {
+    delete item[attributeName];
+  }
+}
+
 export {
   createResponseContext,
   stringifyRequestQuery,
@@ -176,5 +183,6 @@ export {
   ConvertStringToObject,
   optionAlertConfirm,
   addFieldsToFormData,
-  createResponseContext1
+  createResponseContext1,
+  deleteAttributeObjArray
 }
