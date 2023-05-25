@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react'
+import { FC, Fragment, useEffect, useState } from 'react'
 import { useFormikContext, FieldArray } from 'formik'
 import { ListLoading } from '../../../../components/table/loading/ListLoading'
 import SubmitButton from '../../../../components/buttons/SubmitButton'
@@ -9,23 +9,26 @@ import FormikSelectInput from '../../../../components/formik/FormikSelectInput'
 import { KTIcon, QUERIES } from '../../../../../../../_metronic/helpers'
 import { getStationList } from '../../../vehicles/core/_requests'
 import { useQuery } from 'react-query'
-import { initialPath, tripTypeList } from '../core/_models'
+import { TripType, initialPath, tripTypeList } from '../core/_models'
 import IconButton from '../../../../components/buttons/IconButton'
 import { getPassengers, getRegiosList } from '../../../core/commonRequests'
-import { geRegionTrips, geRegionTripCars } from '../core/_requests'
+import { geRegionTrips, geRegionTripCars, geExternalRegionTrips } from '../core/_requests'
 import FormikCustomSelectInput from '../../../../components/formik/FormikCustomSelectInput'
 
 const Form: FC = () => {
   const { handleSubmit, resetForm, isSubmitting, isValid, touched, values, setFieldValue } = useFormikContext()
-
+  const [enableApi, setEnableApi] = useState<boolean>(true);
   //#region api
   const {
     data: regiosList,
   } = useQuery(
-    `${QUERIES.ALL_REGIOS_LIST_VALUES}+kiscsacki`,
+    `${QUERIES.ALL_REGIOS_LIST_VALUES}`,
     () => {
       return getRegiosList()
     },
+    {
+      enabled: enableApi
+    }
   )
   const {
     data: passengersList,
@@ -34,9 +37,19 @@ const Form: FC = () => {
     () => {
       return getPassengers()
     },
+    {
+      enabled: enableApi
+    }
+
   )
 
+  useEffect(() => {
+    alert(JSON.stringify(passengersList))
+    if (regiosList && passengersList) {
+      setEnableApi(false)
+    }
 
+  }, [regiosList, passengersList])
 
 
   //#endregion
@@ -49,12 +62,15 @@ const Form: FC = () => {
         <div className='d-flex flex-column scroll-y me-n7 pe-7'>
           <div className='row'>
             <div className='col-md-12 col-sm-12'>
-              <FormikSelectInput
+              <FormikCustomSelectInput
                 title={intel.formatMessage({ id: 'type' })}
-                name={'type'}
+                name={`type`}
                 isRequired={true}
-                options={tripTypeList}
+                relatedField={[`toAddresses`]}
+                callApi={[geExternalRegionTrips]}
+                options={tripTypeList || []}
               />
+
             </div>
           </div>
           <div className='row'>
@@ -126,11 +142,22 @@ const Form: FC = () => {
                             />
                           </div>
                           <div className='col-md-6 col-sm-12'>
-                            <FormikInputLabel
+
+                            {(parseInt(values['type']) == TripType.External || parseInt(values['type']) == TripType.Internal) ? <FormikSelectInput
                               title={intel.formatMessage({ id: 'to_address' })}
-                              name={`path.${index}.to`}
-                              isRequired={false}
-                            />
+                              name={`path.${index}.to_address`}
+                              isRequired={true}
+                              options={(values['type'] === TripType.External ? values['path'].toAddresses : values['path'][index]?.fromAddresses) || []}
+                            /> :
+                              <FormikInputLabel
+                                title={intel.formatMessage({ id: 'to_address' })}
+                                name={`path.${index}.other_to`}
+                                isRequired={false}
+                              />
+
+
+                            }
+
                           </div>
                           <div className='col-md-6 col-sm-12'>
                             <FormikInputLabel

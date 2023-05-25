@@ -143,8 +143,11 @@
   "trip":"Trip",
   "trips":"Trips",
   "trip_path":"Trip Path",
-  "passenger":"passenger",
+  "passenger":"Passenger",
   "note":"Note",
   "region":"Region",
-  "vehicles":"Vehicles"
+  "vehicles":"Vehicles",
+  "to_address":"To Address",
+  "from_address":"From Address",
+  "time_in":"Time In"
 }

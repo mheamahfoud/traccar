@@ -61,6 +61,7 @@ export type AddTrip = {
   type: number,
   date: string,
   note: string,
+  toAddresses:string,
   path: Path[],
 
 }
@@ -77,8 +78,9 @@ export const initialPath: Path = {
 }
 export const initialAddTrip: AddTrip = {
   date: null,
-  type: null,
+  type: 1,
   note: null,
+  toAddresses:null,
   path: [{
     form: null,
     to: null,

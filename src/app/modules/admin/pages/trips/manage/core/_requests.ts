@@ -68,4 +68,16 @@ const geRegionTrips = (region_id: string): Promise<SelectList[]> => {
       })
     })
 }
-export { getList, destroy, destroySelectedItems, create, update,geRegionTrips,geRegionTripCars }
+const geExternalRegionTrips = (): Promise<SelectList[]> => {
+  return axios
+    .get(`external_region`)
+    .then((d: any) => {
+      return d.data?.data.map((item) => {
+        return {
+          value: item.id,
+          text: item.name
+        }
+      })
+    })
+}
+export { getList, destroy, destroySelectedItems, create, update,geRegionTrips,geRegionTripCars,geExternalRegionTrips }
