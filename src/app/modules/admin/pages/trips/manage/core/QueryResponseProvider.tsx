@@ -57,8 +57,14 @@ const useQueryResponseData = () => {
   if (!response) {
     return []
   }
-
-  return response?.data || []
+  return response?.data.map((item)=>{
+    return {
+      ...item,
+      fromBuilding:item?.from?.building?.name,
+      fromGroup:item?.from?.building?.group?.name,
+      fromRegion:item?.from?.building?.group?.region?.name,
+    }
+  }) || []
 }
 
 const useQueryResponsePagination = () => {

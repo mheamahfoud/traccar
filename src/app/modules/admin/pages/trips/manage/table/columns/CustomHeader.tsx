@@ -28,7 +28,7 @@ const CustomHeader = <T extends object>({className, title, tableProps}: Props<T>
       // enable sort asc
       updateState({sort: {
         [id]:'asc'
-      }, order: 'asc', ...initialQueryState})
+      }, order: 'asc'})
       return
     }
 
@@ -37,12 +37,12 @@ const CustomHeader = <T extends object>({className, title, tableProps}: Props<T>
         // enable sort desc
         updateState({sort: {
           [id]:'desc'
-        }, order: 'desc', ...initialQueryState})
+        }, order: 'desc'})
         return
       }
 
       // disable sort
-      updateState({sort: undefined, order: undefined, ...initialQueryState})
+      updateState({sort: undefined, order: undefined})
     }
   }
 

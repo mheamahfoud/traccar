@@ -27,16 +27,19 @@ const Add = () => {
                     initialValues={initialAddTrip}
                     initialStatus={{ edit: false }}
                     onSubmit={async (values, { setSubmitting }) => {
+                         delete values['toAddresses']
+                        deleteAttributeObjArray(values, 'fromAddresses', 'path')
                         deleteAttributeObjArray(values, 'vehicles', 'path')
+
                         console.log(values)
                         // delete values[path]
                         setSubmitting(true)
                         try {
-                            //const res: ResponeApiCheck = await create(values);
-                            // if(res.result=='success'){
-                            //     navigate(ListPath)
-                            // }
-                            // showNotification(res)
+                            const res: ResponeApiCheck = await create(values);
+                            if(res.result=='success'){
+                                navigate(ListPath)
+                            }
+                            showNotification(res)
                         } catch (ex) {
                             showNotification({ error_description: ex, ...initialResponseError })
                             console.error(ex)

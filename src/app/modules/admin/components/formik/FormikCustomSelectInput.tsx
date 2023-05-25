@@ -37,7 +37,7 @@ const FormikCustomSelectInput = (props: props) => {
             }
         }
 
-    }, [ values[name]])
+    }, [ values[name],values[name.split('.')?.[0]]?.[parseInt(name.split('.')?.[1])]?.[name.split('.')?.[2]]])
     return (
         <div className='fv-row mb-7'>
             <label className={`${isRequired ? 'required' : ''} fw-bold fs-6 mb-2`}>{title}</label>

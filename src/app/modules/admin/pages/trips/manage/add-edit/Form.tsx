@@ -44,7 +44,6 @@ const Form: FC = () => {
   )
 
   useEffect(() => {
-    alert(JSON.stringify(passengersList))
     if (regiosList && passengersList) {
       setEnableApi(false)
     }
@@ -136,7 +135,7 @@ const Form: FC = () => {
                           <div className='col-md-6 col-sm-12'>
                             <FormikSelectInput
                               title={intel.formatMessage({ id: 'from_address' })}
-                              name={`path.${index}.from_address`}
+                              name={`path.${index}.from`}
                               isRequired={true}
                               options={values['path'][index]?.fromAddresses || []}
                             />
@@ -145,9 +144,9 @@ const Form: FC = () => {
 
                             {(parseInt(values['type']) == TripType.External || parseInt(values['type']) == TripType.Internal) ? <FormikSelectInput
                               title={intel.formatMessage({ id: 'to_address' })}
-                              name={`path.${index}.to_address`}
+                              name={`path.${index}.to`}
                               isRequired={true}
-                              options={(values['type'] === TripType.External ? values['path'].toAddresses : values['path'][index]?.fromAddresses) || []}
+                              options={(parseInt(values['type'])=== TripType.External ? values['toAddresses'] : values['path'][index]?.fromAddresses) || []}
                             /> :
                               <FormikInputLabel
                                 title={intel.formatMessage({ id: 'to_address' })}

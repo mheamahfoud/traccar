@@ -24,10 +24,12 @@ export type Trip = {
   type: string,
   fromGroup: string,
   fromBuilding: string,
+  fromRegion:string,
   toRegion: string,
   toGruop: number,
   toBuilding: string,
   count: number,
+  from:any
 
 
 }
@@ -41,14 +43,16 @@ export const initialTrip: Trip = {
   type: null,
   fromGroup: null,
   fromBuilding: null,
+  fromRegion:null,
   toRegion: null,
   toGruop: null,
   toBuilding: null,
   count: null,
+  from :{}
 
 }
 export type Path = {
-  form: string,
+  from: string,
   to: string,
   cars_id: string,
   other_to: string,
@@ -67,7 +71,7 @@ export type AddTrip = {
 }
 
 export const initialPath: Path = {
-  form: null,
+  from: null,
   to: null,
   cars_id: null,
   other_to: null,
@@ -82,7 +86,7 @@ export const initialAddTrip: AddTrip = {
   note: null,
   toAddresses:null,
   path: [{
-    form: null,
+    from: null,
     to: null,
     cars_id: null,
     other_to: null,

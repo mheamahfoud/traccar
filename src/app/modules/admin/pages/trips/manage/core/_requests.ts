@@ -4,7 +4,7 @@ import { ConvertStringToObject, ID, ResponeApiCheck, SelectList, } from '../../.
 import { Trip, TripQueryResponse } from './_models'
 const getList = (query: string, page: number): Promise<TripQueryResponse> => {
   return axios
-    .post(`all_trip?${'page=' + page}`, {
+    .post(`list_trip?${'page=' + page}`, {
       ...ConvertStringToObject(query)
     })
     .then((d: any) => {
@@ -21,26 +21,26 @@ const getList = (query: string, page: number): Promise<TripQueryResponse> => {
     })
 }
 
-const create = (object: Trip) => {
+const create = (object: any) => {
   return axios
-    .post('store_terminal', object)
+    .post('store_trip', object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   //.then((response: Response<VehicleType>) => response.data)
 }
 
-const update = (object: Trip) => {
-  return axios.post(`update_terminal/${object.id}`, object)
+const update = (object: any) => {
+  return axios.post(`update_trip/${object.id}`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   // .then((response: ResponeApiCheck) => response)
 }
 
 
 const destroy = (id: ID): Promise<void> => {
-  return axios.post(`${'destroy_terminal'}/${id}`).then(() => { })
+  return axios.post(`${'destroy_trip'}/${id}`).then(() => { })
 }
 
 const destroySelectedItems = (selectedIds: Array<ID>): Promise<void> => {
-  const requests = selectedIds.map((id) => axios.post(`${'destroy_terminal'}/${id}`))
+  const requests = selectedIds.map((id) => axios.post(`${'destroy_trip'}/${id}`))
   return axios.all(requests).then(() => { })
 }
 

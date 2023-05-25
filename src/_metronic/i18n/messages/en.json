@@ -149,5 +149,7 @@
   "vehicles":"Vehicles",
   "to_address":"To Address",
   "from_address":"From Address",
-  "time_in":"Time In"
+  "time_in":"Time In",
+  "from":"From",
+  "to":"To"
 }

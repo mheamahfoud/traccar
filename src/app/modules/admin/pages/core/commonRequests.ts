@@ -5,7 +5,7 @@ import { SelectList } from './models'
 
 const getRegiosList = (): Promise<SelectList[]> => {
     return axios
-        .get(`all_region`)
+        .get(`list_active_region`)
         .then((d: any) => {
             return d.data?.data.map((item) => {
                 return {
