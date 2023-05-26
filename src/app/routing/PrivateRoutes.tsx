@@ -13,6 +13,7 @@ import { UserType } from '../../_metronic/utlis/constants'
 
 import { CarPage } from '../modules/driver'
 import TripPage from '../modules/admin/pages/trips'
+import WorkingDaysPage from '../modules/admin/pages/workingTime'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -133,6 +134,15 @@ const PrivateRoutes = () => {
             element={
               <SuspensedView>
                 <PublicMapPage />
+              </SuspensedView>
+            }
+          />
+
+          <Route
+            path='/admin/working-days/*'
+            element={
+              <SuspensedView>
+                <WorkingDaysPage />
               </SuspensedView>
             }
           />

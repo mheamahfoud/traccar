@@ -95,6 +95,28 @@ const SidebarMenuMain = () => {
       />
 
       <SidebarMenuItemWithSub
+        to='/admin/working-days'
+        icon='abstract-28'
+        title='Manage Vehicles'
+        fontIcon='bi-layers'
+      >
+        <SidebarMenuItem
+          to='/admin/working-days/manage-cars'
+          title={intl.formatMessage(
+            { id: 'manage_object' },
+            { name: intl.formatMessage({ id: 'working_cars_days' }) }
+          )}
+          hasBullet={true}
+        />
+        <SidebarMenuItem
+          to='/admin/working-days/manage-drivers'
+          title={intl.formatMessage({ id: 'working_drivers_days' })}
+          hasBullet={true}
+        />
+
+      </SidebarMenuItemWithSub>
+
+      <SidebarMenuItemWithSub
         to='/admin/reports'
         icon='abstract-28'
         title='Manage Report'
