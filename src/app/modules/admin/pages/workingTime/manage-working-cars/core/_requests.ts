@@ -37,8 +37,7 @@ const create = (object: any) => {
 }
 
 const dublicate = (object: any) => {
-  alert(JSON.stringify(object))
-  return axios.post(`update_shift_cars}`, object)
+  return axios.post(`duplicate_shift_cars`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   // .then((response: ResponeApiCheck) => response)
 }
