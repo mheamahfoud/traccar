@@ -33,4 +33,31 @@ export const initialVehicleModel: Terminal = {
 
 
 
+export type CarWorkingTime = {
+  id: number,
+  time_in:string,
+  time_out: string,
+  start:string,
+  end:string,
+  title:string
+
+
+}
+
+
+export type CarWorkingTimeQueryResponse = Response<Array<CarWorkingTime>>
+
+export const initialCarsTImeModel: CarWorkingTime = {
+  id: null,
+  time_in:null,
+  time_out: null,
+  start:null,
+  end:null,
+  title:"test"
+
+ 
+}
+
+
+
 

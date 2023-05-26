@@ -152,5 +152,8 @@
   "time_in":"Time In",
   "from":"From",
   "to":"To",
-  "cars_working_days":"Cars Working Days"
+  "working_days":"Working Days",
+  "cars_working_days":"Cars Working Days",
+  "drivers_working_days":"Drivers Working Days",
+  "working_day":"Working Day"
 }

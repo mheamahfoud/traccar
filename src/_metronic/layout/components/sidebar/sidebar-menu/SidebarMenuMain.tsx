@@ -97,20 +97,20 @@ const SidebarMenuMain = () => {
       <SidebarMenuItemWithSub
         to='/admin/working-days'
         icon='abstract-28'
-        title='Manage Vehicles'
+        title={intl.formatMessage(
+          { id: 'manage_object' },
+          { name: intl.formatMessage({ id: 'working_days' }) }
+        )}
         fontIcon='bi-layers'
       >
         <SidebarMenuItem
           to='/admin/working-days/manage-cars'
-          title={intl.formatMessage(
-            { id: 'manage_object' },
-            { name: intl.formatMessage({ id: 'working_cars_days' }) }
-          )}
+          title={intl.formatMessage({ id: 'cars_working_days' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/working-days/manage-drivers'
-          title={intl.formatMessage({ id: 'working_drivers_days' })}
+          title={intl.formatMessage({ id: 'drivers_working_days' })}
           hasBullet={true}
         />
 

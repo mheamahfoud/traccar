@@ -11,13 +11,12 @@ import {
   stringifyRequestQuery,
   WithChildren,
 } from '../../../../../../../_metronic/helpers'
-
-import { getList} from './_requests'
-import { Terminal } from './_models'
+import { getList } from './_requests'
+import { CarWorkingTime } from './_models'
 import { useQueryRequest } from './QueryRequestProvider'
 
 
-const QueryResponseContext = createResponseContext<Terminal>(initialQueryResponse)
+const QueryResponseContext = createResponseContext<CarWorkingTime>(initialQueryResponse)
 const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
 
   const { state } = useQueryRequest()
@@ -36,15 +35,15 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
     refetch,
     data: response,
   } = useQuery(
-    `${QUERIES.TERMINAL_LIST_VALUES}-${query}`,
+    `${QUERIES.WORKING_CARS_DAYS_LIST_VALUES + 'ds'}`,
     () => {
-      return getList(query,state.page_num)
+      return getList(query)
     },
     { cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false }
   )
 
   return (
-    <QueryResponseContext.Provider value={{ isLoading: isFetching||isLoading,setLoading, refetch, response, query }}>
+    <QueryResponseContext.Provider value={{ isLoading: isFetching || isLoading, setLoading, refetch, response, query }}>
       {children}
     </QueryResponseContext.Provider>
   )
@@ -57,8 +56,15 @@ const useQueryResponseData = () => {
   if (!response) {
     return []
   }
-
-  return response?.data || []
+  return response?.data.map((item) => {
+    return {
+     // ...item,
+      id:item?.id,
+      title:"test",
+      start: new Date(item.time_in),
+      end:new Date(item.time_out)  
+    }
+  }) || []
 }
 
 const useQueryResponsePagination = () => {
@@ -80,7 +86,7 @@ const useQueryResponseLoading = (): boolean => {
   return isLoading
 }
 const useQueryResponseSetLoading = () => {
-  const {setLoading} = useQueryResponse()
+  const { setLoading } = useQueryResponse()
   return setLoading
 }
 export {

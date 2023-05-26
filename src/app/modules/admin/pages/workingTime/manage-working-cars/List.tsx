@@ -8,6 +8,7 @@ import { columnsTable } from './table/columns/_columns'
 import { DataTable } from '../../../components/table/Table'
 import { ListPagination } from '../../../components/table/pagination/ListPagination'
 import { ListLoading } from '../../../components/table/loading/ListLoading'
+import { MYCalendar } from './calendar'
 
 
 const List = () => {
@@ -22,8 +23,7 @@ const List = () => {
       <KTCard>
         <ListHeader />
         <KTCardBody className='py-4'>
-          <DataTable data={data} columns={columns} />
-          <ListPagination isLoading={isLoading} pagination={pagination} updateState={updateState} />
+          <MYCalendar />
           {isLoading && <ListLoading />}
         </KTCardBody>
 

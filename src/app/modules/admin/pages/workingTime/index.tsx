@@ -37,7 +37,7 @@ const WorkingDaysPage = () => {
                     <PageTitle breadcrumbs={Breadcrumbs}>
                       {intl.formatMessage(
                         {id: 'add_object'},
-                        {name: intl.formatMessage({id: 'cars_working_days'})}
+                        {name: intl.formatMessage({id: 'working_cars_days'})}
                       )}
                     </PageTitle>
                     <AddWorkingCar />
@@ -51,7 +51,7 @@ const WorkingDaysPage = () => {
                     <PageTitle breadcrumbs={Breadcrumbs}>
                       {intl.formatMessage(
                         {id: 'add_object'},
-                        {name: intl.formatMessage({id: 'cars_working_days'})}
+                        {name: intl.formatMessage({id: 'working_cars_days'})}
                       )}
                     </PageTitle>
                     <EditWorkingCar />

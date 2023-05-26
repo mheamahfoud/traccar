@@ -16,7 +16,7 @@ const ListToolbar = () => {
       <button type='button' className='btn btn-primary' onClick={HandleAdd}>
         <KTIcon iconName='plus' className='fs-2' />
         {intl.formatMessage({ id: 'add_object' }, {
-          name: intl.formatMessage({id:'terminal'})
+          name: intl.formatMessage({id:'working_day'})
         })}
       </button>
     </div>

@@ -1,15 +1,15 @@
 
 import axios, { AxiosResponse } from 'axios'
 import { ConvertStringToObject, ID, ResponeApiCheck, } from '../../../../../../../_metronic/helpers'
-import {  Terminal, TerminalQueryResponse } from './_models'
-const getList = (query: string, page: number): Promise<TerminalQueryResponse> => {
+import {  CarWorkingTime, CarWorkingTimeQueryResponse } from './_models'
+const getList = (query: string): Promise<CarWorkingTimeQueryResponse> => {
   return axios
-    .post(`list_terminal?${'page=' + page}`, {
-      ...ConvertStringToObject(query)
+    .get(`all_shift_cars`, {
+  //    ...ConvertStringToObject(query)
     })
     .then((d: any) => {
       return {
-        data: d.data?.data?.data,
+        data: d.data?.data,
         payload: {
           pagination: {
             page_num: d.data?.data?.current_page,
@@ -21,14 +21,14 @@ const getList = (query: string, page: number): Promise<TerminalQueryResponse> =>
     })
 }
 
-const create = (object: Terminal) => {
+const create = (object: any) => {
   return axios
     .post('store_terminal', object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   //.then((response: Response<VehicleType>) => response.data)
 }
 
-const update = (object: Terminal) => {
+const update = (object: any) => {
   return axios.post(`update_terminal/${object.id}`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   // .then((response: ResponeApiCheck) => response)
