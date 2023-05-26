@@ -25,7 +25,9 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
   const updatedQuery = useMemo(() => stringifyRequestQuery(state), [state])
 
   useEffect(() => {
+
     if (query !== updatedQuery) {
+
       setQuery(updatedQuery)
     }
   }, [updatedQuery])
@@ -33,9 +35,10 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
   const {
     isFetching,
     refetch,
+    
     data: response,
   } = useQuery(
-    `${QUERIES.WORKING_CARS_DAYS_LIST_VALUES + 'ds'}`,
+    `${QUERIES.WORKING_CARS_DAYS_LIST_VALUES}-${query}`,
     () => {
       return getList(query)
     },
@@ -56,30 +59,9 @@ const useQueryResponseData = () => {
   if (!response) {
     return []
   }
-  return response?.data.map((item) => {
-    return {
-     // ...item,
-      id:item?.id,
-      title:"test",
-      start: new Date(item.time_in),
-      end:new Date(item.time_out)  
-    }
-  }) || []
+  return response?.data || []
 }
 
-const useQueryResponsePagination = () => {
-  const defaultPaginationState: PaginationState = {
-    links: [],
-    ...initialQueryState,
-  }
-
-  const { response } = useQueryResponse()
-  if (!response || !response.payload || !response.payload.pagination) {
-    return defaultPaginationState
-  }
-
-  return response.payload.pagination
-}
 
 const useQueryResponseLoading = (): boolean => {
   const { isLoading } = useQueryResponse()
@@ -93,7 +75,6 @@ export {
   QueryResponseProvider,
   useQueryResponse,
   useQueryResponseData,
-  useQueryResponsePagination,
   useQueryResponseLoading,
   useQueryResponseSetLoading
 }

@@ -125,7 +125,6 @@ function extractPageNumber(str: string): string | null {
 const ConvertStringToObject = (obj: any) => {
   const urlParams = new URLSearchParams(obj);
   const myObject = {};
-
   for (const [key, value] of urlParams) {
     if (key === 'filtter') {
       myObject[key] = JSON.parse(decodeURIComponent(value));

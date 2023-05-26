@@ -22,7 +22,7 @@ const Form: FC = () => {
   const {
     data: regiosList,
   } = useQuery(
-    `${QUERIES.ALL_REGIOS_LIST_VALUES}`,
+    `${QUERIES.ALL_REGION_LIST_VALUES}`,
     () => {
       return getRegiosList()
     },

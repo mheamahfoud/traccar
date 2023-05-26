@@ -11,7 +11,7 @@ const ListToolbar = () => {
   }
 
   return (
-    <div className='d-flex justify-content-end' data-kt-user-table-toolbar='base'>
+    <div className='d-flex ' data-kt-user-table-toolbar='base'>
       <ListFilter />
       <button type='button' className='btn btn-primary' onClick={HandleAdd}>
         <KTIcon iconName='plus' className='fs-2' />

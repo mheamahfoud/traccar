@@ -1,24 +1,45 @@
 import { Formik } from 'formik';
-import { KTCard, KTCardBody, ResponeApiCheck, initialResponseError } from '../../../../../../../_metronic/helpers';
+import { KTCard, KTCardBody, QUERIES, ResponeApiCheck, initialResponseError, isNotEmpty } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
 import { roleSchema } from './validationForm';
-import { update } from '../core/_requests';
+import { getShitEdit, update } from '../core/_requests';
 import { useLocation } from 'react-router-dom';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
 import { useNavigate } from 'react-router-dom';
 import { ListWorkingCarsDaysPath } from '../../routes/RoutesNames';
+import { useQuery } from 'react-query';
+import { boolean } from 'yup';
+import { useEffect, useState } from 'react';
+import { Spinner } from '../../../../components/Spinner';
 
 const Edit = () => {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const location = useLocation();
-    const data: any = location.state;
+    const id: any = location.state;
     const { showNotification } = useNotification();
-
+    const [enableApi, setEnableApi] = useState<boolean>(true)
+    const {
+        data,
+        isLoading,
+    } = useQuery(
+        `${QUERIES.SHIT_EDIT_DETSILS}- ${id}`,
+        () => {
+            return getShitEdit(id)
+        },
+        {
+            enabled: isNotEmpty(id) && enableApi
+        }
+    )
+    useEffect(() => {
+        if (data) {
+            setEnableApi(false)
+        }
+    }, [data]);
     return (
         <KTCard>
 
             <KTCardBody className='py-4'>
-                <Formik
+                {!isLoading && <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
                     initialValues={data}
@@ -27,7 +48,7 @@ const Edit = () => {
                         setSubmitting(true)
                         try {
                             const res: ResponeApiCheck = await update(values);
-                            if(res.result=='success'){
+                            if (res.result == 'success') {
                                 navigate(ListWorkingCarsDaysPath)
                             }
                             showNotification(res)
@@ -44,8 +65,8 @@ const Edit = () => {
                 >
 
                     <Form />
-                </Formik>
-
+                </Formik>}
+                {isLoading && <Spinner />}
 
             </KTCardBody>
 

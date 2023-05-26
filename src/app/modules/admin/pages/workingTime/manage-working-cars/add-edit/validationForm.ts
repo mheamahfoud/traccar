@@ -1,7 +1,16 @@
 import * as Yup from 'yup'
 export const roleSchema = Yup.object().shape({
-  name: Yup.string()
+  vehicles_id: Yup.string()
     .required('Field is required'),
-    station_id: Yup.string()
+    type: Yup.string()
     .required('Field is required'),
+    region_id:Yup.string()
+    .required('Field is required'),
+    // group_id: Yup.string()
+    // .required('Field is required'),
+    shift_id:Yup.string()
+    .required('Field is required'),
+    date:Yup.string()
+    .required('Field is required'),
+    
 })

@@ -1,13 +1,12 @@
 import { Formik } from 'formik';
 import { KTCard, KTCardBody, ResponeApiCheck, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
-import { initialVehicleModel } from '../core/_models';
+import { initialAddCarWorkingTimeModel, initialVehicleModel } from '../core/_models';
 import { roleSchema } from './validationForm';
 import { create } from '../core/_requests';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
 import { useNavigate } from 'react-router-dom';
 import { ListWorkingCarsDaysPath } from '../../routes/RoutesNames';
-
 
 const Add = () => {
     const navigate=useNavigate();
@@ -19,7 +18,7 @@ const Add = () => {
                 <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
-                    initialValues={initialVehicleModel}
+                    initialValues={initialAddCarWorkingTimeModel}
                     initialStatus={{ edit: false }}
                     onSubmit={async (values, { setSubmitting }) => {
                         setSubmitting(true)

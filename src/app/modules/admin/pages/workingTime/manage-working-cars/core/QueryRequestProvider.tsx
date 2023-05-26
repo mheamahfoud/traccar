@@ -10,7 +10,7 @@ import {
 const QueryRequestContext = createContext<QueryRequestContextProps>(initialQueryRequest)
 
 const QueryRequestProvider: FC<WithChildren> = ({children}) => {
-  const [state, setState] = useState<QueryState>(initialQueryRequest.state)
+  const [state, setState] = useState<QueryState>({})
 
   const updateState = (updates: Partial<QueryState>) => {
 

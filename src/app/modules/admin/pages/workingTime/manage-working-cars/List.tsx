@@ -1,23 +1,16 @@
-import  { useMemo } from 'react'
-import { KTCard, KTCardBody,} from '../../../../../../_metronic/helpers'
+import { KTCard, KTCardBody, } from '../../../../../../_metronic/helpers'
 import { ListHeader } from './components/header/ListHeader'
-import { ListViewProvider,  } from './core/ListViewProvider'
-import { QueryRequestProvider, useQueryRequest } from './core/QueryRequestProvider'
-import { QueryResponseProvider, useQueryResponseData, useQueryResponseLoading, useQueryResponsePagination } from './core/QueryResponseProvider'
-import { columnsTable } from './table/columns/_columns'
-import { DataTable } from '../../../components/table/Table'
-import { ListPagination } from '../../../components/table/pagination/ListPagination'
+import { ListViewProvider, useListView, } from './core/ListViewProvider'
+import { QueryRequestProvider } from './core/QueryRequestProvider'
+import { QueryResponseProvider, useQueryResponseLoading, } from './core/QueryResponseProvider'
 import { ListLoading } from '../../../components/table/loading/ListLoading'
 import { MYCalendar } from './calendar'
+import { ModalView } from './event-modal/ModalView'
 
 
 const List = () => {
-  const items = useQueryResponseData()
-  const isLoading = useQueryResponseLoading()
-  const pagination = useQueryResponsePagination()
-  const {updateState} = useQueryRequest()
-  const data = useMemo(() => items, [items])
-  const columns = useMemo(() => columnsTable, [])
+  const isLoading = useQueryResponseLoading();
+  const { itemIdForUpdate } = useListView()
   return (
     <>
       <KTCard>
@@ -26,7 +19,7 @@ const List = () => {
           <MYCalendar />
           {isLoading && <ListLoading />}
         </KTCardBody>
-
+        {itemIdForUpdate !== undefined && <ModalView />}
       </KTCard>
 
 

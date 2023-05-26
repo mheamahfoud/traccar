@@ -6,7 +6,7 @@ interface Props {
     title :string,
     setValue:React.Dispatch<React.SetStateAction<any>>,
     value:any,
-    options?: SelectList[]
+    options: SelectList[]
 }
 const InputSelectFilter : FC<Props>  = ({ title, setValue,value,options}) => {
 

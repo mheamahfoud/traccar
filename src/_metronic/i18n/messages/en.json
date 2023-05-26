@@ -155,5 +155,9 @@
   "working_days":"Working Days",
   "cars_working_days":"Cars Working Days",
   "drivers_working_days":"Drivers Working Days",
-  "working_day":"Working Day"
+  "working_day":"Working Day",
+  "work_timing":"Work Timing",
+  "group_id":"Group",
+  "event_detail":"Event Details"
+  
 }

@@ -5,11 +5,12 @@ interface props {
     name: string,
     type?: string,
     isRequired: boolean,
-    options?: SelectList[]
+    options?: SelectList[],
+    relatedName?: string,
 }
 const FormikSelectInput = (props: props) => {
-    const { title, name, isRequired, options } = props;
-    const { errors, touched, getFieldProps, } = useFormikContext();
+    const { title, name, isRequired, options, relatedName } = props;
+    const { errors, touched, getFieldProps, setFieldValue,values } = useFormikContext();
     const options1 = {
         placeholder: "Select"
     };
@@ -18,11 +19,18 @@ const FormikSelectInput = (props: props) => {
             <label className={`${isRequired ? 'required' : ''} fw-bold fs-6 mb-2`}>{title}</label>
             <select
                 placeholder={title}
-                {...getFieldProps({ name })}
+                onChange={(event) => {
+                    setFieldValue(name ,event.target.value)
+                    if(relatedName){
+                        setFieldValue(relatedName,undefined)
+                    }
+                }}
+                value={values[name]}
+                // {...getFieldProps({ name })}
                 className="form-select form-select-solid form-select-lg">
-                    <option value={""}>Select OPtion</option>
+                <option value={""}>Select OPtion</option>
                 {
-                    
+
                     options.map((item) => {
                         return (
                             <option value={item?.value?.toString()}>{item.text}</option>

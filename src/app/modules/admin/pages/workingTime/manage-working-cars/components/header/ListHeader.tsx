@@ -9,7 +9,7 @@ const ListHeader = () => {
   const {selected} = useListView();
   const {updateState} = useQueryRequest()
   return (
-    <div className='card-header border-0 pt-6 d-flex -justify-content-end'>
+    <div className='card-header border-0 pt-6 d-flex justify-content-end'>
       {/* <InputFilterSearch updateState={updateState}  /> */}
       {/* <ListSearchComponent /> */}
       {/* begin::Card toolbar */}
