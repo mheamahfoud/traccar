@@ -1,3 +1,4 @@
+import { strict } from 'assert'
 import { ID, Response } from '../../../../../../../_metronic/helpers'
 
 export enum TripType {
@@ -20,16 +21,16 @@ export const tripTypeList = [
 ]
 export type Trip = {
   id: ID,
+  note:string,
   date: string,
-  type: string,
-  fromGroup: string,
-  fromBuilding: string,
-  fromRegion:string,
-  toRegion: string,
-  toGruop: number,
-  toBuilding: string,
-  count: number,
-  from:any
+  type: number,
+  from_group: string,
+  from_building: string,
+  from_region:string,
+  to_region: string,
+  to_group: number,
+  to_building: string,
+ 
 
 
 }
@@ -41,14 +42,13 @@ export const initialTrip: Trip = {
   id: null,
   date: null,
   type: null,
-  fromGroup: null,
-  fromBuilding: null,
-  fromRegion:null,
-  toRegion: null,
-  toGruop: null,
-  toBuilding: null,
-  count: null,
-  from :{}
+  from_group: null,
+  from_building: null,
+  from_region:null,
+  to_region: null,
+  to_group: null,
+  to_building: null,
+  note:null
 
 }
 export type Path = {
@@ -59,7 +59,8 @@ export type Path = {
   time_in: string,
   passenger: number[],
   vehicles:any[],
-  fromAddresses:any []
+  fromAddresses:any [],
+  toAddresses:any []
 }
 export type AddTrip = {
   type: number,
@@ -71,14 +72,15 @@ export type AddTrip = {
 }
 
 export const initialPath: Path = {
-  from: null,
+  from:null,
   to: null,
   cars_id: null,
   other_to: null,
   time_in: null,
   passenger: [],
   vehicles:null,
-  fromAddresses:null
+  fromAddresses:null,
+  toAddresses:null
 }
 export const initialAddTrip: AddTrip = {
   date: null,
@@ -93,7 +95,8 @@ export const initialAddTrip: AddTrip = {
     time_in: null,
     passenger: [],
     vehicles:null,
-    fromAddresses:null
+    fromAddresses:null,
+    toAddresses:null
   }]
 
 

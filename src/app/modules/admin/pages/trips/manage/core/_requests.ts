@@ -34,9 +34,9 @@ const update = (object: any) => {
   // .then((response: ResponeApiCheck) => response)
 }
 
-const getEditTrip = (object: any) => {
-  return axios.get(`edit_trip/${object.id}`)
-    .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
+const getEditTrip = (id: ID) => {
+  return axios.get(`edit_trip/${id}`)
+    .then((response: AxiosResponse<ResponeApiCheck>) => response.data?.data)
   // .then((response: ResponeApiCheck) => response)
 }
 
@@ -71,7 +71,8 @@ const geRegionTrips = (region_id: string): Promise<SelectList[]> => {
       return d.data?.data.map((item) => {
         return {
           value: item.id,
-          text: item.name
+          text: item.name,
+          to :item?.building_id
         }
       })
     })

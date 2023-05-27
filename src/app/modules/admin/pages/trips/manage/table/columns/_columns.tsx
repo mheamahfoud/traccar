@@ -20,34 +20,34 @@ const columnsTable :  ReadonlyArray<Column<Trip>> = [
 
  
   {
-    Header: (props) => <CustomHeader<Trip>  tableProps={props} title={<Localize value='date' />} className='min-w-100px' />,
+    Header: (props) => <CustomHeader<Trip>  tableProps={props} title={<Localize value='date' />} className='min-w-125px' />,
     accessor: 'date',
   },
   {
     Header: (props) => <CustomHeader<Trip>  tableProps={props} title={<Localize value='fromGroup' />} className='min-w-100px' />,
-    accessor: 'fromGroup',
+    accessor: 'from_group',
   },
   {
     Header: (props) => <CustomHeader<Trip>  tableProps={props} title={<Localize value='fromBuilding' />} className='min-w-100px' />,
-    accessor: 'fromBuilding',
+    accessor: 'from_building',
   },
   {
     Header: (props) => <CustomHeader<Trip>  tableProps={props} title={<Localize value='fromRegion' />} className='min-w-100px' />,
-    accessor: 'fromRegion',
+    accessor: 'from_region',
   },
 
   
   {
-    Header: (props) => <CustomHeader<Trip>  tableProps={props} title={<Localize value='region' />} className='min-w-100px' />,
-    accessor: 'region',
+    Header: (props) => <CustomHeader<Trip>  tableProps={props} title={<Localize value='toRegion' />} className='min-w-100px' />,
+    accessor: 'to_region',
   },
   {
     Header: (props) => <CustomHeader<Trip>  tableProps={props} title={<Localize value='toGroup' />} className='min-w-100px' />,
-    accessor: 'toGroup',
+    accessor: 'to_group',
   },
   {
     Header: (props) => <CustomHeader<Trip>  tableProps={props} title={<Localize value='toBuilding' />} className='min-w-100px' />,
-    accessor: 'toBuilding',
+    accessor: 'to_building',
   },
   {
     Header: (props) => (

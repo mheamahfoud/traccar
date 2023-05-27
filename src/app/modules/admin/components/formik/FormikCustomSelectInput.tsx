@@ -20,7 +20,8 @@ const FormikCustomSelectInput = (props: props) => {
             if (values[name.split('.')[0]][parseInt(name.split('.')[1])][name.split('.')[2]]) {
                 for (var i = 0; i < callApi.length; i++) {
                     const response = await callApi[i](values[name.split('.')[0]][parseInt(name.split('.')[1])][name.split('.')[2]]);
-                    if (response) {
+                    if (relatedField[i]) {
+                      
                         setFieldValue(relatedField[i], response)
                     }
                 }

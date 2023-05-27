@@ -23,7 +23,7 @@ const Add = () => {
             <KTCardBody className='py-4'>
                 <Formik
                     enableReinitialize={true}
-                    //  validationSchema={roleSchema}
+                     validationSchema={roleSchema}
                     initialValues={initialAddTrip}
                     initialStatus={{ edit: false }}
                     onSubmit={async (values, { setSubmitting }) => {

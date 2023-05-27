@@ -33,7 +33,7 @@ const ListFilter = () => {
   const filterData = () => {
    
     updateState({
-      filtter: { color },
+      filtter: { color,name,code,time_in,time_out },
       ...initialQueryState,
     })
   }
@@ -42,21 +42,21 @@ const ListFilter = () => {
       <FilterMenuHoc isLoading={isLoading} handleFilter={filterData} handleReset={resetData}>
         {/* begin::Input group */}
         <div className="row">
-          <div className="col">
+          <div className="col-md-6 col-sm-12">
             <InputFilter value={color} setValue={setColor} title={intl.formatMessage({ id: 'color' })} />
           </div>
-          <div className="col">
-            <InputFilter value={color} setValue={setName} title={intl.formatMessage({ id: 'name' })} />
+          <div className="col-md-6  col-sm-12">
+            <InputFilter value={name} setValue={setName} title={intl.formatMessage({ id: 'name' })} />
           </div>
-          <div className="col">
-            <InputFilter value={color} setValue={setCode} title={intl.formatMessage({ id: 'code' })} />
+          <div className="col-md-6  col-sm-12">
+            <InputFilter value={code} setValue={setCode} title={intl.formatMessage({ id: 'code' })} />
           </div>
        
-          <div className="col">
-            <InputFilter value={color} setValue={setTimein} title={intl.formatMessage({ id: 'time_in' })}  type="time"/>
+          <div className="col-md-6  col-sm-12">
+            <InputFilter value={time_in} setValue={setTimein} title={intl.formatMessage({ id: 'time_in' })}  type="time"/>
           </div>
-          <div className="col">
-            <InputFilter value={color} setValue={setTimeout} title={intl.formatMessage({ id: 'time_out' })} type="time" />
+          <div className="col-md-6 col-sm-12">
+            <InputFilter value={time_out} setValue={setTimeout} title={intl.formatMessage({ id: 'time_out' })} type="time" />
           </div>
 
           

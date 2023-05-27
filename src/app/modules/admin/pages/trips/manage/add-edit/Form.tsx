@@ -14,6 +14,7 @@ import IconButton from '../../../../components/buttons/IconButton'
 import { getPassengers, getRegiosList } from '../../../core/commonRequests'
 import { geRegionTrips, geRegionTripCars, geExternalRegionTrips } from '../core/_requests'
 import FormikCustomSelectInput from '../../../../components/formik/FormikCustomSelectInput'
+import FormikMultiSelectInput from '../../../../components/formik/FormikMultiSelectInput'
 
 const Form: FC = () => {
   const { handleSubmit, resetForm, isSubmitting, isValid, touched, values, setFieldValue } = useFormikContext()
@@ -118,8 +119,8 @@ const Form: FC = () => {
                             <FormikCustomSelectInput
                               title={intel.formatMessage({ id: 'region' })}
                               name={`path.${index}.region`}
-                              isRequired={true}
-                              relatedField={[`path.${index}.vehicles`, `path.${index}.fromAddresses`]}
+                              isRequired={false}
+                              relatedField={[`path.${index}.vehicles`, `path.${index}.fromAddresses` ]}
                               callApi={[geRegionTripCars, geRegionTrips]}
                               options={regiosList || []}
                             />
@@ -128,7 +129,7 @@ const Form: FC = () => {
                             <FormikSelectInput
                               title={intel.formatMessage({ id: 'vehicles' })}
                               name={`path.${index}.cars_id`}
-                              isRequired={true}
+                              isRequired={false}
                               options={values['path'][index]?.vehicles || []}
                             />
                           </div>
@@ -136,7 +137,7 @@ const Form: FC = () => {
                             <FormikSelectInput
                               title={intel.formatMessage({ id: 'from_address' })}
                               name={`path.${index}.from`}
-                              isRequired={true}
+                              isRequired={false}
                               options={values['path'][index]?.fromAddresses || []}
                             />
                           </div>
@@ -145,8 +146,13 @@ const Form: FC = () => {
                             {(parseInt(values['type']) == TripType.External || parseInt(values['type']) == TripType.Internal) ? <FormikSelectInput
                               title={intel.formatMessage({ id: 'to_address' })}
                               name={`path.${index}.to`}
-                              isRequired={true}
-                              options={(parseInt(values['type'])=== TripType.External ? values['toAddresses'] : values['path'][index]?.fromAddresses) || []}
+                              isRequired={false}
+                              options={(parseInt(values['type'])=== TripType.External ? values['toAddresses'] : values['path'][index]?.fromAddresses?.map((item)=>{
+                                return {
+                                  value:item.to,
+                                  text:item?.text
+                                }
+                              })) || []}
                             /> :
                               <FormikInputLabel
                                 title={intel.formatMessage({ id: 'to_address' })}
@@ -167,10 +173,10 @@ const Form: FC = () => {
                             />
                           </div>
                           <div className='col-md-6 col-sm-12'>
-                            <FormikSelectInput
+                            <FormikMultiSelectInput
                               title={intel.formatMessage({ id: 'passenger' })}
                               name={`path.${index}.passenger`}
-                              isRequired={true}
+                              isRequired={false}
                               options={passengersList || []}
                             />
                           </div>
@@ -200,7 +206,7 @@ const Form: FC = () => {
 
                       </div>
 
-
+                      <div className='separator separator-dashed my-5'></div>
                     </Fragment>))
 
                 )}
