@@ -37,7 +37,7 @@ const create = (object: any) => {
 }
 
 const dublicate = (object: any) => {
-  return axios.post(`duplicate_shift_cars`, object)
+  return axios.post(`duplicate_shift_cars`, {shift_id:object?.event?.id , date : object?.date})
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   // .then((response: ResponeApiCheck) => response)
 }
@@ -64,18 +64,7 @@ const getEventDetail = (id: ID): Promise<any> => {
 
 
 
-const getRegionsBytype = (type_id:ID): Promise<SelectList[]> => {
-  return axios
-      .get(`list_active_region_type/${type_id}`)
-      .then((d: any) => {
-          return d.data?.data.map((item) => {
-              return {
-                  value: item.parent,
-                  text: item.name
-              }
-          })
-      })
-}
+
 
 const getShitEdit = (shift_id:ID): Promise<AddCarWorkingTime> => {
   return axios
@@ -87,4 +76,4 @@ const getShitEdit = (shift_id:ID): Promise<AddCarWorkingTime> => {
 
 
 
-export { getList, destroy, destroySelectedItems, create, update,dublicate, getEventDetail ,getRegionsBytype,getShitEdit}
+export { getList, destroy, destroySelectedItems, create, update,dublicate, getEventDetail ,getShitEdit}

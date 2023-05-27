@@ -34,6 +34,14 @@ const update = (object: any) => {
   // .then((response: ResponeApiCheck) => response)
 }
 
+const getEditTrip = (object: any) => {
+  return axios.get(`edit_trip/${object.id}`)
+    .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
+  // .then((response: ResponeApiCheck) => response)
+}
+
+
+
 
 const destroy = (id: ID): Promise<void> => {
   return axios.post(`${'destroy_trip'}/${id}`).then(() => { })
@@ -80,4 +88,4 @@ const geExternalRegionTrips = (): Promise<SelectList[]> => {
       })
     })
 }
-export { getList, destroy, destroySelectedItems, create, update,geRegionTrips,geRegionTripCars,geExternalRegionTrips }
+export { getList, destroy, destroySelectedItems, create, update,geRegionTrips,geRegionTripCars,geExternalRegionTrips,getEditTrip }

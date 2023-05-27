@@ -1,15 +1,15 @@
 import { FC, useState } from 'react'
-import * as Yup from 'yup'
-import { useFormik } from 'formik'
-import { CarWorkingTime } from '../core/_models'
+
 import clsx from 'clsx'
-import { useListView } from '../core/ListViewProvider'
-import { useQueryResponse } from '../core/QueryResponseProvider'
-import { KTIcon, toAbsoluteUrl } from '../../../../../../../_metronic/helpers'
-import InputDetail from '../../../../components/fields/InputDetail'
+import { useListView } from '../../core/ListViewProvider'
+
 import { useIntl } from 'react-intl'
 import { useNavigate } from 'react-router-dom'
-import { EditWorkingCarspath } from '../../routes/RoutesNames'
+import { EditWorkingCarspath } from '../../../routes/RoutesNames'
+import InputDetail from '../../../../../components/fields/InputDetail'
+import { KTIcon } from '../../../../../../../../_metronic/helpers'
+import { WorkingDayTypeEnum } from '../../../core/model'
+
 
 type Props = {
     isLoading: boolean
@@ -34,14 +34,14 @@ const ModalForm: FC<Props> = ({ data, isLoading }) => {
                 <div className='col-12'>
                     <InputDetail
                         title={intl.formatMessage({ id: 'license_plate' })}
-                        text={data['vehicles']['license_plate']}
+                        text={data['license_plate']}
 
                     />
                 </div>
                 <div className='col-12'>
                     <InputDetail
                         title={intl.formatMessage({ id: 'model' })}
-                        text={data['vehicles']['model']}
+                        text={data['model']}
 
                     />
                 </div>
@@ -49,14 +49,14 @@ const ModalForm: FC<Props> = ({ data, isLoading }) => {
                 <div className='col-12'>
                     <InputDetail
                         title={intl.formatMessage({ id: 'maker' })}
-                        text={data['vehicles']['make']}
+                        text={data['make']}
 
                     />
                 </div>
                 <div className='col-12'>
                     <InputDetail
                         title={intl.formatMessage({ id: 'year' })}
-                        text={data['vehicles']['year']}
+                        text={data['year']}
 
                     />
                 </div>
@@ -64,14 +64,14 @@ const ModalForm: FC<Props> = ({ data, isLoading }) => {
                 <div className='col-12'>
                     <InputDetail
                         title={intl.formatMessage({ id: 'region' })}
-                        text={data['region']['name']}
+                        text={data['region']}
 
                     />
                 </div>
                 <div className='col-12'>
                     <InputDetail
                         title={intl.formatMessage({ id: 'group' })}
-                        text={data['group']?.['name']}
+                        text={data['group']}
 
                     />
                 </div>
@@ -87,6 +87,13 @@ const ModalForm: FC<Props> = ({ data, isLoading }) => {
                     <InputDetail
                         title={intl.formatMessage({ id: 'time_out' })}
                         text={data['time_out']}
+
+                    />
+                </div>
+                <div className='col-12'>
+                    <InputDetail
+                        title={intl.formatMessage({ id: 'type' })}
+                        text={WorkingDayTypeEnum[data['type']]}
 
                     />
                 </div>

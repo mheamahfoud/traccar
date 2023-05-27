@@ -36,7 +36,7 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
     refetch,
     data: response,
   } = useQuery(
-    `${QUERIES.TERMINAL_LIST_VALUES}-${query}`,
+    `${QUERIES.TRIP_LIST_QUERY_TABLE}-${query}`,
     () => {
       return getList(query,state.page_num)
     },

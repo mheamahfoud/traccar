@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
-import { KTIcon } from '../../../../../../../_metronic/helpers'
-import {useListView} from '../core/ListViewProvider'
+import { useListView } from '../../core/ListViewProvider'
+import { KTIcon } from '../../../../../../../../_metronic/helpers'
 
 const ModalHeader = () => {
     const intl = useIntl()

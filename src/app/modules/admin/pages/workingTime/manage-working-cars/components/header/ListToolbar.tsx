@@ -6,14 +6,14 @@ import { AddWorkingCarsPath } from '../../../routes/RoutesNames';
 const ListToolbar = () => {
   const intl = useIntl();
   const navigate = useNavigate();
-  const HandleAdd = () => {
+  const handleAdd = () => {
     navigate(AddWorkingCarsPath)
   }
 
   return (
     <div className='d-flex ' data-kt-user-table-toolbar='base'>
       <ListFilter />
-      <button type='button' className='btn btn-primary' onClick={HandleAdd}>
+      <button type='button' className='btn btn-primary' onClick={handleAdd}>
         <KTIcon iconName='plus' className='fs-2' />
         {intl.formatMessage({ id: 'add_object' }, {
           name: intl.formatMessage({id:'working_day'})

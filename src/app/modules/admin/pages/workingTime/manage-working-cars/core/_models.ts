@@ -1,37 +1,5 @@
 import { ID, Response } from '../../../../../../../_metronic/helpers'
 
-export type Terminal = {
-  id: number,
-  name: string,
-  email: string,
-  mypassword: string,
-  station: string,
-  station_id: number,
-  longitude: string,
-  latitude: string,
-  permissions: any[]
-
-
-
-}
-
-
-export type TerminalQueryResponse = Response<Array<Terminal>>
-
-export const initialVehicleModel: Terminal = {
-  id: null,
-  name: null,
-  email: null,
-  mypassword: null,
-  station: null,
-  station_id: null,
-  longitude: null,
-  latitude: null,
-  permissions: []
-
-}
-
-
 
 export type CarWorkingTime = {
   id: number,
@@ -39,7 +7,6 @@ export type CarWorkingTime = {
   end: string,
   title: string
 }
-
 
 export type CarWorkingTimeQueryResponse = Response<Array<CarWorkingTime>>
 
@@ -73,15 +40,5 @@ export const initialAddCarWorkingTimeModel: AddCarWorkingTime = {
 }
 
 
-export const WorkingDayType = [
-  {
-    value:1,
-    text:'Internal'
-  },
-  {
-    value:2,
-    text:'External'
-  }
-]
 
 

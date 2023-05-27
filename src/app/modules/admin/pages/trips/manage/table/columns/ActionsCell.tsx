@@ -14,10 +14,10 @@ import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrappe
 import { EditPath } from '../../../routes/RoutesNames'
 import { Trip } from '../../core/_models'
 type Props = {
-  data: Trip
+  id: ID
 }
 
-const ActionsCell: FC<Props> = ({data}) => {
+const ActionsCell: FC<Props> = ({id}) => {
   const navigate = useNavigate()
   const setLoading= useQueryResponseSetLoading();
   const {query} = useQueryResponse()
@@ -29,8 +29,8 @@ const ActionsCell: FC<Props> = ({data}) => {
   }, [])
 
   const handleEdit = () => {
-    const data = items.find((x) => x.id == data?.id)
-    navigate(EditPath, {state: data})
+
+    navigate(EditPath, {state: id})
   }
 
 

@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import { KTCard, KTCardBody, ResponeApiCheck, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
-import { initialAddCarWorkingTimeModel, initialVehicleModel } from '../core/_models';
+import { initialAddCarWorkingTimeModel } from '../core/_models';
 import { roleSchema } from './validationForm';
 import { create } from '../core/_requests';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';

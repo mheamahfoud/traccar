@@ -116,6 +116,25 @@ const SidebarMenuMain = () => {
 
       </SidebarMenuItemWithSub>
 
+
+
+
+      <SidebarMenuItemWithSub
+        to='/admin/setting'
+        icon='abstract-28'
+        title={intl.formatMessage(
+          { id: 'manage_object' },
+          { name: intl.formatMessage({ id: 'setting' }) }
+        )}
+        fontIcon='bi-layers'
+      >
+        <SidebarMenuItem
+          to='/admin/setting/work-time'
+          title={intl.formatMessage({ id: 'work_time' })}
+          hasBullet={true}
+        />
+      </SidebarMenuItemWithSub>
+
       <SidebarMenuItemWithSub
         to='/admin/reports'
         icon='abstract-28'

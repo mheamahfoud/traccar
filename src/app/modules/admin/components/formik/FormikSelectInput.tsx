@@ -11,9 +11,6 @@ interface props {
 const FormikSelectInput = (props: props) => {
     const { title, name, isRequired, options, relatedName } = props;
     const { errors, touched, getFieldProps, setFieldValue,values } = useFormikContext();
-    const options1 = {
-        placeholder: "Select"
-    };
     return (
         <div className='fv-row mb-7'>
             <label className={`${isRequired ? 'required' : ''} fw-bold fs-6 mb-2`}>{title}</label>

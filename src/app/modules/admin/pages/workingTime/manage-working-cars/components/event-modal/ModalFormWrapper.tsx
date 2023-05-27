@@ -1,10 +1,11 @@
 import {useQuery} from 'react-query'
 import {ModalForm} from './ModalForm'
+import { QUERIES, isNotEmpty } from '../../../../../../../../_metronic/helpers'
+import { useListView } from '../../core/ListViewProvider'
+import { getEventDetail } from '../../core/_requests'
+import { Spinner } from '../../../../../components/Spinner'
 
-import {useListView} from '../core/ListViewProvider'
-import {getEventDetail} from '../core/_requests'
-import { QUERIES, isNotEmpty } from '../../../../../../../_metronic/helpers'
-import { Spinner } from '../../../../components/Spinner'
+
 
 const ModalFormWrapper = () => {
   const {itemIdForUpdate, setItemIdForUpdate} = useListView()

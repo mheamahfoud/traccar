@@ -150,6 +150,7 @@
   "to_address":"To Address",
   "from_address":"From Address",
   "time_in":"Time In",
+  "time_out":"Time Out",
   "from":"From",
   "to":"To",
   "working_days":"Working Days",
@@ -158,6 +159,12 @@
   "working_day":"Working Day",
   "work_timing":"Work Timing",
   "group_id":"Group",
-  "event_detail":"Event Details"
+  "event_detail":"Event Details",
+  "driver":"Driver",
+
+  "setting":"Setting",
+  "work_time":"Working Time",
+  "code":"Code",
+  "period":"Period"
   
 }

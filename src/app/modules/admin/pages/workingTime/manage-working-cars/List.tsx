@@ -5,7 +5,8 @@ import { QueryRequestProvider } from './core/QueryRequestProvider'
 import { QueryResponseProvider, useQueryResponseLoading, } from './core/QueryResponseProvider'
 import { ListLoading } from '../../../components/table/loading/ListLoading'
 import { MYCalendar } from './calendar'
-import { ModalView } from './event-modal/ModalView'
+import { ModalView } from './components/event-modal/ModalView'
+
 
 
 const List = () => {

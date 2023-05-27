@@ -1,19 +1,20 @@
-import { lazy, FC, Suspense } from 'react'
-import { Route, Routes, Navigate } from 'react-router-dom'
-import { MasterLayout } from '../../_metronic/layout/MasterLayout'
+import {lazy, FC, Suspense} from 'react'
+import {Route, Routes, Navigate} from 'react-router-dom'
+import {MasterLayout} from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
-import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
-import { MenuTestPage } from '../pages/MenuTestPage'
-import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
-import { WithChildren } from '../../_metronic/helpers'
+import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
+import {MenuTestPage} from '../pages/MenuTestPage'
+import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
+import {WithChildren} from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import MyPage from '../pages/MyPage'
-import { useAuth } from '../modules/auth'
-import { UserType } from '../../_metronic/utlis/constants'
+import {useAuth} from '../modules/auth'
+import {UserType} from '../../_metronic/utlis/constants'
 
-import { CarPage } from '../modules/driver'
+import {CarPage} from '../modules/driver'
 import TripPage from '../modules/admin/pages/trips'
 import WorkingDaysPage from '../modules/admin/pages/workingTime'
+import SettingPage from '../modules/admin/pages/setting'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -30,7 +31,7 @@ const PrivateRoutes = () => {
   const ReportsPage = lazy(() => import('../modules/admin/pages/reports/Index'))
   const TerminalListPage = lazy(() => import('../modules/admin/pages/terminals'))
 
-  const { currentUser } = useAuth()
+  const {currentUser} = useAuth()
   return (
     <Routes>
       //#region Admin
@@ -146,6 +147,15 @@ const PrivateRoutes = () => {
               </SuspensedView>
             }
           />
+
+          <Route
+            path='/admin/setting/*'
+            element={
+              <SuspensedView>
+                <SettingPage />
+              </SuspensedView>
+            }
+          />
           <Route
             path='apps/user-management/*'
             element={
@@ -161,7 +171,9 @@ const PrivateRoutes = () => {
       {(currentUser?.type == UserType.CAR || currentUser?.type == UserType.ADMIN) && (
         <Route path='auth/*' element={<Navigate to='/car' />} />
       )}
-      {(currentUser?.type == UserType.CAR || currentUser?.type == UserType.ADMIN) && <Route path='/' element={<Navigate to='/car' />} />}
+      {(currentUser?.type == UserType.CAR || currentUser?.type == UserType.ADMIN) && (
+        <Route path='/' element={<Navigate to='/car' />} />
+      )}
       {(currentUser?.type == UserType.CAR || currentUser?.type == UserType.ADMIN) && (
         <Route
           path='car/*'
@@ -195,7 +207,7 @@ const PrivateRoutes = () => {
   )
 }
 
-const SuspensedView: FC<WithChildren> = ({ children }) => {
+const SuspensedView: FC<WithChildren> = ({children}) => {
   const baseColor = getCSSVariableValue('--bs-primary')
   TopBarProgress.config({
     barColors: {
@@ -207,4 +219,4 @@ const SuspensedView: FC<WithChildren> = ({ children }) => {
   return <Suspense fallback={<TopBarProgress />}>{children}</Suspense>
 }
 
-export { PrivateRoutes }
+export {PrivateRoutes}
