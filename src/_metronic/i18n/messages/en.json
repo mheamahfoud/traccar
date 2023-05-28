@@ -165,6 +165,12 @@
   "setting":"Setting",
   "work_time":"Working Time",
   "code":"Code",
-  "period":"Period"
+  "period":"Period",
+
+  "infraction_type":"Infraction Type",
+  "parent":"Parent",
+
+  "reason_cancel":"Reason Cancel",
+  "reason":"Reason"
   
 }

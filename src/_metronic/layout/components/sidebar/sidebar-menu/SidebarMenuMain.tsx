@@ -133,6 +133,18 @@ const SidebarMenuMain = () => {
           title={intl.formatMessage({ id: 'work_time' })}
           hasBullet={true}
         />
+        <SidebarMenuItem
+          to='/admin/setting/infraction-type'
+          title={intl.formatMessage({ id: 'infraction_type' })}
+          hasBullet={true}
+        />
+
+        <SidebarMenuItem
+          to='/admin/setting/reason-cancel'
+          title={intl.formatMessage({ id: 'reason_cancel' })}
+          hasBullet={true}
+        />
+
       </SidebarMenuItemWithSub>
 
       <SidebarMenuItemWithSub

@@ -85,10 +85,10 @@ const { reducer, actions } = createSlice({
       state.loading = true
     })
     builder.addCase(GetCurrentTerminal.fulfilled, (state, { payload }) => {
-      let data = payload
+      let data = payload;
       state.items = {}
       if (payload?.length > 0) {
-        state.stations = payload[0].terminal
+        state.stations = payload[0].terminal;
         //  payload[0].devices.forEach((item) => (state.items[item.id] = item))
         if (payload[0].devices) {
           if (Array.isArray(payload[0].devices)) {
@@ -101,7 +101,7 @@ const { reducer, actions } = createSlice({
         }
         else {
           let devices = [{ "id": 6, "attributes": [], "groupId": 0, "name": "RUH-01", "uniqueId": "863540060245173", "status": "unknown", "lastUpdate": "2023-05-24T10:06:27.000+00:00", "positionId": 1268292, "geofenceIds": null, "phone": null, "model": "", "contact": null, "category": "bus", "disabled": false, "expirationTime": null }, { "id": 2, "attributes": [], "groupId": 0, "name": "Mudhsh", "uniqueId": "538453", "status": "offline", "lastUpdate": "2023-05-21T17:36:17.000+00:00", "positionId": 1231150, "geofenceIds": null, "phone": null, "model": "Mudhsh", "contact": null, "category": null, "disabled": false, "expirationTime": null }];
-          alert(JSON.stringify(devices))
+         // alert(JSON.stringify(devices))
           devices.forEach((item) => (state.items[item.id] = item))
         }
       }

@@ -3,8 +3,8 @@ import './style.css'
 import DeviceList from './DeviceList'
 import { KTIcon } from '../../../../../../_metronic/helpers'
 import { useSelector } from 'react-redux'
-import TruckPath from '../../../../driver/components/sidebar/TruckPath'
 import { formatSeconds } from '../../../../../../reactHelper'
+import TruckPath from '../../../../terminal/components/sidebar/TruckPath'
 const generateName = (index) => {
   const numbers = ["الأول", "الثاني", " الثالث", "الرابع", "الخامس" , "السادس","السابع","الثامن","التاسع","العاشر"];
   return `الباص ${numbers[index]}`;

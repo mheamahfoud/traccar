@@ -13,11 +13,11 @@ import {
 } from '../../../../../../../_metronic/helpers'
 
 import { getList} from './_requests'
-import { WorkingTIme } from './_models'
+import { InfractionType } from './_models'
 import { useQueryRequest } from './QueryRequestProvider'
 
 
-const QueryResponseContext = createResponseContext<WorkingTIme>(initialQueryResponse)
+const QueryResponseContext = createResponseContext<InfractionType>(initialQueryResponse)
 const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
 
   const { state } = useQueryRequest()
@@ -36,7 +36,7 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
     refetch,
     data: response,
   } = useQuery(
-    `${QUERIES.SETTING_SHIFT_LIST_VALUE}-${query}`,
+    `${QUERIES.SETTING_INFRACTION_TYPE_LIST_VALUE}-${query}`,
     () => {
       return getList(query,state.page_num)
     },

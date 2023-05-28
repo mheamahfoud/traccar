@@ -8,30 +8,16 @@ export const AddWorkTimePath = BaseUrl + 'add-work-time';
 export const EditWorkTimePath = BaseUrl + 'edit-work-time';
 
 
-
-export const ListTypesPath = BaseUrl + 'vehicle-types';
-export const AddTypesPath = BaseUrl + 'add-vehicle-types';
-export const EditTypesPath = BaseUrl + 'edit-vehicle-types';
-
-export const ListMakerPath = BaseUrl + 'vehicle-makers';
-export const AddMakerPath = BaseUrl + 'add-vehicle-makers';
-export const EditMakerPath = BaseUrl + 'edit-vehicle-makers';
+export const ListInfractionTypePath = BaseUrl + 'infraction-type';
+export const AddInfractionTypePath = BaseUrl + 'add-infraction-type';
+export const EditInfractionTypePath = BaseUrl + 'edit-infraction-type';
 
 
+export const ListReasonCancelPath = BaseUrl + 'reason-cancel';
+export const AddReasonCancelPath = BaseUrl + 'add-reason-cancel';
+export const EditReasonCancelPath = BaseUrl + 'edit-reason-cancel';
 
 
-
-
-export const ListModelsPath = BaseUrl + 'vehicle-models';
-export const AddModelPath = BaseUrl + 'add-vehicle-models';
-export const EditModelPath = BaseUrl + 'edit-vehicle-models';
-
-
-
-
-export const ListGroupsPath = BaseUrl + 'vehicle-groups';
-export const AddGroupPath = BaseUrl + 'add-vehicle-groups';
-export const EditGroupsPath = BaseUrl + 'edit-vehicle-groups';
 
 
 export const WorkTimeBreadcrumbs: Array<PageLink> = [
@@ -49,38 +35,11 @@ export const WorkTimeBreadcrumbs: Array<PageLink> = [
     },
 ]
 
-export const groupsBreadcrumbs: Array<PageLink> = [
+
+export const InfractionTypeBreadcrumbs: Array<PageLink> = [
     {
-        title: 'Vehicle Groups',
-        path: ListGroupsPath,
-        isSeparator: false,
-        isActive: false,
-    },
-    {
-        title: '',
-        path: '',
-        isSeparator: true,
-        isActive: false,
-    },
-]
-export const VehiclesBreadcrumbs: Array<PageLink> = [
-    {
-        title: 'Manage Vehicles',
-        path: ListTypesPath,
-        isSeparator: false,
-        isActive: false,
-    },
-    {
-        title: '',
-        path: '',
-        isSeparator: true,
-        isActive: false,
-    },
-]
-export const typesBreadcrumbs: Array<PageLink> = [
-    {
-        title: 'Vehicle Types',
-        path: ListTypesPath,
+        title: 'Manage Infraction Type',
+        path: ListWorkTimePath,
         isSeparator: false,
         isActive: false,
     },
@@ -92,40 +51,11 @@ export const typesBreadcrumbs: Array<PageLink> = [
     },
 ]
 
-export const colorsBreadcrumbs: Array<PageLink> = [
-    {
-        title: 'Vehicle Colors',
-        path: ListMakerPath,
-        isSeparator: false,
-        isActive: false,
-    },
-    {
-        title: '',
-        path: '',
-        isSeparator: true,
-        isActive: false,
-    },
-]
 
-export const makersBreadcrumbs: Array<PageLink> = [
+export const ReasonCancelBreadcrumbs: Array<PageLink> = [
     {
-        title: 'Vehicle Makers',
-        path: ListMakerPath,
-        isSeparator: false,
-        isActive: false,
-    },
-    {
-        title: '',
-        path: '',
-        isSeparator: true,
-        isActive: false,
-    },
-]
-
-export const modelssBreadcrumbs: Array<PageLink> = [
-    {
-        title: 'Vehicle Models',
-        path: ListModelsPath,
+        title: 'Manage Reason  Cancel',
+        path: ListWorkTimePath,
         isSeparator: false,
         isActive: false,
     },
