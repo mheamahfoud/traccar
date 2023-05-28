@@ -126,13 +126,13 @@ const Main = () => {
     setFilteredPositions
   )
 
-  useEffect(() => {
-    dispatch(devicesActions.initStations([]));
-    dispatch(layoutManagerActions.setToolbar(false))
-    return () => {
-      dispatch(layoutManagerActions.setToolbar(true))
-    }
-  }, [])
+  // useEffect(() => {
+  //   dispatch(devicesActions.initStations([]));
+  //   dispatch(layoutManagerActions.setToolbar(false))
+  //   return () => {
+  //     dispatch(layoutManagerActions.setToolbar(true))
+  //   }
+  // }, [])
 
   useEffectAsync(async () => {
     let email = "test@test.test";

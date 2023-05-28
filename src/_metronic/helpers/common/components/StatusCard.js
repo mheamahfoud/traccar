@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {useNavigate} from 'react-router-dom'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Draggable from 'react-draggable'
 import {
   Card,
@@ -27,14 +27,15 @@ import PendingIcon from '@mui/icons-material/Pending'
 //import { useTranslation } from './LocalizationProvider';
 import RemoveDialog from './RemoveDialog'
 import PositionValue from './PositionValue'
-import {useDeviceReadonly} from '../util/permissions'
+import { useDeviceReadonly } from '../util/permissions'
 import usePositionAttributes from '../attributes/usePositionAttributes'
 
-import {useAttributePreference} from '../util/preferences'
-import {useCatch, useCatchCallback} from '../../../../reactHelper'
-import {devicesActions} from '../../../../store'
-import {amber, grey, green, indigo, red, common} from '@mui/material/colors'
-import {useTranslation} from './LocalizationProvider'
+import { useAttributePreference } from '../util/preferences'
+import { useCatch, useCatchCallback } from '../../../../reactHelper'
+import { devicesActions } from '../../../../store'
+import { amber, grey, green, indigo, red, common } from '@mui/material/colors'
+import { useTranslation } from './LocalizationProvider'
+import { MapCarPath } from '../../../../app/modules/admin/pages/stations/routes/RoutesNames'
 const useStyles = makeStyles((theme) => ({
   card: {
     pointerEvents: 'auto',
@@ -80,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   actions: {
     justifyContent: 'space-between',
   },
-  root: ({desktopPadding}) => ({
+  root: ({ desktopPadding }) => ({
     pointerEvents: 'none',
     position: 'fixed',
     zIndex: 5,
@@ -88,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: '50%',
     [theme.breakpoints.up('md')]: {
       left: `calc(50% + ${desktopPadding} / 2)`,
-    //  bottom: theme.spacing(3),
+      //  bottom: theme.spacing(3),
     },
     [theme.breakpoints.down('md')]: {
       left: '50%',
@@ -98,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 }))
 
-const StatusRow = ({name, content}) => {
+const StatusRow = ({ name, content }) => {
   const classes = useStyles()
   return (
     <TableRow>
@@ -114,9 +115,9 @@ const StatusRow = ({name, content}) => {
   )
 }
 
-const StatusCard = ({deviceId,position, onClose, desktopPadding = 0,...props}) => {
-  const {permissions}=props;
-  const classes = useStyles({desktopPadding})
+const StatusCard = ({ deviceId, position, onClose, desktopPadding = 0, ...props }) => {
+  const { permissions, ishow } = props;
+  const classes = useStyles({ desktopPadding })
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const t = useTranslation()
@@ -156,15 +157,15 @@ const StatusCard = ({deviceId,position, onClose, desktopPadding = 0,...props}) =
     }
     const response = await fetch('/api/geofences', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newItem),
     })
     if (response.ok) {
       const item = await response.json()
       const permissionResponse = await fetch('/api/permissions', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({deviceId: position.deviceId, geofenceId: item.id}),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ deviceId: position.deviceId, geofenceId: item.id }),
       })
       if (!permissionResponse.ok) {
         throw Error(await permissionResponse.text())
@@ -202,7 +203,7 @@ const StatusCard = ({deviceId,position, onClose, desktopPadding = 0,...props}) =
               )}
               {position && (
                 <CardContent className={classes.content}>
-                  <Table size='small' classes={{root: classes.table}}>
+                  <Table size='small' classes={{ root: classes.table }}>
                     <TableBody>
                       {positionItems
                         .split(',')
@@ -232,7 +233,7 @@ const StatusCard = ({deviceId,position, onClose, desktopPadding = 0,...props}) =
                 </CardContent>
               )}
               {
-                <CardActions classes={{root: classes.actions}} disableSpacing>
+                <CardActions classes={{ root: classes.actions }} disableSpacing>
                   <IconButton
                     color='secondary'
                     onClick={(e) => setAnchorEl(e.currentTarget)}
@@ -248,11 +249,11 @@ const StatusCard = ({deviceId,position, onClose, desktopPadding = 0,...props}) =
       </div>
       {position && (
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
-          <MenuItem  disabled={!permissions?.map(x=>x.code).includes('View_Vehicle_Account')} onClick={()=>{
-            navigate('/car',{state: deviceId})
-          }}>{'Move To Car'}</MenuItem>
+          {(!ishow) && <MenuItem disabled={!permissions?.map(x => x.code).includes('View_Vehicle_Account')} onClick={() => {
+            navigate(MapCarPath, { state: deviceId })
+          }}>{'Move To Car'}</MenuItem>}
 
-          
+
           <MenuItem onClick={() => navigate(`/position/${position.id}`)}>
             <Typography color='secondary'>{'sharedShowDetails'}</Typography>
           </MenuItem>

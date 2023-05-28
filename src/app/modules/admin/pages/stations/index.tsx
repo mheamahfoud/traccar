@@ -9,6 +9,8 @@ import {ManageListWrapper} from './manage/List'
 import MapStationPage from './map/MainPage'
 import theme from '../../../../../_metronic/helpers/common/theme'
 import ManagePermission from './manage/add-edit/ManagePermission'
+import MapCarPage from './car'
+import MapTerminalPage from './terminal'
 
 const StationPage = () => {
   const intl = useIntl()
@@ -62,7 +64,8 @@ const StationPage = () => {
                 }
               />
               <Route path='map-station' element={<MapStationPage />} />
-              <Route path='map-station-car' element={<MapStationPage />} />
+              <Route path='map-station-car' element={<MapCarPage />} />
+              <Route path='map-station-terminal' element={<MapTerminalPage />} />
               <Route
                 path='permission-station'
                 element={

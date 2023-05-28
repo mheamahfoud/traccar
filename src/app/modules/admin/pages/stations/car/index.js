@@ -187,7 +187,7 @@ const MapCarPage = () => {
               position={selectedPosition}
               onClose={() => dispatch(devicesActions.selectId(null))}
               desktopPadding={360}
-              permissions={station_info?.permissions}
+               ishow={true}
               //theme.dimensions.drawerWidthDesktop
             />
           )}

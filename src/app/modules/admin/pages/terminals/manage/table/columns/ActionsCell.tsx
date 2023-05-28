@@ -13,6 +13,7 @@ import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
 import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
 import { EditPath } from '../../../routes/RoutesNames'
 import { Terminal } from '../../core/_models'
+import { MapTerminalPath } from '../../../../stations/routes/RoutesNames'
 type Props = {
   data: Terminal
 }
@@ -52,7 +53,7 @@ const ActionsCell: FC<Props> = ({data}) => {
     },
   })
   const handleMap = () => {
-    navigate('/terminal', {state: data?.id})
+    navigate(MapTerminalPath, {state: data?.id})
   }
   return (
     <>

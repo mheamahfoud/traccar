@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import DeviceList from './DeviceList'
 
 // import StatusCard from '../common/components/StatusCard';
-import {devicesActions, layoutManagerActions} from '../../../../../../store'
+import {devicesActions, layoutManagerActions, terminalPathsActions, truckPathActions} from '../../../../../../store'
 // import usePersistedState from '../common/util/usePersistedState';
 import EventsDrawer from './EventsDrawer'
 import useFilter from './useFilter'
@@ -17,14 +17,14 @@ import {useAttributePreference} from '../../../../../../_metronic/helpers/common
 import usePersistedState from '../../../../../../_metronic/helpers/common/util/usePersistedState'
 import StatusCard from '../../../../../../_metronic/helpers/common/components/StatusCard'
 import {KTCard} from '../../../../../../_metronic/helpers'
-import {GetStationInfo} from '../../../../../../services/traccargps'
+import {GetCurrentDevice, GetCurrentTerminal, GetStationInfo} from '../../../../../../services/traccargps'
 import {ListLoading} from '../../../components/table/loading/ListLoading'
 import {useLocation} from 'react-router-dom'
-import { map } from '../../../../apps/map/core/MapView'
+import {map} from '../../../../apps/map/core/MapView'
 // import { useAttributePreference } from '../common/util/preferences';
-import { DeviceLIstTemp } from './DeviceLIstTemp'
-import { useEffectAsync } from '../../../../../../reactHelper'
-import { object } from 'yup'
+import {DeviceLIstTemp} from './DeviceLIstTemp'
+import {useEffectAsync} from '../../../../../../reactHelper'
+import {object} from 'yup'
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
@@ -73,11 +73,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const MapStationPage = () => {
+const MapTerminalPage = () => {
   const classes = useStyles()
   const location = useLocation()
-  const station_info = location.state
-  const loading = useSelector((state) => state.devices.loading)
+  const id = location.state
+  const loading = useSelector((state) => state.terminalPath.loading)
+  //start auth
+  useEffect(() => {
+    dispatch(GetCurrentTerminal(id)).then((res) => {
+      if (res.type == 'terminal/fulfilled') {
+        if (res.payload.length > 0) {
+          dispatch(
+            terminalPathsActions.setDevices({
+              devices: res?.payload[0].devices?.filter((x) => x.id == 6).map((x) => x.id),
+              terminal: res?.payload[0].terminal,
+            })
+          )
+
+        }
+        else{
+          dispatch(
+            terminalPathsActions.setDevices({
+              devices: [],
+              terminal: [],
+            })
+          )
+     
+        }
+
+      
+      }
+    })
+  }, [])
+
+  //const loading = useSelector((state) => state.devices.loading)
 
   const dispatch = useDispatch()
   const theme = useTheme()
@@ -106,9 +135,9 @@ const MapStationPage = () => {
   const [devicesOpen, setDevicesOpen] = useState(desktop)
   const [eventsOpen, setEventsOpen] = useState(false)
 
-  const onEventsClick = useCallback(() => setEventsOpen(true), [setEventsOpen]);
+  const onEventsClick = useCallback(() => setEventsOpen(true), [setEventsOpen])
 
-  const [filterDevices,setFilterDevices]=useState([])
+  const [filterDevices, setFilterDevices] = useState([])
 
   useEffect(() => {
     if (!desktop && mapOnSelect && selectedDeviceId) {
@@ -133,9 +162,9 @@ const MapStationPage = () => {
   //   }
   // }, [])
 
-  useEffect(() => {
-    dispatch(GetStationInfo(station_info?.id))
-  }, [])
+  // useEffect(() => {
+  //   dispatch(GetStationInfo(station_info?.id))
+  // }, [])
 
   return (
     <>
@@ -155,7 +184,7 @@ const MapStationPage = () => {
                 setKeyword={setKeyword}
               /> }
             </Paper> */}
-          <DeviceLIstTemp  devices={filteredDevices} keyword={keyword} setKeyword={setKeyword}/>
+          <DeviceLIstTemp devices={filteredDevices} keyword={keyword} setKeyword={setKeyword} />
           {/* <div className=''>
             <DeviceList devices={filteredDevices} />
           </div> */}
@@ -167,7 +196,7 @@ const MapStationPage = () => {
               position={selectedPosition}
               onClose={() => dispatch(devicesActions.selectId(null))}
               desktopPadding={360}
-              permissions={station_info?.permissions}
+               ishow={true}
               //theme.dimensions.drawerWidthDesktop
             />
           )}
@@ -177,4 +206,4 @@ const MapStationPage = () => {
   )
 }
 
-export default MapStationPage
+export default MapTerminalPage
