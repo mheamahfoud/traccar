@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import DeviceList from './DeviceList'
 
 // import StatusCard from '../common/components/StatusCard';
-import {devicesActions, layoutManagerActions} from '../../../../../../store'
+import {devicesActions, layoutManagerActions, truckPathActions} from '../../../../../../store'
 // import usePersistedState from '../common/util/usePersistedState';
 import EventsDrawer from './EventsDrawer'
 import useFilter from './useFilter'
@@ -17,14 +17,14 @@ import {useAttributePreference} from '../../../../../../_metronic/helpers/common
 import usePersistedState from '../../../../../../_metronic/helpers/common/util/usePersistedState'
 import StatusCard from '../../../../../../_metronic/helpers/common/components/StatusCard'
 import {KTCard} from '../../../../../../_metronic/helpers'
-import {GetStationInfo} from '../../../../../../services/traccargps'
+import {GetCurrentDevice, GetStationInfo} from '../../../../../../services/traccargps'
 import {ListLoading} from '../../../components/table/loading/ListLoading'
 import {useLocation} from 'react-router-dom'
-import { map } from '../../../../apps/map/core/MapView'
+import {map} from '../../../../apps/map/core/MapView'
 // import { useAttributePreference } from '../common/util/preferences';
-import { DeviceLIstTemp } from './DeviceLIstTemp'
-import { isDeviceWithinBounds, useEffectAsync } from '../../../../../../reactHelper'
-import { object } from 'yup'
+import {DeviceLIstTemp} from './DeviceLIstTemp'
+import {useEffectAsync} from '../../../../../../reactHelper'
+import {object} from 'yup'
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
@@ -73,11 +73,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Main = () => {
+const MapCarPage = () => {
   const classes = useStyles()
   const location = useLocation()
-  const station_id = location.state
-  const loading = useSelector((state) => state.devices.loading)
+  const id = location.state
+  const loading = useSelector((state) => state.truckPath.loading)
+  //start auth
+  useEffect(() => {
+    dispatch(GetCurrentDevice(id)).then((res) => {
+      if (res.type == 'device/fulfilled') {
+        if (res?.payload.length > 0) {
+          dispatch(
+            truckPathActions.setTerminals({
+              id: res?.payload[0].id,
+              terminal: res?.payload[0]?.terminal,
+            })
+          )
+          //  dispatch(adsManagerActions.setAds(res?.payload[0]?.ads))
+        }
+
+        // dispatch(GetPageTimes())
+      }
+    })
+  }, [])
+
+  //const loading = useSelector((state) => state.devices.loading)
 
   const dispatch = useDispatch()
   const theme = useTheme()
@@ -106,9 +126,9 @@ const Main = () => {
   const [devicesOpen, setDevicesOpen] = useState(desktop)
   const [eventsOpen, setEventsOpen] = useState(false)
 
-  const onEventsClick = useCallback(() => setEventsOpen(true), [setEventsOpen]);
+  const onEventsClick = useCallback(() => setEventsOpen(true), [setEventsOpen])
 
-  const [filterDevices,setFilterDevices]=useState([])
+  const [filterDevices, setFilterDevices] = useState([])
 
   useEffect(() => {
     if (!desktop && mapOnSelect && selectedDeviceId) {
@@ -126,41 +146,16 @@ const Main = () => {
     setFilteredPositions
   )
 
-  useEffect(() => {
-    dispatch(devicesActions.initStations([]));
-    dispatch(layoutManagerActions.setToolbar(false))
-    return () => {
-      dispatch(layoutManagerActions.setToolbar(true))
-    }
-  }, [])
+  // useEffect(() => {
+  //   dispatch(layoutManagerActions.setToolbar(false))
+  //   return () => {
+  //     dispatch(layoutManagerActions.setToolbar(true))
+  //   }
+  // }, [])
 
-  useEffectAsync(async () => {
-    let email = "test@test.test";
-    let password = "test";
-    const auth = btoa(`${email}:${password}`);
-    const response = await fetch('http://173.249.51.233:8082/api/devices', {
-      credentials: 'include',
-      headers: {
-        Authorization: `Basic ${auth}`,
-      },
-    });
-    if (response.ok) {
-      dispatch(devicesActions.refresh(await response.json()));
-    
-    } else {
-      throw Error(await response.text());
-    }
-  }, []);
-
-  map.on('moveend', () => {
-    const bounds = map.getBounds();
-    const visibleDevices = Object.values(positions).filter(device =>
-      isDeviceWithinBounds(device, bounds)
-    );
-
-    setFilterDevices(visibleDevices.map((item)=>item.deviceId))
-
-  });
+  // useEffect(() => {
+  //   dispatch(GetStationInfo(station_info?.id))
+  // }, [])
 
   return (
     <>
@@ -180,7 +175,7 @@ const Main = () => {
                 setKeyword={setKeyword}
               /> }
             </Paper> */}
-          <DeviceLIstTemp  devices={filteredDevices} keyword={keyword} setKeyword={setKeyword}/>
+          <DeviceLIstTemp devices={filteredDevices} keyword={keyword} setKeyword={setKeyword} />
           {/* <div className=''>
             <DeviceList devices={filteredDevices} />
           </div> */}
@@ -192,6 +187,7 @@ const Main = () => {
               position={selectedPosition}
               onClose={() => dispatch(devicesActions.selectId(null))}
               desktopPadding={360}
+              permissions={station_info?.permissions}
               //theme.dimensions.drawerWidthDesktop
             />
           )}
@@ -201,6 +197,4 @@ const Main = () => {
   )
 }
 
-export default Main
-
-
+export default MapCarPage

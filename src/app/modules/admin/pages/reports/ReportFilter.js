@@ -12,7 +12,7 @@ import { useRestriction } from '../../../../../_metronic/helpers/common/util/per
 import useReportStyles from './useReportStyles';
 
 
-const ReportFilter = ({ children, handleSubmit, handleSchedule, showOnly, ignoreDevice, multiDevice, includeGroups }) => {
+const ReportFilter = ({ children, handleSubmit, handleSchedule, showOnly, ignoreDevice, multiDevice, includeGroups ,loading }) => {
   const classes = useReportStyles();
   const dispatch = useDispatch();
   const t = useTranslation();
@@ -192,7 +192,7 @@ const ReportFilter = ({ children, handleSubmit, handleSchedule, showOnly, ignore
             fullWidth
             variant="outlined"
             color="secondary"
-            disabled={disabled}
+            disabled={disabled || loading}
             onClick={() => handleClick('json')}
           >
             <Typography variant="button" noWrap>{t('reportShow')}</Typography>
@@ -202,7 +202,7 @@ const ReportFilter = ({ children, handleSubmit, handleSchedule, showOnly, ignore
             fullWidth
             variant="outlined"
             color="secondary"
-            disabled={disabled}
+            disabled={disabled || loading}
             onClick={handleClick}
             selected={button}
             setSelected={(value) => setButton(value)}

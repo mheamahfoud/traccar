@@ -1,0 +1,129 @@
+import React, { useEffect, useRef } from "react";
+import { useDispatch, useSelector, connect } from "react-redux";
+
+
+//import { useEffectAsync } from "../../../reactHelper";
+//import { checkArriveNextStation, checkNearStation } from "./services/measure";
+//import { TerminalType, CoordDistance, Coordinate } from "./core/_models";
+import { useAuth } from "../../../../../auth";
+import {  TerminalType, CoordDistance} from "../../../../../terminal/core/_models";
+import { checkArriveNextStation ,checkNearStation} from "../../../../../driver/services/measure";
+import { useEffectAsync } from "../../../../../../../reactHelper";
+import { sessionActions, truckPathActions } from "../../../../../../../store";
+import { Coordinate } from "../../../../../driver/core/_models";
+
+;
+
+
+
+
+const logoutCode = 4000;
+
+const SocketCarController = () => {
+  const dispatch = useDispatch();
+  const checkInitPath = useRef(true);
+  const {currentUser}= useAuth()
+  const stations = useSelector((state: any) => state.devices.stations);
+  const currentDevice = useSelector((state: any) => state.devices.currentDevice);
+  const socketRef = useRef<any>();
+
+  const currentPosition: Coordinate = useSelector((state: any) => state.truckPath.currentPosition);
+  const speed = useSelector((state: any) => state.truckPath.speed);
+
+
+  const nextTerminal: TerminalType = useSelector((state: any) => state.truckPath.nextTerminal);
+
+  useEffect(() => {
+
+    if (currentPosition && speed > 0 && nextTerminal) {
+      
+      let obj: CoordDistance = {
+        currentLat: currentPosition.latitude,
+        currentLon: currentPosition.longitude,
+        goalLat: nextTerminal.latitude,
+        goalLon: nextTerminal.longitude,
+      }
+      dispatch(checkArriveNextStation(obj))
+    }
+  }, [dispatch, currentPosition?.latitude, currentPosition?.longitude, speed,nextTerminal?.id]);
+
+  const connectSocket = () => {
+    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+
+    const socket = new WebSocket(
+      `${protocol}//${window.location.host}/api/socket`
+    );
+   //const socket = new WebSocket("ws://173.249.51.233:8082/api/socket");
+
+    socketRef.current = socket;
+
+    socket.onopen = () => {
+      dispatch(sessionActions.updateSocket(true));
+    };
+
+    socket.onclose = async (event) => {
+      dispatch(sessionActions.updateSocket(false));
+      if (event.code !== logoutCode) {
+        try {
+        } catch (error) {
+          // ignore errors
+        }
+        setTimeout(() => connectSocket(), 60000);
+      }
+    };
+
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.positions) {
+        let temp = data.positions.filter(
+          (x: any) => x.deviceId == currentDevice
+        );
+        if (temp && temp.length > 0) {
+          if (checkInitPath.current) {
+            dispatch(checkNearStation(
+              {
+                stations: stations,
+                currentPos: [temp[0]?.longitude, temp[0]?.latitude]
+              }
+            ))
+            checkInitPath.current = false;
+          }
+          else {
+            dispatch(truckPathActions.updateSpeed(temp[0].speed));
+            dispatch(
+              truckPathActions.updateCurrentPosition({
+                latitude: temp[0]?.latitude,
+                longitude: temp[0]?.longitude,
+              }))
+          }
+          dispatch(sessionActions.updatePositions(temp));
+        }
+
+      }
+
+    };
+  };
+
+
+
+  useEffectAsync(async () => {
+    connectSocket();
+    return () => {
+      const socket = socketRef.current;
+      if (socket) {
+        socket.close(logoutCode);
+      }
+    };
+
+
+  }, []);
+
+
+
+  return (
+    <>
+    </>
+  );
+};
+
+export default connect()(SocketCarController);

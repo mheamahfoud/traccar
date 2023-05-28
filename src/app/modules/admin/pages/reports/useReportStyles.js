@@ -25,8 +25,8 @@ export default makeStyles((theme) => ({
     paddingLeft: theme.spacing(1),
   },
   filter: {
-    display: 'inline-flex',
-    flexWrap: 'wrap',
+    display: 'flex',
+   // flexWrap: 'wrap',
     gap: theme.spacing(2),
     padding: theme.spacing(3, 2, 2),
   },

@@ -62,6 +62,7 @@ const StationPage = () => {
                 }
               />
               <Route path='map-station' element={<MapStationPage />} />
+              <Route path='map-station-car' element={<MapStationPage />} />
               <Route
                 path='permission-station'
                 element={
