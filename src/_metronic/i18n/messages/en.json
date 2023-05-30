@@ -221,8 +221,16 @@
   "spentFuel":"Spent Fuel",
   "event_report":"Event Report",
   "stop_report":"Stop Report",
-  "reason_report":"Reason Report"
-
+  "reason_report":"Reason Report",
+  "trip_driver_report":"Trip Driver Report",
+  "trip_customer_report":"Trip Customer Report",
+  "status_0":"In progress",
+  "status_1":"Done",
+  "status_2":"Cancel",
+  "status_4":"End",
+  "month":"Month",
+  "work_days_report":"Work Days Report",
+  "summery_report":"Summery Report"
 
 
   

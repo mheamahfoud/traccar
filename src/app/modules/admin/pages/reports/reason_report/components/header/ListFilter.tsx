@@ -61,7 +61,7 @@ const ListFilter = () => {
     <>
       <FilterMenuHoc isLoading={isLoading} handleFilter={filterData} handleReset={resetData}>
         {/* begin::Input group */}
-        <div className="row">
+        {/* <div className="row">
           <div className="col-6">
             <InputFilter value={from} setValue={setFrom} title={intl.formatMessage({ id: 'from' })} type={'date'} />
           </div>
@@ -71,7 +71,7 @@ const ListFilter = () => {
           <div className="col-12">
             <InputSelectFilter value={deviceId} setValue={setDevice} title={intl.formatMessage({ id: 'device' })} options={vehicleList || []} />
           </div>
-        </div>
+        </div> */}
 
       </FilterMenuHoc>
 

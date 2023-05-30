@@ -13,11 +13,11 @@ import {
 } from '../../../../../../../_metronic/helpers'
 
 import { getList} from './_requests'
-import { StopReport } from './_models'
+import { SummeryReport } from './_models'
 import { useQueryRequest } from './QueryRequestProvider'
 
 
-const QueryResponseContext = createResponseContext<StopReport>(initialQueryResponse)
+const QueryResponseContext = createResponseContext<SummeryReport>(initialQueryResponse)
 const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
 
   const { state } = useQueryRequest()
@@ -36,7 +36,7 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
     refetch,
     data: response,
   } = useQuery(
-    `${QUERIES.MANAGE_REPORT_TRIP_LIST_VALUES}-${query}`,
+    `${QUERIES.MANAGE_REPORT_TRIP_DRIVER_LIST_VALUES}-${query}`,
     () => {
       return getList(query,state.page_num)
     },

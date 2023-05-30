@@ -36,7 +36,7 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
     refetch,
     data: response,
   } = useQuery(
-    `${QUERIES.MANAGE_REPORT_TRIP_LIST_VALUES}-${query}`,
+    `${QUERIES.MANAGE_REPORT_REASON_LIST_VALUES}-${query}`,
     () => {
       return getList(query,state.page_num)
     },

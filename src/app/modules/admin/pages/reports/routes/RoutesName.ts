@@ -6,8 +6,14 @@ export const ReplyPath = baseRoute + 'reply-map';
 export const ReportTripPath = baseRoute + 'trip-report';
 export const ReportEventPath = baseRoute + 'event-report';
 
-export const ReportReasonPath = baseRoute + 'event-reason';
-export const ReportStopPath = baseRoute + 'event-stop';
+export const ReportReasonPath = baseRoute + 'reason-report';
+export const ReportStopPath = baseRoute + 'stop-report';
+
+export const ReportTripDriverPath = baseRoute + 'trip-driver-report';
+
+export const ReportTripCustomerPath = baseRoute + 'trip-customer-report';
+export const ReporSummeryPath = baseRoute + 'summery-report';
+
 
 export const Breadcrumbs: Array<PageLink> = [
   {
@@ -74,6 +80,52 @@ export const reasonBreadcrumbs: Array<PageLink> = [
   {
     title: 'Manage Reason',
     path: ReportReasonPath,
+    isSeparator: false,
+    isActive: false,
+  },
+  {
+    title: '',
+    path: '',
+    isSeparator: true,
+    isActive: false,
+  },
+]
+
+export const tripDriverBreadcrumbs: Array<PageLink> = [
+  {
+    title: 'Manage Trip Driver',
+    path: ReportTripDriverPath,
+    isSeparator: false,
+    isActive: false,
+  },
+  {
+    title: '',
+    path: '',
+    isSeparator: true,
+    isActive: false,
+  },
+]
+
+
+export const tripCustomerBreadcrumbs: Array<PageLink> = [
+  {
+    title: 'Manage Trip Customer',
+    path: ReportTripCustomerPath,
+    isSeparator: false,
+    isActive: false,
+  },
+  {
+    title: '',
+    path: '',
+    isSeparator: true,
+    isActive: false,
+  },
+]
+
+export const summeryReportBreadcrumbs: Array<PageLink> = [
+  {
+    title: 'Manage Summery Report',
+    path: ReporSummeryPath,
     isSeparator: false,
     isActive: false,
   },

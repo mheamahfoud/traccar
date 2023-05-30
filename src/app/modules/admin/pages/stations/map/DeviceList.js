@@ -2,8 +2,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import {useDispatch} from 'react-redux'
 import makeStyles from '@mui/styles/makeStyles'
 import DeviceRow from './DeviceRow'
-import {devicesActions} from '../../../../../../store'
-import {useEffectAsync} from '../../../../../../reactHelper'
+
 
 const useStyles = makeStyles((theme) => ({
   list: {

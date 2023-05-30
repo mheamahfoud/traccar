@@ -34,7 +34,7 @@ const List = () => {
   )
 }
 
-const ReportTripWrapper = () => (
+const SummeryReportWrapper = () => (
   <QueryRequestProvider>
     <QueryResponseProvider>
       <ListViewProvider>
@@ -44,4 +44,4 @@ const ReportTripWrapper = () => (
   </QueryRequestProvider>
 )
 
-export { ReportTripWrapper }
+export { SummeryReportWrapper }

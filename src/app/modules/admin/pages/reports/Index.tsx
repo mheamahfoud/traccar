@@ -3,12 +3,16 @@ import { ThemeProvider, StyledEngineProvider } from '@mui/material'
 import { PageLink, PageTitle } from '../../../../../_metronic/layout/core'
 import { useIntl } from 'react-intl'
 
-import { ReplyPath, ReportEventPath, eventBreadcrumbs, reasonBreadcrumbs, stopBreadcrumbs, tripBreadcrumbs } from './routes/RoutesName'
+import { ReplyPath, eventBreadcrumbs, reasonBreadcrumbs, stopBreadcrumbs, summeryReportBreadcrumbs, tripBreadcrumbs, tripCustomerBreadcrumbs, tripDriverBreadcrumbs } from './routes/RoutesName'
 import theme from '../../../../../_metronic/helpers/common/theme'
-import { ReportTripWrapper } from './summery-report/List'
+import { ReportTripWrapper } from './trip-report/List'
 import ReplayMap from './map-reply/replyMap'
 import { ReportEventWrapper } from './report-event/List'
 import { ReportStopWrapper } from './report-stop/List'
+import { ReportReasonWrapper } from './reason_report/List'
+import { ReportTripDriverWrapper } from './report-trip-driver/List'
+import { ReportTripCustomerWrapper } from './report-trip-customer/List'
+import { SummeryReportWrapper } from './summery-report/List'
 
 
 
@@ -84,10 +88,57 @@ const ReportsPage = () => {
                         { name: intl.formatMessage({ id: 'reason_report' }) }
                       )}{' '}
                     </PageTitle>
-                    <ReportStopWrapper />
+                    <ReportReasonWrapper />
                   </>
                 }
               />
+
+              <Route
+                path='trip-driver-report'
+                element={
+                  <>
+                    <PageTitle breadcrumbs={tripDriverBreadcrumbs}>
+                      {intl.formatMessage(
+                        { id: 'manage_object' },
+                        { name: intl.formatMessage({ id: 'trip_driver_report' }) }
+                      )}{' '}
+                    </PageTitle>
+                    <ReportTripDriverWrapper />
+                  </>
+                }
+              />
+
+              <Route
+                path='trip-customer-report'
+                element={
+                  <>
+                    <PageTitle breadcrumbs={tripCustomerBreadcrumbs}>
+                      {intl.formatMessage(
+                        { id: 'manage_object' },
+                        { name: intl.formatMessage({ id: 'trip_customer_report' }) }
+                      )}{' '}
+                    </PageTitle>
+                    <ReportTripCustomerWrapper />
+                  </>
+                }
+              />
+
+              <Route
+                path='summery-report'
+                element={
+                  <>
+                    <PageTitle breadcrumbs={summeryReportBreadcrumbs}>
+                      {intl.formatMessage(
+                        { id: 'manage_object' },
+                        { name: intl.formatMessage({ id: 'summery_report' }) }
+                      )}{' '}
+                    </PageTitle>
+                    <SummeryReportWrapper />
+                  </>
+                }
+              />
+
+
 
             </Route>
             <Route index element={<Navigate to={ReplyPath} />} />

@@ -262,6 +262,25 @@ const SidebarMenuMain = () => {
           title={intl.formatMessage({ id: 'reason_report' })}
           hasBullet={true}
         />
+        <SidebarMenuItem
+          to='/admin/reports/trip-driver-report'
+          title={intl.formatMessage({ id: 'trip_driver_report' })}
+          hasBullet={true}
+        />
+
+        <SidebarMenuItem
+          to='/admin/reports/trip-customer-report'
+          title={intl.formatMessage({ id: 'trip_customer_report' })}
+          hasBullet={true}
+        />
+
+
+        <SidebarMenuItem
+          to='/admin/reports/summery-report'
+          title={intl.formatMessage({ id: 'summery_report' })}
+          hasBullet={true}
+        />
+
       </SidebarMenuItemWithSub>
 
       <SidebarMenuItem
