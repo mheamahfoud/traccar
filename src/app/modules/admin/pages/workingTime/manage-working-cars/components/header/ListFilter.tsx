@@ -57,10 +57,12 @@ const ListFilter = () => {
       enabled: enableApi
     }
   )
-
-
   useEffect(() => {
     MenuComponent.reinitialization()
+   
+  }, [])
+
+  useEffect(() => {
     if (regiosList &&shiftList && vehicleList ) {
       setEnableApi(false)
     }

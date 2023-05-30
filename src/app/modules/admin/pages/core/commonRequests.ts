@@ -84,4 +84,18 @@ const getGroupListByRegion = (regio_id :ID): Promise<SelectList[]> => {
             })
         })
 }
-export { getRegiosList, getPassengers,getShiftList,getVehicleList,getGroupListByRegion,getDriverList }
+
+
+const getCountryList = (): Promise<SelectList[]> => {
+    return axios
+        .get(`list_active_country`)
+        .then((d: any) => {
+            return d.data?.data.map((item) => {
+                return {
+                    value: item.parent,
+                    text: item.name
+                }
+            })
+        })
+}
+export { getRegiosList, getPassengers,getShiftList,getVehicleList,getGroupListByRegion,getDriverList,getCountryList }

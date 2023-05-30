@@ -19,6 +19,66 @@ export const EditReasonCancelPath = BaseUrl + 'edit-reason-cancel';
 
 
 
+export const ListTimeZonePath = BaseUrl + 'timezone';
+export const AddTimeZonePath = BaseUrl + 'add-timezone';
+export const EditTimeZonePath = BaseUrl + 'edit-timezone';
+
+
+export const ListCountryPath = BaseUrl + 'country';
+export const AddCountryPath = BaseUrl + 'add-country';
+export const EditCountryPath = BaseUrl + 'edit-country';
+
+
+
+export const ListCityPath = BaseUrl + 'city';
+export const AddCityPath= BaseUrl + 'add-city';
+export const EditCityPath = BaseUrl + 'edit-city';
+
+
+
+
+export const ListGroupPath = BaseUrl + 'group';
+export const AddGroupPath = BaseUrl + 'add-group';
+export const EditGroupPath = BaseUrl + 'edit-group';
+
+
+export const ListMaintenanceStatusPath = BaseUrl + 'maintenance-status';
+export const AddMaintenanceStatusPath = BaseUrl + 'add-maintenance-status';
+export const EditMaintenanceStatusPath = BaseUrl + 'edit-maintenance-status'; 
+
+
+
+export const ListMaintenancePath = BaseUrl + 'maintenance';
+export const AddMaintenancePath = BaseUrl + 'add-maintenance';
+export const EditMaintenancePath = BaseUrl + 'edit-maintenance'; 
+
+
+
+export const ListWorkshopPath = BaseUrl + 'workshop';
+export const AddWorkshopPath = BaseUrl + 'add-workshop';
+export const EditWorkshopPath = BaseUrl + 'edit-workshop'; 
+
+
+
+export const ListUserTypePath = BaseUrl + 'user-type';
+export const AddUserTypePath = BaseUrl + 'add-user-type';
+export const EditUserTypePath = BaseUrl + 'edit-user-type'; 
+
+
+
+export const ListPartPath = BaseUrl + 'part';
+export const AddPartPath = BaseUrl + 'add-part';
+export const EditPartPath = BaseUrl + 'edit-part'; 
+
+
+
+export const ListPartCarPath = BaseUrl + 'part-car';
+export const AddPartCarPath = BaseUrl + 'add-part-car';
+export const EditPartCarPath = BaseUrl + 'edit-part-car'; 
+
+export const ListPartTypePath = BaseUrl + 'part-type';
+export const AddPartTypePath = BaseUrl + 'add-part-type';
+export const EditPartTypePath = BaseUrl + 'edit-part-type'; 
 
 export const WorkTimeBreadcrumbs: Array<PageLink> = [
     {
@@ -55,7 +115,177 @@ export const InfractionTypeBreadcrumbs: Array<PageLink> = [
 export const ReasonCancelBreadcrumbs: Array<PageLink> = [
     {
         title: 'Manage Reason  Cancel',
-        path: ListWorkTimePath,
+        path: ListReasonCancelPath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+
+
+export const CountryBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage Country',
+        path: ListCountryPath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+
+
+export const TimezoneBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage Timezone',
+        path: ListTimeZonePath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+
+
+
+export const CityBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage City',
+        path: ListCityPath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+
+
+export const GroupBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage Group',
+        path: ListGroupPath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+
+export const MaintenanceStatusBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage Maintenance Status',
+        path: ListMaintenanceStatusPath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+
+export const MaintenanceBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage Maintenance ',
+        path: ListMaintenancePath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+
+export const WorkshopBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage Workshop ',
+        path: ListWorkshopPath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+
+export const UserTypeBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage UserType ',
+        path: ListUserTypePath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+
+export const PartBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage Part',
+        path: ListPartPath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+
+export const PartCarBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage Part Car',
+        path: ListPartCarPath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+
+export const PartTypeBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage Part Type',
+        path: ListPartTypePath,
         isSeparator: false,
         isActive: false,
     },
