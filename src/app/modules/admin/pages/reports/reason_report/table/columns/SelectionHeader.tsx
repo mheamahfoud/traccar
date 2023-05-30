@@ -1,12 +1,12 @@
 import { FC, PropsWithChildren } from 'react'
 import { HeaderProps } from 'react-table'
 import { useListView } from '../../core/ListViewProvider'
-import { StopReport } from '../../core/_models'
+import { ReasonReport } from '../../core/_models'
 import SelectionHoc from '../../../../../components/table/columns/SelectionHoc'
 
 
 type Props = {
-  tableProps: PropsWithChildren<HeaderProps<StopReport>>
+  tableProps: PropsWithChildren<HeaderProps<ReasonReport>>
 }
 
 const SelectionHeader: FC<Props> = ({ tableProps }) => {

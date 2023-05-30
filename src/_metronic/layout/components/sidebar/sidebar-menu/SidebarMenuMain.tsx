@@ -252,7 +252,16 @@ const SidebarMenuMain = () => {
           title={intl.formatMessage({ id: 'event_report' })}
           hasBullet={true}
         />
-
+        <SidebarMenuItem
+          to='/admin/reports/stop-report'
+          title={intl.formatMessage({ id: 'stop_report' })}
+          hasBullet={true}
+        />
+        <SidebarMenuItem
+          to='/admin/reports/reason-report'
+          title={intl.formatMessage({ id: 'reason_report' })}
+          hasBullet={true}
+        />
       </SidebarMenuItemWithSub>
 
       <SidebarMenuItem

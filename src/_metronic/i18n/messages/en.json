@@ -219,8 +219,10 @@
   "maxSpeed":"Max Speed",
   "duration":"Duration",
   "spentFuel":"Spent Fuel",
+  "event_report":"Event Report",
+  "stop_report":"Stop Report",
+  "reason_report":"Reason Report"
 
-  "event_report":"Event Report"
 
 
   

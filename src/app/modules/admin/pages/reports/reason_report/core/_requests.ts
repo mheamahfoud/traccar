@@ -1,10 +1,10 @@
 
 import axios, { AxiosResponse } from 'axios'
 import { ConvertStringToObject, ID, ResponeApiCheck, } from '../../../../../../../_metronic/helpers'
-import {  StopReport, StopReportQueryResponse } from './_models'
-const getList = (query: string, page: number): Promise<StopReportQueryResponse> => {
+import {  ReasonReport, ReasonReportQueryResponse } from './_models'
+const getList = (query: string, page: number): Promise<ReasonReportQueryResponse> => {
   return axios
-    .post(`report_trips?${'page=' + page}`, {
+    .post(`reason_report?${'page=' + page}`, {
       ...ConvertStringToObject(query)
     })
     .then((d: any) => {

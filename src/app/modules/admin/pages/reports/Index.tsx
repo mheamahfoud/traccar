@@ -3,11 +3,12 @@ import { ThemeProvider, StyledEngineProvider } from '@mui/material'
 import { PageLink, PageTitle } from '../../../../../_metronic/layout/core'
 import { useIntl } from 'react-intl'
 
-import { ReplyPath, ReportEventPath, eventBreadcrumbs, tripBreadcrumbs } from './routes/RoutesName'
+import { ReplyPath, ReportEventPath, eventBreadcrumbs, reasonBreadcrumbs, stopBreadcrumbs, tripBreadcrumbs } from './routes/RoutesName'
 import theme from '../../../../../_metronic/helpers/common/theme'
 import { ReportTripWrapper } from './summery-report/List'
 import ReplayMap from './map-reply/replyMap'
 import { ReportEventWrapper } from './report-event/List'
+import { ReportStopWrapper } from './report-stop/List'
 
 
 
@@ -50,10 +51,40 @@ const ReportsPage = () => {
                     <PageTitle breadcrumbs={eventBreadcrumbs}>
                       {intl.formatMessage(
                         { id: 'manage_object' },
-                        { name: intl.formatMessage({ id: 'trip_event' }) }
+                        { name: intl.formatMessage({ id: 'event_report' }) }
                       )}{' '}
                     </PageTitle>
                     <ReportEventWrapper />
+                  </>
+                }
+              />
+
+              <Route
+                path='stop-report'
+                element={
+                  <>
+                    <PageTitle breadcrumbs={stopBreadcrumbs}>
+                      {intl.formatMessage(
+                        { id: 'manage_object' },
+                        { name: intl.formatMessage({ id: 'stop_report' }) }
+                      )}{' '}
+                    </PageTitle>
+                    <ReportStopWrapper />
+                  </>
+                }
+              />
+
+              <Route
+                path='reason-report'
+                element={
+                  <>
+                    <PageTitle breadcrumbs={reasonBreadcrumbs}>
+                      {intl.formatMessage(
+                        { id: 'manage_object' },
+                        { name: intl.formatMessage({ id: 'reason_report' }) }
+                      )}{' '}
+                    </PageTitle>
+                    <ReportStopWrapper />
                   </>
                 }
               />

@@ -13,11 +13,11 @@ import {
 } from '../../../../../../../_metronic/helpers'
 
 import { getList} from './_requests'
-import { StopReport } from './_models'
+import { ReasonReport } from './_models'
 import { useQueryRequest } from './QueryRequestProvider'
 
 
-const QueryResponseContext = createResponseContext<StopReport>(initialQueryResponse)
+const QueryResponseContext = createResponseContext<ReasonReport>(initialQueryResponse)
 const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
 
   const { state } = useQueryRequest()

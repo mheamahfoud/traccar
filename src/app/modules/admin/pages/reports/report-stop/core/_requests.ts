@@ -4,7 +4,7 @@ import { ConvertStringToObject, ID, ResponeApiCheck, } from '../../../../../../.
 import {  StopReport, StopReportQueryResponse } from './_models'
 const getList = (query: string, page: number): Promise<StopReportQueryResponse> => {
   return axios
-    .post(`report_trips?${'page=' + page}`, {
+    .post(`report_stop?${'page=' + page}`, {
       ...ConvertStringToObject(query)
     })
     .then((d: any) => {
