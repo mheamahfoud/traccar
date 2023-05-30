@@ -213,6 +213,20 @@ const SidebarMenuMain = () => {
       </SidebarMenuItemWithSub>
 
       <SidebarMenuItem
+        to='/admin/path/manage-path'
+        icon='abstract-28'
+        title={intl.formatMessage({id: 'manage_object'}, {name: intl.formatMessage({id: 'path'})})}
+        fontIcon='bi-layers'
+      />
+
+      <SidebarMenuItem
+        to='/admin/ads/manage-ads'
+        icon='abstract-28'
+        title={intl.formatMessage({id: 'manage_object'}, {name: intl.formatMessage({id: 'ads'})})}
+        fontIcon='bi-layers'
+      />
+
+      <SidebarMenuItem
         to='/admin/public-map/all'
         icon='abstract-28'
         title={intl.formatMessage({id: 'public_map'})}

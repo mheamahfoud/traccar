@@ -1,7 +1,7 @@
 
 import { Response } from "../../../../../../_metronic/helpers"
 export type SelectList = {
-  value: number,
+  value: any,
   text: string,
 
 }

@@ -7,7 +7,7 @@ import Edit from './manage/add-edit/Edit'
 import {Breadcrumbs, ListPath} from './routes/RoutesNames'
 import {ManageListWrapper} from './manage/List'
 import theme from '../../../../../_metronic/helpers/common/theme'
-const TerminalListPage = () => {
+const AdsPage = () => {
   const intl = useIntl()
   return (
     <>
@@ -17,13 +17,13 @@ const TerminalListPage = () => {
             <Route element={<Outlet />}>
               //#region Manage Vehicles
               <Route
-                path='manage-terminals'
+                path='manage-ads'
                 element={
                   <>
                     <PageTitle breadcrumbs={Breadcrumbs}>
                       {intl.formatMessage(
                         {id: 'manage_object'},
-                        {name: intl.formatMessage({id: 'terminals'})}
+                        {name: intl.formatMessage({id: 'ads'})}
                       )}{' '}
                     </PageTitle>
                     <ManageListWrapper />
@@ -31,13 +31,13 @@ const TerminalListPage = () => {
                 }
               />
               <Route
-                path='add-terminal'
+                path='add-ads'
                 element={
                   <>
                     <PageTitle breadcrumbs={Breadcrumbs}>
                       {intl.formatMessage(
                         {id: 'add_object'},
-                        {name: intl.formatMessage({id: 'terminal'})}
+                        {name: intl.formatMessage({id: 'ads'})}
                       )}
                     </PageTitle>
                     <Add />
@@ -45,13 +45,13 @@ const TerminalListPage = () => {
                 }
               />
               <Route
-                path='edit-terminal'
+                path='edit-ads'
                 element={
                   <>
                     <PageTitle breadcrumbs={Breadcrumbs}>
                       {intl.formatMessage(
                         {id: 'add_object'},
-                        {name: intl.formatMessage({id: 'terminal'})}
+                        {name: intl.formatMessage({id: 'ads'})}
                       )}
                     </PageTitle>
                     <Edit />
@@ -68,4 +68,4 @@ const TerminalListPage = () => {
   )
 }
 
-export default TerminalListPage
+export default AdsPage

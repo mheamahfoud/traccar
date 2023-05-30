@@ -13,11 +13,11 @@ import {
 } from '../../../../../../../_metronic/helpers'
 
 import { getList} from './_requests'
-import { Terminal } from './_models'
+import { Ads } from './_models'
 import { useQueryRequest } from './QueryRequestProvider'
 
 
-const QueryResponseContext = createResponseContext<Terminal>(initialQueryResponse)
+const QueryResponseContext = createResponseContext<Ads>(initialQueryResponse)
 const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
 
   const { state } = useQueryRequest()
@@ -36,7 +36,7 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
     refetch,
     data: response,
   } = useQuery(
-    `${QUERIES.MANAGE_TERMINAL_LIST_VALUES}-${query}`,
+    `${QUERIES.TERMINAL_LIST_VALUES}-${query}`,
     () => {
       return getList(query,state.page_num)
     },

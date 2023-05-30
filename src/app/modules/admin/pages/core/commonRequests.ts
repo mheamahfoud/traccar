@@ -98,4 +98,42 @@ const getCountryList = (): Promise<SelectList[]> => {
             })
         })
 }
-export { getRegiosList, getPassengers,getShiftList,getVehicleList,getGroupListByRegion,getDriverList,getCountryList }
+const getTerminalList = (): Promise<SelectList[]> => {
+    return axios
+        .get(`all_terminal`)
+        .then((d: any) => {
+            return d.data?.data
+        })
+}
+
+const getAdsList = (): Promise<SelectList[]> => {
+    return axios
+        .get(`list_active_ads`)
+        .then((d: any) => {
+            return d.data?.data.map((item) => {
+                return {
+                    value: item.id,
+                    text: item.name
+                }
+            })
+        })
+}
+
+
+
+
+
+const getVehiclePathList = (id): Promise<SelectList[]> => {
+    return axios
+        .get(`all_vehicles_path/${id}`)
+        .then((d: any) => {
+            return d.data?.data.map((item) => {
+                return {
+                    value: item.id,
+                    text: item.license_plate
+                }
+            })
+        })
+}
+
+export { getRegiosList, getPassengers,getShiftList,getVehicleList,getGroupListByRegion,getDriverList,getCountryList ,getTerminalList,getVehiclePathList,getAdsList}

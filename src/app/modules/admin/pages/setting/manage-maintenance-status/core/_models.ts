@@ -20,11 +20,11 @@ export const initialMaintenanceStatusModel: MaintenanceStatus = {
 
 export const MaintenanceStatusTypes = [
   {
-    value: 1,
-    text: 'months',
+    value: 'months',
+    text: 'month(s)',
   },
   {
-    value: 2,
+    value: 'kilometers',
     text: 'Number kilometers',
   },
 ]

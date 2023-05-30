@@ -177,17 +177,24 @@
   "country": "Country",
   "city": "City",
 
-  "maintenance_status":"Maintenance Status",
-  "workshop":"Workshop",
+  "maintenance_status": "Maintenance Status",
+  "workshop": "Workshop",
 
-  "mobile":"Mobile",
-  "address":"Address",
-  "user_type":"User Type",
+  "mobile": "Mobile",
+  "address": "Address",
+  "user_type": "User Type",
 
-  "maintenance":"Maintenance",
-  "part":"Part",
-  "ads":"Ads",
+  "maintenance": "Maintenance",
+  "part": "Part",
+  "ads": "Ads",
 
-  "part_car":"Part Car",
-   "part_type":"Part Type"
+  "part_car": "Part Car",
+  "part_type": "Part Type",
+
+  "path": "Path",
+
+  "priority": "Priority",
+  "voice": "Voice",
+  "time":"Time",
+  "link":"Link"
 }

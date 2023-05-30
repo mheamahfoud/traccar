@@ -15,6 +15,7 @@ import {CarPage} from '../modules/driver'
 import TripPage from '../modules/admin/pages/trips'
 import WorkingDaysPage from '../modules/admin/pages/workingTime'
 import SettingPage from '../modules/admin/pages/setting'
+import AdsPage from '../modules/admin/pages/ads'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -30,6 +31,9 @@ const PrivateRoutes = () => {
   const PublicMapPage = lazy(() => import('../modules/admin/pages/publicMap/map'))
   const ReportsPage = lazy(() => import('../modules/admin/pages/reports/Index'))
   const TerminalListPage = lazy(() => import('../modules/admin/pages/terminals'))
+  const PathPage = lazy(() => import('../modules/admin/pages/path'))
+
+
 
   const {currentUser} = useAuth()
   return (
@@ -156,6 +160,25 @@ const PrivateRoutes = () => {
               </SuspensedView>
             }
           />
+
+          <Route
+            path='/admin/path/*'
+            element={
+              <SuspensedView>
+                <PathPage />
+              </SuspensedView>
+            }
+          />
+
+          <Route
+            path='/admin/ads/*'
+            element={
+              <SuspensedView>
+                <AdsPage />
+              </SuspensedView>
+            }
+          />
+
           <Route
             path='apps/user-management/*'
             element={

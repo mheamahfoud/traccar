@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import { Image, } from "react-bootstrap";
 import { useState } from 'react';
 import { toAbsoluteServerUrl } from '../../../../../_metronic/helpers';
+import { FieldLink } from '../../../../../_metronic/utlis/formik';
 interface props {
     title: string,
     name: string,
@@ -53,7 +54,7 @@ const FormikInputLabel = (props: props) => {
                 </div>
             )}
             {
-                uploadedImage && (
+                uploadedImage && fieldFile!=FieldLink && (
                     <Image
                         src={uploadedImage}
                         thumbnail

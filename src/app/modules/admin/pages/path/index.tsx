@@ -7,7 +7,9 @@ import Edit from './manage/add-edit/Edit'
 import {Breadcrumbs, ListPath} from './routes/RoutesNames'
 import {ManageListWrapper} from './manage/List'
 import theme from '../../../../../_metronic/helpers/common/theme'
-const TerminalListPage = () => {
+import AddVehicle from './manage/add-edit/AddVehicle'
+import AddAds from './manage/add-edit/AddAds'
+const PathPage = () => {
   const intl = useIntl()
   return (
     <>
@@ -15,15 +17,14 @@ const TerminalListPage = () => {
         <ThemeProvider theme={theme}>
           <Routes>
             <Route element={<Outlet />}>
-              //#region Manage Vehicles
               <Route
-                path='manage-terminals'
+                path='manage-path'
                 element={
                   <>
                     <PageTitle breadcrumbs={Breadcrumbs}>
                       {intl.formatMessage(
                         {id: 'manage_object'},
-                        {name: intl.formatMessage({id: 'terminals'})}
+                        {name: intl.formatMessage({id: 'path'})}
                       )}{' '}
                     </PageTitle>
                     <ManageListWrapper />
@@ -31,13 +32,13 @@ const TerminalListPage = () => {
                 }
               />
               <Route
-                path='add-terminal'
+                path='add-path'
                 element={
                   <>
                     <PageTitle breadcrumbs={Breadcrumbs}>
                       {intl.formatMessage(
                         {id: 'add_object'},
-                        {name: intl.formatMessage({id: 'terminal'})}
+                        {name: intl.formatMessage({id: 'path'})}
                       )}
                     </PageTitle>
                     <Add />
@@ -45,20 +46,48 @@ const TerminalListPage = () => {
                 }
               />
               <Route
-                path='edit-terminal'
+                path='edit-path'
                 element={
                   <>
                     <PageTitle breadcrumbs={Breadcrumbs}>
                       {intl.formatMessage(
-                        {id: 'add_object'},
-                        {name: intl.formatMessage({id: 'terminal'})}
+                        {id: 'edit_object'},
+                        {name: intl.formatMessage({id: 'path'})}
                       )}
                     </PageTitle>
                     <Edit />
                   </>
                 }
               />
-          
+             <Route
+                path='add-ads'
+                element={
+                  <>
+                    <PageTitle breadcrumbs={Breadcrumbs}>
+                      {intl.formatMessage(
+                        {id: 'add_object'},
+                        {name: intl.formatMessage({id: 'ads'})}
+                      )}
+                    </PageTitle>
+                    <AddAds />
+                  </>
+                }
+              />
+                 <Route
+                path='add-vehicle'
+                element={
+                  <>
+                    <PageTitle breadcrumbs={Breadcrumbs}>
+                      {intl.formatMessage(
+                        {id: 'add_object'},
+                        {name: intl.formatMessage({id: 'vehicle'})}
+                      )}
+                    </PageTitle>
+                    <AddVehicle />
+                  </>
+                }
+              />
+
             </Route>
             <Route index element={<Navigate to={ListPath} />} />
           </Routes>
@@ -68,4 +97,4 @@ const TerminalListPage = () => {
   )
 }
 
-export default TerminalListPage
+export default PathPage
