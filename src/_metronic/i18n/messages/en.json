@@ -196,5 +196,32 @@
   "priority": "Priority",
   "voice": "Voice",
   "time":"Time",
-  "link":"Link"
+  "link":"Link",
+
+
+  "user":"User",
+  "pilot":"Pilot",
+  "hostess":"Hostess",
+  "created_at":"Created At",
+  "first_name":"First Name",
+  "last_name":"Last  Name",
+  "role":"Role",
+  "group_vehcile":"Group Vehcile",
+
+ "trip_report":"Trip Report",
+  "startTime": "Start Time ",
+  "endTime": "End Time",
+  "distance": "Distance",
+  "averageSpeed":"Average Speed",
+  "endOdometer":"End Odometer",
+  "startAddress":"Start Address",
+  "startOdometer":"Start  Odometer",
+  "maxSpeed":"Max Speed",
+  "duration":"Duration",
+  "spentFuel":"Spent Fuel",
+
+  "event_report":"Event Report"
+
+
+  
 }

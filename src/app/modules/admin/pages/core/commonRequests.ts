@@ -136,4 +136,13 @@ const getVehiclePathList = (id): Promise<SelectList[]> => {
         })
 }
 
-export { getRegiosList, getPassengers,getShiftList,getVehicleList,getGroupListByRegion,getDriverList,getCountryList ,getTerminalList,getVehiclePathList,getAdsList}
+const getVehicleGroupList = (): Promise<SelectList[]> => {
+    return axios
+        .get(`all_vehicles_group`)
+        .then((d: any) => {
+            return d.data?.data;
+        })
+}
+
+
+export { getRegiosList, getPassengers,getShiftList,getVehicleList,getGroupListByRegion,getDriverList,getCountryList ,getTerminalList,getVehiclePathList,getAdsList,getVehicleGroupList}
