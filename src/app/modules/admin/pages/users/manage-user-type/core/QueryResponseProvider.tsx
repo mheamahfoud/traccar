@@ -38,9 +38,9 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
     refetch,
     data: response,
   } = useQuery(
-    `${QUERIES.MANAGE_USERS_LIST_VALUES}-${query}`,
+    `${QUERIES.MANAGE_USERS_TYPES_LIST_VALUES}-${query}- ${id}`,
     () => {
-      return getList(query, state.page_num ,id)
+      return getList(query, state.page_num ,parseInt(id))
     },
     { cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false }
   )

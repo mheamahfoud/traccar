@@ -29,11 +29,15 @@ const columnsTable :  ReadonlyArray<Column<User>> = [
     accessor: 'email',
   },
   {
-    Header: (props) => <CustomHeader<User>  tableProps={props} title={<Localize value='created_at' />} className='min-w-125px' />,
-    id: 'created_at',
-    Cell: ({...props}) => <CustomCellDate date={props.data[props.row.index]?.created_at} />,
-    
+    Header: (props) => <CustomHeader<User>  tableProps={props} title={<Localize value='mobile' />} className='min-w-125px' />,
+    accessor: 'mobile',
   },
+  {
+    Header: (props) => <CustomHeader<User>  tableProps={props} title={<Localize value='gender' />} className='min-w-125px' />,
+    id: 'gender',
+    Cell: ({...props}) => <CustomCell data={props.data[props.row.index]?.gender} />,
+  },
+ 
   {
     Header: (props) => (
       <CustomHeader<User>  tableProps={props} title='Actions' className='text-end min-w-100px' />

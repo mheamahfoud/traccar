@@ -1,12 +1,12 @@
 import { Formik } from 'formik';
 import { KTCard, KTCardBody, ResponeApiCheck, addFieldsToFormData, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
-import { initialVehicleModel } from '../core/_models';
+import { initialUserTypeeModel } from '../core/_models';
 import { roleSchema } from './validationForm';
 import { create } from '../core/_requests';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
 import { useNavigate } from 'react-router-dom';
-import { ListUserPath } from '../../routes/RoutesNames';
+import { ListUserTypePath } from '../../routes/RoutesNames';
 
 const Add = () => {
     const navigate=useNavigate();
@@ -18,16 +18,14 @@ const Add = () => {
                 <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
-                    initialValues={initialVehicleModel}
+                    initialValues={initialUserTypeeModel}
                     initialStatus={{ edit: false }}
                     onSubmit={async (values, { setSubmitting }) => {
-                        const formData = new FormData();
-                        addFieldsToFormData(formData,values )
                         setSubmitting(true)
                         try {
-                            const res: ResponeApiCheck = await create(formData);
+                            const res: ResponeApiCheck = await create(values);
                             if(res.result=='success'){
-                                navigate(ListUserPath)
+                                navigate(ListUserTypePath)
                             }
                             showNotification(res)
                         } catch (ex) {
