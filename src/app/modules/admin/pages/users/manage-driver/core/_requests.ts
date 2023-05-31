@@ -8,7 +8,7 @@ const getList = (query: string, page: number): Promise<UserQueryResponse> => {
     })
     .then((d: any) => {
       return {
-        data: d.data?.data,
+        data: d.data?.data?.data,
         payload: {
           pagination: {
             page_num: d.data?.data?.current_page,
@@ -27,9 +27,9 @@ const create = (object: any) => {
   //.then((response: Response<VehicleType>) => response.data)
 }
 
-const update = (object: any) => {
+const update = (object: any,id:ID) => {
   return axios
-    .post(`update_driver/${object.id}`, object)
+    .post(`update_driver/${id}`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   // .then((response: ResponeApiCheck) => response)
 }

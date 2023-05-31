@@ -29,7 +29,7 @@ const ActionsCell: FC<Props> = ({data}) => {
   }, [])
 
   const handleEdit = () => {
-    navigate(EditDriverPath, {state: data})
+    navigate(EditDriverPath, {state: data?.id})
   }
 
   const handleDelete = () => {
@@ -58,7 +58,7 @@ const ActionsCell: FC<Props> = ({data}) => {
       <MenuActionWrapper>
         <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
 
-        <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} />
+        {/* <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} /> */}
       </MenuActionWrapper>
       {/* end::Menu */}
     </>

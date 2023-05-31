@@ -62,7 +62,7 @@ const Form: FC = () => {
                                 isRequired={true}
                             />
                         </div>
-                        <div className='col-md-6 col-sm-12'>
+                        {/* <div className='col-md-6 col-sm-12'>
                             <FormikSelectInput
                                 title={intel.formatMessage({ id: 'role' })}
                                 name={'role_id'}
@@ -77,7 +77,7 @@ const Form: FC = () => {
 
                                 }]}
                             />
-                        </div>
+                        </div> */}
                         <div className='col-md-6 col-sm-12'>
                             <FormikSelectInput
                                 title={intel.formatMessage({ id: 'group_vehcile' })}
@@ -86,14 +86,14 @@ const Form: FC = () => {
                                 options={vechielGroup || []}
                             />
                         </div>
-                        {/* {status != 'edit' && <div className='col-md-6 col-sm-12'>
+                        { <div className='col-md-6 col-sm-12'>
                             <FormikFile
                                 title={intel.formatMessage({ id: 'image' })}
                                 name={'image'}
                                 isRequired={false}
                                 fieldFile={ProfileImage}
                             />
-                        </div>} */}
+                        </div>}
                     </div>
 
 

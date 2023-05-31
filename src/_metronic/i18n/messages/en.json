@@ -248,5 +248,8 @@
 
   "driver_image": "Driver Image",
   "license_image": "License Image",
-  "document":"Document"
+  "document":"Document",
+  "building":"Building",
+  "department":"Department",
+  "floor_number":"Floor Number"
 }

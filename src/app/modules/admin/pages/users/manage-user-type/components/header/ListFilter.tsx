@@ -6,6 +6,8 @@ import { useQueryResponse } from '../../core/QueryResponseProvider'
 import { FilterMenuHoc } from '../../../../../components/table/filter/FilterMenuHoc'
 import { InputFilter } from '../../../../../components/fields/InputFilter'
 import { useIntl } from 'react-intl'
+import { InputSelectFilter } from '../../../../../components/fields/inputSelectFilter'
+import { genders } from '../../../../core/models'
 
 
 
@@ -15,9 +17,12 @@ const ListFilter = () => {
   const intl = useIntl();
   const { updateState } = useQueryRequest()
   const { isLoading } = useQueryResponse()
-  const [color, setColor] = useState<string | undefined>("")
-
+  const [name, setName] = useState<string | undefined>("")
+  const [email, setEmail] = useState<string | undefined>("")
+  const [mobile, setMobile] = useState<string | undefined>("")
   
+
+
 
   useEffect(() => {
     MenuComponent.reinitialization()
@@ -28,9 +33,9 @@ const ListFilter = () => {
   }
 
   const filterData = () => {
-   
+
     updateState({
-      filtter: { color },
+      filtter: { name, email, mobile },
       ...initialQueryState,
     })
   }
@@ -39,10 +44,15 @@ const ListFilter = () => {
       <FilterMenuHoc isLoading={isLoading} handleFilter={filterData} handleReset={resetData}>
         {/* begin::Input group */}
         <div className="row">
-          <div className="col">
-            <InputFilter value={color} setValue={setColor} title={intl.formatMessage({ id: 'make' })} />
+          <div className="col-6">
+            <InputFilter value={name} setValue={setName} title={intl.formatMessage({ id: 'name' })} />
           </div>
-         
+          <div className="col-6">
+            <InputFilter value={mobile} setValue={setMobile} title={intl.formatMessage({ id: 'mobile' })} />
+          </div>
+          <div className="col-12">
+            <InputFilter value={email} setValue={setEmail} title={intl.formatMessage({ id: 'email' })} />
+          </div>
         </div>
 
       </FilterMenuHoc>

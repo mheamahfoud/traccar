@@ -7,12 +7,12 @@ import { useLocation } from 'react-router-dom';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
 import { useNavigate } from 'react-router-dom';
 import { ListUserPath } from '../../routes/RoutesNames';
+import { useEffect } from 'react';
 const Edit = () => {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const location = useLocation();
     const data: any = location.state;
     const { showNotification } = useNotification();
-
     return (
         <KTCard>
 
@@ -20,15 +20,15 @@ const Edit = () => {
                 <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
-                    initialValues={data}
+                    initialValues={{ ...data, role_id: 1, first_name :data?.meta_data?.first_name , last_name:data?.meta_data?.last_name }}
                     initialStatus={{ edit: true }}
                     onSubmit={async (values, { setSubmitting }) => {
                         const formData = new FormData();
-                        addFieldsToFormData(formData,values )
+                        addFieldsToFormData(formData, values)
                         setSubmitting(true)
                         try {
-                            const res: ResponeApiCheck = await update(formData);
-                            if(res.result=='success'){
+                            const res: ResponeApiCheck = await update(formData, data?.id);
+                            if (res.result == 'success') {
                                 navigate(ListUserPath)
                             }
                             showNotification(res)

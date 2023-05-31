@@ -13,3 +13,20 @@ export const initialVehicleModel: SelectList = {
 
 }
 
+export const  genders = [
+
+  {
+    "value": 1,
+    "text": 'Male'
+  
+  },
+  {
+    "value": 2,
+    "text": 'Female'
+  
+  }
+]
+export enum genderEnum {
+  Male = 1,
+  Female = 2
+}

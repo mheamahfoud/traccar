@@ -12,8 +12,10 @@ interface props {
 }
 const FormikInputLabel = (props: props) => {
     const { title, name, isRequired ,fieldFile} = props;
-    
+ 
     const { errors, touched, getFieldProps, isSubmitting, setFieldValue, values } = useFormikContext();
+ 
+  
     const [uploadedImage, setUploadedImage] = useState<any>(toAbsoluteServerUrl(values[name]));
 
     const handleChange = (event) => {

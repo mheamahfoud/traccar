@@ -6,7 +6,8 @@ import {SelectionHeader} from './SelectionHeader'
 import { CustomHeader } from './CustomHeader'
 import {User} from '../../core/_models'
 import { Localize } from '../../../../../../../../_metronic/i18n/Localize'
-import { CustomCellDate } from './CustomCellDate'
+import { CustomCellDate } from './CustomCellDate';
+import { IconCell } from '../../../../../components/table/columns/IconCell'
 const columnsTable :  ReadonlyArray<Column<User>> = [
   {
     Header: (props) => <SelectionHeader tableProps={props} />,
@@ -17,7 +18,11 @@ const columnsTable :  ReadonlyArray<Column<User>> = [
     Header: (props) => <CustomHeader<User> tableProps={props} title={'#'} className='min-w-125px' />,
     accessor: 'id',
   },
-
+  {
+    Header: (props) => <CustomHeader<User>  tableProps={props} title={<Localize value='profile' />} className='min-w-125px' />,
+    id: 'profile',
+    Cell: ({...props}) => <IconCell icon={props.data[props.row.index].image} />,
+  },
   {
     Header: (props) => <CustomHeader<User>  tableProps={props} title={<Localize value='name' />} className='min-w-125px' />,
     accessor: 'name',

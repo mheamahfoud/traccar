@@ -9,7 +9,7 @@ const getList = (query: string, page: number ,id :ID): Promise<UserTypeQueryResp
     })
     .then((d: any) => {
       return {
-        data: d.data?.data,
+        data: d.data?.data?.data,
         payload: {
           pagination: {
             page_num: d.data?.data?.current_page,

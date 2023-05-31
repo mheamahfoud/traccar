@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { ListDriverPath } from '../../routes/RoutesNames';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+import { Spinner } from '../../../../components/Spinner';
+import { ListLoading } from '../../../../components/table/loading/ListLoading';
 const Edit = () => {
     const navigate=useNavigate();
     const location = useLocation();
@@ -29,16 +31,45 @@ const Edit = () => {
     )
     useEffect(() => {
       if (data) {
-        setEditData(data?.data)
+        console.log(data)
+        setEditData({...data?.data,
+            driver_image_ed : data?.data?.meta_data['driver_image'],
+            license_image_ed : data?.data?.meta_data['license_image'],
+            documents_ed : data?.data?.meta_data['documents'],
+            driver_commision_type:data?.data?.meta_data['driver_commision_type'],
+            driver_commision:data?.data?.meta_data['driver_commision'],
+            emp_id:data?.data?.meta_data['emp_id'],
+            econtact:data?.data?.meta_data['econtact'],
+            contract_number:data?.data?.meta_data['contract_number'],
+            license_number:data?.data?.meta_data['license_number'],
+            end_date:data?.data?.meta_data['end_date'],
+            issue_date:data?.data?.meta_data['issue_date'],
+            start_date:data?.data?.meta_data['start_date'],
+            exp_date:data?.data?.meta_data['exp_date'],
+            first_name:data?.data?.meta_data['first_name'],
+            last_name:data?.data?.meta_data['last_name'],
+            middle_name:data?.data?.meta_data['middle_name'],
+            address:data?.data?.meta_data['address'],
+            phone:data?.data?.meta_data['phone'],
+            gender:data?.data?.meta_data['gender'],
+            
+            
+            
+
+        })
         setEnableApi(false)
   
       }
     }, [data])
+
+    useEffect(() => {
+     console.log(editData)
+      }, [editData])
     return (
         <KTCard>
 
             <KTCardBody className='py-4'>
-                <Formik
+               {editData && <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
                     initialValues={editData}
@@ -48,7 +79,7 @@ const Edit = () => {
                         addFieldsToFormData(formData,values )
                         setSubmitting(true)
                         try {
-                            const res: ResponeApiCheck = await update(formData);
+                            const res: ResponeApiCheck = await update(formData , id);
                             if(res.result=='success'){
                                 navigate(ListDriverPath)
                             }
@@ -66,7 +97,9 @@ const Edit = () => {
                 >
 
                     <Form />
-                </Formik>
+                </Formik>}
+
+                {!editData && <ListLoading/>}
 
 
             </KTCardBody>

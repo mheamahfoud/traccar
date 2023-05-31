@@ -80,6 +80,23 @@ export const ListPartTypePath = BaseUrl + 'part-type';
 export const AddPartTypePath = BaseUrl + 'add-part-type';
 export const EditPartTypePath = BaseUrl + 'edit-part-type'; 
 
+
+export const ListRegionPath = BaseUrl + 'region';
+export const AddRegionPath = BaseUrl + 'add-region';
+export const EditRegionPath = BaseUrl + 'edit-region'; 
+
+
+export const ListBuildingPath = BaseUrl + 'building';
+export const AddBuildingPath = BaseUrl + 'add-building';
+export const EditBuildingPath = BaseUrl + 'edit-building'; 
+
+
+
+export const ListDepartmentPath = BaseUrl + 'department';
+export const AddDepartmentPath = BaseUrl + 'add-department';
+export const EditDepartmentPath = BaseUrl + 'edit-department'; 
+
+
 export const WorkTimeBreadcrumbs: Array<PageLink> = [
     {
         title: 'Manage Working Time',
@@ -286,6 +303,50 @@ export const PartTypeBreadcrumbs: Array<PageLink> = [
     {
         title: 'Manage Part Type',
         path: ListPartTypePath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+
+export const regionBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage Region',
+        path: ListRegionPath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+export const buildingBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage Building',
+        path: ListBuildingPath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
+
+export const departmentBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage Department',
+        path: ListDepartmentPath,
         isSeparator: false,
         isActive: false,
     },

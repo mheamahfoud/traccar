@@ -49,8 +49,8 @@ const SidebarMenuMain = () => {
           userTypes.map((item) => {
             return (
               <SidebarMenuItem
-                to={'/admin/users/manage-user-type/'  + item.id}
-                title={item.name }
+                to={'/admin/users/manage-user-type/' + item.id}
+                title={item.name}
                 hasBullet={true}
               />
             )
@@ -221,6 +221,25 @@ const SidebarMenuMain = () => {
         <SidebarMenuItem
           to='/admin/setting/part'
           title={intl.formatMessage({ id: 'part' })}
+          hasBullet={true}
+        />
+
+        <SidebarMenuItem
+          to='/admin/setting/region'
+          title={intl.formatMessage({ id: 'region' })}
+          hasBullet={true}
+        />
+
+
+        <SidebarMenuItem
+          to='/admin/setting/building'
+          title={intl.formatMessage({ id: 'building' })}
+          hasBullet={true}
+        />
+
+        <SidebarMenuItem
+          to='/admin/setting/department'
+          title={intl.formatMessage({ id: 'department' })}
           hasBullet={true}
         />
         {/* 

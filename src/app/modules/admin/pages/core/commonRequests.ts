@@ -143,6 +143,45 @@ const getVehicleGroupList = (): Promise<SelectList[]> => {
             return d.data?.data;
         })
 }
+const getCityList = (): Promise<SelectList[]> => {
+    return axios
+        .get(`list_active_city`)
+        .then((d: any) => {
+            return d.data?.data.map((item) => {
+                return {
+                    value: item.parent,
+                    text: item.name
+                }
+            })
+        })
+}
 
-
-export { getRegiosList, getPassengers,getShiftList,getVehicleList,getGroupListByRegion,getDriverList,getCountryList ,getTerminalList,getVehiclePathList,getAdsList,getVehicleGroupList}
+const getGroupList = (): Promise<SelectList[]> => {
+    return axios
+        .get(`list_active_group`)
+        .then((d: any) => {
+            return d.data?.data.map((item) => {
+                return {
+                    value: item.parent,
+                    text: item.name
+                }
+            })
+        })
+}
+const getBuildingListList = (): Promise<SelectList[]> => {
+    return axios
+        .get(`list_active_building`)
+        .then((d: any) => {
+            return d.data?.data.map((item) => {
+                return {
+                    value: item.parent,
+                    text: item.name
+                }
+            })
+        })
+}
+export { getRegiosList, getPassengers,getShiftList,
+    getVehicleList,getGroupListByRegion,
+    getDriverList,getCountryList ,getTerminalList,getVehiclePathList,
+    getAdsList,getVehicleGroupList,getCityList,getGroupList,
+    getBuildingListList}

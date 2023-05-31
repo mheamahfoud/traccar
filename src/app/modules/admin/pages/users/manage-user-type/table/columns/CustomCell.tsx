@@ -1,6 +1,7 @@
 import moment from 'moment'
 import { FC } from 'react'
-import { genderEnum } from '../../core/_models'
+import { genderEnum } from '../../../../core/models'
+
 
 type Props = {
   gender?: string

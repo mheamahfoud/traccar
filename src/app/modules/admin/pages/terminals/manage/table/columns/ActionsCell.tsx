@@ -62,7 +62,7 @@ const ActionsCell: FC<Props> = ({data}) => {
       <MenuActionWrapper>
         <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
 
-        <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete}  />
+        {/* <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete}  /> */}
 
     {   data?.permissions.map(x=>x.code).includes('View_Terminal_Account') &&  <MenuActionItem title={intl.formatMessage({id: 'move_to_map'})} onCLick={handleMap} />}
       </MenuActionWrapper>

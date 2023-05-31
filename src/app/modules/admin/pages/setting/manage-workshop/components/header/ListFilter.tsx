@@ -28,7 +28,7 @@ const ListFilter = () => {
 
   const filterData = () => {
     updateState({
-      filtter: {name},
+      filtter: {name,mobile,address},
       ...initialQueryState,
     })
   }

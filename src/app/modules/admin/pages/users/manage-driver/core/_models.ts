@@ -6,6 +6,7 @@ export type Driver = {
   email: string,
   mobile:string,
   created_at: string,
+  gender:string,
   group_id:string
 
 
@@ -21,7 +22,8 @@ export const initialDriverModel: Driver = {
   "email": null,
   "mobile":null,
   "created_at": null,
-  "group_id":null
+  "group_id":null,
+  "gender":null
 
 }
 

@@ -172,7 +172,7 @@ const Form: FC = () => {
                 title={intel.formatMessage({id: 'password'})}
                 name={'password'}
                 isRequired={false}
-                type='password'
+              //  type='password'
               />
             </div>
             <div className='col-md-4 col-sm-12'>
@@ -203,7 +203,7 @@ const Form: FC = () => {
             <div className='col-md-4 col-sm-12'>
               <FormikFile
                 title={intel.formatMessage({id: 'driver_image'})}
-                name={'image'}
+                name={'driver_image_ed'}
                 isRequired={false}
                 fieldFile={'driver_image'}
               />
@@ -211,7 +211,7 @@ const Form: FC = () => {
             <div className='col-md-4 col-sm-12'>
               <FormikFile
                 title={intel.formatMessage({id: 'license_image'})}
-                name={'image'}
+                name={'license_image_ed'}
                 isRequired={false}
                 fieldFile={'license_image'}
               />
@@ -219,11 +219,11 @@ const Form: FC = () => {
             <div className='col-md-4 col-sm-12'>
               <FormikFile
                 title={intel.formatMessage({id: 'document'})}
-                name={'image'}
+                name={'documents_ed'}
                 isRequired={false}
                 fieldFile={'documents'}
               />
-            </div>
+            </div> 
           </div>
         </div>
         {/* begin::Actions */}

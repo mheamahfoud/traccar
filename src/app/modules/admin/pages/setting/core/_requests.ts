@@ -26,7 +26,7 @@ const getModelList = (): Promise<SelectList[]> => {
     })
 }
 
-const getGroupList = (): Promise<SelectList[]> => {
+const getGroupVechileList = (): Promise<SelectList[]> => {
   return axios
     .get(`all_vehicles_group`)
     .then((d: any) => {
@@ -63,4 +63,4 @@ const getStationList = (): Promise<SelectList[]> => {
 
 
 
-export { getMakerList, getColorList, getGroupList, getModelList, getTypeList, getEngineTypeList, getStationList }
+export { getMakerList, getColorList, getGroupVechileList, getModelList, getTypeList, getEngineTypeList, getStationList }

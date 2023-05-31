@@ -11,17 +11,16 @@ import {getStationList} from '../../../vehicles/core/_requests'
 import {useQuery} from 'react-query'
 import FormikFile from '../../../../components/formik/FormikFile'
 import { FieldLink } from '../../../../../../../_metronic/utlis/formik'
+import FormikAudio from '../../../../components/formik/FormikAudio'
 
 const Form: FC = () => {
-  const {data: stationList} = useQuery(`${QUERIES.VEHICLES_STATION_LIST_VALUES}`, () => {
-    return getStationList()
-  })
+
   const intel = useIntl()
 
   const {handleSubmit, resetForm, isSubmitting, isValid, touched} = useFormikContext()
   return (
     <>
-      {stationList && (
+      {(
         <form className='form' onSubmit={handleSubmit} noValidate encType="multipart/form-data">
           {/* begin::Scroll */}
           <div className='d-flex flex-column scroll-y me-n7 pe-7'>
@@ -44,7 +43,7 @@ const Form: FC = () => {
               </div>
 
               <div className='col-md-6 col-sm-12'>
-                <FormikFile
+                <FormikAudio
                   title={intel.formatMessage({id: 'link'})}
                   name={'link'}
                   isRequired={false}
@@ -61,7 +60,7 @@ const Form: FC = () => {
           {/* end::Actions */}
         </form>
       )}
-      {(isSubmitting || !stationList) && <ListLoading />}
+      {(isSubmitting) && <ListLoading />}
     </>
   )
 }

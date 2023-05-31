@@ -1,6 +1,6 @@
-import {Route, Routes, Outlet, Navigate} from 'react-router-dom'
-import {PageLink, PageTitle} from '../../../../../_metronic/layout/core'
-import {useIntl} from 'react-intl'
+import { Route, Routes, Outlet, Navigate } from 'react-router-dom'
+import { PageLink, PageTitle } from '../../../../../_metronic/layout/core'
+import { useIntl } from 'react-intl'
 
 import AddWorkingTime from './manage-work-time/add-edit/Add'
 import EditWorkingTime from './manage-work-time/add-edit/Edit'
@@ -44,11 +44,14 @@ import EditPart from './manage-part/add-edit/Edit'
 import AddPartCar from './manage-part-car/add-edit/Add'
 import EditPartCar from './manage-part-car/add-edit/Edit'
 
+import AddRegion from './manage-region/add-edit/Add'
+import EditRegion from './manage-region/add-edit/Edit'
 
+import AddBuilding from './manage-building/add-edit/Add'
+import EditBuilding from './manage-building/add-edit/Edit'
 
-import AddPartType from './manage-part-car/add-edit/Add'
-import EditPartType  from './manage-part-car/add-edit/Edit'
-
+import AddDepartment from './manage-department/add-edit/Add'
+import EditDepartment from './manage-department/add-edit/Edit'
 import {
   CityBreadcrumbs,
   CountryBreadcrumbs,
@@ -62,23 +65,31 @@ import {
   TimezoneBreadcrumbs,
   WorkTimeBreadcrumbs,
   WorkshopBreadcrumbs,
+  buildingBreadcrumbs,
+  departmentBreadcrumbs,
+  regionBreadcrumbs,
 } from './routes/RoutesNames'
-import {ManageWorkinTimeListWrapper} from './manage-work-time/List'
-import {ManageInfractionTypeListWrapper} from './manage-infraction-type/List'
-import {ManageReasonCancelListWrapper} from './manage-reason-cancel/List'
-import {ManageTimezoneListWrapper} from './manage-timezone//List'
-import {ManageCountryListWrapper} from './manage-country//List'
-import {ManageCityListWrapper} from './manage-city/List'
-import {ManageGroupListWrapper} from './manage-group/List'
-import {ManageMaintenanceStatusListWrapper} from './manage-maintenance-status/List'
-import {ManageMaintenanceListWrapper} from './manage-maintenance/List'
-import {ManageWorkshopListWrapper} from './manage-workshop/List'
-import {ManageUserTypeListWrapper} from './manage-user-type/List';
+import { ManageWorkinTimeListWrapper } from './manage-work-time/List'
+import { ManageInfractionTypeListWrapper } from './manage-infraction-type/List'
+import { ManageReasonCancelListWrapper } from './manage-reason-cancel/List'
+import { ManageTimezoneListWrapper } from './manage-timezone//List'
+import { ManageCountryListWrapper } from './manage-country//List'
+import { ManageCityListWrapper } from './manage-city/List'
+import { ManageGroupListWrapper } from './manage-group/List'
+import { ManageMaintenanceStatusListWrapper } from './manage-maintenance-status/List'
+import { ManageMaintenanceListWrapper } from './manage-maintenance/List'
+import { ManageWorkshopListWrapper } from './manage-workshop/List'
+import { ManageUserTypeListWrapper } from './manage-user-type/List';
 
-import {ManagePartListWrapper} from './manage-part/List';
+import { ManagePartListWrapper } from './manage-part/List';
 
 
-import {ManagePartCarListWrapper} from './manage-part-car/List';
+import { ManagePartCarListWrapper } from './manage-part-car/List';
+
+import { ManageRegionListWrapper } from './manage-region/List';
+
+import { ManageBuildingListWrapper } from './manage-building/List';
+import { ManageDepartmentListWrapper } from './manage-department/List';
 //import { ManageVehiclesListWrapper } from './manage-vehicles/List';
 
 const SettingPage = () => {
@@ -92,7 +103,7 @@ const SettingPage = () => {
           element={
             <>
               <PageTitle breadcrumbs={WorkTimeBreadcrumbs}>
-                {intl.formatMessage({id: 'work_time'})}{' '}
+                {intl.formatMessage({ id: 'work_time' })}{' '}
               </PageTitle>
               <ManageWorkinTimeListWrapper />
             </>
@@ -104,8 +115,8 @@ const SettingPage = () => {
             <>
               <PageTitle breadcrumbs={WorkTimeBreadcrumbs}>
                 {intl.formatMessage(
-                  {id: 'add_object'},
-                  {name: intl.formatMessage({id: 'work_time'})}
+                  { id: 'add_object' },
+                  { name: intl.formatMessage({ id: 'work_time' }) }
                 )}
               </PageTitle>
               <AddWorkingTime />
@@ -118,23 +129,23 @@ const SettingPage = () => {
             <>
               <PageTitle breadcrumbs={WorkTimeBreadcrumbs}>
                 {intl.formatMessage(
-                  {id: 'edit_object'},
-                  {name: intl.formatMessage({id: 'work_time'})}
+                  { id: 'edit_object' },
+                  { name: intl.formatMessage({ id: 'work_time' }) }
                 )}
               </PageTitle>
               <EditWorkingTime />
             </>
           }
         />
-        //#endregion 
-       
+        //#endregion
+
         //#region Manage Infraction Type 
         <Route
           path='infraction-type'
           element={
             <>
               <PageTitle breadcrumbs={InfractionTypeBreadcrumbs}>
-                {intl.formatMessage({id: 'infraction_type'})}{' '}
+                {intl.formatMessage({ id: 'infraction_type' })}{' '}
               </PageTitle>
               <ManageInfractionTypeListWrapper />
             </>
@@ -146,8 +157,8 @@ const SettingPage = () => {
             <>
               <PageTitle breadcrumbs={InfractionTypeBreadcrumbs}>
                 {intl.formatMessage(
-                  {id: 'add_object'},
-                  {name: intl.formatMessage({id: 'infraction_type'})}
+                  { id: 'add_object' },
+                  { name: intl.formatMessage({ id: 'infraction_type' }) }
                 )}
               </PageTitle>
               <AddInfractionType />
@@ -160,22 +171,22 @@ const SettingPage = () => {
             <>
               <PageTitle breadcrumbs={InfractionTypeBreadcrumbs}>
                 {intl.formatMessage(
-                  {id: 'edit_object'},
-                  {name: intl.formatMessage({id: 'infraction_type'})}
+                  { id: 'edit_object' },
+                  { name: intl.formatMessage({ id: 'infraction_type' }) }
                 )}
               </PageTitle>
               <EditInfractionType />
             </>
           }
         />
-        //#endregion 
+        //#endregion
         //#region Reason Cancel
         <Route
           path='reason-cancel'
           element={
             <>
               <PageTitle breadcrumbs={ReasonCancelBreadcrumbs}>
-                {intl.formatMessage({id: 'reason_cancel'})}{' '}
+                {intl.formatMessage({ id: 'reason_cancel' })}{' '}
               </PageTitle>
               <ManageReasonCancelListWrapper />
             </>
@@ -187,8 +198,8 @@ const SettingPage = () => {
             <>
               <PageTitle breadcrumbs={ReasonCancelBreadcrumbs}>
                 {intl.formatMessage(
-                  {id: 'add_object'},
-                  {name: intl.formatMessage({id: 'reason_cancel'})}
+                  { id: 'add_object' },
+                  { name: intl.formatMessage({ id: 'reason_cancel' }) }
                 )}
               </PageTitle>
               <AddReasonCancel />
@@ -201,8 +212,8 @@ const SettingPage = () => {
             <>
               <PageTitle breadcrumbs={ReasonCancelBreadcrumbs}>
                 {intl.formatMessage(
-                  {id: 'edit_object'},
-                  {name: intl.formatMessage({id: 'reason_cancel'})}
+                  { id: 'edit_object' },
+                  { name: intl.formatMessage({ id: 'reason_cancel' }) }
                 )}
               </PageTitle>
               <EditReasonCancel />
@@ -213,14 +224,14 @@ const SettingPage = () => {
       //#endregion
 
 
-      
-       //#region Country
+
+      //#region Country
       <Route
         path='country'
         element={
           <>
             <PageTitle breadcrumbs={CountryBreadcrumbs}>
-              {intl.formatMessage({id: 'country'})}{' '}
+              {intl.formatMessage({ id: 'country' })}{' '}
             </PageTitle>
             <ManageCountryListWrapper />
           </>
@@ -231,7 +242,7 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={CountryBreadcrumbs}>
-              {intl.formatMessage({id: 'add_object'}, {name: intl.formatMessage({id: 'country'})})}
+              {intl.formatMessage({ id: 'add_object' }, { name: intl.formatMessage({ id: 'country' }) })}
             </PageTitle>
             <AddCountry />
           </>
@@ -242,7 +253,7 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={CountryBreadcrumbs}>
-              {intl.formatMessage({id: 'edit_object'}, {name: intl.formatMessage({id: 'country'})})}
+              {intl.formatMessage({ id: 'edit_object' }, { name: intl.formatMessage({ id: 'country' }) })}
             </PageTitle>
             <EditCountry />
           </>
@@ -254,7 +265,7 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={TimezoneBreadcrumbs}>
-              {intl.formatMessage({id: 'timezone'})}{' '}
+              {intl.formatMessage({ id: 'timezone' })}{' '}
             </PageTitle>
             <ManageTimezoneListWrapper />
           </>
@@ -265,7 +276,7 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={TimezoneBreadcrumbs}>
-              {intl.formatMessage({id: 'add_object'}, {name: intl.formatMessage({id: 'timezone'})})}
+              {intl.formatMessage({ id: 'add_object' }, { name: intl.formatMessage({ id: 'timezone' }) })}
             </PageTitle>
             <AddTimezone />
           </>
@@ -277,8 +288,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={TimezoneBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'edit_object'},
-                {name: intl.formatMessage({id: 'timezone'})}
+                { id: 'edit_object' },
+                { name: intl.formatMessage({ id: 'timezone' }) }
               )}
             </PageTitle>
             <EditTimezone />
@@ -290,7 +301,7 @@ const SettingPage = () => {
         path='city'
         element={
           <>
-            <PageTitle breadcrumbs={CityBreadcrumbs}>{intl.formatMessage({id: 'city'})} </PageTitle>
+            <PageTitle breadcrumbs={CityBreadcrumbs}>{intl.formatMessage({ id: 'city' })} </PageTitle>
             <ManageCityListWrapper />
           </>
         }
@@ -300,7 +311,7 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={CityBreadcrumbs}>
-              {intl.formatMessage({id: 'add_object'}, {name: intl.formatMessage({id: 'city'})})}
+              {intl.formatMessage({ id: 'add_object' }, { name: intl.formatMessage({ id: 'city' }) })}
             </PageTitle>
             <AddCity />
           </>
@@ -311,7 +322,7 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={CityBreadcrumbs}>
-              {intl.formatMessage({id: 'edit_object'}, {name: intl.formatMessage({id: 'city'})})}
+              {intl.formatMessage({ id: 'edit_object' }, { name: intl.formatMessage({ id: 'city' }) })}
             </PageTitle>
             <EditCity />
           </>
@@ -323,7 +334,7 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={GroupBreadcrumbs}>
-              {intl.formatMessage({id: 'group'})}
+              {intl.formatMessage({ id: 'group' })}
             </PageTitle>
             <ManageGroupListWrapper />
           </>
@@ -334,7 +345,7 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={GroupBreadcrumbs}>
-              {intl.formatMessage({id: 'add_object'}, {name: intl.formatMessage({id: 'group'})})}
+              {intl.formatMessage({ id: 'add_object' }, { name: intl.formatMessage({ id: 'group' }) })}
             </PageTitle>
             <AddGroup />
           </>
@@ -345,21 +356,21 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={GroupBreadcrumbs}>
-              {intl.formatMessage({id: 'edit_object'}, {name: intl.formatMessage({id: 'group'})})}
+              {intl.formatMessage({ id: 'edit_object' }, { name: intl.formatMessage({ id: 'group' }) })}
             </PageTitle>
             <EditGroup />
           </>
         }
       />
-      //#endregion 
-      
+      //#endregion
+
       //#region MaintenanceStatusBreadcrumbs
       <Route
         path='maintenance-status'
         element={
           <>
             <PageTitle breadcrumbs={MaintenanceStatusBreadcrumbs}>
-              {intl.formatMessage({id: 'maintenance_status'})}
+              {intl.formatMessage({ id: 'maintenance_status' })}
             </PageTitle>
             <ManageMaintenanceStatusListWrapper />
           </>
@@ -371,8 +382,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={MaintenanceStatusBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'add_object'},
-                {name: intl.formatMessage({id: 'maintenance_status'})}
+                { id: 'add_object' },
+                { name: intl.formatMessage({ id: 'maintenance_status' }) }
               )}
             </PageTitle>
             <AddMaintenanceStatus />
@@ -385,8 +396,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={MaintenanceStatusBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'edit_object'},
-                {name: intl.formatMessage({id: 'maintenance_status'})}
+                { id: 'edit_object' },
+                { name: intl.formatMessage({ id: 'maintenance_status' }) }
               )}
             </PageTitle>
             <EditMaintenanceStatus />
@@ -399,7 +410,7 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={MaintenanceBreadcrumbs}>
-              {intl.formatMessage({id: 'maintenance'})}
+              {intl.formatMessage({ id: 'maintenance' })}
             </PageTitle>
             <ManageMaintenanceListWrapper />
           </>
@@ -411,8 +422,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={MaintenanceBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'add_object'},
-                {name: intl.formatMessage({id: 'maintenance'})}
+                { id: 'add_object' },
+                { name: intl.formatMessage({ id: 'maintenance' }) }
               )}
             </PageTitle>
             <AddMaintenance />
@@ -425,25 +436,25 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={MaintenanceBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'edit_object'},
-                {name: intl.formatMessage({id: 'maintenance'})}
+                { id: 'edit_object' },
+                { name: intl.formatMessage({ id: 'maintenance' }) }
               )}
             </PageTitle>
             <EditMaintenance />
           </>
         }
       />
-      //#endregion 
-      
-    
-      
-       //#region WorkShop
+      //#endregion
+
+
+
+      //#region WorkShop
       <Route
         path='workshop'
         element={
           <>
             <PageTitle breadcrumbs={WorkshopBreadcrumbs}>
-              {intl.formatMessage({id: 'workshop'})}
+              {intl.formatMessage({ id: 'workshop' })}
             </PageTitle>
             <ManageWorkshopListWrapper />
           </>
@@ -454,7 +465,7 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={WorkshopBreadcrumbs}>
-              {intl.formatMessage({id: 'add_object'}, {name: intl.formatMessage({id: 'workshop'})})}
+              {intl.formatMessage({ id: 'add_object' }, { name: intl.formatMessage({ id: 'workshop' }) })}
             </PageTitle>
             <AddWorkshop />
           </>
@@ -466,25 +477,25 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={WorkshopBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'edit_object'},
-                {name: intl.formatMessage({id: 'workshop'})}
+                { id: 'edit_object' },
+                { name: intl.formatMessage({ id: 'workshop' }) }
               )}
             </PageTitle>
             <EditWorkshop />
           </>
         }
       />
-      //#endregion 
-      
-      
-      
+      //#endregion
+
+
+
       //#region user Type
       <Route
         path='user-type'
         element={
           <>
             <PageTitle breadcrumbs={WorkshopBreadcrumbs}>
-              {intl.formatMessage({id: 'user_type'})}
+              {intl.formatMessage({ id: 'user_type' })}
             </PageTitle>
             <ManageUserTypeListWrapper />
           </>
@@ -496,8 +507,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={WorkshopBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'add_object'},
-                {name: intl.formatMessage({id: 'user_type'})}
+                { id: 'add_object' },
+                { name: intl.formatMessage({ id: 'user_type' }) }
               )}
             </PageTitle>
             <AddUserType />
@@ -510,8 +521,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={WorkshopBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'edit_object'},
-                {name: intl.formatMessage({id: 'user_type'})}
+                { id: 'edit_object' },
+                { name: intl.formatMessage({ id: 'user_type' }) }
               )}
             </PageTitle>
             <EditUserType />
@@ -527,7 +538,7 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={PartBreadcrumbs}>
-              {intl.formatMessage({id: 'part'})}
+              {intl.formatMessage({ id: 'part' })}
             </PageTitle>
             <ManagePartListWrapper />
           </>
@@ -539,8 +550,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={PartBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'add_object'},
-                {name: intl.formatMessage({id: 'part'})}
+                { id: 'add_object' },
+                { name: intl.formatMessage({ id: 'part' }) }
               )}
             </PageTitle>
             <AddPart />
@@ -553,8 +564,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={PartBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'edit_object'},
-                {name: intl.formatMessage({id: 'part'})}
+                { id: 'edit_object' },
+                { name: intl.formatMessage({ id: 'part' }) }
               )}
             </PageTitle>
             <EditPart />
@@ -570,7 +581,7 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={PartBreadcrumbs}>
-              {intl.formatMessage({id: 'part_car'})}
+              {intl.formatMessage({ id: 'part_car' })}
             </PageTitle>
             <ManagePartCarListWrapper />
           </>
@@ -582,8 +593,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={PartBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'add_object'},
-                {name: intl.formatMessage({id: 'part_car'})}
+                { id: 'add_object' },
+                { name: intl.formatMessage({ id: 'part_car' }) }
               )}
             </PageTitle>
             <AddPartCar />
@@ -596,8 +607,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={PartBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'edit_object'},
-                {name: intl.formatMessage({id: 'part_car'})}
+                { id: 'edit_object' },
+                { name: intl.formatMessage({ id: 'part_car' }) }
               )}
             </PageTitle>
             <EditPartCar />
@@ -612,7 +623,7 @@ const SettingPage = () => {
         element={
           <>
             <PageTitle breadcrumbs={PartBreadcrumbs}>
-              {intl.formatMessage({id: 'part_car'})}
+              {intl.formatMessage({ id: 'part_car' })}
             </PageTitle>
             <ManagePartCarListWrapper />
           </>
@@ -624,8 +635,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={PartBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'add_object'},
-                {name: intl.formatMessage({id: 'part_car'})}
+                { id: 'add_object' },
+                { name: intl.formatMessage({ id: 'part_car' }) }
               )}
             </PageTitle>
             <AddPartCar />
@@ -638,8 +649,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={PartBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'edit_object'},
-                {name: intl.formatMessage({id: 'part_car'})}
+                { id: 'edit_object' },
+                { name: intl.formatMessage({ id: 'part_car' }) }
               )}
             </PageTitle>
             <EditPartCar />
@@ -649,13 +660,13 @@ const SettingPage = () => {
       //#endregion
 
 
-           //#region Part  Type 
+      //#region Part  Type 
       <Route
         path='part-type'
         element={
           <>
             <PageTitle breadcrumbs={PartBreadcrumbs}>
-              {intl.formatMessage({id: 'part_type'})}
+              {intl.formatMessage({ id: 'part_type' })}
             </PageTitle>
             <ManagePartCarListWrapper />
           </>
@@ -667,8 +678,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={PartBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'add_object'},
-                {name: intl.formatMessage({id: 'part_type'})}
+                { id: 'add_object' },
+                { name: intl.formatMessage({ id: 'part_type' }) }
               )}
             </PageTitle>
             <AddPartCar />
@@ -681,8 +692,8 @@ const SettingPage = () => {
           <>
             <PageTitle breadcrumbs={PartBreadcrumbs}>
               {intl.formatMessage(
-                {id: 'edit_object'},
-                {name: intl.formatMessage({id: 'part_type'})}
+                { id: 'edit_object' },
+                { name: intl.formatMessage({ id: 'part_type' }) }
               )}
             </PageTitle>
             <EditPartCar />
@@ -690,6 +701,140 @@ const SettingPage = () => {
         }
       />
       //#endregion
+
+      //#region  Region
+
+      <Route
+        path='region'
+        element={
+          <>
+            <PageTitle breadcrumbs={regionBreadcrumbs}>
+              {intl.formatMessage({ id: 'region' })}
+            </PageTitle>
+            <ManageRegionListWrapper />
+          </>
+        }
+      />
+      <Route
+        path='add-region'
+        element={
+          <>
+            <PageTitle breadcrumbs={regionBreadcrumbs}>
+              {intl.formatMessage(
+                { id: 'add_object' },
+                { name: intl.formatMessage({ id: 'region' }) }
+              )}
+            </PageTitle>
+            <AddRegion />
+          </>
+        }
+      />
+      <Route
+        path='edit-region'
+        element={
+          <>
+            <PageTitle breadcrumbs={regionBreadcrumbs}>
+              {intl.formatMessage(
+                { id: 'edit_object' },
+                { name: intl.formatMessage({ id: 'region' }) }
+              )}
+            </PageTitle>
+            <EditRegion />
+          </>
+        }
+      />
+      //#endregion
+
+
+
+      //#region  Building
+
+      <Route
+        path='building'
+        element={
+          <>
+            <PageTitle breadcrumbs={buildingBreadcrumbs}>
+              {intl.formatMessage({ id: 'building' })}
+            </PageTitle>
+            <ManageBuildingListWrapper />
+          </>
+        }
+      />
+      <Route
+        path='add-building'
+        element={
+          <>
+            <PageTitle breadcrumbs={buildingBreadcrumbs}>
+              {intl.formatMessage(
+                { id: 'add_object' },
+                { name: intl.formatMessage({ id: 'building' }) }
+              )}
+            </PageTitle>
+            <AddBuilding />
+          </>
+        }
+      />
+      <Route
+        path='edit-building'
+        element={
+          <>
+            <PageTitle breadcrumbs={buildingBreadcrumbs}>
+              {intl.formatMessage(
+                { id: 'edit_object' },
+                { name: intl.formatMessage({ id: 'building' }) }
+              )}
+            </PageTitle>
+            <EditBuilding />
+          </>
+        }
+      />
+      //#endregion
+
+
+
+      //#region  department
+
+      <Route
+        path='department'
+        element={
+          <>
+            <PageTitle breadcrumbs={departmentBreadcrumbs}>
+              {intl.formatMessage({ id: 'department' })}
+            </PageTitle>
+            <ManageDepartmentListWrapper />
+          </>
+        }
+      />
+      <Route
+        path='add-department'
+        element={
+          <>
+            <PageTitle breadcrumbs={departmentBreadcrumbs}>
+              {intl.formatMessage(
+                { id: 'add_object' },
+                { name: intl.formatMessage({ id: 'department' }) }
+              )}
+            </PageTitle>
+            <AddDepartment />
+          </>
+        }
+      />
+      <Route
+        path='edit-department'
+        element={
+          <>
+            <PageTitle breadcrumbs={departmentBreadcrumbs}>
+              {intl.formatMessage(
+                { id: 'edit_object' },
+                { name: intl.formatMessage({ id: 'department' }) }
+              )}
+            </PageTitle>
+            <EditDepartment />
+          </>
+        }
+      />
+      //#endregion
+
       <Route index element={<Navigate to={ListWorkTimePath} />} />
     </Routes>
   )
