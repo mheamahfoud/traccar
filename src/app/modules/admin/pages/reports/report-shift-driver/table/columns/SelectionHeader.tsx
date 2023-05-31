@@ -1,12 +1,12 @@
 import { FC, PropsWithChildren } from 'react'
 import { HeaderProps } from 'react-table'
 import { useListView } from '../../core/ListViewProvider'
-import { Driver } from '../../core/_models'
+import { ShiftDriverReport } from '../../core/_models'
 import SelectionHoc from '../../../../../components/table/columns/SelectionHoc'
 
 
 type Props = {
-  tableProps: PropsWithChildren<HeaderProps<Driver>>
+  tableProps: PropsWithChildren<HeaderProps<ShiftDriverReport>>
 }
 
 const SelectionHeader: FC<Props> = ({ tableProps }) => {

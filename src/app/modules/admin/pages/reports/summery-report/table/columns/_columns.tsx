@@ -4,51 +4,59 @@ import { ActionsCell } from './ActionsCell'
 import { SelectionCell } from './SelectionCell'
 import { SelectionHeader } from './SelectionHeader'
 import { CustomHeader } from './CustomHeader'
-import { StopReport } from '../../core/_models'
+import { SummeryReport } from '../../core/_models'
 import { Localize } from '../../../../../../../../_metronic/i18n/Localize';
 import { CustomCell } from './CustomCell'
 
 
 
-
-const columnsTable: ReadonlyArray<Column<StopReport>> = [
+const columnsTable: ReadonlyArray<Column<SummeryReport>> = [
   {
     Header: (props) => <SelectionHeader tableProps={props} />,
     id: 'selection',
-    Cell: ({ ...props }) => <SelectionCell id={props.data[props.row.index].id} />,
+    Cell: ({...props}) => <SelectionCell id={props.data[props.row.index].id} />,
   },
   {
-    Header: (props) => <CustomHeader<StopReport> tableProps={props} title={<Localize value='driver' />} className='min-w-125px' />,
-    accessor: 'customer',
+    Header: (props) => <CustomHeader<SummeryReport> tableProps={props} title={<Localize value='deviceName' />} className='min-w-125px' />,
+    accessor: 'deviceName',
   },
   {
-    Header: (props) => <CustomHeader<StopReport> tableProps={props} title={<Localize value='year' />} className='min-w-125px' />,
-    accessor: 'year',
+    Header: (props) => <CustomHeader<SummeryReport> tableProps={props} title={<Localize value='startTime' />} className='min-w-125px' />,
+    accessor: 'startTime',
   },
   {
-    Header: (props) => <CustomHeader<StopReport> tableProps={props} title={<Localize value='month' />} className='min-w-125px' />,
-    accessor: 'month',
+    Header: (props) => <CustomHeader<SummeryReport> tableProps={props} title={<Localize value='endTime' />} className='min-w-125px' />,
+    accessor: 'endTime',
   },
   {
-    Header: (props) => <CustomHeader<StopReport> tableProps={props} title={<Localize value='status_0' />} className='min-w-125px' />,
-    accessor: 'count_status_0',
-    
+    Header: (props) => <CustomHeader<SummeryReport>  tableProps={props} title={<Localize value='averageSpeed' />} className='min-w-125px' />,
+    accessor: 'averageSpeed',
   },
   {
-    Header: (props) => <CustomHeader<StopReport> tableProps={props} title={<Localize value='status_1' />} className='min-w-125px' />,
-    accessor: 'count_status_1',
+    Header: (props) => <CustomHeader<SummeryReport>  tableProps={props} title={<Localize value='maxSpeed' />} className='min-w-125px' />,
+    accessor: 'maxSpeed',
   },
   {
-    Header: (props) => <CustomHeader<StopReport> tableProps={props} title={<Localize value='status_2' />} className='min-w-125px' />,
-    accessor: 'count_status_2',
-  },
-  {
-    Header: (props) => <CustomHeader<StopReport> tableProps={props} title={<Localize value='status_4' />} className='min-w-125px' />,
-    id: 'count_status_4',
-    Cell: ({...props}) => <CustomCell count={props.data[props.row.index]?.status_4} />,
+    Header: (props) => <CustomHeader<SummeryReport>  tableProps={props} title={<Localize value='distance' />} className='min-w-125px' />,
+    accessor: 'distance',
   },
 
-
+  {
+    Header: (props) => <CustomHeader<SummeryReport>  tableProps={props} title={<Localize value='startOdometer' />} className='min-w-125px' />,
+    accessor: 'startOdometer',
+  },
+  {
+    Header: (props) => <CustomHeader<SummeryReport>  tableProps={props} title={<Localize value='endOdometer' />} className='min-w-125px' />,
+    accessor: 'endOdometer',
+  },
+  {
+    Header: (props) => <CustomHeader<SummeryReport>  tableProps={props} title={<Localize value='engineHours' />} className='min-w-125px' />,
+    accessor: 'engineHours',
+  },
+  {
+    Header: (props) => <CustomHeader<SummeryReport>  tableProps={props} title={<Localize value='spentFuel' />} className='min-w-125px' />,
+    accessor: 'spentFuel',
+  },
 
 ]
 

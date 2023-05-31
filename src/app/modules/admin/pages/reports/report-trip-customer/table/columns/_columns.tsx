@@ -18,7 +18,7 @@ const columnsTable: ReadonlyArray<Column<StopReport>> = [
     Cell: ({ ...props }) => <SelectionCell id={props.data[props.row.index].id} />,
   },
   {
-    Header: (props) => <CustomHeader<StopReport> tableProps={props} title={<Localize value='driver' />} className='min-w-125px' />,
+    Header: (props) => <CustomHeader<StopReport> tableProps={props} title={<Localize value='customer' />} className='min-w-125px' />,
     accessor: 'customer',
   },
   {

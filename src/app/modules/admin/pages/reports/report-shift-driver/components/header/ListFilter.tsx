@@ -7,7 +7,7 @@ import { FilterMenuHoc } from '../../../../../components/table/filter/FilterMenu
 import { InputFilter } from '../../../../../components/fields/InputFilter'
 import { useIntl } from 'react-intl'
 import { InputSelectFilter } from '../../../../../components/fields/inputSelectFilter'
-import { getVehicleList } from '../../../../core/commonRequests'
+import { getDriverList, getVehicleList } from '../../../../core/commonRequests'
 import { useQuery } from 'react-query'
 
 
@@ -18,18 +18,19 @@ const ListFilter = () => {
   const intl = useIntl();
   const { updateState } = useQueryRequest()
   const { isLoading } = useQueryResponse()
-  const [from, setFrom] = useState<string | undefined>(null)
-  const [to, setTo] = useState<string | undefined>(null)
-  const [deviceId, setDevice] = useState<string | undefined>(null)
+  const [month, setMonth] = useState<string | undefined>(null)
+  const [year, setYear] = useState<string | undefined>(null)
+
+  const [driver, setDriver] = useState<string | undefined>(null)
   const [enableApi, setEnableApi] = useState(true)
 
 
   const {
-    data: vehicleList,
+    data: driverList,
   } = useQuery(
-    `${QUERIES.ALL_Vehicle_LIST_VALUES}`,
+    `${QUERIES.ALL_DRIVER_LIST_VALUES}`,
     () => {
-      return getVehicleList()
+      return getDriverList()
     },
     {
       enabled: enableApi
@@ -37,10 +38,10 @@ const ListFilter = () => {
   )
 
   useEffect(() => {
-    if (vehicleList) {
+    if (driverList) {
       setEnableApi(false)
     }
-  }, [vehicleList])
+  }, [driverList])
 
   useEffect(() => {
     MenuComponent.reinitialization()
@@ -53,7 +54,7 @@ const ListFilter = () => {
   const filterData = () => {
 
     updateState({
-      filtter: { from,to,deviceId },
+      filtter: { year,month,driver },
       ...initialQueryState,
     })
   }
@@ -63,13 +64,13 @@ const ListFilter = () => {
         {/* begin::Input group */}
         <div className="row">
           <div className="col-6">
-            <InputFilter value={from} setValue={setFrom} title={intl.formatMessage({ id: 'from' })} type={'date'} />
+            <InputFilter value={year} setValue={setYear} title={intl.formatMessage({ id: 'year' })}  />
           </div>
           <div className="col-6">
-            <InputFilter value={to} setValue={setTo} title={intl.formatMessage({ id: 'to' })} type={'date'} />
+            <InputFilter value={month} setValue={setMonth} title={intl.formatMessage({ id: 'month' })} />
           </div>
           <div className="col-12">
-            <InputSelectFilter value={deviceId} setValue={setDevice} title={intl.formatMessage({ id: 'device' })} options={vehicleList || []} />
+            <InputSelectFilter value={driver} setValue={setDriver} title={intl.formatMessage({ id: 'driver' })} options={driverList || []} />
           </div>
         </div>
 

@@ -1,15 +1,15 @@
 
 import axios, { AxiosResponse } from 'axios'
 import { ConvertStringToObject, ID, ResponeApiCheck, } from '../../../../../../../_metronic/helpers'
-import {  TripCustomerReportQueryResponse } from './_models'
-const getList = (query: string, page: number): Promise<TripCustomerReportQueryResponse> => {
+import {  ShiftDriverReportQueryResponse } from './_models'
+const getList = (query: string, page: number): Promise<ShiftDriverReportQueryResponse> => {
   return axios
-    .post(`report_summary?${'page=' + page}`, {
+    .post(`report_shift_driver?${'page=' + page}`, {
       ...ConvertStringToObject(query)
     })
     .then((d: any) => {
       return {
-        data: d.data?.data?.data,
+        data: d.data?.data,
         payload: {
           pagination: {
             page_num: d.data?.data?.current_page,

@@ -7,14 +7,14 @@ import {useQueryResponse, useQueryResponseData, useQueryResponseSetLoading} from
 import {destroy} from '../../core/_requests'
 import Swal from 'sweetalert2'
 import {useNavigate} from 'react-router-dom'
-import {EditUserPath} from '../../../routes/RoutesNames'
+import {EditDriverPath, EditUserPath} from '../../../routes/RoutesNames'
 import {useIntl} from 'react-intl'
 import {ActionButton} from '../../../../../components/buttons/ActionButton'
 import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
 import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
-import { User } from '../../core/_models'
+import { Driver } from '../../core/_models'
 type Props = {
-  data: User
+  data: Driver
 }
 
 const ActionsCell: FC<Props> = ({data}) => {
@@ -29,8 +29,7 @@ const ActionsCell: FC<Props> = ({data}) => {
   }, [])
 
   const handleEdit = () => {
-    alert(JSON.stringify(data))
-    navigate(EditUserPath, {state: data})
+    navigate(EditDriverPath, {state: data})
   }
 
   const handleDelete = () => {

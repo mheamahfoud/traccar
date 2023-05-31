@@ -16,6 +16,20 @@ export const ListDriverPath = Users + 'manage-driver';
 export const AddDriverPath = Users + 'add-driver';
 export const EditDriverPath = Users + 'edit-driver';
 
+export const driverBreadcrumbs: Array<PageLink> = [
+    {
+        title: 'Manage Driver',
+        path: ListDriverPath,
+        isSeparator: false,
+        isActive: false,
+    },
+    {
+        title: '',
+        path: '',
+        isSeparator: true,
+        isActive: false,
+    },
+]
 
 export const userBreadcrumbs: Array<PageLink> = [
     {
@@ -49,17 +63,3 @@ export const pilotBreadcrumbs: Array<PageLink> = [
 
 
 
-export const driverBreadcrumbs: Array<PageLink> = [
-    {
-        title: 'Manage Driver',
-        path: ListPilotPath,
-        isSeparator: false,
-        isActive: false,
-    },
-    {
-        title: '',
-        path: '',
-        isSeparator: true,
-        isActive: false,
-    },
-]

@@ -1,18 +1,39 @@
 import { Formik } from 'formik';
-import { KTCard, KTCardBody, ResponeApiCheck, addFieldsToFormData, initialResponseError } from '../../../../../../../_metronic/helpers';
+import { KTCard, KTCardBody, QUERIES, ResponeApiCheck, addFieldsToFormData, initialResponseError, isNotEmpty } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
 import { roleSchema } from './validationForm';
-import { update } from '../core/_requests';
+import { getDriver, update } from '../core/_requests';
 import { useLocation } from 'react-router-dom';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
 import { useNavigate } from 'react-router-dom';
-import { ListUserPath } from '../../routes/RoutesNames';
+import { ListDriverPath } from '../../routes/RoutesNames';
+import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 const Edit = () => {
     const navigate=useNavigate();
     const location = useLocation();
-    const data: any = location.state;
+    const id: any = location.state
     const { showNotification } = useNotification();
+    
 
+    const [enableApi, setEnableApi] = useState<boolean>(true)
+    const [editData, setEditData] = useState(null);
+    const { data, isLoading } = useQuery(
+      `${QUERIES.MANAGE_DRIVER_EDIT_LIST_VALUES}- ${id}`,
+      () => {
+        return getDriver(id)
+      },
+      {
+        enabled: isNotEmpty(id) && enableApi,
+      }
+    )
+    useEffect(() => {
+      if (data) {
+        setEditData(data?.data)
+        setEnableApi(false)
+  
+      }
+    }, [data])
     return (
         <KTCard>
 
@@ -20,7 +41,7 @@ const Edit = () => {
                 <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
-                    initialValues={data}
+                    initialValues={editData}
                     initialStatus={{ edit: true }}
                     onSubmit={async (values, { setSubmitting }) => {
                         const formData = new FormData();
@@ -29,7 +50,7 @@ const Edit = () => {
                         try {
                             const res: ResponeApiCheck = await update(formData);
                             if(res.result=='success'){
-                                navigate(ListUserPath)
+                                navigate(ListDriverPath)
                             }
                             showNotification(res)
                         } catch (ex) {

@@ -1,11 +1,10 @@
-
-import axios, { AxiosResponse } from 'axios'
-import { ConvertStringToObject, ID, ResponeApiCheck, } from '../../../../../../../_metronic/helpers'
-import {  User, UserQueryResponse } from './_models'
+import axios, {AxiosResponse} from 'axios'
+import {ConvertStringToObject, ID, ResponeApiCheck} from '../../../../../../../_metronic/helpers'
+import {Driver, UserQueryResponse} from './_models'
 const getList = (query: string, page: number): Promise<UserQueryResponse> => {
   return axios
-    .post(`list_users?${'page=' + page}`, {
-      ...ConvertStringToObject(query)
+    .post(`list_driver?${'page=' + page}`, {
+      ...ConvertStringToObject(query),
     })
     .then((d: any) => {
       return {
@@ -14,34 +13,37 @@ const getList = (query: string, page: number): Promise<UserQueryResponse> => {
           pagination: {
             page_num: d.data?.data?.current_page,
             page_size: d.data?.data?.per_page,
-            links: d.data?.data?.links
-          }
-        }
+            links: d.data?.data?.links,
+          },
+        },
       }
     })
 }
 
 const create = (object: any) => {
   return axios
-    .post('store_user', object)
+    .post('store_driver', object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   //.then((response: Response<VehicleType>) => response.data)
 }
 
 const update = (object: any) => {
-  return axios.post(`update_user/${object.id}`, object)
+  return axios
+    .post(`update_driver/${object.id}`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   // .then((response: ResponeApiCheck) => response)
 }
 
-
 const destroy = (id: ID): Promise<void> => {
-  return axios.post(`${'update_user'}/${id}`).then(() => { })
+  return axios.post(`${'update_driver'}/${id}`).then(() => {})
 }
 
 const destroySelectedItems = (selectedIds: Array<ID>): Promise<void> => {
-  const requests = selectedIds.map((id) => axios.post(`${'update_user'}/${id}`))
-  return axios.all(requests).then(() => { })
+  const requests = selectedIds.map((id) => axios.post(`${'update_driver'}/${id}`))
+  return axios.all(requests).then(() => {})
+}
+const getDriver = (id: ID): Promise<any> => {
+  return axios.get(`${'one_driver'}/${id}`).then((response) => response.data)
 }
 
-export { getList, destroy, destroySelectedItems, create, update }
+export {getList, destroy, destroySelectedItems, create, update,getDriver}

@@ -1,17 +1,17 @@
 import { ID, Response } from '../../../../../../../_metronic/helpers'
 
 export type SummeryReport = {
-  customer: string,
-  year: string,
-  month: string,
-  status_1:any[],
-  count_status_1: number,
-  status_2:any[],
-  count_status_2: number,
-  status_0:any[],
-  count_status_0: number,
-  status_4:any[],
-  count_status_4: number,
+  deviceName: string,
+  startTime: string,
+  endTime: string,
+  averageSpeed:string,
+  maxSpeed:string,
+  distance: string,
+  startOdometer:string,
+  endOdometer:string,
+  engineHours:string,
+  spentFuel: string,
 }
 
 export type TripCustomerReportQueryResponse = Response<Array<SummeryReport>>
+

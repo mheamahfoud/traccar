@@ -1,12 +1,12 @@
 import { Formik } from 'formik';
 import { KTCard, KTCardBody, ResponeApiCheck, addFieldsToFormData, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
-import { initialVehicleModel } from '../core/_models';
+import { initialDriverModel } from '../core/_models';
 import { roleSchema } from './validationForm';
 import { create } from '../core/_requests';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
 import { useNavigate } from 'react-router-dom';
-import { ListUserPath } from '../../routes/RoutesNames';
+import { ListDriverPath } from '../../routes/RoutesNames';
 
 const Add = () => {
     const navigate=useNavigate();
@@ -18,7 +18,7 @@ const Add = () => {
                 <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
-                    initialValues={initialVehicleModel}
+                    initialValues={initialDriverModel}
                     initialStatus={{ edit: false }}
                     onSubmit={async (values, { setSubmitting }) => {
                         const formData = new FormData();
@@ -27,7 +27,7 @@ const Add = () => {
                         try {
                             const res: ResponeApiCheck = await create(formData);
                             if(res.result=='success'){
-                                navigate(ListUserPath)
+                                navigate(ListDriverPath)
                             }
                             showNotification(res)
                         } catch (ex) {

@@ -14,7 +14,7 @@ export const ReportTripDriverPath = baseRoute + 'trip-driver-report';
 export const ReportTripCustomerPath = baseRoute + 'trip-customer-report';
 export const ReporSummeryPath = baseRoute + 'summery-report';
 
-
+export const ReporShiftDriveryPath = baseRoute + 'shift-driver-report';
 export const Breadcrumbs: Array<PageLink> = [
   {
     title: 'Reports',
@@ -126,6 +126,20 @@ export const summeryReportBreadcrumbs: Array<PageLink> = [
   {
     title: 'Manage Summery Report',
     path: ReporSummeryPath,
+    isSeparator: false,
+    isActive: false,
+  },
+  {
+    title: '',
+    path: '',
+    isSeparator: true,
+    isActive: false,
+  },
+]
+export const shiftDriverReportBreadcrumbs: Array<PageLink> = [
+  {
+    title: 'Manage Shift Driver  Report',
+    path: ReporShiftDriveryPath,
     isSeparator: false,
     isActive: false,
   },

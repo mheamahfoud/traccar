@@ -34,7 +34,7 @@ const List = () => {
   )
 }
 
-const ManageDriverWrapper = () => (
+const   ShiftDriverReportWrapper = () => (
   <QueryRequestProvider>
     <QueryResponseProvider>
       <ListViewProvider>
@@ -44,4 +44,4 @@ const ManageDriverWrapper = () => (
   </QueryRequestProvider>
 )
 
-export { ManageDriverWrapper }
+export { ShiftDriverReportWrapper }

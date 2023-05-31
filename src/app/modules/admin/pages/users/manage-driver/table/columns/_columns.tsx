@@ -23,7 +23,10 @@ const columnsTable :  ReadonlyArray<Column<User>> = [
     accessor: 'name',
   },
 
- 
+  {
+    Header: (props) => <CustomHeader<User>  tableProps={props} title={<Localize value='mobile' />} className='min-w-125px' />,
+    accessor: 'mobile',
+  },
   {
     Header: (props) => <CustomHeader<User>  tableProps={props} title={<Localize value='email' />} className='min-w-125px' />,
     accessor: 'email',
@@ -34,6 +37,13 @@ const columnsTable :  ReadonlyArray<Column<User>> = [
     Cell: ({...props}) => <CustomCellDate date={props.data[props.row.index]?.created_at} />,
     
   },
+  // {
+  //   Header: (props) => (
+  //     <CustomHeader<VehicleType>  tableProps={props} title= {<Localize value='is_enable' /> }   className='min-w-125px' />
+  //   ),
+  //   id: 'isenable',
+  //   Cell: ({...props}) => <EnableCell isenable={props.data[props.row.index].isenable} />,
+  // },
   {
     Header: (props) => (
       <CustomHeader<User>  tableProps={props} title='Actions' className='text-end min-w-100px' />

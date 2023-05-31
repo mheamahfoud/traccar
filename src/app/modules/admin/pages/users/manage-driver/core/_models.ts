@@ -1,9 +1,10 @@
 import { ID, Response } from '../../../../../../../_metronic/helpers'
 
-export type User = {
+export type Driver = {
   id: number,
   name: string,
   email: string,
+  mobile:string,
   created_at: string,
   group_id:string
 
@@ -12,12 +13,13 @@ export type User = {
 }
 
 
-export type UserQueryResponse = Response<Array<User>>
+export type UserQueryResponse = Response<Array<Driver>>
 
-export const initialVehicleModel: User = {
+export const initialDriverModel: Driver = {
   "id": null,
   "name": null,
   "email": null,
+  "mobile":null,
   "created_at": null,
   "group_id":null
 

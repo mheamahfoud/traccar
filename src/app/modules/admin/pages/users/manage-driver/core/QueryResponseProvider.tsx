@@ -13,11 +13,11 @@ import {
 } from '../../../../../../../_metronic/helpers'
 
 import { getList} from './_requests'
-import { User } from './_models'
+import { Driver } from './_models'
 import { useQueryRequest } from './QueryRequestProvider'
 
 
-const QueryResponseContext = createResponseContext<User>(initialQueryResponse)
+const QueryResponseContext = createResponseContext<Driver>(initialQueryResponse)
 const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
 
   const { state } = useQueryRequest()
@@ -36,7 +36,7 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
     refetch,
     data: response,
   } = useQuery(
-    `${QUERIES.MANAGE_USERS_LIST_VALUES}-${query}`,
+    `${QUERIES.MANAGE_DRIVERS_LIST_VALUES}-${query}`,
     () => {
       return getList(query,state.page_num)
     },
