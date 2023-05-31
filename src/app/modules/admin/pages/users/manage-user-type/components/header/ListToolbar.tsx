@@ -1,13 +1,15 @@
 import { KTIcon } from '../../../../../../../../_metronic/helpers'
 import { ListFilter } from './ListFilter';
 import { useNavigate } from "react-router-dom";
-import {  AddUserPath, } from '../../../routes/RoutesNames';
+import {  AddUserTypePath, } from '../../../routes/RoutesNames';
 import { useIntl } from 'react-intl';
+import { useParams } from 'react-router-dom'
 const ListToolbar = () => {
+  const { id } = useParams();
   const intl = useIntl();
   const navigate = useNavigate();
   const handleAdd = () => {
-    navigate(AddUserPath)
+    navigate(AddUserTypePath,{state:id})
   }
 
   return (

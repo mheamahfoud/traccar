@@ -6,7 +6,7 @@ import {ID, QUERIES, optionAlertConfirm} from '../../../../../../../../_metronic
 import {useQueryResponse, useQueryResponseData, useQueryResponseSetLoading} from '../../core/QueryResponseProvider'
 import {destroy} from '../../core/_requests'
 import Swal from 'sweetalert2'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import {EditUserTypePath} from '../../../routes/RoutesNames'
 import {useIntl} from 'react-intl'
 import {ActionButton} from '../../../../../components/buttons/ActionButton'
@@ -23,13 +23,15 @@ const ActionsCell: FC<Props> = ({data}) => {
   const {query} = useQueryResponse()
   const items = useQueryResponseData()
   const queryClient = useQueryClient()
-  const intl = useIntl()
+  const intl = useIntl();
+  const { id } = useParams();
   useEffect(() => {
     MenuComponent.reinitialization()
   }, [])
 
   const handleEdit = () => {
-    navigate(EditUserTypePath, {state: data})
+    let temp = {data:data ,type_id:id}
+    navigate(EditUserTypePath, {state: temp})
   }
 
   const handleDelete = () => {

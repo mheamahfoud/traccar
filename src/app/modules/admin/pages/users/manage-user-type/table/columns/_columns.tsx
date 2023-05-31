@@ -6,7 +6,7 @@ import {SelectionHeader} from './SelectionHeader'
 import { CustomHeader } from './CustomHeader'
 import {User} from '../../core/_models'
 import { Localize } from '../../../../../../../../_metronic/i18n/Localize'
-import { CustomCellDate } from './CustomCellDate'
+import { CustomCell  } from './CustomCell'
 const columnsTable :  ReadonlyArray<Column<User>> = [
   {
     Header: (props) => <SelectionHeader tableProps={props} />,
@@ -35,7 +35,7 @@ const columnsTable :  ReadonlyArray<Column<User>> = [
   {
     Header: (props) => <CustomHeader<User>  tableProps={props} title={<Localize value='gender' />} className='min-w-125px' />,
     id: 'gender',
-    Cell: ({...props}) => <CustomCell data={props.data[props.row.index]?.gender} />,
+    Cell: ({...props}) => <CustomCell  gender={props.data[props.row.index]?.gender} />,
   },
  
   {

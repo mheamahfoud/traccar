@@ -5,12 +5,14 @@ import { initialUserTypeeModel } from '../core/_models';
 import { roleSchema } from './validationForm';
 import { create } from '../core/_requests';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ListUserTypePath } from '../../routes/RoutesNames';
 
 const Add = () => {
     const navigate=useNavigate();
     const { showNotification } = useNotification();
+    const location = useLocation();
+    const id :any= location.state;
     return (
         <KTCard>
 
@@ -18,14 +20,14 @@ const Add = () => {
                 <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
-                    initialValues={initialUserTypeeModel}
+                    initialValues={{...initialUserTypeeModel,user_type:id}}
                     initialStatus={{ edit: false }}
                     onSubmit={async (values, { setSubmitting }) => {
                         setSubmitting(true)
                         try {
                             const res: ResponeApiCheck = await create(values);
                             if(res.result=='success'){
-                                navigate(ListUserTypePath)
+                                navigate(ListUserTypePath +'/'+ id)
                             }
                             showNotification(res)
                         } catch (ex) {

@@ -118,7 +118,7 @@ const UsersPage = () => {
           }
         />
         <Route
-          path='edit-pilot'
+          path='edit-user-type'
           element={
             <>
               <PageTitle breadcrumbs={userBreadcrumbs}>

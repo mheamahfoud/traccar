@@ -21,9 +21,9 @@ const getList = (query: string, page: number ,id :ID): Promise<UserTypeQueryResp
     })
 }
 
-const create = (object: any , id :ID) => {
+const create = (object: any) => {
   return axios
-    .post(`store_change_users/${id}`, object)
+    .post(`store_change_users`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   //.then((response: Response<VehicleType>) => response.data)
 }

@@ -43,15 +43,8 @@ const Form: FC = () => {
                     <div className='row'>
                         <div className='col-md-6 col-sm-12'>
                             <FormikInputLabel
-                                title={intel.formatMessage({ id: 'first_name' })}
-                                name={'first_name'}
-                                isRequired={true}
-                            />
-                        </div>
-                        <div className='col-md-6 col-sm-12'>
-                            <FormikInputLabel
-                                title={intel.formatMessage({ id: 'last_name' })}
-                                name={'last_name'}
+                                title={intel.formatMessage({ id: 'name' })}
+                                name={'name'}
                                 isRequired={true}
                             />
                         </div>
@@ -63,37 +56,35 @@ const Form: FC = () => {
                             />
                         </div>
                         <div className='col-md-6 col-sm-12'>
-                            <FormikSelectInput
-                                title={intel.formatMessage({ id: 'role' })}
-                                name={'role_id'}
+                            <FormikInputLabel
+                                title={intel.formatMessage({ id: 'mobile' })}
+                                name={'mobile'}
                                 isRequired={false}
-                                options={[{
-                                    value: 1,
-                                    text: 'Admin'
-                                },
-                                {
-                                    value: 2,
-                                    text: 'Super Admin'
-
-                                }]}
                             />
                         </div>
                         <div className='col-md-6 col-sm-12'>
-                            <FormikSelectInput
-                                title={intel.formatMessage({ id: 'group_vehcile' })}
-                                name={'group_id'}
-                                isRequired={false}
-                                options={vechielGroup || []}
+                            <FormikInputLabel
+                                title={intel.formatMessage({ id: 'password' })}
+                                name={'password'}
+                                isRequired={true}
                             />
                         </div>
-                        {/* {status != 'edit' && <div className='col-md-6 col-sm-12'>
-                            <FormikFile
-                                title={intel.formatMessage({ id: 'image' })}
-                                name={'image'}
+
+                        <div className='col-md-6 col-sm-12'>
+                            <FormikSelectInput
+                                title={intel.formatMessage({ id: 'gender' })}
+                                name={'gender'}
                                 isRequired={false}
-                                fieldFile={ProfileImage}
+                                options={[
+                                    { value: 1, text: 'Male' },
+                                    {
+                                        value: 2,
+                                        text: 'Female',
+                                    },
+                                ]}
                             />
-                        </div>} */}
+                        </div>
+
                     </div>
 
 

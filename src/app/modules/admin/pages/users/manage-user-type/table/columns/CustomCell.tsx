@@ -15,4 +15,4 @@ const CustomCell: FC<Props> = ({ gender }) => {
 
 
 
-export { CustomCell }
+export { CustomCell  }

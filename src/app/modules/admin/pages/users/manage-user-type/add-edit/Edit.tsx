@@ -6,7 +6,7 @@ import { update } from '../core/_requests';
 import { useLocation } from 'react-router-dom';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
 import { useNavigate } from 'react-router-dom';
-import { ListUserPath } from '../../routes/RoutesNames';
+import { ListUserTypePath } from '../../routes/RoutesNames';
 const Edit = () => {
     const navigate=useNavigate();
     const location = useLocation();
@@ -20,16 +20,14 @@ const Edit = () => {
                 <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
-                    initialValues={data}
+                    initialValues={data?.data}
                     initialStatus={{ edit: true }}
                     onSubmit={async (values, { setSubmitting }) => {
-                        const formData = new FormData();
-                        addFieldsToFormData(formData,values )
                         setSubmitting(true)
                         try {
-                            const res: ResponeApiCheck = await update(formData);
+                            const res: ResponeApiCheck = await update(values);
                             if(res.result=='success'){
-                                navigate(ListUserPath)
+                                navigate(ListUserTypePath+'/'+ data?.type_id)
                             }
                             showNotification(res)
                         } catch (ex) {
