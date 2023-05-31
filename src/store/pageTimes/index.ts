@@ -1,10 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { GetPageTimes } from "../../services/traccargps";
+import { GetUserTypes } from "../../services/sidebar";
+interface userType {
+    id: number,
+    name: string
+}
 
 interface PageTImeState {
     loading: boolean,
     landingTime: number,
     destinationTime: number,
+    userTypes: userType[],
     error: string
 }
 const initialState: PageTImeState = {
@@ -12,6 +18,7 @@ const initialState: PageTImeState = {
     loading: false,
     landingTime: 5,
     destinationTime: 3,
+    userTypes: []
 }
 
 const { reducer, actions } = createSlice({
@@ -38,6 +45,25 @@ const { reducer, actions } = createSlice({
         })
 
         builder.addCase(GetPageTimes.rejected, (state, { payload }) => {
+            state.loading = false;
+        })
+
+        builder.addCase(GetUserTypes.pending, (state) => {
+            state.loading = true;
+        })
+
+        builder.addCase(GetUserTypes.fulfilled, (state, { payload }) => {
+            state.loading = false;
+            state.userTypes = payload.map((item) => {
+                return {
+                    id: item.id,
+                    name: item.name
+                }
+            })
+         
+        })
+
+        builder.addCase(GetUserTypes.rejected, (state, { payload }) => {
             state.loading = false;
         })
 

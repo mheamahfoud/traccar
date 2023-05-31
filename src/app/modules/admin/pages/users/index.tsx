@@ -8,17 +8,20 @@ import EditDriver from './manage-driver/add-edit/Edit'
 import AddUser from './manage-user/add-edit/Add'
 import EditUser from './manage-user/add-edit/Edit'
 
-import AddPilot from './manage-pilot/add-edit/Add'
-import EditPilot from './manage-pilot/add-edit/Edit'
+import AddUserType from './manage-user-type/add-edit/Add'
+import EditUserType from './manage-user-type/add-edit/Edit'
 
 import {ManageUsertWrapper} from './manage-user/List'
-import {ManagePilotWrapper} from './manage-pilot/List'
+import {ManageUserTypeWrapper} from './manage-user-type/List'
 
 import {ListUserPath, driverBreadcrumbs, userBreadcrumbs} from './routes/RoutesNames'
 import {ManageDriverWrapper} from './manage-driver/List'
+import { useSelector } from 'react-redux'
 
 const UsersPage = () => {
-  const intl = useIntl()
+  const intl = useIntl();
+  const userTypes = useSelector((state: any) => state.pageTimeManager?.userTypes);
+
   return (
     <Routes>
       <Route element={<Outlet />}>
@@ -93,24 +96,24 @@ const UsersPage = () => {
           }
         />
         <Route
-          path='manage-pilot'
+          path='manage-user-type/:id'
           element={
             <>
               <PageTitle breadcrumbs={userBreadcrumbs}>
-                {intl.formatMessage({id: 'pilot'})}
+                {intl.formatMessage({id: 'user_type'})}
               </PageTitle>
-              <ManagePilotWrapper />
+              <ManageUserTypeWrapper />
             </>
           }
         />
         <Route
-          path='add-pilot'
+          path='add-user-type'
           element={
             <>
               <PageTitle breadcrumbs={userBreadcrumbs}>
-                {intl.formatMessage({id: 'add_object'}, {name: intl.formatMessage({id: 'pilot'})})}
+                {intl.formatMessage({id: 'add_object'}, {name: intl.formatMessage({id: 'user_type'})})}
               </PageTitle>
-              <AddPilot />
+              <AddUserType />
             </>
           }
         />
@@ -119,9 +122,9 @@ const UsersPage = () => {
           element={
             <>
               <PageTitle breadcrumbs={userBreadcrumbs}>
-                {intl.formatMessage({id: 'edit_object'}, {name: intl.formatMessage({id: 'pilot'})})}{' '}
+                {intl.formatMessage({id: 'edit_object'}, {name: intl.formatMessage({id: 'user_type'})})}{' '}
               </PageTitle>
-              <EditPilot />
+              <EditUserType />
             </>
           }
         />

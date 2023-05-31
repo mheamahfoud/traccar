@@ -16,6 +16,7 @@ import { WithChildren } from '../../../../_metronic/helpers'
 import { useDispatch } from 'react-redux'
 import { sessionActions } from '../../../../store/gps/sessions'
 import { useEffectAsync } from '../../../../reactHelper'
+import { GetUserTypes } from '../../../../services/sidebar'
 
 type AuthContextProps = {
   auth: AuthModel | undefined,
@@ -80,7 +81,16 @@ const AuthInit: FC<WithChildren> = ({ children }) => {
     const requestUser = async (apiToken: string) => {
       try {
 
+        const resposeServer=await getServerGPS();
+        dispatch(sessionActions.updateServer(resposeServer));
 
+        const resposeSession :any =await getSessionGPS();
+        dispatch(sessionActions.updateUser(resposeSession));
+
+  
+        dispatch(GetUserTypes());
+
+       
         // const resposeServer=await getServerGPS();
         // dispatch(sessionActions.updateServer(resposeServer));
 

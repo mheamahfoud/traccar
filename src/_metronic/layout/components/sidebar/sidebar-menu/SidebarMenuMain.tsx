@@ -1,12 +1,14 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react'
-import {useIntl} from 'react-intl'
-import {KTIcon} from '../../../../helpers'
-import {SidebarMenuItemWithSub} from './SidebarMenuItemWithSub'
-import {SidebarMenuItem} from './SidebarMenuItem'
+import { useIntl } from 'react-intl'
+import { KTIcon } from '../../../../helpers'
+import { SidebarMenuItemWithSub } from './SidebarMenuItemWithSub'
+import { SidebarMenuItem } from './SidebarMenuItem'
+import { useSelector } from 'react-redux'
 
 const SidebarMenuMain = () => {
   const intl = useIntl()
+  const userTypes = useSelector((state: any) => state.pageTimeManager?.userTypes);
 
   return (
     <>
@@ -30,29 +32,37 @@ const SidebarMenuMain = () => {
       <SidebarMenuItemWithSub
         to='/admin/users'
         icon='abstract-28'
-        title={intl.formatMessage({id: 'manage_object'}, {name: intl.formatMessage({id: 'user'})})}
+        title={intl.formatMessage({ id: 'manage_object' }, { name: intl.formatMessage({ id: 'user' }) })}
         fontIcon='bi-layers'
       >
         <SidebarMenuItem
           to='/admin/users/manage-driver'
-          title={intl.formatMessage({id: 'driver'})}
+          title={intl.formatMessage({ id: 'driver' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/users/manage-user'
-          title={intl.formatMessage({id: 'user'})}
+          title={intl.formatMessage({ id: 'user' })}
           hasBullet={true}
         />
-        <SidebarMenuItem
-          to='/admin/users/manage-pilot'
-          title={intl.formatMessage({id: 'pilot'})}
-          hasBullet={true}
-        />
-        <SidebarMenuItem
+        {
+          userTypes.map((item) => {
+            return (
+              <SidebarMenuItem
+                to={'/admin/users/manage-user-type/'  + item.id}
+                title={item.name }
+                hasBullet={true}
+              />
+            )
+
+          })
+        }
+
+        {/* <SidebarMenuItem
           to='/admin/users/manage-hostess'
-          title={intl.formatMessage({id: 'hostess'})}
+          title={intl.formatMessage({ id: 'hostess' })}
           hasBullet={true}
-        />
+        /> */}
       </SidebarMenuItemWithSub>
 
       <SidebarMenuItemWithSub
@@ -63,32 +73,32 @@ const SidebarMenuMain = () => {
       >
         <SidebarMenuItem
           to='/admin/vehicles/manage-vehicles'
-          title={intl.formatMessage({id: 'manage_vehicles'})}
+          title={intl.formatMessage({ id: 'manage_vehicles' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/vehicles/vehicle-types'
-          title={intl.formatMessage({id: 'vehicle_types'})}
+          title={intl.formatMessage({ id: 'vehicle_types' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/vehicles/vehicle-makers'
-          title={intl.formatMessage({id: 'vehicle_makers'})}
+          title={intl.formatMessage({ id: 'vehicle_makers' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/vehicles/vehicle-models'
-          title={intl.formatMessage({id: 'vehicle_models'})}
+          title={intl.formatMessage({ id: 'vehicle_models' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/vehicles/vehicle-colors'
-          title={intl.formatMessage({id: 'vehicle_colors'})}
+          title={intl.formatMessage({ id: 'vehicle_colors' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/vehicles/vehicle-groups'
-          title={intl.formatMessage({id: 'vehicle_groups'})}
+          title={intl.formatMessage({ id: 'vehicle_groups' })}
           hasBullet={true}
         />
       </SidebarMenuItemWithSub>
@@ -97,8 +107,8 @@ const SidebarMenuMain = () => {
         to='/admin/stations/manage-stations'
         icon='abstract-28'
         title={intl.formatMessage(
-          {id: 'manage_object'},
-          {name: intl.formatMessage({id: 'stations'})}
+          { id: 'manage_object' },
+          { name: intl.formatMessage({ id: 'stations' }) }
         )}
         fontIcon='bi-layers'
       />
@@ -106,8 +116,8 @@ const SidebarMenuMain = () => {
         to='/admin/terminals/manage-terminals'
         icon='abstract-28'
         title={intl.formatMessage(
-          {id: 'manage_object'},
-          {name: intl.formatMessage({id: 'terminals'})}
+          { id: 'manage_object' },
+          { name: intl.formatMessage({ id: 'terminals' }) }
         )}
         fontIcon='bi-layers'
       />
@@ -115,7 +125,7 @@ const SidebarMenuMain = () => {
       <SidebarMenuItem
         to='/admin/trips/manage-trips'
         icon='abstract-28'
-        title={intl.formatMessage({id: 'manage_object'}, {name: intl.formatMessage({id: 'trips'})})}
+        title={intl.formatMessage({ id: 'manage_object' }, { name: intl.formatMessage({ id: 'trips' }) })}
         fontIcon='bi-layers'
       />
 
@@ -123,19 +133,19 @@ const SidebarMenuMain = () => {
         to='/admin/working-days'
         icon='abstract-28'
         title={intl.formatMessage(
-          {id: 'manage_object'},
-          {name: intl.formatMessage({id: 'working_days'})}
+          { id: 'manage_object' },
+          { name: intl.formatMessage({ id: 'working_days' }) }
         )}
         fontIcon='bi-layers'
       >
         <SidebarMenuItem
           to='/admin/working-days/manage-cars'
-          title={intl.formatMessage({id: 'cars_working_days'})}
+          title={intl.formatMessage({ id: 'cars_working_days' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/working-days/manage-drivers'
-          title={intl.formatMessage({id: 'drivers_working_days'})}
+          title={intl.formatMessage({ id: 'drivers_working_days' })}
           hasBullet={true}
         />
       </SidebarMenuItemWithSub>
@@ -144,73 +154,73 @@ const SidebarMenuMain = () => {
         to='/admin/setting'
         icon='abstract-28'
         title={intl.formatMessage(
-          {id: 'manage_object'},
-          {name: intl.formatMessage({id: 'setting'})}
+          { id: 'manage_object' },
+          { name: intl.formatMessage({ id: 'setting' }) }
         )}
         fontIcon='bi-layers'
       >
         <SidebarMenuItem
           to='/admin/setting/work-time'
-          title={intl.formatMessage({id: 'work_time'})}
+          title={intl.formatMessage({ id: 'work_time' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/setting/infraction-type'
-          title={intl.formatMessage({id: 'infraction_type'})}
+          title={intl.formatMessage({ id: 'infraction_type' })}
           hasBullet={true}
         />
 
         <SidebarMenuItem
           to='/admin/setting/reason-cancel'
-          title={intl.formatMessage({id: 'reason_cancel'})}
+          title={intl.formatMessage({ id: 'reason_cancel' })}
           hasBullet={true}
         />
 
         <SidebarMenuItem
           to='/admin/setting/timezone'
-          title={intl.formatMessage({id: 'timezone'})}
+          title={intl.formatMessage({ id: 'timezone' })}
           hasBullet={true}
         />
 
         <SidebarMenuItem
           to='/admin/setting/country'
-          title={intl.formatMessage({id: 'country'})}
+          title={intl.formatMessage({ id: 'country' })}
           hasBullet={true}
         />
 
         <SidebarMenuItem
           to='/admin/setting/city'
-          title={intl.formatMessage({id: 'city'})}
+          title={intl.formatMessage({ id: 'city' })}
           hasBullet={true}
         />
 
         <SidebarMenuItem
           to='/admin/setting/group'
-          title={intl.formatMessage({id: 'group'})}
+          title={intl.formatMessage({ id: 'group' })}
           hasBullet={true}
         />
 
         <SidebarMenuItem
           to='/admin/setting/maintenance-status'
-          title={intl.formatMessage({id: 'maintenance_status'})}
+          title={intl.formatMessage({ id: 'maintenance_status' })}
           hasBullet={true}
         />
 
         <SidebarMenuItem
           to='/admin/setting/workshop'
-          title={intl.formatMessage({id: 'workshop'})}
+          title={intl.formatMessage({ id: 'workshop' })}
           hasBullet={true}
         />
 
         <SidebarMenuItem
           to='/admin/setting/user-type'
-          title={intl.formatMessage({id: 'user_type'})}
+          title={intl.formatMessage({ id: 'user_type' })}
           hasBullet={true}
         />
 
         <SidebarMenuItem
           to='/admin/setting/part'
-          title={intl.formatMessage({id: 'part'})}
+          title={intl.formatMessage({ id: 'part' })}
           hasBullet={true}
         />
         {/* 
@@ -235,50 +245,50 @@ const SidebarMenuMain = () => {
       >
         <SidebarMenuItem
           to='/admin/reports/reply-map'
-          title={intl.formatMessage({id: 'reply_map'})}
+          title={intl.formatMessage({ id: 'reply_map' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/reports/trip-report'
-          title={intl.formatMessage({id: 'trip_report'})}
+          title={intl.formatMessage({ id: 'trip_report' })}
           hasBullet={true}
         />
 
         <SidebarMenuItem
           to='/admin/reports/event-report'
-          title={intl.formatMessage({id: 'event_report'})}
+          title={intl.formatMessage({ id: 'event_report' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/reports/stop-report'
-          title={intl.formatMessage({id: 'stop_report'})}
+          title={intl.formatMessage({ id: 'stop_report' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/reports/reason-report'
-          title={intl.formatMessage({id: 'reason_report'})}
+          title={intl.formatMessage({ id: 'reason_report' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/reports/trip-driver-report'
-          title={intl.formatMessage({id: 'trip_driver_report'})}
+          title={intl.formatMessage({ id: 'trip_driver_report' })}
           hasBullet={true}
         />
 
         <SidebarMenuItem
           to='/admin/reports/trip-customer-report'
-          title={intl.formatMessage({id: 'trip_customer_report'})}
+          title={intl.formatMessage({ id: 'trip_customer_report' })}
           hasBullet={true}
         />
 
         <SidebarMenuItem
           to='/admin/reports/summery-report'
-          title={intl.formatMessage({id: 'summery_report'})}
+          title={intl.formatMessage({ id: 'summery_report' })}
           hasBullet={true}
         />
         <SidebarMenuItem
           to='/admin/reports/shift-driver-report'
-          title={intl.formatMessage({id: 'shift_driver_report'})}
+          title={intl.formatMessage({ id: 'shift_driver_report' })}
           hasBullet={true}
         />
       </SidebarMenuItemWithSub>
@@ -286,21 +296,21 @@ const SidebarMenuMain = () => {
       <SidebarMenuItem
         to='/admin/path/manage-path'
         icon='abstract-28'
-        title={intl.formatMessage({id: 'manage_object'}, {name: intl.formatMessage({id: 'path'})})}
+        title={intl.formatMessage({ id: 'manage_object' }, { name: intl.formatMessage({ id: 'path' }) })}
         fontIcon='bi-layers'
       />
 
       <SidebarMenuItem
         to='/admin/ads/manage-ads'
         icon='abstract-28'
-        title={intl.formatMessage({id: 'manage_object'}, {name: intl.formatMessage({id: 'ads'})})}
+        title={intl.formatMessage({ id: 'manage_object' }, { name: intl.formatMessage({ id: 'ads' }) })}
         fontIcon='bi-layers'
       />
 
       <SidebarMenuItem
         to='/admin/public-map/all'
         icon='abstract-28'
-        title={intl.formatMessage({id: 'public_map'})}
+        title={intl.formatMessage({ id: 'public_map' })}
         fontIcon='bi-layers'
       />
 
@@ -402,4 +412,4 @@ const SidebarMenuMain = () => {
   )
 }
 
-export {SidebarMenuMain}
+export { SidebarMenuMain }

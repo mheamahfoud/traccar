@@ -10,6 +10,7 @@ import { useAuth } from '../core/Auth'
 import { AuthModel, UserModel } from '../core/_models'
 import { useDispatch } from 'react-redux'
 import { sessionActions } from '../../../../store'
+import { GetUserTypes } from '../../../../services/sidebar'
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
@@ -71,6 +72,7 @@ export function Login() {
         saveAuth(auth)
         const data: any = await getUserByToken(auth.api_token)
         setCurrentUser(data)
+        dispatch(GetUserTypes());
      //   setCurrentTime(data.path[0]?.current_time)
 
       } catch (error) {

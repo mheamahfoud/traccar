@@ -7,9 +7,9 @@ export const ListUserPath = Users + 'manage-user';
 export const AddUserPath = Users + 'add-user';
 export const EditUserPath = Users + 'edit-user';
 
-export const ListPilotPath = Users + 'manage-pilot';
-export const AddPilotPath = Users + 'add-pilot';
-export const EditPilotPath = Users + 'edit-pilot';
+export const ListPilotPath = Users + 'manage-user-type';
+export const AddPilotPath = Users + 'add-user-type';
+export const EditPilotPath = Users + 'edit-user-type';
 
 
 export const ListDriverPath = Users + 'manage-driver';

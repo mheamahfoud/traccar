@@ -1,7 +1,7 @@
-import  { useMemo } from 'react'
-import { KTCard, KTCardBody,} from '../../../../../../_metronic/helpers'
+import { useMemo } from 'react'
+import { KTCard, KTCardBody, } from '../../../../../../_metronic/helpers'
 import { ListHeader } from './components/header/ListHeader'
-import { ListViewProvider,  } from './core/ListViewProvider'
+import { ListViewProvider, } from './core/ListViewProvider'
 import { QueryRequestProvider, useQueryRequest } from './core/QueryRequestProvider'
 import { QueryResponseProvider, useQueryResponseData, useQueryResponseLoading, useQueryResponsePagination } from './core/QueryResponseProvider'
 import { columnsTable } from './table/columns/_columns'
@@ -14,9 +14,13 @@ const List = () => {
   const items = useQueryResponseData()
   const isLoading = useQueryResponseLoading()
   const pagination = useQueryResponsePagination()
-  const {updateState} = useQueryRequest()
+  const { updateState } = useQueryRequest()
   const data = useMemo(() => items, [items])
   const columns = useMemo(() => columnsTable, [])
+
+
+ 
+  
   return (
     <>
       <KTCard>
@@ -34,7 +38,7 @@ const List = () => {
   )
 }
 
-const ManagePilotWrapper = () => (
+const ManageUserTypeWrapper = () => (
   <QueryRequestProvider>
     <QueryResponseProvider>
       <ListViewProvider>
@@ -44,4 +48,4 @@ const ManagePilotWrapper = () => (
   </QueryRequestProvider>
 )
 
-export { ManagePilotWrapper }
+export { ManageUserTypeWrapper }

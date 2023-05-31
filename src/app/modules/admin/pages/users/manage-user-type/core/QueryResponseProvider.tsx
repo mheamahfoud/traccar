@@ -12,19 +12,21 @@ import {
   WithChildren,
 } from '../../../../../../../_metronic/helpers'
 
-import { getList} from './_requests'
-import { User } from './_models'
+import { getList } from './_requests'
+import { UserType } from './_models'
 import { useQueryRequest } from './QueryRequestProvider'
+import { useParams } from 'react-router-dom'
 
 
-const QueryResponseContext = createResponseContext<User>(initialQueryResponse)
+const QueryResponseContext = createResponseContext<UserType>(initialQueryResponse)
 const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
 
   const { state } = useQueryRequest()
   const [isLoading, setLoading] = useState<boolean>(false)
   const [query, setQuery] = useState<string>(stringifyRequestQuery(state))
   const updatedQuery = useMemo(() => stringifyRequestQuery(state), [state])
-
+  const { id } = useParams();
+ 
   useEffect(() => {
     if (query !== updatedQuery) {
       setQuery(updatedQuery)
@@ -38,13 +40,13 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
   } = useQuery(
     `${QUERIES.MANAGE_USERS_LIST_VALUES}-${query}`,
     () => {
-      return getList(query,state.page_num)
+      return getList(query, state.page_num ,id)
     },
     { cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false }
   )
 
   return (
-    <QueryResponseContext.Provider value={{ isLoading: isFetching||isLoading,setLoading, refetch, response, query }}>
+    <QueryResponseContext.Provider value={{ isLoading: isFetching || isLoading, setLoading, refetch, response, query }}>
       {children}
     </QueryResponseContext.Provider>
   )
@@ -80,7 +82,7 @@ const useQueryResponseLoading = (): boolean => {
   return isLoading
 }
 const useQueryResponseSetLoading = () => {
-  const {setLoading} = useQueryResponse()
+  const { setLoading } = useQueryResponse()
   return setLoading
 }
 export {

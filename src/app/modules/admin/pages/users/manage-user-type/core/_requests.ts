@@ -1,10 +1,10 @@
 
 import axios, { AxiosResponse } from 'axios'
 import { ConvertStringToObject, ID, ResponeApiCheck, } from '../../../../../../../_metronic/helpers'
-import {  User, UserQueryResponse } from './_models'
-const getList = (query: string, page: number): Promise<UserQueryResponse> => {
+import {  UserType, UserTypeQueryResponse } from './_models'
+const getList = (query: string, page: number ,id :ID): Promise<UserTypeQueryResponse> => {
   return axios
-    .post(`list_users?${'page=' + page}`, {
+    .post(`list_change_users/${id}`, {
       ...ConvertStringToObject(query)
     })
     .then((d: any) => {
@@ -21,26 +21,26 @@ const getList = (query: string, page: number): Promise<UserQueryResponse> => {
     })
 }
 
-const create = (object: any) => {
+const create = (object: any , id :ID) => {
   return axios
-    .post('store_user', object)
+    .post(store_change_users/, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   //.then((response: Response<VehicleType>) => response.data)
 }
 
 const update = (object: any) => {
-  return axios.post(`update_user/${object.id}`, object)
+  return axios.post(`update_change_users/${object.id}`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   // .then((response: ResponeApiCheck) => response)
 }
 
 
 const destroy = (id: ID): Promise<void> => {
-  return axios.post(`${'update_user'}/${id}`).then(() => { })
+  return axios.post(`${'update_change_users'}/${id}`).then(() => { })
 }
 
 const destroySelectedItems = (selectedIds: Array<ID>): Promise<void> => {
-  const requests = selectedIds.map((id) => axios.post(`${'update_user'}/${id}`))
+  const requests = selectedIds.map((id) => axios.post(`${'update_change_users'}/${id}`))
   return axios.all(requests).then(() => { })
 }
 
