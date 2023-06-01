@@ -2,12 +2,12 @@ import { KTIcon } from '../../../../../../../../_metronic/helpers'
 import { ListFilter } from './ListFilter';
 import { useNavigate } from "react-router-dom";
 import { useIntl } from 'react-intl';
-import { AddWorkingCarsPath } from '../../../routes/RoutesNames';
+import { AddWorkingDriversPath } from '../../../routes/RoutesNames';
 const ListToolbar = () => {
   const intl = useIntl();
   const navigate = useNavigate();
   const HandleAdd = () => {
-    navigate(AddWorkingCarsPath)
+    navigate(AddWorkingDriversPath)
   }
 
   return (

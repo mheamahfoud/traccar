@@ -20,8 +20,11 @@ const Edit = () => {
 
     useEffect(() => {
         if (data) {
+           console.log(data)
             setData({
-                ...data, insurance_number: data.meta_data.ins_number, exp_date: data.meta_data.ins_exp_date
+                ...data, insurance_number: data.meta_data.ins_number, exp_date: data.meta_data.ins_exp_date,
+
+                exp_name : '',exp_amount:''
             }
             )
         }
@@ -29,7 +32,7 @@ const Edit = () => {
             navigate(ListVehiclesPath)
         }
 
-    }, [data, payloadData])
+    }, [payloadData])
     const { showNotification } = useNotification();
     return (
 

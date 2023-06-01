@@ -66,7 +66,7 @@ const ActionsCell: FC<Props> = ({id}) => {
       <MenuActionWrapper>
         <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
         <MenuActionItem title={intl.formatMessage({id: 'account'})} onCLick={handleAccount} />
-        <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
+        {/* <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} /> */}
         <MenuActionItem title={intl.formatMessage({id: 'view'})} onCLick={handleView} />
       </MenuActionWrapper>
     </>

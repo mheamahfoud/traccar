@@ -36,7 +36,7 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
     refetch,
     data: response,
   } = useQuery(
-    `${QUERIES.VEHICLES_MAKER}-${query}`,
+    `${QUERIES.VEHICLES_MODELS}-${query}`,
     () => {
       return getList(query,state.page_num)
     },

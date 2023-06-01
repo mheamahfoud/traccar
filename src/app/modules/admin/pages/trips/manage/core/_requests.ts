@@ -4,7 +4,7 @@ import { ConvertStringToObject, ID, ResponeApiCheck, SelectList, } from '../../.
 import { Trip, TripQueryResponse } from './_models'
 const getList = (query: string, page: number): Promise<TripQueryResponse> => {
   return axios
-    .post(`list_trip?${'page=' + page}`, {
+    .post(`list_trip?${'page=' + 5}`, {
       ...ConvertStringToObject(query)
     })
     .then((d: any) => {
@@ -64,7 +64,7 @@ const geRegionTripCars = (region_id: string): Promise<SelectList[]> => {
       })
     })
 }
-const geRegionTrips = (region_id: string): Promise<SelectList[]> => {
+const getRegionTrips = (region_id: string): Promise<SelectList[]> => {
   return axios
     .get(`region_trip/${region_id}`)
     .then((d: any) => {
@@ -89,4 +89,18 @@ const geExternalRegionTrips = (): Promise<SelectList[]> => {
       })
     })
 }
-export { getList, destroy, destroySelectedItems, create, update,geRegionTrips,geRegionTripCars,geExternalRegionTrips,getEditTrip }
+
+
+const getRegionsByTypeList = (type_id :ID): Promise<SelectList[]> => {
+  return axios
+      .get(`list_active_region_type/${type_id}`)
+      .then((d: any) => {
+          return d.data?.data.map((item) => {
+              return {
+                  value: item.parent,
+                  text: item.name
+              }
+          })
+      })
+}
+export { getList, destroy, destroySelectedItems, create, update,getRegionTrips,geRegionTripCars,geExternalRegionTrips,getEditTrip ,getRegionsByTypeList}

@@ -31,7 +31,7 @@ const getList = (query: string): Promise<CarWorkingTimeQueryResponse> => {
 
 const create = (object: any) => {
   return axios
-    .post('store_shift_cars', object)
+    .post('store_shift_driver', object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   //.then((response: Response<VehicleType>) => response.data)
 }

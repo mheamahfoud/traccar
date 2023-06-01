@@ -10,6 +10,7 @@ import IconButton from '../../../../components/buttons/IconButton'
 import {initialPathModel, prorities} from '../core/_models'
 import {initialPath} from '../../../trips/manage/core/_models'
 import FormikInputSelectArray from '../../../../components/formik/FormikInputSelectArray'
+import FormikFile from '../../../../components/formik/FormikFile'
 
 
 const Form = ({...props}) => {
@@ -72,11 +73,11 @@ const Form = ({...props}) => {
                               </div>
 
                               <div className='col-md-6 col-sm-12'>
-                                <FormikInputLabel
-                                  title={intel.formatMessage({id: 'voice'})}
+                                <FormikFile
+                                  title={intel.formatMessage({ id: 'voice' })}
                                   name={`terminal.${index}.voice`}
                                   isRequired={false}
-                                />
+                                   fieldFile={`terminal.${index}.voice_file`}                                />
                               </div>
                             </div>
                             <div className='col-md-2 col-sm-12 d-flex align-items-center justify-content-evenly'>

@@ -30,7 +30,6 @@ const ActionsCell: FC<Props> = ({data}) => {
   }, [])
 
   const handleEdit = () => {
-    const data = items.find((x) => x.id == data?.id)
     navigate(EditPath, {state: data})
   }
 

@@ -200,7 +200,7 @@ const SidebarMenuMain = () => {
           hasBullet={true}
         />
 
-        <SidebarMenuItem
+        {/* <SidebarMenuItem
           to='/admin/setting/maintenance-status'
           title={intl.formatMessage({ id: 'maintenance_status' })}
           hasBullet={true}
@@ -222,7 +222,7 @@ const SidebarMenuMain = () => {
           to='/admin/setting/part'
           title={intl.formatMessage({ id: 'part' })}
           hasBullet={true}
-        />
+        /> */}
 
         <SidebarMenuItem
           to='/admin/setting/region'

@@ -57,5 +57,35 @@ export const prorities = [
   {
     value: 4,
     text: '4',
+  }
+  ,
+  {
+    value: 5,
+    text: '5',
+  },
+  ,
+  {
+    value: 6,
+    text: '6',
+  },
+  ,
+  {
+    value: 7,
+    text: '7',
+  },
+  ,
+  {
+    value: 8,
+    text: '8',
+  },
+  ,
+  {
+    value: 9,
+    text: '9',
+  },
+  ,
+  {
+    value: 10,
+    text: '10',
   },
 ]

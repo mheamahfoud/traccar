@@ -93,18 +93,18 @@ export function Login() {
       id='kt_login_signin_form'
     >
       {/* begin::Heading */}
-      <div className='text-center mb-11'>
+      {/* <div className='text-center mb-11'>
         <h1 className='text-dark fw-bolder mb-3'>Sign In</h1>
         <div className='text-gray-500 fw-semibold fs-6'>Your Social Campaigns</div>
-      </div>
+      </div> */}
       {/* begin::Heading */}
 
       {/* begin::Login options */}
       <div className='row g-3 mb-9'>
         {/* begin::Col */}
-        <div className='col-md-6'>
+        {/* <div className='col-md-6'>
           {/* begin::Google link */}
-          <a
+          {/* <a
             href='#'
             className='btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100'
           >
@@ -114,15 +114,15 @@ export function Login() {
               className='h-15px me-3'
             />
             Sign in with Google
-          </a>
-          {/* end::Google link */}
-        </div>
+          </a> */}
+          {/* end::Google link }
+        </div> */}
         {/* end::Col */}
 
         {/* begin::Col */}
-        <div className='col-md-6'>
+        {/* <div className='col-md-6'>
           {/* begin::Google link */}
-          <a
+          {/* <a
             href='#'
             className='btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100'
           >
@@ -137,17 +137,17 @@ export function Login() {
               className='theme-dark-show h-15px me-3'
             />
             Sign in with Apple
-          </a>
-          {/* end::Google link */}
-        </div>
+          </a> */}
+          {/* end::Google link }
+        </div> */}
         {/* end::Col */}
       </div>
       {/* end::Login options */}
 
       {/* begin::Separator */}
-      <div className='separator separator-content my-14'>
+      {/* <div className='separator separator-content my-14'>
         <span className='w-125px text-gray-500 fw-semibold fs-7'>Or with email</span>
-      </div>
+      </div> */}
       {/* end::Separator */}
 
       {formik.status ? (
@@ -220,9 +220,9 @@ export function Login() {
         <div />
 
         {/* begin::Link */}
-        <Link to='/auth/forgot-password' className='link-primary'>
+        {/* <Link to='/auth/forgot-password' className='link-primary'>
           Forgot Password ?
-        </Link>
+        </Link> */}
         {/* end::Link */}
       </div>
       {/* end::Wrapper */}
@@ -246,12 +246,12 @@ export function Login() {
       </div>
       {/* end::Action */}
 
-      <div className='text-gray-500 text-center fw-semibold fs-6'>
+      {/* <div className='text-gray-500 text-center fw-semibold fs-6'>
         Not a Member yet?{' '}
         <Link to='/auth/registration' className='link-primary'>
           Sign up
         </Link>
-      </div>
+      </div> */}
     </form>
   )
 }

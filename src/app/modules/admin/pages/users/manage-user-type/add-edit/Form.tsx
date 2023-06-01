@@ -62,13 +62,13 @@ const Form: FC = () => {
                                 isRequired={false}
                             />
                         </div>
-                        <div className='col-md-6 col-sm-12'>
+                   { status!= 'edit' &&    <div className='col-md-6 col-sm-12'>
                             <FormikInputLabel
                                 title={intel.formatMessage({ id: 'password' })}
                                 name={'password'}
                                 isRequired={true}
                             />
-                        </div>
+                        </div>}
 
                         <div className='col-md-6 col-sm-12'>
                             <FormikSelectInput

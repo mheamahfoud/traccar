@@ -43,7 +43,7 @@ const ListFilter = () => {
         {/* begin::Input group */}
         <div className="row">
           <div className="col-md-6 col-sm-12">
-            <InputFilter value={color} setValue={setColor} title={intl.formatMessage({ id: 'color' })} />
+            <InputFilter value={color} setValue={setColor} title={intl.formatMessage({ id: 'color' })}  type='color'/>
           </div>
           <div className="col-md-6  col-sm-12">
             <InputFilter value={name} setValue={setName} title={intl.formatMessage({ id: 'name' })} />

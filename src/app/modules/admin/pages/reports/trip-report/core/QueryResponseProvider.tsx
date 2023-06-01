@@ -27,6 +27,7 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
 
   useEffect(() => {
     if (query !== updatedQuery) {
+    
       setQuery(updatedQuery)
     }
   }, [updatedQuery])

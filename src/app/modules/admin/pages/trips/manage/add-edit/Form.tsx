@@ -12,7 +12,7 @@ import { useQuery } from 'react-query'
 import { TripType, initialPath, tripTypeList } from '../core/_models'
 import IconButton from '../../../../components/buttons/IconButton'
 import { getPassengers, getRegiosList } from '../../../core/commonRequests'
-import { geRegionTrips, geRegionTripCars, geExternalRegionTrips } from '../core/_requests'
+import { getRegionTrips, geRegionTripCars, geExternalRegionTrips, getRegionsByTypeList } from '../core/_requests'
 import FormikCustomSelectInput from '../../../../components/formik/FormikCustomSelectInput'
 import FormikMultiSelectInput from '../../../../components/formik/FormikMultiSelectInput'
 
@@ -23,12 +23,12 @@ const Form: FC = () => {
   const {
     data: regiosList,
   } = useQuery(
-    `${QUERIES.ALL_REGION_LIST_VALUES}`,
+    `${QUERIES.ALL_REGION_TYPE_LIST_VALUES}-${values['type']}`,
     () => {
-      return getRegiosList()
+      return getRegionsByTypeList(values['type'])
     },
     {
-      enabled: enableApi
+     // enabled: enableApi
     }
   )
   const {
@@ -45,7 +45,7 @@ const Form: FC = () => {
   )
 
   useEffect(() => {
-    if (regiosList && passengersList) {
+    if ( passengersList) {
       setEnableApi(false)
     }
 
@@ -121,7 +121,7 @@ const Form: FC = () => {
                               name={`path.${index}.region`}
                               isRequired={false}
                               relatedField={[`path.${index}.vehicles`, `path.${index}.fromAddresses` ]}
-                              callApi={[geRegionTripCars, geRegionTrips]}
+                              callApi={[geRegionTripCars, getRegionTrips]}
                               options={regiosList || []}
                             />
                           </div>

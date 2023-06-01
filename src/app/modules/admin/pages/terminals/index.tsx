@@ -50,7 +50,7 @@ const TerminalListPage = () => {
                   <>
                     <PageTitle breadcrumbs={Breadcrumbs}>
                       {intl.formatMessage(
-                        {id: 'add_object'},
+                        {id: 'edit_object'},
                         {name: intl.formatMessage({id: 'terminal'})}
                       )}
                     </PageTitle>
