@@ -25,10 +25,10 @@ const Form: FC = () => {
   } = useQuery(
     `${QUERIES.ALL_REGION_TYPE_LIST_VALUES}-${values['type']}`,
     () => {
-      return getRegionsByTypeList(values['type'])
+      return getRegionsByTypeList(1)
     },
     {
-     // enabled: enableApi
+     enabled: !isSubmitting
     }
   )
   const {
@@ -45,7 +45,7 @@ const Form: FC = () => {
   )
 
   useEffect(() => {
-    if ( passengersList) {
+    if ( passengersList && regiosList) {
       setEnableApi(false)
     }
 
@@ -129,7 +129,7 @@ const Form: FC = () => {
                             <FormikSelectInput
                               title={intel.formatMessage({ id: 'vehicles' })}
                               name={`path.${index}.cars_id`}
-                              isRequired={false}
+                              isRequired={true}
                               options={values['path'][index]?.vehicles || []}
                             />
                           </div>
@@ -137,16 +137,15 @@ const Form: FC = () => {
                             <FormikSelectInput
                               title={intel.formatMessage({ id: 'from_address' })}
                               name={`path.${index}.from`}
-                              isRequired={false}
+                              isRequired={true}
                               options={values['path'][index]?.fromAddresses || []}
                             />
                           </div>
                           <div className='col-md-6 col-sm-12'>
-
                             {(parseInt(values['type']) == TripType.External || parseInt(values['type']) == TripType.Internal) ? <FormikSelectInput
                               title={intel.formatMessage({ id: 'to_address' })}
                               name={`path.${index}.to`}
-                              isRequired={false}
+                              isRequired={true}
                               options={(parseInt(values['type'])=== TripType.External ? values['toAddresses'] : values['path'][index]?.fromAddresses?.map((item)=>{
                                 return {
                                   value:item.to,
@@ -215,11 +214,6 @@ const Form: FC = () => {
           </FieldArray>
 
 
-
-
-
-
-
         </div>
         {/* begin::Actions */}
         <div className='text-center pt-15'>
@@ -228,7 +222,7 @@ const Form: FC = () => {
         </div>
         {/* end::Actions */}
       </form>}
-      {(false) && <ListLoading />}
+      {(isSubmitting || !regiosList ||!passengersList) && <ListLoading />}
     </>
   )
 }

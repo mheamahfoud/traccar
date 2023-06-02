@@ -42,15 +42,16 @@ const PrivateRoutes = () => {
       //#region Admin
       {currentUser?.type == UserType.ADMIN && (
         <Route element={<MasterLayout />}>
-          <Route index element={<Navigate to='/dashboard' />} />
+              <Route path='dashboard' element={<DashboardWrapper />} />
+          {/* <Route index element={<Navigate to='/dashboard' />} />
           {/* Redirect to Dashboard after success login/registartion */}
           <Route path='auth/*' element={<Navigate to='/dashboard' />} />
-          {/* Pages */}
+          {/* Pages }
           <Route path='/my-page' element={<MyPage />} />
 
           <Route path='dashboard' element={<DashboardWrapper />} />
           <Route path='builder' element={<BuilderPageWrapper />} />
-          <Route path='menu-test' element={<MenuTestPage />} />
+          <Route path='menu-test' element={<MenuTestPage />} /> */}
           {/* Lazy Modules */}
           <Route
             path='crafted/pages/profile/*'

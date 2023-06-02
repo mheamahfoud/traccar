@@ -16,13 +16,12 @@ import FormikFile from '../../../../components/formik/FormikFile'
 const Form = ({...props}) => {
   const {terminalList} = props
   const intel = useIntl()
-
   const {handleSubmit, resetForm, isSubmitting, isValid, touched, values, setFieldValue} =
     useFormikContext()
   return (
     <>
       {(
-        <form className='form' onSubmit={handleSubmit} noValidate>
+        <form className='form' onSubmit={handleSubmit}  noValidate encType="multipart/form-data">
           {/* begin::Scroll */}
           <div className='d-flex flex-column scroll-y me-n7 pe-7'>
             <div className='row'>
@@ -75,9 +74,9 @@ const Form = ({...props}) => {
                               <div className='col-md-6 col-sm-12'>
                                 <FormikFile
                                   title={intel.formatMessage({ id: 'voice' })}
-                                  name={`terminal.${index}.voice`}
+                                  name={`terminal.${index}.voice_file`}
                                   isRequired={false}
-                                   fieldFile={`terminal.${index}.voice_file`}                                />
+                                   fieldFile={`terminal.${index}.voice`}                                />
                               </div>
                             </div>
                             <div className='col-md-2 col-sm-12 d-flex align-items-center justify-content-evenly'>

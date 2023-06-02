@@ -4,7 +4,7 @@ import { ConvertStringToObject, ID, ResponeApiCheck, SelectList, } from '../../.
 import { Trip, TripQueryResponse } from './_models'
 const getList = (query: string, page: number): Promise<TripQueryResponse> => {
   return axios
-    .post(`list_trip?${'page=' + 5}`, {
+    .post(`list_trip?${'page=' + page}`, {
       ...ConvertStringToObject(query)
     })
     .then((d: any) => {
@@ -83,7 +83,7 @@ const geExternalRegionTrips = (): Promise<SelectList[]> => {
     .then((d: any) => {
       return d.data?.data.map((item) => {
         return {
-          value: item.id,
+          value: item.parent,
           text: item.name
         }
       })

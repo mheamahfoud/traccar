@@ -144,6 +144,7 @@ const Main = () => {
         Authorization: `Basic ${auth}`,
       },
     });
+    
     if (response.ok) {
       dispatch(devicesActions.refresh(await response.json()));
     

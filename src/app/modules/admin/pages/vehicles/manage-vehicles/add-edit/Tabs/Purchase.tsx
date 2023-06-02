@@ -2,8 +2,9 @@ import React from 'react';
 import FormikInputLabel from '../../../../../components/formik/FormikInputLabel';
 import FormikFile from '../../../../../components/formik/FormikFile';
 import { useIntl } from 'react-intl';
+import { ManagePurshaseInfoListWrapper } from '../../purchase-info/List';
 
-const Purchase = () => {
+const Purchase = ({ purshase_info }) => {
     const intel = useIntl()
     return (
         <div
@@ -28,9 +29,13 @@ const Purchase = () => {
                     />
                 </div>
 
-            
+
 
             </div>
+            <h3>{intel.formatMessage({ id:'purchase_info'})}</h3>
+        <div className='separator separator-dashed my-5'></div>
+          { purshase_info.length > 0 &&  <ManagePurshaseInfoListWrapper data={purshase_info} />}
+
 
         </div>
     );

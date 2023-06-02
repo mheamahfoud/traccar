@@ -17,22 +17,26 @@ const Edit = () => {
     const location = useLocation();
     const payloadData = location.state;
     const [data, setData] = useState<any>(payloadData);
-
+    const [purshase_info, setPurshaseInfo] = useState<any>([]);
     useEffect(() => {
         if (data) {
-           console.log(data)
+            console.log(data)
             setData({
                 ...data, insurance_number: data.meta_data.ins_number, exp_date: data.meta_data.ins_exp_date,
 
-                exp_name : '',exp_amount:''
+                exp_name: '', exp_amount: '',
+                average:data.meta_data?.average
             }
             )
+            setPurshaseInfo(data.meta_data.purchase_info)
         }
         else {
             navigate(ListVehiclesPath)
         }
 
     }, [payloadData])
+
+ 
     const { showNotification } = useNotification();
     return (
 
@@ -63,7 +67,7 @@ const Edit = () => {
             }}
         >
 
-            <Form />
+            <Form  purshase_info={purshase_info}/>
 
         </Formik>
 

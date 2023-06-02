@@ -36,7 +36,8 @@ const Edit = () => {
   )
   useEffect(() => {
     if (data) {
-      setEnableApi(false)
+      setEnableApi(false);
+      console.log(data)
 
     }
   }, [data])

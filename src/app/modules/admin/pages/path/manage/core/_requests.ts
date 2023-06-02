@@ -21,7 +21,7 @@ const getList = (query: string, page: number): Promise<PathQueryResponse> => {
     })
 }
 
-const create = (object: Path) => {
+const create = (object: any) => {
   return axios
     .post('store_path', object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)

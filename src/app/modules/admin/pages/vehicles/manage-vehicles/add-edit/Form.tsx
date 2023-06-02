@@ -9,8 +9,11 @@ import {TabWrapper} from '../../../../components/appbar/TabWrapper'
 import Insurance from './Tabs/Insurance'
 import Purchase from './Tabs/Purchase'
 import PhysicalInfo from './Tabs/physicalInfo'
+interface Props {
+  purshase_info:any
+}
+const Form: FC<Props> = ({purshase_info}) => {
 
-const Form: FC = () => {
   const [tab, setTab] = useState(0)
   const {handleSubmit, resetForm, isSubmitting, isValid, touched} = useFormikContext()
   return (
@@ -39,7 +42,7 @@ const Form: FC = () => {
               }
 
               <TabWrapper index={3} selectedTab={tab}>
-                <Purchase />
+                <Purchase purshase_info={purshase_info} />
               </TabWrapper>
 
               {/* begin::Actions */}

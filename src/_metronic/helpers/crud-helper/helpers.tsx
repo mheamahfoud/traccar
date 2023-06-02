@@ -32,7 +32,7 @@ function stringifyRequestQuery(state: QueryState): string {
   return [pagination, sort, search, filtter]
     .filter((f) => f)
     .join('&')
-   // .toLowerCase()
+  // .toLowerCase()
 }
 
 function parseRequestQuery(query: string): QueryState {
@@ -157,14 +157,41 @@ const addFieldsToFormData = (formData, fields) => {
   });
 };
 
-export const SuccessMsg : ResponeApiCheck = {
+const addFieldsToArrayFormData = (formData, fields) => {
+
+  // formData.append('count', values.count);
+  // formData.append('age', values.age);
+
+
+  Object.keys(fields).forEach(key => {
+
+    if (!Array.isArray(fields[key])) {
+      formData.append(key, fields[key]);
+    }
+    else {
+
+      // for (var i = 0; i < fields[key].length; i++) {
+      //   formData.append('terminal[]', {"terminal" : fields[key][i]['terminal'] ,"voice":  fields[key][i]['voice']});
+      // }
+
+
+      // fields[key].forEach((item, index) => {
+      //   formData.append(`terminal[]`, JSON.stringify());
+      //   // formData.append(`${key}[${index}].priority`, item.priority);
+      //   // formData.append(`${key}[${index}].voice`, item.voice);
+      // });
+    }
+
+  });
+};
+export const SuccessMsg: ResponeApiCheck = {
   result: 'success',
   data: 'Proccess Successfully',
-  error_description:''
+  error_description: ''
 }
 
 
-function deleteAttributeObjArray(obj: any, attributeName: string, arrayAttr : string): void {
+function deleteAttributeObjArray(obj: any, attributeName: string, arrayAttr: string): void {
   for (const item of obj[arrayAttr]) {
     delete item[attributeName];
   }
@@ -185,5 +212,6 @@ export {
   optionAlertConfirm,
   addFieldsToFormData,
   createResponseContext1,
-  deleteAttributeObjArray
+  deleteAttributeObjArray,
+  addFieldsToArrayFormData
 }

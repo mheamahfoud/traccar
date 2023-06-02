@@ -93,10 +93,10 @@ export function Login() {
       id='kt_login_signin_form'
     >
       {/* begin::Heading */}
-      {/* <div className='text-center mb-11'>
+      { <div className='text-center mb-11'>
         <h1 className='text-dark fw-bolder mb-3'>Sign In</h1>
-        <div className='text-gray-500 fw-semibold fs-6'>Your Social Campaigns</div>
-      </div> */}
+        {/* <div className='text-gray-500 fw-semibold fs-6'>Your Social Campaigns</div> */}
+      </div>}
       {/* begin::Heading */}
 
       {/* begin::Login options */}
@@ -150,18 +150,18 @@ export function Login() {
       </div> */}
       {/* end::Separator */}
 
-      {formik.status ? (
+      {/* {formik.status ? (
         <div className='mb-lg-15 alert alert-danger'>
           <div className='alert-text font-weight-bold'>{formik.status}</div>
         </div>
       ) : (
         <div className='mb-10 bg-light-info p-8 rounded'>
-          <div className='text-info'>
+          {/* <div className='text-info'>
             Use account <strong>admin@demo.com</strong> and password <strong>demo</strong> to
             continue.
-          </div>
+          </div> }
         </div>
-      )}
+      )} */}
 
       {/* begin::Form group */}
       <div className='fv-row mb-8'>

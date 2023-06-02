@@ -15,8 +15,8 @@ const FormikAudio = (props: props) => {
 
     const { errors, touched, getFieldProps, isSubmitting, setFieldValue, values } = useFormikContext();
 
-
-    const [uploadedImage, setUploadedImage] = useState<any>(toAbsoluteServerUrl(values[name]));
+   
+    const [uploadedImage, setUploadedImage] = useState<any>(values[name] ?  toAbsoluteServerUrl(values[name]) : null);
 
     const handleChange = (event) => {
         if (event.target.files && event.target.files[0]) {

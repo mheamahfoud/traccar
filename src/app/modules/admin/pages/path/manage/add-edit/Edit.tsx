@@ -1,4 +1,4 @@
-import {Formik} from 'formik'
+import { Formik } from 'formik'
 import {
   KTCard,
   KTCardBody,
@@ -6,14 +6,14 @@ import {
   ResponeApiCheck,
   initialResponseError,
 } from '../../../../../../../_metronic/helpers'
-import {Form} from './Form'
-import {roleSchema} from './validationForm'
-import {update} from '../core/_requests'
-import {useLocation} from 'react-router-dom'
-import {useNotification} from '../../../../../../../_metronic/hooks/useNotification'
-import {useNavigate} from 'react-router-dom'
-import {ListPath} from '../../routes/RoutesNames'
-import {useEffect, useState} from 'react'
+import { Form } from './Form'
+import { roleSchema } from './validationForm'
+import { update } from '../core/_requests'
+import { useLocation } from 'react-router-dom'
+import { useNotification } from '../../../../../../../_metronic/hooks/useNotification'
+import { useNavigate } from 'react-router-dom'
+import { ListPath } from '../../routes/RoutesNames'
+import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { getTerminalList } from '../../../core/commonRequests'
 import { Spinner } from '../../../../components/Spinner'
@@ -40,53 +40,53 @@ const Edit = () => {
       let temData = {
         id: data?.id,
         name: data?.name,
-        count:data?.count,
-        terminal: data?.path_terminal.map((item)=>{
-            return {
-                terminal :item.terminal,
-                voice:item?.voice,
-                priority:item?.priority
-            }
+        count: data?.count,
+        terminal: data?.path_terminal.map((item) => {
+          return {
+            terminal: item.terminal,
+            voice_file: item?.voice,
+            priority: item?.priority
+          }
         }),
       }
-      console.log(temData)
       setEditData(temData)
+      setEnableApi(false)
     }
   }, [data])
-  const {showNotification} = useNotification()
-console.log(data)
+  const { showNotification } = useNotification()
+  console.log(data)
   return (
     <KTCard>
       <KTCardBody className='py-4'>
-  {  terminalList &&editData &&
-      <Formik
-          enableReinitialize={true}
-          validationSchema={roleSchema}
-          initialValues={editData}
-          initialStatus={{edit: true}}
-          onSubmit={async (values :any, {setSubmitting}) => {
-            values['count']=values['terminal'].length
-            setSubmitting(true)
-            try {
-              const res: ResponeApiCheck = await update(values)
-              if (res.result == 'success') {
-                navigate(ListPath)
-              }
-              showNotification(res)
-            } catch (ex) {
-              showNotification({error_description: ex, ...initialResponseError})
-              console.error(ex)
-            } finally {
+        {terminalList && editData &&
+          <Formik
+            enableReinitialize={true}
+            validationSchema={roleSchema}
+            initialValues={editData}
+            initialStatus={{ edit: true }}
+            onSubmit={async (values: any, { setSubmitting }) => {
+              values['count'] = values['terminal'].length
               setSubmitting(true)
-            }
-          }}
-          onReset={(values) => {
-            console.log('Formik onReset')
-          }}
-        >
-          <Form terminalList={terminalList} />
-        </Formik>}
-        {( !terminalList) && <Spinner />}
+              try {
+                const res: ResponeApiCheck = await update(values)
+                if (res.result == 'success') {
+                  navigate(ListPath)
+                }
+                showNotification(res)
+              } catch (ex) {
+                showNotification({ error_description: ex, ...initialResponseError })
+                console.error(ex)
+              } finally {
+                setSubmitting(true)
+              }
+            }}
+            onReset={(values) => {
+              console.log('Formik onReset')
+            }}
+          >
+            <Form terminalList={terminalList} />
+          </Formik>}
+        {(!terminalList) && <Spinner />}
       </KTCardBody>
     </KTCard>
   )

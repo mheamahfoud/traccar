@@ -31,6 +31,7 @@ const { reducer, actions } = createSlice({
   initialState,
   reducers: {
     refresh(state, action) {
+      alert(JSON.stringify(action.payload))
       state.items = {}
       action.payload.forEach((item) => (state.items[item.id] = item))
       state.loading = false

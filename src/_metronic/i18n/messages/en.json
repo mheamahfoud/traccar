@@ -251,5 +251,6 @@
   "document":"Document",
   "building":"Building",
   "department":"Department",
-  "floor_number":"Floor Number"
+  "floor_number":"Floor Number",
+  "list_ads":"List Ads"
 }

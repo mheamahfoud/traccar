@@ -45,7 +45,7 @@ const Add = () => {
             }}
         >
 
-            <Form />
+            <Form purshase_info={[]} />
         </Formik>
 
 

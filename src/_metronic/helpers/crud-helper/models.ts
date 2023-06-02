@@ -67,7 +67,8 @@ export type QueryResponseContextProps<T> = {
   refetch: () => void
   isLoading: boolean,
   setLoading: Dispatch<SetStateAction<boolean>>
-  query: string
+  query: string,
+  path_id?:number
 }
 export type QueryResponseContextProps1<T> = {
   response?: Response<Array<T>> | undefined
@@ -75,9 +76,12 @@ export type QueryResponseContextProps1<T> = {
   isLoading: boolean,
   setLoading: Dispatch<SetStateAction<boolean>>
   query: string
+  
 }
-export const initialQueryResponse = { refetch: () => { }, isLoading: false,setLoading: () => { }, query: '' }
-export const initialQueryResponse1 = {refetch: () => { }, setLoading: () => { }, isLoading: false, query: '' }
+export const initialQueryResponse = { refetch: () => { }, isLoading: false,setLoading: () => { }, query: '',path_id :0}
+
+export const initialQueryResponse1 = { refetch: () => { }, isLoading: false,setLoading: () => { }, query: '',path_id :0}
+
 export type ListViewContextProps = {
   selected: Array<ID>
   onSelect: (selectedId: ID) => void

@@ -14,31 +14,34 @@ interface props {
 }
 const FormikCustomSelectInput = (props: props) => {
     const { title, name, isRequired, options, callApi, relatedField } = props;
-    const { errors, values, touched, getFieldProps, setFieldValue } = useFormikContext();
+    const { errors, values, touched, getFieldProps, setFieldValue, isSubmitting } = useFormikContext();
     useEffectAsync(async () => {
-        if (name.split('.').length > 1) {
-            if (values[name.split('.')[0]][parseInt(name.split('.')[1])][name.split('.')[2]]) {
-                for (var i = 0; i < callApi.length; i++) {
-                    const response = await callApi[i](values[name.split('.')[0]][parseInt(name.split('.')[1])][name.split('.')[2]]);
-                    if (relatedField[i]) {
-                      
-                        setFieldValue(relatedField[i], response)
-                    }
-                }
-            }
-        }
-        else {
-            if (values[name]) {
-                for (var i = 0; i < callApi.length; i++) {
-                    const response = await callApi[i]();
-                    if (response) {
-                        setFieldValue(relatedField[i], response)
-                    }
-                }
-            }
-        }
+       // if (!isSubmitting) {
+            if (name.split('.').length > 1) {
+                if (values[name.split('.')[0]][parseInt(name.split('.')[1])][name.split('.')[2]]) {
+                    for (var i = 0; i < callApi.length; i++) {
+                        const response = await callApi[i](values[name.split('.')[0]][parseInt(name.split('.')[1])][name.split('.')[2]]);
+                        if (relatedField[i]) {
 
-    }, [ values[name],values[name.split('.')?.[0]]?.[parseInt(name.split('.')?.[1])]?.[name.split('.')?.[2]]])
+                            setFieldValue(relatedField[i], response)
+                        }
+                    }
+                }
+            }
+            else {
+                if (values[name]) {
+                    for (var i = 0; i < callApi.length; i++) {
+                        const response = await callApi[i]();
+                        if (response) {
+                            setFieldValue(relatedField[i], response)
+                        }
+                    }
+                }
+            }
+       // }
+
+
+    }, [values[name], values[name.split('.')?.[0]]?.[parseInt(name.split('.')?.[1])]?.[name.split('.')?.[2]]])
     return (
         <div className='fv-row mb-7'>
             <label className={`${isRequired ? 'required' : ''} fw-bold fs-6 mb-2`}>{title}</label>
