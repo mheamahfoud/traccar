@@ -6,7 +6,7 @@ import { SidebarMenuItemWithSub } from './SidebarMenuItemWithSub'
 import { SidebarMenuItem } from './SidebarMenuItem'
 import { useSelector } from 'react-redux'
 import { useAuth } from '../../../../../app/modules/auth'
-import { ReportPermissions, VehiclePermissions, WorkingDayPermissions } from '../../../../helpers/permissions'
+import { ReportPermissions, RolesPermissions, SettingPermission, UserPermissions, VehiclePermissions, WorkingDayPermissions } from '../../../../helpers/permissions'
 
 const SidebarMenuMain = () => {
   const intl = useIntl()
@@ -31,56 +31,56 @@ const SidebarMenuMain = () => {
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Admin</span>
         </div>
       </div>
-
-      <SidebarMenuItemWithSub
-        to='/admin/users'
-        icon='abstract-28'
-        title={intl.formatMessage({ id: 'manage_object' }, { name: intl.formatMessage({ id: 'user' }) })}
-        fontIcon='bi-layers'
-      >
-        <SidebarMenuItem
-          to='/admin/users/manage-driver'
-          title={intl.formatMessage({ id: 'driver' })}
-          hasBullet={true}
-        />
-        <SidebarMenuItem
-          to='/admin/users/manage-user'
-          title={intl.formatMessage({ id: 'user' })}
-          hasBullet={true}
-        />
-        {userTypes.map((item) => {
-          return (
-            <SidebarMenuItem
-              to={'/admin/users/manage-user-type/' + item.id}
-              title={item.name}
-              hasBullet={true}
-            />
-          )
-        })}
-      </SidebarMenuItemWithSub>
-      <SidebarMenuItemWithSub
+      {UserPermissions.some(r => currentUser?.roles.includes(r)) &&
+        <SidebarMenuItemWithSub
+          to='/admin/users'
+          icon='abstract-28'
+          title={intl.formatMessage({ id: 'manage_object' }, { name: intl.formatMessage({ id: 'user' }) })}
+          fontIcon='bi-layers'
+        >
+          {currentUser?.roles.includes('manage_driver') && <SidebarMenuItem
+            to='/admin/users/manage-driver'
+            title={intl.formatMessage({ id: 'driver' })}
+            hasBullet={true}
+          />}
+          {currentUser?.roles.includes('manage_user') && <SidebarMenuItem
+            to='/admin/users/manage-user'
+            title={intl.formatMessage({ id: 'user' })}
+            hasBullet={true}
+          />}
+          {userTypes.map((item) => {
+            return (
+              <SidebarMenuItem
+                to={'/admin/users/manage-user-type/' + item.id}
+                title={item.name}
+                hasBullet={true}
+              />
+            )
+          })}
+        </SidebarMenuItemWithSub>}
+      {RolesPermissions.some(r => currentUser?.roles.includes(r)) && <SidebarMenuItemWithSub
         to='/admin/roles'
         icon='abstract-28'
         title={intl.formatMessage({ id: 'manage_object' }, { name: intl.formatMessage({ id: 'role' }) })}
         fontIcon='bi-layers'
       >
-        <SidebarMenuItem
+        {currentUser?.roles.includes('manage_role') && <SidebarMenuItem
           to='/admin/roles/manage-role'
           title={intl.formatMessage({ id: 'role' })}
           hasBullet={true}
-        />
-        <SidebarMenuItem
+        />}
+        {currentUser?.roles.includes('manage_permission') && <SidebarMenuItem
           to='/admin/roles/manage-permission'
           title={intl.formatMessage({ id: 'permission' })}
           hasBullet={true}
-        />
+        />}
 
         {/* <SidebarMenuItem
           to='/admin/users/manage-hostess'
           title={intl.formatMessage({ id: 'hostess' })}
           hasBullet={true}
         /> */}
-      </SidebarMenuItemWithSub>
+      </SidebarMenuItemWithSub>}
       {/* <SidebarMenuItem
           to='/admin/users/manage-hostess'
           title={intl.formatMessage({ id: 'hostess' })}
@@ -171,8 +171,7 @@ const SidebarMenuMain = () => {
           hasBullet={true}
         />}
       </SidebarMenuItemWithSub>}
-
-      <SidebarMenuItemWithSub
+      {SettingPermission.some(r => currentUser?.roles.includes(r)) && <SidebarMenuItemWithSub
         to='/admin/setting'
         icon='abstract-28'
         title={intl.formatMessage(
@@ -181,46 +180,46 @@ const SidebarMenuMain = () => {
         )}
         fontIcon='bi-layers'
       >
-        <SidebarMenuItem
+        {currentUser?.roles.includes('manage_working_time') && <SidebarMenuItem
           to='/admin/setting/work-time'
           title={intl.formatMessage({ id: 'work_time' })}
           hasBullet={true}
-        />
-        <SidebarMenuItem
+        />}
+        {currentUser?.roles.includes('manage_infraction_type') && <SidebarMenuItem
           to='/admin/setting/infraction-type'
           title={intl.formatMessage({ id: 'infraction_type' })}
           hasBullet={true}
-        />
+        />}
 
-        <SidebarMenuItem
+        {currentUser?.roles.includes('manage_reason_cancel') && <SidebarMenuItem
           to='/admin/setting/reason-cancel'
           title={intl.formatMessage({ id: 'reason_cancel' })}
           hasBullet={true}
-        />
+        />}
 
-        <SidebarMenuItem
+        {currentUser?.roles.includes('manage_timezone') && <SidebarMenuItem
           to='/admin/setting/timezone'
           title={intl.formatMessage({ id: 'timezone' })}
           hasBullet={true}
-        />
+        />}
 
-        <SidebarMenuItem
+        {currentUser?.roles.includes('manage_country') && <SidebarMenuItem
           to='/admin/setting/country'
           title={intl.formatMessage({ id: 'country' })}
           hasBullet={true}
-        />
+        />}
 
-        <SidebarMenuItem
+        {currentUser?.roles.includes('manage_city') && <SidebarMenuItem
           to='/admin/setting/city'
           title={intl.formatMessage({ id: 'city' })}
           hasBullet={true}
-        />
+        />}
 
-        <SidebarMenuItem
+        {currentUser?.roles.includes('manage_group') && <SidebarMenuItem
           to='/admin/setting/group'
           title={intl.formatMessage({ id: 'group' })}
           hasBullet={true}
-        />
+        />}
 
         {/* <SidebarMenuItem
           to='/admin/setting/maintenance-status'
@@ -246,23 +245,23 @@ const SidebarMenuMain = () => {
           hasBullet={true}
         /> */}
 
-        <SidebarMenuItem
+        {currentUser?.roles.includes('manage_region') && <SidebarMenuItem
           to='/admin/setting/region'
           title={intl.formatMessage({ id: 'region' })}
           hasBullet={true}
-        />
+        />}
 
-        <SidebarMenuItem
+        {currentUser?.roles.includes('manage_building') && <SidebarMenuItem
           to='/admin/setting/building'
           title={intl.formatMessage({ id: 'building' })}
           hasBullet={true}
-        />
+        />}
 
-        <SidebarMenuItem
+        {currentUser?.roles.includes('manage_department') && <SidebarMenuItem
           to='/admin/setting/department'
           title={intl.formatMessage({ id: 'department' })}
           hasBullet={true}
-        />
+        />}
         {/* 
         <SidebarMenuItem
           to='/admin/setting/part-car'
@@ -275,7 +274,7 @@ const SidebarMenuMain = () => {
           title={intl.formatMessage({id: 'part_type'})}
           hasBullet={true}
         /> */}
-      </SidebarMenuItemWithSub>
+      </SidebarMenuItemWithSub>}
 
       {ReportPermissions.some(r => currentUser?.roles.includes(r)) && <SidebarMenuItemWithSub
         to='/admin/reports'

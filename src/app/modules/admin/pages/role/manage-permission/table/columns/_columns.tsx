@@ -22,10 +22,10 @@ const columnsTable :  ReadonlyArray<Column<Permission>> = [
     Header: (props) => <CustomHeader<Permission>  tableProps={props} title={<Localize value='name' />} className='min-w-125px' />,
     accessor: 'name',
   },
-  {
-    Header: (props) => <CustomHeader<Role>  tableProps={props} title={<Localize value='code' />} className='min-w-125px' />,
-    accessor: 'code',
-  },
+  // {
+  //   Header: (props) => <CustomHeader<Role>  tableProps={props} title={<Localize value='code' />} className='min-w-125px' />,
+  //   accessor: 'code',
+  // },
   {
     Header: (props) => (
       <CustomHeader<Permission>  tableProps={props} title='Actions' className='text-end min-w-100px' />

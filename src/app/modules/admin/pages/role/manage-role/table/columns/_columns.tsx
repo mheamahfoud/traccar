@@ -23,10 +23,10 @@ const columnsTable :  ReadonlyArray<Column<Ads>> = [
     accessor: 'name',
   },
 
-  {
-    Header: (props) => <CustomHeader<Role>  tableProps={props} title={<Localize value='code' />} className='min-w-125px' />,
-    accessor: 'code',
-  },
+  // {
+  //   Header: (props) => <CustomHeader<Role>  tableProps={props} title={<Localize value='code' />} className='min-w-125px' />,
+  //   accessor: 'code',
+  // },
   {
     Header: (props) => (
       <CustomHeader<Ads>  tableProps={props} title='Actions' className='text-end min-w-100px' />
