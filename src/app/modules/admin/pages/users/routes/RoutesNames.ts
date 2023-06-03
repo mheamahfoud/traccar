@@ -6,6 +6,7 @@ const Users = '/admin/users/';
 export const ListUserPath = Users + 'manage-user';
 export const AddUserPath = Users + 'add-user';
 export const EditUserPath = Users + 'edit-user';
+export const AddPermissionUserPath = Users + 'add-permission-user';
 
 export const ListUserTypePath = Users + 'manage-user-type';
 export const AddUserTypePath = Users + 'add-user-type';

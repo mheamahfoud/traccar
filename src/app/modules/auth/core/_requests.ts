@@ -73,7 +73,7 @@ export async function getUserByToken(token: string): Promise<any> {
 }
 //http://173.249.51.233:8082/
 export async function getSessionGPS(): Promise<SessionGpsModel> {
-  const response: any = await fetch(`${process.env.REACT_APP_TRUCKGPS_API_URL}/pi/session`, {
+  const response: any = await fetch(`http://173.249.51.233:8082/api/session`, {
     method: "POST",
     body: new URLSearchParams(
       `email=${encodeURIComponent(
@@ -91,7 +91,7 @@ export async function getServerGPS(): Promise<any> {
   let email = "test@test.test";
   let password = "test";
   const auth1: any = btoa(`${email}:${password}`);
-  const response: any = await fetch(`${process.env.REACT_APP_TRUCKGPS_API_URL}/api/server`, {
+  const response: any = await fetch(`http://173.249.51.233:8082/api/server`, {
     credentials: 'include',
     headers: {
       Authorization: `Basic ${auth1}`,

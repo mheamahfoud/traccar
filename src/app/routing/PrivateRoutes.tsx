@@ -18,6 +18,7 @@ import SettingPage from '../modules/admin/pages/setting'
 import AdsPage from '../modules/admin/pages/ads'
 import UsersPage from '../modules/admin/pages/users'
 
+
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
   const WizardsPage = lazy(() => import('../modules/wizards/WizardsPage'))
@@ -33,7 +34,7 @@ const PrivateRoutes = () => {
   const ReportsPage = lazy(() => import('../modules/admin/pages/reports/Index'))
   const TerminalListPage = lazy(() => import('../modules/admin/pages/terminals'))
   const PathPage = lazy(() => import('../modules/admin/pages/path'))
-
+  const RolePage = lazy(() => import('../modules/admin/pages/role'))
 
 
   const { currentUser } = useAuth()
@@ -186,6 +187,14 @@ const PrivateRoutes = () => {
             element={
               <SuspensedView>
                 <UsersPage />
+              </SuspensedView>
+            }
+          />
+             <Route
+            path='/admin/roles/*'
+            element={
+              <SuspensedView>
+                <RolePage />
               </SuspensedView>
             }
           />

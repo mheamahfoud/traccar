@@ -16,11 +16,12 @@ import {ManageUserTypeWrapper} from './manage-user-type/List'
 
 import {ListUserPath, driverBreadcrumbs, userBreadcrumbs} from './routes/RoutesNames'
 import {ManageDriverWrapper} from './manage-driver/List'
-import { useSelector } from 'react-redux'
+import {useSelector} from 'react-redux'
+import AddPermissionRoleUser from './manage-user/add-edit/AddPermissionRoleUser'
 
 const UsersPage = () => {
-  const intl = useIntl();
-  const userTypes = useSelector((state: any) => state.pageTimeManager?.userTypes);
+  const intl = useIntl()
+  const userTypes = useSelector((state: any) => state.pageTimeManager?.userTypes)
 
   return (
     <Routes>
@@ -45,6 +46,17 @@ const UsersPage = () => {
                 {intl.formatMessage({id: 'add_object'}, {name: intl.formatMessage({id: 'user'})})}
               </PageTitle>
               <AddUser />
+            </>
+          }
+        />
+        <Route
+          path='add-permission-user'
+          element={
+            <>
+              <PageTitle breadcrumbs={userBreadcrumbs}>
+                {intl.formatMessage({id: 'add_object'}, {name: intl.formatMessage({id: 'permission'})})}
+              </PageTitle>
+              <AddPermissionRoleUser />
             </>
           }
         />
@@ -111,7 +123,10 @@ const UsersPage = () => {
           element={
             <>
               <PageTitle breadcrumbs={userBreadcrumbs}>
-                {intl.formatMessage({id: 'add_object'}, {name: intl.formatMessage({id: 'user_type'})})}
+                {intl.formatMessage(
+                  {id: 'add_object'},
+                  {name: intl.formatMessage({id: 'user_type'})}
+                )}
               </PageTitle>
               <AddUserType />
             </>
@@ -122,7 +137,10 @@ const UsersPage = () => {
           element={
             <>
               <PageTitle breadcrumbs={userBreadcrumbs}>
-                {intl.formatMessage({id: 'edit_object'}, {name: intl.formatMessage({id: 'user_type'})})}{' '}
+                {intl.formatMessage(
+                  {id: 'edit_object'},
+                  {name: intl.formatMessage({id: 'user_type'})}
+                )}{' '}
               </PageTitle>
               <EditUserType />
             </>

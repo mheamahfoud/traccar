@@ -7,7 +7,7 @@ import {useQueryResponse, useQueryResponseData, useQueryResponseSetLoading} from
 import {destroy} from '../../core/_requests'
 import Swal from 'sweetalert2'
 import {useNavigate} from 'react-router-dom'
-import {EditUserPath} from '../../../routes/RoutesNames'
+import {AddPermissionUserPath, EditUserPath} from '../../../routes/RoutesNames'
 import {useIntl} from 'react-intl'
 import {ActionButton} from '../../../../../components/buttons/ActionButton'
 import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
@@ -31,7 +31,10 @@ const ActionsCell: FC<Props> = ({data}) => {
   const handleEdit = () => {
     navigate(EditUserPath, {state: data})
   }
+const handlePermission = ()=>{
 
+  navigate(AddPermissionUserPath, {state: data})
+}
   const handleDelete = () => {
     Swal.fire({...optionAlertConfirm}).then((result) => {
       if (result.isConfirmed) {
@@ -57,7 +60,7 @@ const ActionsCell: FC<Props> = ({data}) => {
       {/* begin::Menu */}
       <MenuActionWrapper>
         <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
-
+        <MenuActionItem title={intl.formatMessage({id: 'permission'})} onCLick={handlePermission} />
         {/* <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} /> */}
       </MenuActionWrapper>
       {/* end::Menu */}

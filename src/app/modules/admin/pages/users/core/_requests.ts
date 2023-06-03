@@ -1,6 +1,7 @@
 
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { SelectList } from './_models'
+import { ID, ResponeApiCheck } from '../../../../../../_metronic/helpers'
 
 const getMakerList = (): Promise<SelectList[]> => {
   return axios
@@ -61,6 +62,21 @@ const getStationList = (): Promise<SelectList[]> => {
     )
 }
 
+const getPermissionRoles = (): Promise<any> => {
+  return axios
+    .get(`list_roles_permissions`)
+    .then((d: any) => {
+      return d.data?.data?.data
+    }
+    )
+}
 
 
-export { getMakerList, getColorList, getGroupList, getModelList, getTypeList, getEngineTypeList, getStationList }
+const addPermissionToUser = (object: any,user_id:ID) => {
+  return axios
+    .post(`store_roles_users/${user_id}`, object)
+    .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
+  //.then((response: Response<VehicleType>) => response.data)
+}
+
+export { getMakerList, getColorList, getGroupList, getModelList, getTypeList, getEngineTypeList, getStationList,getPermissionRoles ,addPermissionToUser}
