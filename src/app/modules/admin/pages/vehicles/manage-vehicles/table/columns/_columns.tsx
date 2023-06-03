@@ -28,7 +28,7 @@ const columnsTable :  ReadonlyArray<Column<Vehicle>> = [
   },
   {
     Header: (props) => <CustomHeader<Vehicle>  tableProps={props} title={<Localize value='type' />} className='min-w-100px' />,
-    accessor: 'type_id',
+    accessor: 'type',
   },
 
   {
@@ -49,8 +49,8 @@ const columnsTable :  ReadonlyArray<Column<Vehicle>> = [
 
 
   {
-    Header: (props) => <CustomHeader<Vehicle>  tableProps={props} title={<Localize value='group' />} className='min-w-100px' />,
-    accessor: 'group',
+    Header: (props) => <CustomHeader<Vehicle>  tableProps={props} title={<Localize value='station' />} className='min-w-100px' />,
+    accessor: 'station',
   },
 
 

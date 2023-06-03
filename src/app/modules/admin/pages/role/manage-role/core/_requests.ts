@@ -9,7 +9,7 @@ const getList = (query: string, page: number): Promise<RoleQueryResponse> => {
     })
     .then((d: any) => {
       return {
-        data: d.data?.data?.data,
+        data: d.data?.data,
         payload: {
           pagination: {
             page_num: d.data?.data?.current_page,

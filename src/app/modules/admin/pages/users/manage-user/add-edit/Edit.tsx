@@ -13,6 +13,7 @@ const Edit = () => {
     const location = useLocation();
     const data: any = location.state;
     const { showNotification } = useNotification();
+
     return (
         <KTCard>
 
@@ -20,7 +21,7 @@ const Edit = () => {
                 <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
-                    initialValues={{ ...data, role_id: 1, first_name :data?.meta_data?.first_name , last_name:data?.meta_data?.last_name }}
+                    initialValues={{ ...data, role_id: 1, first_name :data?.meta_data?.first_name , last_name:data?.meta_data?.last_name,password:null }}
                     initialStatus={{ edit: true }}
                     onSubmit={async (values, { setSubmitting }) => {
                         const formData = new FormData();

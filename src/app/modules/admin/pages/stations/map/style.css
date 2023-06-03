@@ -1,11 +1,10 @@
 
 
-.container-list-devices {
+.container-list-devices1 {
     position: fixed;
-    bottom: 10%;
-    left: 300px;
-    width: 700px;
+    bottom: 1%;
     height: 100px;
+    width: 100%;
     z-index: 5000;
     background: white;
     align-items: center;

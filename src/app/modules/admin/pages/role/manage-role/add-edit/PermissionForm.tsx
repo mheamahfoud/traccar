@@ -1,4 +1,4 @@
-import {FC, Fragment} from 'react'
+import {FC, Fragment, useEffect} from 'react'
 import {FieldArray, useFormikContext} from 'formik'
 import {ListLoading} from '../../../../components/table/loading/ListLoading'
 import SubmitButton from '../../../../components/buttons/SubmitButton'
@@ -28,14 +28,13 @@ const PermissionForm: FC<Props> = ({role_name,role_id}) => {
     () => {
       return getPermissions()
     },
-    {
-      refetchOnMount: true,
-    }
+    { cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false }
   )
+
   const {handleSubmit, resetForm, isSubmitting, isValid, touched, values} = useFormikContext()
   return (
     <>
-      {
+      {permissionList &&
         <form className='form' onSubmit={handleSubmit} noValidate encType='multipart/form-data'>
           {/* begin::Scroll */}
           <div className='d-flex flex-column scroll-y me-n7 pe-7'>

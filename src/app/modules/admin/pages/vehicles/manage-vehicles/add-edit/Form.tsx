@@ -13,7 +13,7 @@ interface Props {
   purshase_info:any
 }
 const Form: FC<Props> = ({purshase_info}) => {
-
+//, 'purchase_info'
   const [tab, setTab] = useState(0)
   const {handleSubmit, resetForm, isSubmitting, isValid, touched} = useFormikContext()
   return (
@@ -21,7 +21,7 @@ const Form: FC<Props> = ({purshase_info}) => {
       <div className='mb-10'></div>
       <div className='card card-custom'>
         <CustomAppBar
-          labels={['generalInfo', 'physicalInfo', 'insurance', 'purchase_info']}
+          labels={['generalInfo', 'physicalInfo', 'insurance']}
           setSelectedTab={setTab}
           selectedTab={tab}
         />
@@ -41,9 +41,9 @@ const Form: FC<Props> = ({purshase_info}) => {
                 </TabWrapper>
               }
 
-              <TabWrapper index={3} selectedTab={tab}>
+              {/* <TabWrapper index={3} selectedTab={tab}>
                 <Purchase purshase_info={purshase_info} />
-              </TabWrapper>
+              </TabWrapper> */}
 
               {/* begin::Actions */}
               <div className='text-center pt-15'>

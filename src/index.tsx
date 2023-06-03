@@ -52,7 +52,7 @@ if (container) {
           </AuthProvider>
           <ErrorHandler />
         </MetronicI18nProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </Provider>
     </ErrorBoundary>

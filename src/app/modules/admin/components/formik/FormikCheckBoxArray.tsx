@@ -16,7 +16,8 @@ interface props {
 
 const FormikCheckBoxArray = (props: props) => {
   const {title, name, type, options, group} = props
-  const {errors, touched, values, setFieldValue} = useFormikContext()
+  const {errors, touched, values, setFieldValue} = useFormikContext();
+
   return (
     <>
       <div className='accordion' id='kt_accordion_1'>

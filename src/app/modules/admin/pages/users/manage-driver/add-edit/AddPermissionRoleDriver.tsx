@@ -14,10 +14,10 @@ import {
 } from '../../../../../../../_metronic/helpers'
 import { PermissionForm } from '../../permissions/PermissionForm'
 import { addPermissionToUser, getPermissionRolesByUsers } from '../../core/_requests'
-import { ListUserPath } from '../../routes/RoutesNames'
+import { ListDriverPath, ListUserPath } from '../../routes/RoutesNames'
 import { Spinner } from '../../../../components/Spinner'
 
-const AddPermissionRoleUser = () => {
+const AddPermissionRoleDriver = () => {
   const navigate = useNavigate()
   const { showNotification } = useNotification();
   const [initValue, setInitvalue] = useState([]);
@@ -64,7 +64,7 @@ const AddPermissionRoleUser = () => {
             try {
               const res: ResponeApiCheck = await addPermissionToUser(values, data?.id)
               if (res.result == 'success') {
-                navigate(ListUserPath)
+                navigate(ListDriverPath)
               }
               showNotification(res)
             } catch (ex) {
@@ -86,4 +86,4 @@ const AddPermissionRoleUser = () => {
   )
 }
 
-export default AddPermissionRoleUser
+export default AddPermissionRoleDriver

@@ -7,7 +7,7 @@ export const DeviceLIstTemp = ({ devices, keyword, setKeyword }) => {
   const [showSerach, setShowSearch] = useState(false);
   // alert(JSON.stringify(devices))
   return (
-    <div className='container-list-devices d-flex '>
+    <div className='container-list-devices1 d-flex '>
       <div className='card-title'>
         {showSerach && <div className='d-flex align-items-center position-relative my-1'>
           <div className='fs-1 position-absolute ms-6'>

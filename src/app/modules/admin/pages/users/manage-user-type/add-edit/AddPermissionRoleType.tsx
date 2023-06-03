@@ -14,10 +14,10 @@ import {
 } from '../../../../../../../_metronic/helpers'
 import { PermissionForm } from '../../permissions/PermissionForm'
 import { addPermissionToUser, getPermissionRolesByUsers } from '../../core/_requests'
-import { ListUserPath } from '../../routes/RoutesNames'
+import { ListDriverPath, ListUserPath, ListUserTypePath } from '../../routes/RoutesNames'
 import { Spinner } from '../../../../components/Spinner'
 
-const AddPermissionRoleUser = () => {
+const AddPermissionRoleType = () => {
   const navigate = useNavigate()
   const { showNotification } = useNotification();
   const [initValue, setInitvalue] = useState([]);
@@ -26,7 +26,7 @@ const AddPermissionRoleUser = () => {
   const { data: myPermissionList } = useQuery(
     `${QUERIES.ROLE_PERMISSION_USERS_LIST_VALUES}- ${data?.id}`,
     () => {
-      return getPermissionRolesByUsers(data?.id)
+      return getPermissionRolesByUsers(data?.data?.id)
     },
     { cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false }
   )
@@ -62,9 +62,10 @@ const AddPermissionRoleUser = () => {
             console.log(values)
             setSubmitting(true)
             try {
-              const res: ResponeApiCheck = await addPermissionToUser(values, data?.id)
+              const res: ResponeApiCheck = await addPermissionToUser(values, data?.data?.id)
               if (res.result == 'success') {
-                navigate(ListUserPath)
+                navigate(ListUserTypePath+'/'+ data?.type_id)
+              ///  navigate(ListDriverPath)
               }
               showNotification(res)
             } catch (ex) {
@@ -78,7 +79,7 @@ const AddPermissionRoleUser = () => {
             console.log('Formik onReset')
           }}
         >
-          {data && <PermissionForm name={data?.name} />}
+          {data && <PermissionForm name={data?.data?.name} />}
         </Formik>}
         {!myPermissionList && <Spinner/>}
       </KTCardBody>
@@ -86,4 +87,4 @@ const AddPermissionRoleUser = () => {
   )
 }
 
-export default AddPermissionRoleUser
+export default AddPermissionRoleType

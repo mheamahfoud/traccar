@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import InputDetail from '../../../../../components/fields/InputDetail';
+import { ManagePurshaseInfoListWrapper } from '../../purchase-info/List';
 
 const Purchase = ({...props}) => {
     const {data}=props;
@@ -29,7 +30,9 @@ const Purchase = ({...props}) => {
             
 
             </div>
-
+            <h3>{intel.formatMessage({ id:'purchase_info'})}</h3>
+        <div className='separator separator-dashed my-5'></div>
+          { data.meta_data.purchase_info.length > 0 &&  <ManagePurshaseInfoListWrapper data={data.meta_data.purchase_info} />}
         </div>
     );
 }

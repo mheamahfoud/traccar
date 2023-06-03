@@ -20,6 +20,7 @@ const Add = () => {
             initialStatus={{ edit: false }}
             onSubmit={async (values, { setSubmitting }) => {
                 delete values['id']
+                delete values['type']
                 const formData = new FormData();
                 addFieldsToFormData(formData,values )
                 setSubmitting(true)

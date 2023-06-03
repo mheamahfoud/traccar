@@ -56,7 +56,7 @@ export interface UserModel {
   occupation?: string
   companyName?: string
   phone?: string
-  roles?: Array<number>
+  roles?: Array<string>
   pic?: string
   language?: 'en' | 'de' | 'es' | 'fr' | 'ja' | 'zh' | 'ru'
   timeZone?: string
@@ -74,7 +74,8 @@ export interface UserModel {
   type: UserType,
   current_time :string ,
   ads ?:any [],
-  prn:number
+  prn:number,
+ 
 
 }
 

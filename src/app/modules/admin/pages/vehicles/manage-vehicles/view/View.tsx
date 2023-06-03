@@ -27,24 +27,49 @@ const View = () => {
         () => {
             return getVehicleInfo(id)
         },
+        { cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false }
 
     )
     const [tab, setTab] = useState(0)
+
+
+    // useEffect(() => {
+    //     if (data) {
+    //         console.log(data)
+    //         setData({
+    //             ...data, insurance_number: data.meta_data.ins_number, exp_date: data.meta_data.ins_exp_date,
+
+    //             exp_name: '', exp_amount: '',
+    //             average:data.meta_data?.average
+    //         }
+    //         )
+    //         setPurshaseInfo(data.meta_data.purchase_info)
+    //     }
+    //     else {
+    //         navigate(ListVehiclesPath)
+    //     }
+
+    // }, [payloadData])
+
+
     useEffect(() => {
         if (dataInfo) {
             let initData = dataInfo?.data;
             setData({
-                ...initData, insurance_number: initData?.meta_data.ins_number, exp_date: initData.meta_data.ins_exp_date
+                ...initData, insurance_number: initData?.meta_data.ins_number,
+                 exp_date: initData.meta_data.ins_exp_date,
+                 average:initData.meta_data?.average
             }
             )
         }
+        //, 'purchase_info',
     }, [dataInfo])
     return (
         <>
             <div className='mb-10'>
             </div>
             <div className='card card-custom'>
-                <CustomAppBar labels={['generalInfo', 'physicalInfo', 'insurance', 'purchase_info',]} setSelectedTab={setTab} selectedTab={tab} />
+                <CustomAppBar labels={['generalInfo', 'physicalInfo', 'insurance']} setSelectedTab={setTab} selectedTab={tab} />
                 <div className='card-body py-4'>
                     <div className='tab-content pt-3'>
                         <TabWrapper index={0} selectedTab={tab}>
@@ -58,9 +83,9 @@ const View = () => {
                         <TabWrapper index={2} selectedTab={tab}>
                             <Insurance data={data} />
                         </TabWrapper>
-                        <TabWrapper index={3} selectedTab={tab}>
+                        {/* <TabWrapper index={3} selectedTab={tab}>
                             <Purchase data={data} />
-                        </TabWrapper>
+                        </TabWrapper> */}
                         {/* <TabWrapper index={0} selectedTab={tab}>
                             <GeneralInfo />
                         </TabWrapper>

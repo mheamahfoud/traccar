@@ -40,7 +40,7 @@ const ListFilter = () => {
   } = useQuery(
     `${QUERIES.ALL_REGION_TYPE_LIST_VALUES}-${type}`,
     () => {
-      return getRegionsByTypeList(type)
+      return getRegionsByTypeList(1)
     },
     {
       // enabled: enableApi
@@ -91,7 +91,7 @@ const ListFilter = () => {
         {/* begin::Input group */}
         <div className="row">
           <div className="col-md-12 col-sm-12">
-            <InputFilter value={date} setValue={setDate} title={intl.formatMessage({ id: 'type' })} type={'date'} />
+            <InputFilter value={date} setValue={setDate} title={intl.formatMessage({ id: 'date' })} type={'date'} />
           </div>
           <div className="col-md-6 col-sm-12">
             <InputSelectFilter value={type} setValue={setType} title={intl.formatMessage({ id: 'type' })} options={tripTypeList} />

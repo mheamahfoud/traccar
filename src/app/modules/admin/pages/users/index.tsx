@@ -1,6 +1,6 @@
-import {Route, Routes, Outlet, Navigate} from 'react-router-dom'
-import {PageLink, PageTitle} from '../../../../../_metronic/layout/core'
-import {useIntl} from 'react-intl'
+import { Route, Routes, Outlet, Navigate } from 'react-router-dom'
+import { PageLink, PageTitle } from '../../../../../_metronic/layout/core'
+import { useIntl } from 'react-intl'
 
 import AddDriver from './manage-driver/add-edit/Add'
 import EditDriver from './manage-driver/add-edit/Edit'
@@ -11,13 +11,15 @@ import EditUser from './manage-user/add-edit/Edit'
 import AddUserType from './manage-user-type/add-edit/Add'
 import EditUserType from './manage-user-type/add-edit/Edit'
 
-import {ManageUsertWrapper} from './manage-user/List'
-import {ManageUserTypeWrapper} from './manage-user-type/List'
+import { ManageUsertWrapper } from './manage-user/List'
+import { ManageUserTypeWrapper } from './manage-user-type/List'
 
-import {ListUserPath, driverBreadcrumbs, userBreadcrumbs} from './routes/RoutesNames'
-import {ManageDriverWrapper} from './manage-driver/List'
-import {useSelector} from 'react-redux'
+import { ListUserPath, driverBreadcrumbs, userBreadcrumbs } from './routes/RoutesNames'
+import { ManageDriverWrapper } from './manage-driver/List'
+import { useSelector } from 'react-redux'
 import AddPermissionRoleUser from './manage-user/add-edit/AddPermissionRoleUser'
+import AddPermissionRoleDriver from './manage-driver/add-edit/AddPermissionRoleDriver'
+import AddPermissionRoleType from './manage-user-type/add-edit/AddPermissionRoleType'
 
 const UsersPage = () => {
   const intl = useIntl()
@@ -32,7 +34,7 @@ const UsersPage = () => {
           element={
             <>
               <PageTitle breadcrumbs={userBreadcrumbs}>
-                {intl.formatMessage({id: 'user'})}
+                {intl.formatMessage({ id: 'user' })}
               </PageTitle>
               <ManageUsertWrapper />
             </>
@@ -43,7 +45,7 @@ const UsersPage = () => {
           element={
             <>
               <PageTitle breadcrumbs={userBreadcrumbs}>
-                {intl.formatMessage({id: 'add_object'}, {name: intl.formatMessage({id: 'user'})})}
+                {intl.formatMessage({ id: 'add_object' }, { name: intl.formatMessage({ id: 'user' }) })}
               </PageTitle>
               <AddUser />
             </>
@@ -54,7 +56,7 @@ const UsersPage = () => {
           element={
             <>
               <PageTitle breadcrumbs={userBreadcrumbs}>
-                {intl.formatMessage({id: 'add_object'}, {name: intl.formatMessage({id: 'permission'})})}
+                {intl.formatMessage({ id: 'add_object' }, { name: intl.formatMessage({ id: 'permission' }) })}
               </PageTitle>
               <AddPermissionRoleUser />
             </>
@@ -65,7 +67,7 @@ const UsersPage = () => {
           element={
             <>
               <PageTitle breadcrumbs={userBreadcrumbs}>
-                {intl.formatMessage({id: 'edit_object'}, {name: intl.formatMessage({id: 'user'})})}{' '}
+                {intl.formatMessage({ id: 'edit_object' }, { name: intl.formatMessage({ id: 'user' }) })}{' '}
               </PageTitle>
               <EditUser />
             </>
@@ -76,7 +78,7 @@ const UsersPage = () => {
           element={
             <>
               <PageTitle breadcrumbs={driverBreadcrumbs}>
-                {intl.formatMessage({id: 'driver'})}
+                {intl.formatMessage({ id: 'driver' })}
               </PageTitle>
               <ManageDriverWrapper />
             </>
@@ -87,7 +89,7 @@ const UsersPage = () => {
           element={
             <>
               <PageTitle breadcrumbs={driverBreadcrumbs}>
-                {intl.formatMessage({id: 'add_object'}, {name: intl.formatMessage({id: 'driver'})})}
+                {intl.formatMessage({ id: 'add_object' }, { name: intl.formatMessage({ id: 'driver' }) })}
               </PageTitle>
               <AddDriver />
             </>
@@ -99,11 +101,25 @@ const UsersPage = () => {
             <>
               <PageTitle breadcrumbs={driverBreadcrumbs}>
                 {intl.formatMessage(
-                  {id: 'edit_object'},
-                  {name: intl.formatMessage({id: 'driver'})}
+                  { id: 'edit_object' },
+                  { name: intl.formatMessage({ id: 'driver' }) }
                 )}{' '}
               </PageTitle>
               <EditDriver />
+            </>
+          }
+        />
+        <Route
+          path='add-permission-driver'
+          element={
+            <>
+              <PageTitle breadcrumbs={driverBreadcrumbs}>
+                {intl.formatMessage(
+                  { id: 'add_object' },
+                  { name: intl.formatMessage({ id: 'permission' }) }
+                )}{' '}
+              </PageTitle>
+              <AddPermissionRoleDriver />
             </>
           }
         />
@@ -112,7 +128,7 @@ const UsersPage = () => {
           element={
             <>
               <PageTitle breadcrumbs={userBreadcrumbs}>
-                {intl.formatMessage({id: 'user_type'})}
+                {intl.formatMessage({ id: 'user_type' })}
               </PageTitle>
               <ManageUserTypeWrapper />
             </>
@@ -124,8 +140,8 @@ const UsersPage = () => {
             <>
               <PageTitle breadcrumbs={userBreadcrumbs}>
                 {intl.formatMessage(
-                  {id: 'add_object'},
-                  {name: intl.formatMessage({id: 'user_type'})}
+                  { id: 'add_object' },
+                  { name: intl.formatMessage({ id: 'user_type' }) }
                 )}
               </PageTitle>
               <AddUserType />
@@ -138,14 +154,29 @@ const UsersPage = () => {
             <>
               <PageTitle breadcrumbs={userBreadcrumbs}>
                 {intl.formatMessage(
-                  {id: 'edit_object'},
-                  {name: intl.formatMessage({id: 'user_type'})}
+                  { id: 'edit_object' },
+                  { name: intl.formatMessage({ id: 'user_type' }) }
                 )}{' '}
               </PageTitle>
               <EditUserType />
             </>
           }
         />
+        <Route
+          path='add-permission-type'
+          element={
+            <>
+              <PageTitle breadcrumbs={userBreadcrumbs}>
+                {intl.formatMessage(
+                  { id: 'add_object' },
+                  { name: intl.formatMessage({ id: 'permission' }) }
+                )}
+              </PageTitle>
+              <AddPermissionRoleType />
+            </>
+          }
+        />
+
       </Route>
 
       <Route index element={<Navigate to={ListUserPath} />} />

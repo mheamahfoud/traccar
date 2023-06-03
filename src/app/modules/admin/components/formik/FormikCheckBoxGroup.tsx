@@ -16,32 +16,37 @@ interface props {
 
 const FormikCheckBoxGroup = (props: props) => {
   const {title, name, type, options, group} = props
-  const {errors, touched, values, setFieldValue} = useFormikContext()
+  const {errors, touched, values, setFieldValue} = useFormikContext();
+useEffect(()=>{
+console.log(values[name])
+},[values])
   return (
     <>
       <h3>{group}</h3>
-      <div className='accordion' id='kt_accordion_1'>
+      <div className='separator separator-dashed my-5'></div>
+
         {options.map((group) => {
           return (
+            <div className='accordion' id={`kt_accordion_${group.id}`}>
             <div className='accordion-item'>
               <h2 className='accordion-header' id={`kt_accordion_${group.id}_header_${group.id}`}>
                 <button
                   className='accordion-button fs-4 fw-bold collapsed'
                   type='button'
                   data-bs-toggle='collapse'
-                  data-bs-target='#kt_accordion_1_body_1'
+                  data-bs-target={`#kt_accordion_${group.id}_body_${group.id}`}
                   aria-expanded='false'
-                  aria-controls='kt_accordion_1_body_1'
+                  aria-controls={`kt_accordion_${group.id}_body_${group.id}`}
                 >
                   {group?.name}
                 </button>
               </h2>
               {/* <div className='separator separator-dashed my-5'></div> */}
               <div
-                id='kt_accordion_1_body_1'
+                id={`kt_accordion_${group.id}_body_${group.id}`}
                 className='accordion-collapse collapse show'
                 aria-labelledby={`kt_accordion_${group.id}_header_${group.id}`}
-                data-bs-parent='#kt_accordion_1'
+                data-bs-parent={`#kt_accordion_${group.id}`}
               >
                 <div className='accordion-body'>
                   <div className='row'>
@@ -62,31 +67,39 @@ const FormikCheckBoxGroup = (props: props) => {
                                 // "permissions":[1]
                               )}
                               checked={values[name]
-                                ?.find((x) => x.id == group.id)
+                                ?.find((x) => x.roles_id == group.id)
                                 ?.permissions.includes(item.id)}
                               //   defaultChecked={values[name]}
                               onChange={(event) => {
                                 if (event.target.checked) {
-                                  if (values[name]?.length > 0) {
-                                    let roles = values[name]
-                                    var index = roles?.findIndex((x) => x?.role_id == group.id)
-                                    var tempRole = roles?.find((x) => x?.role_id == group.id)
 
+                                  
+                                  if (values[name]?.length > 0) {
+                                    const roles = values[name]
+                                    var index = roles?.findIndex((x) => x?.roles_id == group.id)
+                                  
+                                    var tempRole = roles?.find((x) => x?.roles_id == group.id)
+                                 
                                     if (tempRole) {
-                                      let temp = tempRole.permissions
+                                      let temp = tempRole.permissions;
                                       temp.push(item.id)
-                                      tempRole.permissions = temp
-                                      roles[index] = tempRole
-                                      setFieldValue(name, roles)
+                                      tempRole['permissions'] = temp;
+                               
+                                      roles[index] = tempRole;
+                                      const org=roles;
+                                      setFieldValue(name, [...org])
                                     } else {
+                              
+
                                       roles.push({
-                                        role_id: group.id,
+                                        roles_id: group.id,
                                         permissions: [item.id],
                                       })
-                                      setFieldValue(name, roles)
+                                      setFieldValue(name, [...roles])
                                     }
                                   } else {
-                                    let temp = [{role_id: group.id, permissions: []}]
+                                
+                                    let temp = [{roles_id: group.id, permissions: []}]
                                     temp[0].permissions.push(item.id)
 
                                     setFieldValue(name, temp)
@@ -94,17 +107,19 @@ const FormikCheckBoxGroup = (props: props) => {
                                 } else {
                                   let roles = values[name]
 
-                                  let index = roles?.findIndex((x) => x.role_id == group.id)
+                                  let index = roles?.findIndex((x) => x.roles_id == group.id)
                                   let role = roles[index]
-                                  let temp = role?.permissions
-                                  role.permissions = temp.filter((x) => x != item.id)
-                                  if (role.permissions.length > 0) {
+                                  let temp = role?.permissions;
+                                  temp=temp.filter((x) => x != item.id);
+                                  role['permissions'] = temp
+                                  if (temp.length > 0) {
                                     roles[index] = role
                                     setFieldValue(name, roles)
                                   } else {
+                                     
+                                      let rolesUn= roles.filter((x) => x.roles_id != group.id);
                                     setFieldValue(
-                                      name,
-                                      roles.filter((x) => x.role_id != group.id)
+                                      name,rolesUn
                                     )
                                   }
                                 }
@@ -131,9 +146,10 @@ const FormikCheckBoxGroup = (props: props) => {
                 </div>
               </div>
             </div>
+            </div>
           )
         })}
-      </div>
+     
     </>
   )
 }

@@ -71,13 +71,13 @@ const Form = ({...props}) => {
                                 />
                               </div>
 
-                              <div className='col-md-6 col-sm-12'>
+                              {/* <div className='col-md-6 col-sm-12'>
                                 <FormikFile
                                   title={intel.formatMessage({ id: 'voice' })}
                                   name={`terminal.${index}.voice_file`}
                                   isRequired={false}
                                    fieldFile={`terminal.${index}.voice`}                                />
-                              </div>
+                              </div> */}
                             </div>
                             <div className='col-md-2 col-sm-12 d-flex align-items-center justify-content-evenly'>
                               <IconButton

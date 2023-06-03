@@ -11,11 +11,14 @@ export const AddPermissionUserPath = Users + 'add-permission-user';
 export const ListUserTypePath = Users + 'manage-user-type';
 export const AddUserTypePath = Users + 'add-user-type';
 export const EditUserTypePath = Users + 'edit-user-type';
-
+export const AddPermissionTypePath = Users + 'add-permission-type';
 
 export const ListDriverPath = Users + 'manage-driver';
 export const AddDriverPath = Users + 'add-driver';
 export const EditDriverPath = Users + 'edit-driver';
+
+export const AddPermissionDriverPath = Users + 'add-permission-driver';
+
 
 export const driverBreadcrumbs: Array<PageLink> = [
     {

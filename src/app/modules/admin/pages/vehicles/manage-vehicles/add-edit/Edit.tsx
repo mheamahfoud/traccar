@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { update } from '../core/_requests';
 import { useEffect, useState } from 'react';
 import { ListLoading } from '../../../../components/table/loading/ListLoading';
+import { Spinner } from '../../../../components/Spinner';
 const Edit = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -25,7 +26,7 @@ const Edit = () => {
                 ...data, insurance_number: data.meta_data.ins_number, exp_date: data.meta_data.ins_exp_date,
 
                 exp_name: '', exp_amount: '',
-                average:data.meta_data?.average
+                average: data.meta_data?.average
             }
             )
             setPurshaseInfo(data.meta_data.purchase_info)
@@ -36,40 +37,45 @@ const Edit = () => {
 
     }, [payloadData])
 
- 
+
     const { showNotification } = useNotification();
     return (
-
-        data && <Formik
-            enableReinitialize={true}
-            // validationSchema={roleSchema}
-            initialValues={data}
-            initialStatus={{ edit: true }}
-            onSubmit={async (values, { setSubmitting }) => {
-                const formData = new FormData();
-                addFieldsToFormData(formData, values)
-                setSubmitting(true)
-                try {
-                    const res: ResponeApiCheck = await update(formData, values?.id);
-                    if (res.result == 'success') {
-                        navigate(ListVehiclesPath)
-                    }
-                    showNotification(res)
-                } catch (ex) {
-                    showNotification({ error_description: ex, ...initialResponseError })
-                    console.error(ex)
-                } finally {
+        <>
+            data && <Formik
+                enableReinitialize={true}
+                // validationSchema={roleSchema}
+                initialValues={data}
+                initialStatus={{ edit: true }}
+                onSubmit={async (values, { setSubmitting }) => {
+                    delete values['type']
+                    const formData = new FormData();
+                    addFieldsToFormData(formData, values)
                     setSubmitting(true)
-                }
-            }}
-            onReset={(values) => {
-                console.log('Formik onReset');
-            }}
-        >
+                    try {
+                        const res: ResponeApiCheck = await update(formData, values?.id);
+                        if (res.result == 'success') {
+                            navigate(ListVehiclesPath)
+                        }
+                        showNotification(res)
+                    } catch (ex) {
+                        showNotification({ error_description: ex, ...initialResponseError })
+                        console.error(ex)
+                    } finally {
+                        setSubmitting(true)
+                    }
+                }}
+                onReset={(values) => {
+                    console.log('Formik onReset');
+                }}
+            >
 
-            <Form  purshase_info={purshase_info}/>
+                <Form purshase_info={purshase_info} />
 
-        </Formik>
+            </Formik>
+
+
+            {!data && <Spinner />}
+        </>
 
 
 

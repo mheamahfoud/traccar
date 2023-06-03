@@ -56,6 +56,7 @@ const SocketController = () => {
 
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data)
+      alert(JSON.stringify(data))
       if (data.positions) {
         let temp = data.positions.filter((x: any) =>
         stationDevices.map((x) => x.id).includes(x.deviceId)

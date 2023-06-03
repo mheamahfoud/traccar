@@ -129,7 +129,7 @@ const Form: FC = () => {
                             <FormikSelectInput
                               title={intel.formatMessage({ id: 'vehicles' })}
                               name={`path.${index}.cars_id`}
-                              isRequired={true}
+                              isRequired={false}
                               options={values['path'][index]?.vehicles || []}
                             />
                           </div>

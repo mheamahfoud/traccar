@@ -15,7 +15,7 @@ interface Props {
   name:string
 }
 const PermissionForm: FC<Props> = ({name}) => {
-alert(name)
+
   const intel = useIntl()
   const {data: listRoles} = useQuery(
     `${QUERIES.PERMISSION_ROLE_LIST_VALUES}`,

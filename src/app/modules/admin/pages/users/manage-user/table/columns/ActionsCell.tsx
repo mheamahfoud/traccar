@@ -32,7 +32,6 @@ const ActionsCell: FC<Props> = ({data}) => {
     navigate(EditUserPath, {state: data})
   }
 const handlePermission = ()=>{
-
   navigate(AddPermissionUserPath, {state: data})
 }
   const handleDelete = () => {

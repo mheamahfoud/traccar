@@ -103,8 +103,9 @@ const AuthInit: FC<WithChildren> = ({ children }) => {
           const data: any = await getUserByToken(apiToken)
           console.log(data)
           if (true) {
-          
-            setCurrentUser(data)
+           let temp=data;
+           temp['roles']=data?.roles.map((item)=>item.code)
+            setCurrentUser(temp)
           }
         }
       } catch (error) {

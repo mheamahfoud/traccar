@@ -62,22 +62,14 @@ const Form: FC = () => {
                                 isRequired={true}
                             />
                         </div>
-                        {/* <div className='col-md-6 col-sm-12'>
-                            <FormikSelectInput
-                                title={intel.formatMessage({ id: 'role' })}
-                                name={'role_id'}
+                        <div className='col-md-6 col-sm-12'>
+                            <FormikInputLabel
+                                title={intel.formatMessage({ id: 'password' })}
+                                name={'password'}
                                 isRequired={false}
-                                options={[{
-                                    value: 1,
-                                    text: 'Admin'
-                                },
-                                {
-                                    value: 2,
-                                    text: 'Super Admin'
-
-                                }]}
+                            
                             />
-                        </div> */}
+                        </div>
                         <div className='col-md-6 col-sm-12'>
                             <FormikSelectInput
                                 title={intel.formatMessage({ id: 'group_vehcile' })}

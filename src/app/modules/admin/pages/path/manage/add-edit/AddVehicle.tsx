@@ -8,8 +8,10 @@ import { ListPath } from '../../routes/RoutesNames';
 import { FormVehicle } from './FormVehicle';
 import { ManageVehicleListWrapper } from '../add-vehicle/List';
 import { useIntl } from 'react-intl';
+import { useQueryClient } from 'react-query';
 
 const AddVehicle = () => {
+    const queryClient = useQueryClient()
     const intel = useIntl()
     const navigate = useNavigate();
     const { showNotification } = useNotification();
@@ -29,7 +31,8 @@ const AddVehicle = () => {
                         try {
                             const res: ResponeApiCheck = await addVehicle(values);
                             if (res.result == 'success') {
-                                navigate(ListPath)
+                              //  navigate(ListPath)
+                              queryClient.invalidateQueries([`${QUERIES.ALL_PATH_VEHICLES__LIST_VALUES}`])
                             }
                             showNotification(res)
                         } catch (ex) {

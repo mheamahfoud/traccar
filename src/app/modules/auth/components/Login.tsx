@@ -70,8 +70,10 @@ export function Login() {
 
       
         saveAuth(auth)
-        const data: any = await getUserByToken(auth.api_token)
-        setCurrentUser(data)
+        const data: any = await getUserByToken(auth.api_token);
+        let temp=data;
+        temp['roles']=data?.roles.map((item)=>item.code)
+         setCurrentUser(temp)
         dispatch(GetUserTypes());
      //   setCurrentTime(data.path[0]?.current_time)
 

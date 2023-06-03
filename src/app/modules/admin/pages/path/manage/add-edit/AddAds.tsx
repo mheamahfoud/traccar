@@ -14,13 +14,14 @@ import { ListPath } from '../../routes/RoutesNames'
 import { FormAds } from './FormAds'
 import { roleAdsSchema } from './adsValidation'
 import { useState } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery, useQueryClient } from 'react-query'
 
 import { Spinner } from '../../../../components/Spinner'
 import { ManageAdsListWrapper } from '../ads-path/List'
 import { useIntl } from 'react-intl'
 
 const AddAds = () => {
+  const queryClient = useQueryClient()
   const intel = useIntl()
   const navigate = useNavigate()
   const { showNotification } = useNotification()
@@ -33,7 +34,7 @@ const AddAds = () => {
       return getAdsPathList(data?.id)
     },
     {
-      enabled: enableApi && data?.id != undefined,
+      enabled: enableApi && data?.id != undefined, cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false 
     }
   )
   //ads.length > 0 ? ads[0]?.value :
@@ -50,7 +51,8 @@ const AddAds = () => {
             try {
               const res: ResponeApiCheck = await addAds(values)
               if (res.result == 'success') {
-                navigate(ListPath)
+                queryClient.invalidateQueries([`${QUERIES.ALL_ADS_PATH_LIST_VALUES}`])
+                //navigate(ListPath)
               }
               showNotification(res)
             } catch (ex) {

@@ -8,7 +8,7 @@ export const roleSchema = Yup.object().shape({
       Yup.object().shape({
         from: Yup.string().required('From is required'),
         to: Yup.string().required('To is required'),
-        cars_id: Yup.string().required('To is required'),
+       // cars_id: Yup.string().required('To is required'),
       })
     ),
 })

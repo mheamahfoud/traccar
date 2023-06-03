@@ -66,12 +66,19 @@ const getPermissionRoles = (): Promise<any> => {
   return axios
     .get(`list_roles_permissions`)
     .then((d: any) => {
-      return d.data?.data?.data
+      return d.data?.data
     }
     )
 }
 
-
+const getPermissionRolesByUsers = (user_id:ID): Promise<any> => {
+  return axios
+    .get(`my_roles_users/${user_id}`)
+    .then((d: any) => {
+      return d.data?.data
+    }
+    )
+}
 const addPermissionToUser = (object: any,user_id:ID) => {
   return axios
     .post(`store_roles_users/${user_id}`, object)
@@ -79,4 +86,4 @@ const addPermissionToUser = (object: any,user_id:ID) => {
   //.then((response: Response<VehicleType>) => response.data)
 }
 
-export { getMakerList, getColorList, getGroupList, getModelList, getTypeList, getEngineTypeList, getStationList,getPermissionRoles ,addPermissionToUser}
+export { getMakerList, getColorList, getGroupList, getModelList, getTypeList, getEngineTypeList, getStationList,getPermissionRoles ,addPermissionToUser,getPermissionRolesByUsers}
