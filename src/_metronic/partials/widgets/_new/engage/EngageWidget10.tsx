@@ -22,7 +22,7 @@ const EngageWidget10 = ({className}: Props) => (
             <br />
             <span className='position-relative d-inline-block text-danger'>
               <Link
-                to='/crafted/pages/profile/overview'
+                to='#'
                 className='text-danger
               opacity-75-hover'
               >
@@ -35,9 +35,9 @@ const EngageWidget10 = ({className}: Props) => (
           for Free
         </div>
 
-        <div className='text-center'>
+        {/* <div className='text-center'>
           <a href='#'>Upgrade Now</a>
-        </div>
+        </div> */}
       </div>
       <img
         className='mx-auto h-150px h-lg-200px  theme-light-show'
