@@ -90,12 +90,12 @@ const SidebarMenuMain = () => {
       {VehiclePermissions.some(r => currentUser?.roles.includes(r)) && <SidebarMenuItemWithSub
         to='/admin/vehicles'
         icon='abstract-28'
-        title='Manage Vehicles'
+        title={intl.formatMessage({ id: 'manage_object' }, { name: intl.formatMessage({ id: 'vehicle' }) })}
         fontIcon='bi-layers'
       >
         {currentUser?.roles.includes('manage_vehicle') && <SidebarMenuItem
           to='/admin/vehicles/manage-vehicles'
-          title={intl.formatMessage({ id: 'manage_vehicles' })}
+          title={intl.formatMessage({ id: 'vehicles' })}
           hasBullet={true}
         />}
         {currentUser?.roles.includes('vehicle_type') && <SidebarMenuItem
@@ -130,7 +130,7 @@ const SidebarMenuMain = () => {
         icon='abstract-28'
         title={intl.formatMessage(
           { id: 'manage_object' },
-          { name: intl.formatMessage({ id: 'stations' }) }
+          { name: intl.formatMessage({ id: 'station' }) }
         )}
         fontIcon='bi-layers'
       />}
@@ -139,7 +139,7 @@ const SidebarMenuMain = () => {
         icon='abstract-28'
         title={intl.formatMessage(
           { id: 'manage_object' },
-          { name: intl.formatMessage({ id: 'terminals' }) }
+          { name: intl.formatMessage({ id: 'terminal' }) }
         )}
         fontIcon='bi-layers'
       />}
@@ -147,7 +147,7 @@ const SidebarMenuMain = () => {
       {currentUser?.roles.includes('manage_trips') && <SidebarMenuItem
         to='/admin/trips/manage-trips'
         icon='abstract-28'
-        title={intl.formatMessage({ id: 'manage_object' }, { name: intl.formatMessage({ id: 'trips' }) })}
+        title={intl.formatMessage({ id: 'manage_object' }, { name: intl.formatMessage({ id: 'trip' }) })}
         fontIcon='bi-layers'
       />}
 
@@ -279,7 +279,11 @@ const SidebarMenuMain = () => {
       {ReportPermissions.some(r => currentUser?.roles.includes(r)) && <SidebarMenuItemWithSub
         to='/admin/reports'
         icon='abstract-28'
-        title='Manage Report'
+       // title='Manage Report'
+        title={intl.formatMessage(
+          { id: 'manage_object' },
+          { name: intl.formatMessage({ id: 'report' }) }
+        )}
         fontIcon='bi-layers'
       >
         {currentUser?.roles.includes('reply_map') && <SidebarMenuItem

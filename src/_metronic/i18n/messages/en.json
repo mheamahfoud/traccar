@@ -67,10 +67,10 @@
   "ECOMMERCE.CUSTOMERS.EDIT.UPDATE_MESSAGE": "Customer has been updated",
   "ECOMMERCE.CUSTOMERS.EDIT.ADD_MESSAGE": "Customer has been created",
 
-  "manage_object": "Manage {name}",
+  "manage_object": " {name}",
   "add_object": "Add {name}",
   "edit_object": "Edit {name}",
-
+  "report": "Report",
   "type": "Type",
   "icon": "Icon",
   "display_name": "Display Name",
@@ -248,11 +248,9 @@
 
   "driver_image": "Driver Image",
   "license_image": "License Image",
-  "document":"Document",
-  "building":"Building",
-  "department":"Department",
-  "floor_number":"Floor Number",
-  "list_ads":"List Ads"
-
-
+  "document": "Document",
+  "building": "Building",
+  "department": "Department",
+  "floor_number": "Floor Number",
+  "list_ads": "List Ads"
 }
