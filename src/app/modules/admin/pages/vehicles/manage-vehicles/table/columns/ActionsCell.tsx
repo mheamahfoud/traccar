@@ -19,11 +19,13 @@ import {useIntl} from 'react-intl'
 import {ActionButton} from '../../../../../components/buttons/ActionButton'
 import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
 import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
+import {useAuth} from '../../../../../../auth'
 type Props = {
   id: ID
 }
 
 const ActionsCell: FC<Props> = ({id}) => {
+  const {currentUser} = useAuth()
   const navigate = useNavigate()
   const {setItemIdForUpdate} = useListView()
   const {query} = useQueryResponse()
@@ -64,8 +66,12 @@ const ActionsCell: FC<Props> = ({id}) => {
     <>
       <ActionButton />
       <MenuActionWrapper>
-        <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
-        <MenuActionItem title={intl.formatMessage({id: 'account'})} onCLick={handleAccount} />
+        {currentUser?.roles.includes('edit_vehicle') && (
+          <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
+        )}
+        {currentUser?.roles.includes('account_vehicle') && (
+          <MenuActionItem title={intl.formatMessage({id: 'account'})} onCLick={handleAccount} />
+        )}
         {/* <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} /> */}
         <MenuActionItem title={intl.formatMessage({id: 'view'})} onCLick={handleView} />
       </MenuActionWrapper>

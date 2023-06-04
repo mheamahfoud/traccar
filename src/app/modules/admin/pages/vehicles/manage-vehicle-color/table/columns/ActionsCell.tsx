@@ -3,7 +3,11 @@ import {FC, useEffect} from 'react'
 import {useMutation, useQueryClient} from 'react-query'
 import {MenuComponent} from '../../../../../../../../_metronic/assets/ts/components'
 import {ID, QUERIES, optionAlertConfirm} from '../../../../../../../../_metronic/helpers'
-import {useQueryResponse, useQueryResponseData, useQueryResponseSetLoading} from '../../core/QueryResponseProvider'
+import {
+  useQueryResponse,
+  useQueryResponseData,
+  useQueryResponseSetLoading,
+} from '../../core/QueryResponseProvider'
 import {destroy} from '../../core/_requests'
 import Swal from 'sweetalert2'
 import {useNavigate} from 'react-router-dom'
@@ -12,13 +16,15 @@ import {useIntl} from 'react-intl'
 import {ActionButton} from '../../../../../components/buttons/ActionButton'
 import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
 import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
+import {useAuth} from '../../../../../../auth'
 type Props = {
   id: ID
 }
 
 const ActionsCell: FC<Props> = ({id}) => {
+  const {currentUser} = useAuth()
   const navigate = useNavigate()
-  const setLoading= useQueryResponseSetLoading();
+  const setLoading = useQueryResponseSetLoading()
   const {query} = useQueryResponse()
   const items = useQueryResponseData()
   const queryClient = useQueryClient()
@@ -56,9 +62,12 @@ const ActionsCell: FC<Props> = ({id}) => {
       <ActionButton />
       {/* begin::Menu */}
       <MenuActionWrapper>
-        <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
-
-        <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} />
+        {currentUser?.roles.includes('edit_vehicle_color') && (
+          <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
+        )}
+        {currentUser?.roles.includes('delete_vehicle_color') && (
+          <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} />
+        )}
       </MenuActionWrapper>
       {/* end::Menu */}
     </>

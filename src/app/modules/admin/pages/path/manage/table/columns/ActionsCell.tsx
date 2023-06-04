@@ -18,6 +18,7 @@ import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrappe
 import {AddAdsPath, AddVehiclePath, EditPath} from '../../../routes/RoutesNames'
 import {Path} from '../../core/_models'
 import {MapTerminalPath} from '../../../../stations/routes/RoutesNames'
+import {useAuth} from '../../../../../../auth'
 type Props = {
   data: Path
 }
@@ -28,6 +29,7 @@ const ActionsCell: FC<Props> = ({data}) => {
   const {query} = useQueryResponse()
   const items = useQueryResponseData()
   const queryClient = useQueryClient()
+  const {currentUser} = useAuth()
   const intl = useIntl()
   useEffect(() => {
     MenuComponent.reinitialization()
@@ -70,29 +72,34 @@ const ActionsCell: FC<Props> = ({data}) => {
       <ActionButton />
       {/* begin::Menu */}
       <MenuActionWrapper>
-        <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
-
+        {currentUser?.roles.includes('edit_path') && (
+          <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
+        )}
         {/* <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} /> */}
 
-        <MenuActionItem
-          title={intl.formatMessage(
-            {id: 'add_object'},
-            {
-              name: intl.formatMessage({id: 'ads'}),
-            }
-          )}
-          onCLick={handleAddAds}
-        />
+        {currentUser?.roles.includes('add_ads_to_path') && (
+          <MenuActionItem
+            title={intl.formatMessage(
+              {id: 'add_object'},
+              {
+                name: intl.formatMessage({id: 'ads'}),
+              }
+            )}
+            onCLick={handleAddAds}
+          />
+        )}
 
-        <MenuActionItem
-          title={intl.formatMessage(
-            {id: 'add_object'},
-            {
-              name: intl.formatMessage({id: 'vehicle'}),
-            }
-          )}
-          onCLick={handleAddVehicle}
-        />
+        {currentUser?.roles.includes('add_vehicle_path') && (
+          <MenuActionItem
+            title={intl.formatMessage(
+              {id: 'add_object'},
+              {
+                name: intl.formatMessage({id: 'vehicle'}),
+              }
+            )}
+            onCLick={handleAddVehicle}
+          />
+        )}
       </MenuActionWrapper>
       {/* end::Menu */}
     </>

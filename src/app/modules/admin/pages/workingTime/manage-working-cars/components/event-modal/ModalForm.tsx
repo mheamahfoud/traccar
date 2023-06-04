@@ -9,6 +9,7 @@ import { EditWorkingCarspath } from '../../../routes/RoutesNames'
 import InputDetail from '../../../../../components/fields/InputDetail'
 import { KTIcon } from '../../../../../../../../_metronic/helpers'
 import { WorkingDayTypeEnum } from '../../../core/model'
+import { useAuth } from '../../../../../../auth'
 
 
 type Props = {
@@ -18,6 +19,7 @@ type Props = {
 
 
 const ModalForm: FC<Props> = ({ data, isLoading }) => {
+    const { currentUser } = useAuth();
     const intl = useIntl();
     const {itemIdForUpdate, setItemIdForUpdate} = useListView()
     const navigate = useNavigate();
@@ -100,12 +102,12 @@ const ModalForm: FC<Props> = ({ data, isLoading }) => {
             </div>
 
             <div className='row'>
-                <button type='button' className='btn btn-primary' onClick={handleEdit}>
+            { currentUser?.roles.includes('edit_car_working_day') &&    <button type='button' className='btn btn-primary' onClick={handleEdit}>
                     <KTIcon iconName='edit' className='fs-2' />
                     {intl.formatMessage({ id: 'edit_object' }, {
                         name: intl.formatMessage({ id: 'working_day' })
                     })}
-                </button>
+                </button>}
 
             </div>
         </div>

@@ -13,11 +13,13 @@ import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
 import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
 import { EditPath } from '../../../routes/RoutesNames'
 import { Trip } from '../../core/_models'
+import { useAuth } from '../../../../../../auth'
 type Props = {
   id: ID
 }
 
 const ActionsCell: FC<Props> = ({id}) => {
+  const { currentUser } = useAuth();
   const navigate = useNavigate()
   const setLoading= useQueryResponseSetLoading();
   const {query} = useQueryResponse()
@@ -39,7 +41,7 @@ const ActionsCell: FC<Props> = ({id}) => {
       <ActionButton />
       {/* begin::Menu */}
       <MenuActionWrapper>
-        <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
+      { currentUser?.roles.includes('edit_trip') &&    <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />}
       </MenuActionWrapper>
   
     </>

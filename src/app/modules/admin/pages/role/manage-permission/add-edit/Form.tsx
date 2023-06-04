@@ -25,20 +25,20 @@ const Form: FC = () => {
           {/* begin::Scroll */}
           <div className='d-flex flex-column scroll-y me-n7 pe-7'>
             <div className='row'>
-              <div className='col-md-12  col-sm-12'>
+              <div className='col-md-6  col-sm-12'>
                 <FormikInputLabel
                   title={intel.formatMessage({id: 'name'})}
                   name={'name'}
                   isRequired={true}
                 />
               </div>
-              {/* <div className='col-md-6 col-sm-12'>
+              <div className='col-md-6 col-sm-12'>
                 <FormikInputLabel
                   title={intel.formatMessage({id: 'code'})}
                   name={'code'}
                   isRequired={true}
                 />
-              </div> */}
+              </div>
              
             </div>
           </div>

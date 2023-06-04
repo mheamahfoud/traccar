@@ -13,6 +13,7 @@ import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
 import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
 import { EditPath } from '../../../routes/RoutesNames'
 import { Ads } from '../../core/_models'
+import { useAuth } from '../../../../../../auth'
 type Props = {
   data: Ads
 }
@@ -23,6 +24,7 @@ const ActionsCell: FC<Props> = ({data}) => {
   const {query} = useQueryResponse()
   const items = useQueryResponseData()
   const queryClient = useQueryClient()
+  const { currentUser } = useAuth();
   const intl = useIntl()
   useEffect(() => {
     MenuComponent.reinitialization()
@@ -56,7 +58,7 @@ const ActionsCell: FC<Props> = ({data}) => {
       <ActionButton />
       {/* begin::Menu */}
       <MenuActionWrapper>
-        <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
+      { currentUser?.roles.includes('add_ads') &&    <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />}
         {/* <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete}  /> */}
       </MenuActionWrapper>
       {/* end::Menu */}

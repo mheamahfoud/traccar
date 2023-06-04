@@ -12,11 +12,13 @@ import {useIntl} from 'react-intl'
 import {ActionButton} from '../../../../../components/buttons/ActionButton'
 import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
 import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
+import { useAuth } from '../../../../../../auth'
 type Props = {
   id: ID
 }
 
 const ActionsCell: FC<Props> = ({id}) => {
+  const {currentUser} = useAuth()
   const navigate = useNavigate()
   const {query} = useQueryResponse()
   const items = useQueryResponseData()
@@ -50,9 +52,9 @@ const ActionsCell: FC<Props> = ({id}) => {
     <>
       <ActionButton />
       <MenuActionWrapper>
-        <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
+      {currentUser?.roles.includes('edit_vehicle_type') &&   <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />}
 
-        <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} />
+        {currentUser?.roles.includes('delete_vehicle_type') &&     <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} />}
       </MenuActionWrapper>
     </>
   )

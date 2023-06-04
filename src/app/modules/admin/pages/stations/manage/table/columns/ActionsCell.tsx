@@ -20,11 +20,13 @@ import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrappe
 import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
 import {ActionButton} from '../../../../../components/buttons/ActionButton'
 import { Station } from '../../core/_models'
+import { useAuth } from '../../../../../../auth'
 type Props = {
   data: Station
 }
 
 const ActionsCell: FC<Props> = ({data}) => {
+  const { currentUser } = useAuth();
   const setLoading = useQueryResponseSetLoading()
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -73,7 +75,7 @@ const ActionsCell: FC<Props> = ({data}) => {
       <ActionButton />
       {/* begin::Menu */}
       <MenuActionWrapper>
-        <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
+      { currentUser?.roles.includes('edit_station') &&  <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />}
 
         <MenuActionItem title={intl.formatMessage({id: 'move_Map'})} onCLick={handleMap} />
         <MenuActionItem title={intl.formatMessage({id: 'permissions'})} onCLick={handlePermission} />

@@ -13,11 +13,13 @@ import {ActionButton} from '../../../../../components/buttons/ActionButton'
 import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
 import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
 import { Building } from '../../core/_models'
+import { useAuth } from '../../../../../../auth'
 type Props = {
   data: Building
 }
 
 const ActionsCell: FC<Props> = ({data}) => {
+  const {currentUser} = useAuth()
   const navigate = useNavigate()
   const setLoading= useQueryResponseSetLoading();
   const {query} = useQueryResponse()
@@ -57,7 +59,7 @@ const ActionsCell: FC<Props> = ({data}) => {
       <ActionButton />
       {/* begin::Menu */}
       <MenuActionWrapper>
-        <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
+      {currentUser?.roles.includes('edit_building') &&  <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />}
 
         {/* <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} /> */}
       </MenuActionWrapper>

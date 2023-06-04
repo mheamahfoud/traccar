@@ -13,11 +13,13 @@ import {ActionButton} from '../../../../../components/buttons/ActionButton'
 import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
 import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
 import { UserType } from '../../core/_models'
+import { useAuth } from '../../../../../../auth'
 type Props = {
   data: UserType
 }
 
 const ActionsCell: FC<Props> = ({data}) => {
+  const {currentUser} = useAuth()
   const navigate = useNavigate()
   const setLoading= useQueryResponseSetLoading();
   const {query} = useQueryResponse()
@@ -61,8 +63,8 @@ const ActionsCell: FC<Props> = ({data}) => {
       <ActionButton />
       {/* begin::Menu */}
       <MenuActionWrapper>
-        <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
-        <MenuActionItem title={intl.formatMessage({id: 'permission'})} onCLick={handlePermission} />
+      {currentUser?.roles.includes('edit_user_type') && <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />}
+        {currentUser?.roles.includes('assgin_permission_user_type') &&   <MenuActionItem title={intl.formatMessage({id: 'permission'})} onCLick={handlePermission} />}
         {/* <MenuActionItem title={intl.formatMessage({id: 'delete'})} onCLick={handleDelete} /> */}
       </MenuActionWrapper>
       {/* end::Menu */}

@@ -18,11 +18,13 @@ import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrappe
 import {AddPermissionRolePath, EditRolePath} from '../../../routes/RoutesNames'
 import {Role} from '../../core/_models'
 import AddPermissionRole from '../../add-edit/AddPermissionRole'
+import { useAuth } from '../../../../../../auth'
 type Props = {
   data: Role
 }
 
 const ActionsCell: FC<Props> = ({data}) => {
+  const {currentUser} = useAuth()
   const navigate = useNavigate()
   const setLoading = useQueryResponseSetLoading()
   const {query} = useQueryResponse()
@@ -64,11 +66,11 @@ const ActionsCell: FC<Props> = ({data}) => {
       <ActionButton />
       {/* begin::Menu */}
       <MenuActionWrapper>
-        <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />
-        <MenuActionItem
+      {currentUser?.roles.includes('edit_role')  &&     <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />}
+      {currentUser?.roles.includes('assign_permission_role')&& <MenuActionItem
           title={intl.formatMessage({id: 'permission'})}
           onCLick={handlePermission}
-        />
+        />}
       </MenuActionWrapper>
       {/* end::Menu */}
     </>
