@@ -1,13 +1,14 @@
-import { KTIcon } from '../../../../../../../../_metronic/helpers'
-import { ListFilter } from './ListFilter';
-import { useNavigate } from "react-router-dom";
-import { useIntl } from 'react-intl';
-import { AddPermissionPath } from '../../../routes/RoutesNames';
-import { useAuth } from '../../../../../../auth';
+import {KTIcon} from '../../../../../../../../_metronic/helpers'
+import {ListFilter} from './ListFilter'
+import {useNavigate} from 'react-router-dom'
+import {useIntl} from 'react-intl'
+import {AddPermissionPath} from '../../../routes/RoutesNames'
+import {useAuth} from '../../../../../../auth'
+import {AddButton} from '../../../../../../../../_metronic/helpers/components/AddButton'
 const ListToolbar = () => {
   const {currentUser} = useAuth()
-  const intl = useIntl();
-  const navigate = useNavigate();
+  const intl = useIntl()
+  const navigate = useNavigate()
   const handleAdd = () => {
     navigate(AddPermissionPath)
   }
@@ -15,14 +16,19 @@ const ListToolbar = () => {
   return (
     <div className='d-flex justify-content-end' data-kt-user-table-toolbar='base'>
       <ListFilter />
-      {currentUser?.roles.includes('add_permission')&&  <button type='button' className='btn btn-primary' onClick={handleAdd}>
-        <KTIcon iconName='plus' className='fs-2' />
-        {intl.formatMessage({ id: 'add_object' }, {
-          name: intl.formatMessage({id:'permission'})
-        })}
-      </button>}
+      {currentUser?.roles.includes('add_permission') && (
+        <AddButton
+          title={intl.formatMessage(
+            {id: 'add_object'},
+            {
+              name: intl.formatMessage({id: 'permission'}),
+            }
+          )}
+          handleAdd={handleAdd}
+        />
+      )}
     </div>
   )
 }
 
-export { ListToolbar }
+export {ListToolbar}

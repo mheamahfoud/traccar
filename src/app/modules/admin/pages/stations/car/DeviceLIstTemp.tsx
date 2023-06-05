@@ -3,7 +3,7 @@ import './style.css'
 import DeviceList from './DeviceList'
 import { KTIcon } from '../../../../../../_metronic/helpers'
 import { useSelector } from 'react-redux'
-import TruckPath from '../../../../driver/components/sidebar/TruckPath'
+import TruckPath from '../../../../car/components/sidebar/TruckPath'
 
 export const DeviceLIstTemp = ({ devices, keyword, setKeyword }) => {
   const terminals = useSelector((state: any) => state.truckPath.terminals);

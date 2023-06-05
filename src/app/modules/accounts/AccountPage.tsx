@@ -25,10 +25,10 @@ const AccountPage: React.FC = () => {
     <Routes>
       <Route
         element={
-          <>
+          <div className='d-flex'>
             <AccountHeader />
             <Outlet />
-          </>
+          </div>
         }
       >
         <Route

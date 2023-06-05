@@ -7,10 +7,10 @@ import { useDispatch, useSelector, connect } from "react-redux";
 //import { TerminalType, CoordDistance, Coordinate } from "./core/_models";
 import { useAuth } from "../../../../../auth";
 import {  TerminalType, CoordDistance} from "../../../../../terminal/core/_models";
-import { checkArriveNextStation ,checkNearStation} from "../../../../../driver/services/measure";
+import { checkArriveNextStation ,checkNearStation} from "../../../../../car/services/measure";
 import { useEffectAsync } from "../../../../../../../reactHelper";
 import { sessionActions, truckPathActions } from "../../../../../../../store";
-import { Coordinate } from "../../../../../driver/core/_models";
+import { Coordinate } from "../../../../../car/core/_models";
 
 ;
 

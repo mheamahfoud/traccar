@@ -23,9 +23,10 @@ const loginSchema = Yup.object().shape({
     .max(50, 'Maximum 50 symbols')
     .required('Password is required'),
 })
-
+// email: 'admin@saas.com.sa',
+// password: 'r123o123',
 const initialValues = {
-  email: 'admin@saas.com.sa',
+  email: 'driver@example.com',
   password: 'r123o123',
 }
 // const initialValues = {
