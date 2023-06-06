@@ -252,5 +252,9 @@
   "building": "Building",
   "department": "Department",
   "floor_number": "Floor Number",
-  "list_ads": "List Ads"
+  "list_ads": "List Ads",
+  "sessions": "Sessions",
+  "history": "History",
+  "end_time":"End Time",
+  "start_time":"Start Time"
 }

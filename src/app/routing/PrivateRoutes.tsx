@@ -18,6 +18,7 @@ import SettingPage from '../modules/admin/pages/setting'
 import AdsPage from '../modules/admin/pages/ads'
 import UsersPage from '../modules/admin/pages/users'
 import AccountDriverPage from '../modules/driver/accounts/AccountPage'
+import SessionDriverPage from '../modules/driver/sessions/SessionPage'
 
 
 const PrivateRoutes = () => {
@@ -214,6 +215,14 @@ const PrivateRoutes = () => {
             element={
               <SuspensedView>
                 <AccountDriverPage />
+              </SuspensedView>
+            }
+          ></Route>
+             <Route
+            path='driver/session'
+            element={
+              <SuspensedView>
+                <SessionDriverPage />
               </SuspensedView>
             }
           ></Route>

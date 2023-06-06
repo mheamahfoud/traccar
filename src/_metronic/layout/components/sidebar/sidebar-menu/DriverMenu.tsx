@@ -24,9 +24,23 @@ const DriverMenu = () => {
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Driver</span>
         </div>
       </div>
-    
+      {
+        <SidebarMenuItem
+          to='/driver/account'
+          icon='abstract-28'
+          title={intl.formatMessage({id: 'profile'})}
+          fontIcon='bi-layers'
+        />
+      }
 
-      
+      {
+        <SidebarMenuItem
+          to='/driver/session'
+          icon='abstract-28'
+          title={intl.formatMessage({id: 'session'})}
+          fontIcon='bi-layers'
+        />
+      }
     </>
   )
 }

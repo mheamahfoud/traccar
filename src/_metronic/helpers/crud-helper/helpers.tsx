@@ -197,6 +197,37 @@ function deleteAttributeObjArray(obj: any, attributeName: string, arrayAttr: str
   }
 }
 
+
+const calculateTimeDifference = (apiDate: string, apiTime: string): number => {
+  const [apiYear, apiMonth, apiDay] = apiDate.split('-');
+  const [apiHour, apiMinute, apiSecond] = apiTime.split(':');
+
+  const apiDateTime = new Date(
+    parseInt(apiYear),
+    parseInt(apiMonth) , // Month is zero-based
+    parseInt(apiDay),
+    parseInt(apiHour),
+    parseInt(apiMinute),
+    parseInt(apiSecond)
+  );
+
+  const currentDate = new Date();
+
+  const timeDifference = apiDateTime.getTime() - currentDate.getTime();
+
+  return timeDifference;
+};
+const formatTime = (time: number): string => {
+  const hours = Math.floor(time / (1000 * 60 * 60));
+  const minutes = Math.floor((time / (1000 * 60)) % 60);
+  const seconds = Math.floor((time / 1000) % 60);
+
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+};
+const convertTimeToMilliseconds = (time: string): number => {
+  const [hours, minutes, seconds] = time.split(':').map(Number);
+  return (hours * 60 * 60 + minutes * 60 + seconds) * 1000;
+};
 export {
   createResponseContext,
   stringifyRequestQuery,
@@ -213,5 +244,8 @@ export {
   addFieldsToFormData,
   createResponseContext1,
   deleteAttributeObjArray,
-  addFieldsToArrayFormData
+  addFieldsToArrayFormData,
+  calculateTimeDifference ,
+  formatTime,
+  convertTimeToMilliseconds
 }

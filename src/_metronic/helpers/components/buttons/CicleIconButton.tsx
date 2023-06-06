@@ -13,7 +13,7 @@ interface Props {
     children: React.ReactNode,
     color ? :string
 }
-const IconButton: FC<Props> = ({ onClick, children ,color}) => {
+const CicleIconButton: FC<Props> = ({ onClick, children ,color}) => {
     return (
         <Container className={`d-flex align-items-center justify-content-center ${color}`} onClick={onClick}>
             {children}
@@ -21,4 +21,4 @@ const IconButton: FC<Props> = ({ onClick, children ,color}) => {
     );
 }
 
-export default IconButton;
+export default CicleIconButton;
