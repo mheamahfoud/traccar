@@ -30,22 +30,25 @@ const columnsTable: ReadonlyArray<Column<StopReport>> = [
     accessor: 'month',
   },
   {
-    Header: (props) => <CustomHeader<StopReport> tableProps={props} title={<Localize value='status_0' />} className='min-w-125px' />,
-    accessor: 'count_status_0',
+    Header: (props) => <CustomHeader<TripDriverReport> tableProps={props} title={<Localize value='status_0' />} className='min-w-125px' />,
+    id: 'count_status_0',
+    Cell: ({...props}) => <CustomCell count={props.data[props.row.index]?.status_0?.length} />,
     
   },
   {
-    Header: (props) => <CustomHeader<StopReport> tableProps={props} title={<Localize value='status_1' />} className='min-w-125px' />,
-    accessor: 'count_status_1',
+    Header: (props) => <CustomHeader<TripDriverReport> tableProps={props} title={<Localize value='status_1' />} className='min-w-125px' />,
+    id: 'count_status_1',
+    Cell: ({...props}) => <CustomCell count={props.data[props.row.index]?.status_1?.length} />,
   },
   {
-    Header: (props) => <CustomHeader<StopReport> tableProps={props} title={<Localize value='status_2' />} className='min-w-125px' />,
-    accessor: 'count_status_2',
+    Header: (props) => <CustomHeader<TripDriverReport> tableProps={props} title={<Localize value='status_2' />} className='min-w-125px' />,
+    id: 'count_status_2',
+    Cell: ({...props}) => <CustomCell count={props.data[props.row.index]?.status_2?.length} />,
   },
   {
-    Header: (props) => <CustomHeader<StopReport> tableProps={props} title={<Localize value='status_4' />} className='min-w-125px' />,
+    Header: (props) => <CustomHeader<TripDriverReport> tableProps={props} title={<Localize value='status_4' />} className='min-w-125px' />,
     id: 'count_status_4',
-    Cell: ({...props}) => <CustomCell count={props.data[props.row.index]?.status_4} />,
+    Cell: ({...props}) => <CustomCell count={props.data[props.row.index]?.status_4?.length} />,
   },
 
 ]

@@ -1,8 +1,9 @@
 import { FC, useMemo } from 'react'
 
 import { useListView } from '../../core/ListViewProvider'
-import SelectionHoc from '../../../../../../../../_metronic/helpers/components/table/columns/SelectionHoc'
-import { ID } from '../../../../../../../../_metronic/helpers/crud-helper/models'
+import { ID } from '../../../../../../../_metronic/helpers'
+import SelectionHoc from '../../../../../../../_metronic/helpers/components/table/columns/SelectionHoc'
+
 
 
 type Props = {

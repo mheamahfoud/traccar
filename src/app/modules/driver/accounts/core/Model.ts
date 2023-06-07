@@ -22,8 +22,12 @@ export type TripDriver = {
     from: string,
     to: string,
     status:number,
-
- 
+    from_region: string,
+    from_group: string,
+    from_building: string,
+    to_group: string,
+    to_building: string,
+    to_region: string
   }
   export type TripDriverQueryResponse = Response<Array<TripDriver>>
 
@@ -31,4 +35,12 @@ export type TripDriver = {
     Internal = 1,
     External = 2,
     Other = 3
+  }
+
+
+  export enum DriverStatus {
+    in_Progress=0,
+    done=1,
+    cancel=2,
+    end=4
   }

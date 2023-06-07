@@ -7,7 +7,7 @@ interface Props {
 const InputDetail = (props: Props) => {
     const { title, text } = props;
     return (
-        <div className='row mb-7'>
+        <div className='row mb-7 '>
             <label className='col-lg-4 fw-bold text-muted'>{title}</label>
 
             <div className='col-lg-8'>

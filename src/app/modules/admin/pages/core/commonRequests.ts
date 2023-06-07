@@ -98,6 +98,7 @@ const getCountryList = (): Promise<SelectList[]> => {
             })
         })
 }
+
 const getTerminalList = (): Promise<SelectList[]> => {
     return axios
         .get(`all_terminal`)
@@ -156,6 +157,19 @@ const getCityList = (): Promise<SelectList[]> => {
         })
 }
 
+const getReasonCancelList = (): Promise<SelectList[]> => {
+    return axios
+        .get(`list_active_reason_cancel`)
+        .then((d: any) => {
+            return d.data?.data.map((item) => {
+                return {
+                    value: item.id,
+                    text: item.reason
+                }
+            })
+        })
+}
+
 const getGroupList = (): Promise<SelectList[]> => {
     return axios
         .get(`list_active_group`)
@@ -184,4 +198,4 @@ export { getRegiosList, getPassengers,getShiftList,
     getVehicleList,getGroupListByRegion,
     getDriverList,getCountryList ,getTerminalList,getVehiclePathList,
     getAdsList,getVehicleGroupList,getCityList,getGroupList,
-    getBuildingListList}
+    getBuildingListList,getReasonCancelList}

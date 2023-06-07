@@ -36,7 +36,7 @@ const List = () => {
   )
 }
 
-const ManageCurrentTripListWrapper = () => (
+const ManageOldTripListWrapper = () => (
   <QueryRequestProvider>
     <QueryResponseProvider>
       <ListViewProvider>
@@ -46,4 +46,4 @@ const ManageCurrentTripListWrapper = () => (
   </QueryRequestProvider>
 )
 
-export { ManageCurrentTripListWrapper }
+export { ManageOldTripListWrapper }

@@ -19,7 +19,9 @@ import AdsPage from '../modules/admin/pages/ads'
 import UsersPage from '../modules/admin/pages/users'
 import AccountDriverPage from '../modules/driver/accounts/AccountPage'
 import SessionDriverPage from '../modules/driver/sessions/SessionPage'
-
+import {ReportTripDriver} from '../modules/driver/reports/report-trip-driver/List'
+import WorkingDaysDriverPage from '../modules/driver/work-days'
+import AccountPilotPage from '../modules/pilot/accounts/AccountPage'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -208,7 +210,7 @@ const PrivateRoutes = () => {
         <Route element={<MasterLayout />}>
           {/* <Route path='dashboard' element={<DashboardWrapper />} />
           <Route path='auth/*' element={<Navigate to='/dashboard' />} /> */}
-        
+
           <Route path='auth/*' element={<Navigate to='/driver/account/' />} />
           <Route
             path='driver/account/*'
@@ -218,11 +220,40 @@ const PrivateRoutes = () => {
               </SuspensedView>
             }
           ></Route>
-             <Route
+          <Route
             path='driver/session'
             element={
               <SuspensedView>
                 <SessionDriverPage />
+              </SuspensedView>
+            }
+          ></Route>
+          <Route
+            path='driver/report'
+            element={
+              <SuspensedView>
+                <ReportTripDriver />
+              </SuspensedView>
+            }
+          ></Route>
+          <Route
+            path='driver/working/*'
+            element={
+              <SuspensedView>
+                <WorkingDaysDriverPage />
+              </SuspensedView>
+            }
+          ></Route>
+        </Route>
+      )}
+      {currentUser?.type == UserType.PILOT && (
+        <Route element={<MasterLayout />}>
+          <Route path='auth/*' element={<Navigate to='/pilot/account/' />} />
+          <Route
+            path='pilot/account/*'
+            element={
+              <SuspensedView>
+                <AccountPilotPage />
               </SuspensedView>
             }
           ></Route>

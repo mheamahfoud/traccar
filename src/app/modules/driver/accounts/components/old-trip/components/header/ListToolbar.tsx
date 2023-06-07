@@ -17,17 +17,6 @@ const ListToolbar = () => {
   return (
     <div className='d-flex justify-content-end' data-kt-user-table-toolbar='base'>
       <ListFilter />
-      {currentUser?.roles.includes('add_ads') && (
-        <AddButton
-          title={intl.formatMessage(
-            {id: 'add_object'},
-            {
-              name: intl.formatMessage({id: 'ads'}),
-            }
-          )}
-          handleAdd={handleAdd}
-        />
-      )}
     </div>
   )
 }

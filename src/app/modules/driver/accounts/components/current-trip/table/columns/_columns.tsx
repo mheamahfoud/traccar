@@ -1,43 +1,77 @@
 // @ts-nocheck
 import {Column} from 'react-table'
 import {ActionsCell} from './ActionsCell'
-import {SelectionCell} from './SelectionCell'
-import {SelectionHeader} from './SelectionHeader'
+import {CustomCell} from '../.../../../../../../../../../_metronic/helpers/components/table/columns/CustomCell'
 import { CustomHeader } from './CustomHeader'
-import {Ads} from '../../core/_models'
 import { Localize } from '../../../../../../../../_metronic/i18n/Localize'
-const columnsTable :  ReadonlyArray<Column<Ads>> = [
+import { DriverStatus, TripDriver, TripType } from '../../../../core/Model'
+const columnsTable :  ReadonlyArray<Column<TripDriver>> = [
   {
-    Header: (props) => <SelectionHeader tableProps={props} />,
-    id: 'selection',
-    Cell: ({...props}) => <SelectionCell id={props.data[props.row.index].id} />,
-  },
-  {
-    Header: (props) => <CustomHeader<Ads> tableProps={props} title={'#'} className='min-w-125px' />,
+    Header: (props) => <CustomHeader<TripDriver> tableProps={props} title={'#'} className='min-w-50px' />,
     accessor: 'id',
   },
-
  
   {
-    Header: (props) => <CustomHeader<Ads>  tableProps={props} title={<Localize value='name' />} className='min-w-125px' />,
-    accessor: 'name',
+    Header: (props) => <CustomHeader<TripDriver>  tableProps={props} title={<Localize value='date' />} className='min-w-125px' />,
+    accessor: 'date',
   },
   {
-    Header: (props) => <CustomHeader<Ads>  tableProps={props} title={<Localize value='period' />} className='min-w-125px' />,
-    accessor: 'period',
+    Header: (props) => <CustomHeader<TripDriver>  tableProps={props} title={<Localize value='fromGroup' />} className='min-w-100px' />,
+    accessor: 'from_group',
   },
   {
-    Header: (props) => <CustomHeader<Ads>  tableProps={props} title={<Localize value='link' />} className='min-w-125px' />,
-    accessor: 'link',
+    Header: (props) => <CustomHeader<TripDriver>  tableProps={props} title={<Localize value='fromBuilding' />} className='min-w-100px' />,
+    accessor: 'from_building',
+  },
+  {
+    Header: (props) => <CustomHeader<TripDriver>  tableProps={props} title={<Localize value='toGroup' />} className='min-w-100px' />,
+    accessor: 'to_group',
+  },
+  {
+    Header: (props) => <CustomHeader<TripDriver>  tableProps={props} title={<Localize value='toBuilding' />} className='min-w-100px' />,
+    accessor: 'to_building',
+  },
+  {
+    Header: (props) => <CustomHeader<TripDriver>  tableProps={props} title={<Localize value='note' />} className='min-w-100px' />,
+    accessor: 'note',
+  },
+
+  
+  // {
+  //   Header: (props) => <CustomHeader<Trip>  tableProps={props} title={<Localize value='toRegion' />} className='min-w-100px' />,
+  //   accessor: 'to_region',
+  // },
+  // {
+  //   Header: (props) => <CustomHeader<Trip>  tableProps={props} title={<Localize value='toGroup' />} className='min-w-100px' />,
+  //   accessor: 'to_group',
+  // },
+  // {
+  //   Header: (props) => <CustomHeader<Trip>  tableProps={props} title={<Localize value='toBuilding' />} className='min-w-100px' />,
+  //   accessor: 'to_building',
+  // },
+  {
+    Header: (props) => (
+      <CustomHeader<TripDriver>  tableProps={props} title= {<Localize value='type' /> }   className='min-w-100px' />
+    ),
+    id: 'type',
+    Cell: ({...props}) => <CustomCell data={<Localize value={TripType[props.data[props.row.index].type]} /> } />,
+  },
+  {
+    Header: (props) => (
+      <CustomHeader<TripDriver>  tableProps={props} title= {<Localize value='status' /> }   className='min-w-80px' />
+    ),
+    id: 'status',
+    Cell: ({...props}) => <CustomCell data={<Localize value={DriverStatus[props.data[props.row.index].status]} />  } />,
   },
 
   {
     Header: (props) => (
-      <CustomHeader<Ads>  tableProps={props} title='Actions' className='text-end min-w-100px' />
+      <CustomHeader<TripDriver>  tableProps={props} title='Actions' className='text-end min-w-100px '  />
     ),
     id: 'actions',
     Cell: ({...props}) => <ActionsCell data={props.data[props.row.index]} />,
   },
+
 ]
 
 export {columnsTable}

@@ -1,13 +1,13 @@
 import { FC, PropsWithChildren } from 'react'
 import { HeaderProps } from 'react-table'
 import { useListView } from '../../core/ListViewProvider'
-import { Ads } from '../../core/_models'
-import SelectionHoc from '../../../../../../../../_metronic/helpers/components/table/columns/SelectionHoc'
+import { TripDriverReport } from '../../core/_models'
+import SelectionHoc from '../../../../../../../_metronic/helpers/components/table/columns/SelectionHoc'
 
 
 
 type Props = {
-  tableProps: PropsWithChildren<HeaderProps<Ads>>
+  tableProps: PropsWithChildren<HeaderProps<TripDriverReport>>
 }
 
 const SelectionHeader: FC<Props> = ({ tableProps }) => {

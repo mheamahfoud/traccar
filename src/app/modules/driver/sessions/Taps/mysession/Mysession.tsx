@@ -18,6 +18,7 @@ const Mysession: FC<Props> = () => {
   return (
     <KTCard>
       <Header />
+      <div className='separator separator-dashed my-3'></div>
       <KTCardBody className='py-4'>
         <DataTable data={sessions} columns={columns} />
         {isLoading && <Spinner />}

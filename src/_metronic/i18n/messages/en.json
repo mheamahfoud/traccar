@@ -256,5 +256,11 @@
   "sessions": "Sessions",
   "history": "History",
   "end_time":"End Time",
-  "start_time":"Start Time"
+  "start_time":"Start Time",
+   "start":"Start",
+   "stop":"Stop",
+   "in_Progress":"In Progress",
+   "done":"Done",
+   "cancel":"Cancel",
+   "end":"End"
 }

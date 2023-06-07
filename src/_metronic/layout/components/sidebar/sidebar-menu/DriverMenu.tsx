@@ -41,6 +41,24 @@ const DriverMenu = () => {
           fontIcon='bi-layers'
         />
       }
+         {
+        <SidebarMenuItem
+          to='/driver/report'
+          icon='abstract-28'
+          title={intl.formatMessage({id: 'report'})}
+          fontIcon='bi-layers'
+        />
+      }
+   {
+        <SidebarMenuItem
+          to='driver/working/days'
+          icon='abstract-28'
+          title={intl.formatMessage({id: 'working_day'})}
+          fontIcon='bi-layers'
+        />
+      }
+
+
     </>
   )
 }

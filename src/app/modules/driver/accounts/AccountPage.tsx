@@ -4,6 +4,7 @@ import {AccountHeader} from './AccountHeader'
 import {PageLink, PageTitle} from '../../../../_metronic/layout/core'
 import {CurrentTripsPath, accountBreadCrumbs} from './routes/RouteNames'
 import {ManageCurrentTripListWrapper} from './components/current-trip/List'
+import { ManageOldTripListWrapper } from './components/old-trip/List'
 
 const AccountDriverPage: React.FC = () => {
   return (
@@ -30,7 +31,7 @@ const AccountDriverPage: React.FC = () => {
           element={
             <>
               <PageTitle breadcrumbs={accountBreadCrumbs}>Old Trip</PageTitle>
-              <ManageCurrentTripListWrapper />
+              <ManageOldTripListWrapper />
             </>
           }
         />

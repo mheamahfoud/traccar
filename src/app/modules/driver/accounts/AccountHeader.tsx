@@ -5,11 +5,11 @@ import {Link} from 'react-router-dom'
 import {useLocation} from 'react-router'
 import {KTIcon, QUERIES, toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {CurrentTripsPath, OldTripsPath} from './routes/RouteNames'
-import InputDetail from '../../../../_metronic/helpers/components/fields/InputDetail'
 import {useQuery} from 'react-query'
 import {DriverInfo} from './core/Model'
 import {getDriverInfo} from './core/request'
 import {useIntl} from 'react-intl'
+import InputDetail from './components/InputDetail'
 
 const AccountHeader: React.FC = () => {
   const intl = useIntl()
@@ -53,87 +53,85 @@ const AccountHeader: React.FC = () => {
                 </div>
               </div>
 
-              <div className='flex-grow-1'>
-                <div className='d-flex justify-content-between align-items-start flex-wrap mb-2'>
-                  <div className='d-flex flex-column'>
-                    <div className='d-flex align-items-center mb-2'>
-                      <a href='#' className='text-gray-800 text-hover-primary fs-2 fw-bolder me-1'>
-                        {data.name}
-                      </a>
-                      <a href='#'>
-                        <KTIcon iconName='verify' className='fs-1 text-primary' />
-                      </a>
-                    </div>
-
-                    <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
-                      <a
-                        href='#'
-                        className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
-                      >
-                        <KTIcon iconName='phone' className='fs-4 me-1' />
-                        {data.phone}
-                      </a>
-                      <a
-                        href='#'
-                        className='d-flex align-items-center text-gray-400 text-hover-primary mb-2'
-                      >
-                        <KTIcon iconName='sms' className='fs-4 me-1' />
-                        {data.email}
-                      </a>
-                    </div>
-
-                    <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
-                      <InputDetail title={intl.formatMessage({id: 'emp_id'})} text={data.emp_id} />
-                      <InputDetail
-                        title={intl.formatMessage({id: 'license_number'})}
-                        text={data.license_number}
-                      />
-                      <InputDetail
-                        title={intl.formatMessage({id: 'contract_number'})}
-                        text={data.contract_number}
-                      />
-                    </div>
-                    <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
-                      <InputDetail
-                        title={intl.formatMessage({id: 'issue_date'})}
-                        text={data.issue_date}
-                      />
-                      <InputDetail
-                        title={intl.formatMessage({id: 'exp_date'})}
-                        text={data.exp_date}
-                      />
-                    </div>
+              <div className='d-flex flex-wrap' style={{flex:2}}>
+                <div className='d-flex flex-column flex-4'>
+                  <div className='d-flex align-items-center mb-2'>
+                    <a href='#' className='text-gray-800 text-hover-primary fs-2 fw-bolder me-1'>
+                      {data.name}
+                    </a>
+                    <a href='#'>
+                      <KTIcon iconName='verify' className='fs-1 text-primary' />
+                    </a>
                   </div>
+
+                  <div className='d-flex flex-wrap fw-bold fs-6 mb-2 pe-2'>
+                    <a
+                      href='#'
+                      className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
+                    >
+                      <KTIcon iconName='phone' className='fs-4 me-1' />
+                      {data.phone}
+                    </a>
+                    <a
+                      href='#'
+                      className='d-flex align-items-center text-gray-400 text-hover-primary mb-2'
+                    >
+                      <KTIcon iconName='sms' className='fs-4 me-1' />
+                      {data.email}
+                    </a>
+                  </div>
+                  <div className='row'>
+                    <InputDetail title={intl.formatMessage({id: 'emp_id'})} text={data.emp_id} />
+                    <InputDetail
+                      title={intl.formatMessage({id: 'license_number'})}
+                      text={data.license_number}
+                    />
+                    <InputDetail
+                      title={intl.formatMessage({id: 'contract_number'})}
+                      text={data.contract_number}
+                    />
+                    <InputDetail
+                      title={intl.formatMessage({id: 'issue_date'})}
+                      text={data.issue_date}
+                    />
+                    <InputDetail
+                      title={intl.formatMessage({id: 'exp_date'})}
+                      text={data.exp_date}
+                    />
+                  </div>
+                </div>
+                <div style={{flex:1}} >
+
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className='d-flex overflow-auto h-55px'>
-              <ul className='nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder flex-nowrap'>
-                <li className='nav-item'>
-                  <Link
-                    className={
-                      `nav-link text-active-primary me-6 ` +
-                      (location.pathname === '/driver/account/current-trip' && 'active')
-                    }
-                    to={CurrentTripsPath}
-                  >
-                    Current Trip
-                  </Link>
-                </li>
-                <li className='nav-item'>
-                  <Link
-                    className={
-                      `nav-link text-active-primary me-6 ` +
-                      (location.pathname === '/driver/account/old-trip' && 'active')
-                    }
-                    to={OldTripsPath}
-                  >
-                    Old Trip
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className='d-flex overflow-auto h-55px mx-5'>
+            <ul className='nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder flex-nowrap'>
+              <li className='nav-item'>
+                <Link
+                  className={
+                    `nav-link text-active-primary me-6 ` +
+                    (location.pathname === '/driver/account/current-trip' && 'active')
+                  }
+                  to={CurrentTripsPath}
+                >
+                  Current Trip
+                </Link>
+              </li>
+              <li className='nav-item'>
+                <Link
+                  className={
+                    `nav-link text-active-primary me-6 ` +
+                    (location.pathname === '/driver/account/old-trip' && 'active')
+                  }
+                  to={OldTripsPath}
+                >
+                  Old Trip
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
       )}

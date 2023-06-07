@@ -4,6 +4,7 @@ export enum UserType {
   TERMINAL = 'Terminal',
   DRIVER = 'Driver',
   USER = 'User',
+  PILOT="pilots"
 }
 
 export const domainUrl = 'http://173.249.51.233:8082'

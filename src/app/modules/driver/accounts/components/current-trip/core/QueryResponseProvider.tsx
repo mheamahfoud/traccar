@@ -12,12 +12,13 @@ import {
   WithChildren,
 } from '../../../../../../../_metronic/helpers'
 
-import { getList} from './_requests'
-import { Ads } from './_models'
+
 import { useQueryRequest } from './QueryRequestProvider'
+import { TripDriver } from '../../../core/Model';
+import { getCurrentTripList } from '../../../core/request';
 
 
-const QueryResponseContext = createResponseContext<Ads>(initialQueryResponse)
+const QueryResponseContext = createResponseContext<TripDriver>(initialQueryResponse)
 const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
 
   const { state } = useQueryRequest()
@@ -36,9 +37,9 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
     refetch,
     data: response,
   } = useQuery(
-    `${QUERIES.MANAGE_ADS_LIST_VALUES}-${query}`,
+    `${QUERIES.DRIVER_CURRENT_TRIP_LIST_VALUES}-${query}`,
     () => {
-      return getList(query,state.page_num)
+      return getCurrentTripList(query,state.page_num)
     },
     { cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false }
   )
@@ -57,7 +58,7 @@ const useQueryResponseData = () => {
   if (!response) {
     return []
   }
-
+//alert(JSON.stringify(response.data))
   return response?.data || []
 }
 
