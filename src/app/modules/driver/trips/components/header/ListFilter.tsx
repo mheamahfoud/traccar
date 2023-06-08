@@ -1,24 +1,19 @@
 import { useEffect, useState } from 'react'
-import { MenuComponent } from '../../../../../../../../_metronic/assets/ts/components'
-import { QUERIES, initialQueryState } from '../../../../../../../../_metronic/helpers'
+import { MenuComponent } from '../../../../../../_metronic/assets/ts/components'
 import { useQueryRequest } from '../../core/QueryRequestProvider'
 import { useQueryResponse } from '../../core/QueryResponseProvider'
 
 import { useIntl } from 'react-intl'
 
 import { useQuery } from 'react-query'
-import { geExternalRegionTrips, getRegionTrips, getRegionsByTypeList } from '../../../../../../admin/pages/trips/manage/core/_requests'
-import { InputFilter } from '../../../../../../../../_metronic/helpers/components/fields/InputFilter'
-import { InputSelectFilter } from '../../../../../../../../_metronic/helpers/components/fields/inputSelectFilter'
-import { FilterMenuHoc } from '../../../../../../../../_metronic/helpers/components/table/filter/FilterMenuHoc'
-import { TripType } from '../../../../core/Model'
-import { tripTypeList } from '../../../../../../admin/pages/trips/manage/core/_models'
+import { geExternalRegionTrips, getRegionTrips, getRegionsByTypeList } from '../../../../admin/pages/trips/manage/core/_requests'
+import { InputFilter } from '../../../../../../_metronic/helpers/components/fields/InputFilter'
+import { InputSelectFilter } from '../../../../../../_metronic/helpers/components/fields/inputSelectFilter'
+import { FilterMenuHoc } from '../../../../../../_metronic/helpers/components/table/filter/FilterMenuHoc'
 
-
-
-
-
-
+import { tripTypeList } from '../../../../admin/pages/trips/manage/core/_models'
+import { QUERIES, initialQueryState } from '../../../../../../_metronic/helpers'
+import { TripType } from '../../../accounts/core/Model'
 
 const ListFilter = () => {
   const intl = useIntl();

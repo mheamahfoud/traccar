@@ -14,61 +14,48 @@ import {MenuComponent} from '../../../../../../../../_metronic/assets/ts/compone
 import {optionAlertConfirm} from '../../../../../../../../_metronic/helpers/crud-helper/helpers'
 import {QUERIES} from '../../../../../../../../_metronic/helpers/crud-helper/consts'
 import {PilotrStatus, TripDriver} from '../../../../core/Model'
-import {cancelTrip, startTrip} from '../../../../core/request'
-import { InputSelectFilter } from '../../../../../../admin/components/fields/inputSelectFilter'
+import {cancelTrip} from '../../../../core/request'
 import { getReasonCancelList } from '../../../../../../admin/pages/core/commonRequests'
+import { useNotification } from '../../../../../../../../_metronic/hooks/useNotification'
 
 type Props = {
   data: TripDriver
 }
 
 const ActionsCell: FC<Props> = ({data}) => {
-
-  const [enableApi, setEnableApi] = useState(false)
+  const intl = useIntl()
+  const [enableApi, setEnableApi] = useState(true)
 
   const {
     data: options,
   } = useQuery(
-    `${QUERIES.ALL_Vehicle_LIST_VALUES}-${enableApi}`,
+    `${QUERIES.ALL_REASON_LIST_VALUES}`,
     () => {
       return getReasonCancelList()
     },
     {
-      enabled: enableApi
+      enabled: enableApi, keepPreviousData: true,cacheTime:0, refetchOnWindowFocus: false 
     }
   )
-
-  
-  const navigate = useNavigate()
   const setLoading = useQueryResponseSetLoading()
   const {query} = useQueryResponse()
-  const items = useQueryResponseData()
   const queryClient = useQueryClient()
-  const {currentUser} = useAuth()
-  const intl = useIntl()
+  const { showNotification } = useNotification();
   useEffect(() => {
-    MenuComponent.reinitialization()
-  }, [])
-  const startItem = useMutation(() => cancelTrip(data?.id), {
-    onSuccess: () => {
-      setLoading(false)
-      // ✅ update detail view directly
-      queryClient.invalidateQueries([`${QUERIES.DRIVER_CURRENT_TRIP_LIST_VALUES}-${query}`])
-    },
-    onError: () => {
-      setLoading(false)
-    },
-  })
+   if(options){
+    setEnableApi(false)
+   }
+  }, [options])
+
   const transformOptionsForSweetAlert = (options) => {
     const transformedOptions = {}
-    transformedOptions['']="Select Value"
+    //transformedOptions['']="Select Value"
     options.forEach((option) => {
       transformedOptions[option.value] = option.text;
     });
     return transformedOptions;
   };
   const handleEnd = () => {
-    setEnableApi(true)
     Swal.fire({
       title: 'Reason',
       input: 'select',
@@ -87,19 +74,21 @@ const ActionsCell: FC<Props> = ({data}) => {
         const selectedValue = result.value;
         endItem.mutateAsync(selectedValue)
         setLoading(true)
-        setEnableApi(false)
-     
       }
     })
   }
   const endItem = useMutation((selectedValue : number) => cancelTrip({reason:selectedValue,path_id:data?.id}), {
-    onSuccess: () => {
+    onSuccess: (res) => {
       setLoading(false)
+      showNotification(res)
       // ✅ update detail view directly
-      queryClient.invalidateQueries([`${QUERIES.DRIVER_CURRENT_TRIP_LIST_VALUES}-${query}`])
+      queryClient.invalidateQueries([`${QUERIES.PILOT_CURRENT_TRIP_LIST_VALUES}-${query}`])
     },
-    onError: () => {
+    onError: (res:any) => {
+
+      showNotification(res)
       setLoading(false)
+
     },
   })
   return (
@@ -108,7 +97,7 @@ const ActionsCell: FC<Props> = ({data}) => {
         {data?.status == PilotrStatus.in_Progress && (
           <button type='button' className='btn btn-danger py-2 px-2' onClick={handleEnd}>
             <i className='bi bi-x fs-2'></i>
-            {intl.formatMessage({id: 'cencel'})}
+            {intl.formatMessage({id: 'cancel'})}
           </button>
         )}
       </div>

@@ -4,10 +4,11 @@ import clsx from 'clsx'
 import { useListView } from '../../core/ListViewProvider'
 
 import { useIntl } from 'react-intl'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { WorkingDayTypeEnum } from '../../../core/model'
 import InputDetail from '../../../../../../../_metronic/helpers/components/fields/InputDetail'
 import { KTIcon } from '../../../../../../../_metronic/helpers'
+import { TripWithStatusPath } from '../../../../trips/routes/RoutesNames'
 
 
 
@@ -19,11 +20,11 @@ type Props = {
 
 const ModalForm: FC<Props> = ({ data, isLoading }) => {
     const intl = useIntl();
-    const {itemIdForUpdate, setItemIdForUpdate} = useListView()
+    const { itemIdForUpdate, setItemIdForUpdate } = useListView()
     const navigate = useNavigate();
     const handleEdit = () => {
-        
-  
+
+
     }
 
     return (
@@ -77,15 +78,27 @@ const ModalForm: FC<Props> = ({ data, isLoading }) => {
                 </div>
             </div>
 
-            {/* <div className='row'>
-            {     <button type='button' className='btn btn-primary' onClick={handleEdit}>
+            <div className='row'>
+                {/* <Link
+                    className={
+                        `nav-link text-active-primary me-2 ` +
+                        (location.pathname === '/driver/account/current-trip' && 'active')
+                    }
+                    to={TripWithStatusPath + }
+                >
+                    <KTIcon iconName='eye' className='fs-1' />
+                </Link> */}
+
+                {/* {<button type='button' className='btn btn-primary' onClick={()=>{
+                    navigate(TripWithStatusPath+0)
+                }}>
                     <KTIcon iconName='edit' className='fs-2' />
                     {intl.formatMessage({ id: 'edit_object' }, {
                         name: intl.formatMessage({ id: 'working_day' })
                     })}
-                </button>}
+                </button>} */}
 
-            </div> */}
+            </div>
         </div>
 
     )

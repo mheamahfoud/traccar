@@ -43,7 +43,7 @@ const ListFilter = () => {
       return getRegionsByTypeList(1)
     },
     {
-      enabled: enableApi,
+      enabled: enableApi, cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false
     }
   )
   const {data: regionTrips} = useQuery(
@@ -52,7 +52,8 @@ const ListFilter = () => {
       return getRegionTrips(region)
     },
     {
-      enabled: false,
+      enabled: region!=null , 
+      cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false 
     }
   )
 

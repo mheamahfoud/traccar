@@ -3,11 +3,10 @@ import {Route, Routes, Navigate} from 'react-router-dom'
 import {MasterLayout} from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
 import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
-import {MenuTestPage} from '../pages/MenuTestPage'
+
 import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
 import {WithChildren} from '../../_metronic/helpers'
-import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
-import MyPage from '../pages/MyPage'
+
 import {useAuth} from '../modules/auth'
 import {UserType} from '../../_metronic/utlis/constants'
 
@@ -22,6 +21,7 @@ import SessionDriverPage from '../modules/driver/sessions/SessionPage'
 import {ReportTripDriver} from '../modules/driver/reports/report-trip-driver/List'
 import WorkingDaysDriverPage from '../modules/driver/work-days'
 import AccountPilotPage from '../modules/pilot/accounts/AccountPage'
+import TripsDriverPage from '../modules/driver/trips'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -41,6 +41,7 @@ const PrivateRoutes = () => {
   const RolePage = lazy(() => import('../modules/admin/pages/role'))
 
   const {currentUser} = useAuth()
+
   return (
     <Routes>
       //#region Admin
@@ -236,6 +237,14 @@ const PrivateRoutes = () => {
               </SuspensedView>
             }
           ></Route>
+           <Route
+            path='driver/trips/*'
+            element={
+              <SuspensedView>
+                <TripsDriverPage />
+              </SuspensedView>
+            }
+          ></Route>
           <Route
             path='driver/working/*'
             element={
@@ -246,7 +255,7 @@ const PrivateRoutes = () => {
           ></Route>
         </Route>
       )}
-      {currentUser?.type == UserType.PILOT && (
+      {( !currentUser?.type  || (currentUser?.type != UserType.DRIVER &&  currentUser?.type != UserType.ADMIN) )&& (
         <Route element={<MasterLayout />}>
           <Route path='auth/*' element={<Navigate to='/pilot/account/' />} />
           <Route

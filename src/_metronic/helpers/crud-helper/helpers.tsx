@@ -230,6 +230,10 @@ const convertTimeToMilliseconds = (time: string): number => {
   const [hours, minutes, seconds] = time.split(':').map(Number);
   return (hours * 60 * 60 + minutes * 60 + seconds) * 1000;
 };
+enum GenderType {
+  Male=1,
+  Female=2
+}
 export {
   createResponseContext,
   stringifyRequestQuery,
@@ -249,5 +253,6 @@ export {
   addFieldsToArrayFormData,
   calculateTimeDifference ,
   formatTime,
-  convertTimeToMilliseconds
+  convertTimeToMilliseconds,
+  GenderType
 }
