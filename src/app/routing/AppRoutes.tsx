@@ -34,7 +34,7 @@ const AppRoutes: FC = () => {
               {currentUser.type == UserType.ADMIN && <Route index element={<Navigate to='/dashboard' />} />}
               { currentUser.type == UserType.CAR && <Route index element={<Navigate to='/car' />} />}
               { currentUser.type == UserType.DRIVER && <Route index element={<Navigate to='/driver/account' />} />}
-              { !currentUser.type && <Route index element={<Navigate to='/pilot/account' />} />}
+              { currentUser.type==UserType.OTHER  && <Route index element={<Navigate to='/pilot/account' />} />}
 
             </>
           ) : (

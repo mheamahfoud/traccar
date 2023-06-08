@@ -13,7 +13,7 @@ const SidebarMenuMain = () => {
     <>
        {currentUser.type == UserType.ADMIN &&  <AdminMenu/> }
        {currentUser.type == UserType.DRIVER &&  <DriverMenu/> }
-       {!currentUser.type  &&  <PilotMenu/> }
+       {currentUser.type  ==UserType.OTHER   &&  <PilotMenu/> }
        
       
     </>

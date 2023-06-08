@@ -3,30 +3,26 @@ import {FC, useEffect} from 'react'
 import {useMutation, useQueryClient} from 'react-query'
 import {
   useQueryResponse,
-  useQueryResponseData,
   useQueryResponseSetLoading,
 } from '../../core/QueryResponseProvider'
 import Swal from 'sweetalert2'
-import {useNavigate} from 'react-router-dom'
 import {useIntl} from 'react-intl'
-import {useAuth} from '../../../../../../auth'
 import {MenuComponent} from '../../../../../../../../_metronic/assets/ts/components/MenuComponent'
 import {optionAlertConfirm} from '../../../../../../../../_metronic/helpers/crud-helper/helpers'
 import {QUERIES} from '../../../../../../../../_metronic/helpers/crud-helper/consts'
 import {DriverStatus, TripDriver} from '../../../../core/Model'
 import {EndTrip, StartTrip} from '../../../../core/request'
+import { useNotification } from '../../../../../../../../_metronic/hooks/useNotification'
 
 type Props = {
   data: TripDriver
 }
 
 const ActionsCell: FC<Props> = ({data}) => {
-  const navigate = useNavigate()
+  const { showNotification } = useNotification();
   const setLoading = useQueryResponseSetLoading()
   const {query} = useQueryResponse()
-  const items = useQueryResponseData()
   const queryClient = useQueryClient()
-  const {currentUser} = useAuth()
   const intl = useIntl()
   useEffect(() => {
     MenuComponent.reinitialization()
@@ -45,12 +41,14 @@ const ActionsCell: FC<Props> = ({data}) => {
     })
   }
   const startItem = useMutation(() => StartTrip(data?.id), {
-    onSuccess: () => {
+    onSuccess: (res) => {
       setLoading(false)
+      showNotification(res)
       // ✅ update detail view directly
       queryClient.invalidateQueries([`${QUERIES.DRIVER_CURRENT_TRIP_LIST_VALUES}-${query}`])
     },
-    onError: () => {
+    onError: (error:any) => {
+      showNotification(error)
       setLoading(false)
     },
   })

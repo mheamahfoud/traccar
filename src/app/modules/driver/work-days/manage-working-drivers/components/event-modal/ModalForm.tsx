@@ -1,14 +1,10 @@
 import { FC, useState } from 'react'
-
-import clsx from 'clsx'
 import { useListView } from '../../core/ListViewProvider'
-
 import { useIntl } from 'react-intl'
 import { Link, useNavigate } from 'react-router-dom'
 import { WorkingDayTypeEnum } from '../../../core/model'
 import InputDetail from '../../../../../../../_metronic/helpers/components/fields/InputDetail'
-import { KTIcon } from '../../../../../../../_metronic/helpers'
-import { TripWithStatusPath } from '../../../../trips/routes/RoutesNames'
+
 
 
 
@@ -96,7 +92,7 @@ const ModalForm: FC<Props> = ({ data, isLoading }) => {
                     {intl.formatMessage({ id: 'edit_object' }, {
                         name: intl.formatMessage({ id: 'working_day' })
                     })}
-                </button>} */}
+                </button>}  */}
 
             </div>
         </div>

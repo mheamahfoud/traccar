@@ -32,23 +32,23 @@ const columnsTable: ReadonlyArray<Column<TripDriverReport>> = [
   {
     Header: (props) => <CustomHeader<TripDriverReport> tableProps={props} title={<Localize value='status_0' />} className='min-w-125px' />,
     id: 'count_status_0',
-    Cell: ({...props}) => <CustomCell data={{count : props.data[props.row.index]?.status_0?.length , id:props.data[props.row.index]?.count_status_0 }} />,
+    Cell: ({...props}) => <CustomCell data={{count : props.data[props.row.index]?.status_0?.length , id:0 }} />,
     
   },
   {
     Header: (props) => <CustomHeader<TripDriverReport> tableProps={props} title={<Localize value='status_1' />} className='min-w-125px' />,
     id: 'count_status_1',
-    Cell: ({...props}) => <CustomCell data={{count : props.data[props.row.index]?.status_1?.length , id:props.data[props.row.index]?.count_status_1 } } />,
+    Cell: ({...props}) => <CustomCell data={{count : props.data[props.row.index]?.status_1?.length , id:1} } />,
   },
   {
     Header: (props) => <CustomHeader<TripDriverReport> tableProps={props} title={<Localize value='status_2' />} className='min-w-125px' />,
     id: 'count_status_2',
-    Cell: ({...props}) => <CustomCell data={{count : props.data[props.row.index]?.status_2?.length , id:props.data[props.row.index]?.count_status_2 } } />,
+    Cell: ({...props}) => <CustomCell data={{count : props.data[props.row.index]?.status_2?.length , id:2 } } />,
   },
   {
     Header: (props) => <CustomHeader<TripDriverReport> tableProps={props} title={<Localize value='status_4' />} className='min-w-125px' />,
     id: 'count_status_4',
-    Cell: ({...props}) => <CustomCell data={{count : props.data[props.row.index]?.status_4?.length , id:props.data[props.row.index]?.count_status_4 } } />,
+    Cell: ({...props}) => <CustomCell data={{count : props.data[props.row.index]?.status_4?.length , id:4 } } />,
   },
 
 ]

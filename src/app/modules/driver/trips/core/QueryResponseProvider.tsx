@@ -18,6 +18,7 @@ import { useQueryRequest } from './QueryRequestProvider'
 import { TripDriver } from '../../accounts/core/Model';
 import { getCurrentTripList, getOldTripList } from '../../accounts/core/request';
 import { useParams } from 'react-router-dom';
+import { getList } from './reuests';
 
 
 const QueryResponseContext = createResponseContext<TripDriver>(initialQueryResponse)
@@ -40,7 +41,7 @@ const QueryResponseProvider: FC<WithChildren> = ({ children }) => {
   } = useQuery(
     `${QUERIES.DRIVER_CURRENT_TRIP_LIST_VALUES}-${query}`,
     () => {
-      return getOldTripList(query,state.page_num)
+      return getList(id , query,state.page_num)
     },
     { cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false }
   )

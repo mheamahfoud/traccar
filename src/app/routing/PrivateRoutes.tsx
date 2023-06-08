@@ -255,7 +255,7 @@ const PrivateRoutes = () => {
           ></Route>
         </Route>
       )}
-      {( !currentUser?.type  || (currentUser?.type != UserType.DRIVER &&  currentUser?.type != UserType.ADMIN) )&& (
+      {( currentUser?.type==UserType.OTHER )&& (
         <Route element={<MasterLayout />}>
           <Route path='auth/*' element={<Navigate to='/pilot/account/' />} />
           <Route

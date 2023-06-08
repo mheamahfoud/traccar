@@ -22,7 +22,7 @@ const List = () => {
   return (
     <>
       <KTCard>
-        <ListHeader />
+        {/* <ListHeader /> */}
         <KTCardBody className='py-4'>
           <DataTable data={data} columns={columns} />
           <ListPagination isLoading={isLoading} pagination={pagination} updateState={updateState} />
