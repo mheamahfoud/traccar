@@ -1,16 +1,16 @@
-import {lazy, FC, Suspense} from 'react'
-import {Route, Routes, Navigate} from 'react-router-dom'
-import {MasterLayout} from '../../_metronic/layout/MasterLayout'
+import { lazy, FC, Suspense } from 'react'
+import { Route, Routes, Navigate } from 'react-router-dom'
+import { MasterLayout } from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
-import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
+import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
 
-import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
-import {WithChildren} from '../../_metronic/helpers'
+import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
+import { WithChildren } from '../../_metronic/helpers'
 
-import {useAuth} from '../modules/auth'
-import {UserType} from '../../_metronic/utlis/constants'
+import { useAuth } from '../modules/auth'
+import { UserType } from '../../_metronic/utlis/constants'
 
-import {CarPage} from '../modules/car'
+import { CarPage } from '../modules/car'
 import TripPage from '../modules/admin/pages/trips'
 import WorkingDaysPage from '../modules/admin/pages/workingTime'
 import SettingPage from '../modules/admin/pages/setting'
@@ -18,10 +18,11 @@ import AdsPage from '../modules/admin/pages/ads'
 import UsersPage from '../modules/admin/pages/users'
 import AccountDriverPage from '../modules/driver/accounts/AccountPage'
 import SessionDriverPage from '../modules/driver/sessions/SessionPage'
-import {ReportTripDriver} from '../modules/driver/reports/report-trip-driver/List'
+import { ReportTripDriver } from '../modules/driver/reports/report-trip-driver/List'
 import WorkingDaysDriverPage from '../modules/driver/work-days'
 import AccountPilotPage from '../modules/pilot/accounts/AccountPage'
 import TripsDriverPage from '../modules/driver/trips'
+
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -39,8 +40,9 @@ const PrivateRoutes = () => {
   const TerminalListPage = lazy(() => import('../modules/admin/pages/terminals'))
   const PathPage = lazy(() => import('../modules/admin/pages/path'))
   const RolePage = lazy(() => import('../modules/admin/pages/role'))
+  const LiveVedioPage = lazy(() => import('../modules/admin/pages/vedio-stream'))
 
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth()
 
   return (
     <Routes>
@@ -194,6 +196,15 @@ const PrivateRoutes = () => {
             }
           />
 
+          <Route
+            path='/admin/live-vedio'
+            element={
+              <SuspensedView>
+                <LiveVedioPage />
+              </SuspensedView>
+            }
+          />
+          
           {/* <Route
             path='apps/user-management/*'
             element={
@@ -237,7 +248,7 @@ const PrivateRoutes = () => {
               </SuspensedView>
             }
           ></Route>
-           <Route
+          <Route
             path='driver/trips/*'
             element={
               <SuspensedView>
@@ -255,7 +266,7 @@ const PrivateRoutes = () => {
           ></Route>
         </Route>
       )}
-      {( currentUser?.type==UserType.OTHER )&& (
+      {(currentUser?.type == UserType.OTHER) && (
         <Route element={<MasterLayout />}>
           <Route path='auth/*' element={<Navigate to='/pilot/account/' />} />
           <Route
@@ -308,7 +319,7 @@ const PrivateRoutes = () => {
   )
 }
 
-const SuspensedView: FC<WithChildren> = ({children}) => {
+const SuspensedView: FC<WithChildren> = ({ children }) => {
   const baseColor = getCSSVariableValue('--bs-primary')
   TopBarProgress.config({
     barColors: {
@@ -320,4 +331,4 @@ const SuspensedView: FC<WithChildren> = ({children}) => {
   return <Suspense fallback={<TopBarProgress />}>{children}</Suspense>
 }
 
-export {PrivateRoutes}
+export { PrivateRoutes }

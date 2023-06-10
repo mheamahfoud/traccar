@@ -264,5 +264,6 @@
    "cancel":"Cancel",
    "end":"End",
    "profile":"Profile",
-   "session":"Session"
+   "session":"Session",
+   "live_stream":"Live Stream"
 }
