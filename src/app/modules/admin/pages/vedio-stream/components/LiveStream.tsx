@@ -19,27 +19,12 @@ const VedioPlayer: FC = () => {
     })
   }, [])
 
+  const videoUrl = 'http://amssamples.streaming.mediaservices.windows.net/634cd01c-6822-4630-8444-8dd6279f94c6/CaminandesLlamaDrama4K.ism/manifest(format=m3u8-aapl)'; // Replace with your DirectShow camera stream URL
 
   return (
     <div>
-      {streamUrl ? (
-        <ReactPlayer
-          url={streamUrl}
-          playing
-          controls
-          width="640px"
-          height="360px"
-          config={{
-            file: {
-              attributes: {
-                controlsList: 'nodownload',
-                crossOrigin: 'anonymous',
-                // Add the authentication information as a parameter
-                src: `${streamUrl}?auth=${encodeURIComponent(authentication)}`,
-              },
-            },
-          }}
-        />
+      {!streamUrl ? (
+        <ReactPlayer url={videoUrl} controls={true} width="100%" height="auto" />
       ) : (
         <Spinner />
       )}

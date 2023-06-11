@@ -109,7 +109,7 @@ const ReplayMap = () => {
     let email = 'test@test.test'
     let password = 'test'
     const auth = btoa(`${email}:${password}`)
-    const response = await fetch('http://173.249.51.233:8082/api/devices', {
+    const response = await fetch(`${process.env.REACT_APP_TRUCKGPS_API_URL}/devices`, {
       credentials: 'include',
       headers: {
         Authorization: `Basic ${auth}`,
