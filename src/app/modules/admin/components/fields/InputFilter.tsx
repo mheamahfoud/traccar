@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 const InputFilter = ({ ...props }) => {
-  const { title, setValue, value ,type} = props;
+  const { title, setValue, value, type } = props;
   return (
     <div className='fv-row mb-7'>
       {/* begin::Label */}
@@ -18,7 +18,7 @@ const InputFilter = ({ ...props }) => {
         type={type ? type : 'text'}
         name='name'
         className={'form-control form-control-solid mb-3 mb-lg-0'}
-
+        {...props}
 
 
 

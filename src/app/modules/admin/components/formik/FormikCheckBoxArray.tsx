@@ -53,7 +53,7 @@ const FormikCheckBoxArray = (props: props) => {
                               type='checkbox'
                               id={`flexCheckDefault-${item.id}`}
                               className={clsx(
-                                'form-check-input w-30px h-30px'
+                                'form-check-input w-md-30px h-md-30px w-sm-25px h-sm-25px h-xs-20px w-xs-20px'
                                 // {'is-invalid': touched[name] && errors[name]},
                                 // {
                                 //   'is-valid': touched[name] && !errors[name],

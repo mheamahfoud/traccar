@@ -83,18 +83,18 @@ const Destination = () => {
 
 
 
-    const  isPlaying  = ()=> {
-        let audio : AudioRefObject | null =audioRef.current;
-          if(audio){
+    const isPlaying = () => {
+        let audio: AudioRefObject | null = audioRef.current;
+        if (audio) {
             return !audio.paused
-                  && audio.readyState > 2
-                  && !audio.ended
-                  && audio.currentTime > 0
-          }
-          else{
+                && audio.readyState > 2
+                && !audio.ended
+                && audio.currentTime > 0
+        }
+        else {
             return false;
-          }
-     
+        }
+
     }
 
 
@@ -107,12 +107,14 @@ const Destination = () => {
             //update current path
             dispatch(ArriveStation({
                 "path_id": path,
-                "terminal_id": currentTerminal?.id
+                "terminal_id": currentTerminal?.id,
+                "start": 0,
+                "end": 0,
             }))
 
             const audio = new Audio(currentTerminal?.voice);
             audioRef.current = audio;
-           // audioRef.current.muted = true;
+            // audioRef.current.muted = true;
             if (!isPlaying()) {
                 audioRef?.current?.play().catch((error) => {
                     dispatch(errorsActions.push(error.message))

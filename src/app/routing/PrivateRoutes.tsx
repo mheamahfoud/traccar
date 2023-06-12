@@ -4,14 +4,13 @@ import { useAuth } from '../modules/auth'
 import { UserType } from '../../_metronic/utlis/constants'
 import { CarPage } from '../modules/car'
 import AccountPilotPage from '../modules/pilot/accounts/AccountPage'
-import { AdminRoutes } from './AdminRoutes'
 import { SuspensedView } from '../../_metronic/helpers/components/SuspensedView'
 import TerminalPage from '../modules/terminal/TerminalPage'
-import DriverRoutes from './DriverRoutes'
+
 import { lazy, } from 'react'
 
 import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
-import React from 'react'
+
 
 // const DashboardWrapper = lazy(() => import('../pages/dashboard/DashboardWrapper'))
 const TripPage = lazy(() => import('../modules/admin/pages/trips'))
@@ -36,10 +35,11 @@ const TerminalListPage = lazy(() => import('../modules/admin/pages/terminals'))
 const PathPage = lazy(() => import('../modules/admin/pages/path'))
 const RolePage = lazy(() => import('../modules/admin/pages/role'))
 const LiveVedioPage = lazy(() => import('../modules/admin/pages/vedio-stream'))
-
-
+const CameraPage = lazy(() => import('../modules/admin/pages/camera'))
+const CarOutServicePage = lazy(() => import('../modules/admin/pages/car-out-service'))
 
 import { ReportTripDriver } from '../modules/driver/reports/report-trip-driver/List';
+
 const AccountDriverPage = lazy(() => import('../modules/driver/accounts/AccountPage'))
 const SessionDriverPage = lazy(() => import('../modules/driver/sessions/SessionPage'))
 const WorkingDaysDriverPage = lazy(() => import('../modules/driver/work-days'))
@@ -209,6 +209,22 @@ const PrivateRoutes = () => {
             }
           />
 
+          <Route
+            path='/admin/camera/*'
+            element={
+              <SuspensedView>
+                <CameraPage />
+              </SuspensedView>
+            }
+          />
+             <Route
+            path='/admin/car-out-service/*'
+            element={
+              <SuspensedView>
+                <CarOutServicePage />
+              </SuspensedView>
+            }
+          />
         </Route>
 
 

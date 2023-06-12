@@ -223,6 +223,11 @@
   "reason_report": "Reason Report",
   "trip_driver_report": "Trip Driver Report",
   "trip_customer_report": "Trip Customer Report",
+  "log_path_report": "Log Path Report",
+  "log_terminal_path": "Log Terminal  Report",
+  "car_out_service_report": "Car Out Service Report",
+
+
   "status_0": "In progress",
   "status_1": "Done",
   "status_2": "Cancel",
@@ -265,5 +270,11 @@
    "end":"End",
    "profile":"Profile",
    "session":"Session",
-   "live_stream":"Live Stream"
+   "live_stream":"Live Stream",
+   "camera":"Camera",
+   "camera_count":"Camera Count",
+   "car_out_service":"Car Out Service",
+   "start_path":"Start Path",
+   "end_path":"End Path",
+   "vehicles_count":"Vehicles Count"
 }

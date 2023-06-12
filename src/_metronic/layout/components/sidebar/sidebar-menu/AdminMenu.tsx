@@ -370,6 +370,29 @@ const AdminMenu = () => {
               hasBullet={true}
             />
           )}
+   {currentUser?.roles.includes('log_path_report') && (
+            <SidebarMenuItem
+              to='/admin/reports/log-path-report'
+              title={intl.formatMessage({ id: 'log_path_report' })}
+              hasBullet={true}
+            />
+          )}
+             {currentUser?.roles.includes('log_terminal_report') && (
+            <SidebarMenuItem
+              to='/admin/reports/log-terminal-report'
+              title={intl.formatMessage({ id: 'log_terminal_path' })}
+              hasBullet={true}
+            />
+          )}
+             {currentUser?.roles.includes('car_out_service_report') && (
+            <SidebarMenuItem
+              to='/admin/reports/car-out-service-report'
+              title={intl.formatMessage({ id: 'car_out_service_report' })}
+              hasBullet={true}
+            />
+          )}
+
+
         </SidebarMenuItemWithSub>
       )}
 
@@ -402,13 +425,30 @@ const AdminMenu = () => {
           fontIcon='bi-layers'
         />
       )}
-
+{/* 
       <SidebarMenuItem
         to='/admin/live-vedio'
         icon='abstract-28'
         title={intl.formatMessage({ id: 'live_stream' })}
         fontIcon='bi-layers'
-      />
+      /> */}
+
+      {currentUser?.roles.includes('manage_vehicle_camera') && (
+        <SidebarMenuItem
+          to='/admin/camera/manage-camera'
+          icon='abstract-28'
+          title={intl.formatMessage({ id: 'manage_object' }, { name: intl.formatMessage({ id: 'camera' }) })}
+          fontIcon='bi-layers'
+        />
+      )}
+  {currentUser?.roles.includes('manage_car_out_service') && (
+        <SidebarMenuItem
+          to='/admin/car-out-service/manage-car-out-service'
+          icon='abstract-28'
+          title={intl.formatMessage({ id: 'manage_object' }, { name: intl.formatMessage({ id: 'car_out_service' }) })}
+          fontIcon='bi-layers'
+        />
+      )}
 
 
     </>

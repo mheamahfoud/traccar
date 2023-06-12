@@ -3,7 +3,10 @@ import ReactPlayer from 'react-player';
 import { Spinner } from '../../../../../../_metronic/helpers/components/Spinner';
 import { getLiveStream } from '../core/requests';
 import { LiveStreamModel } from '../core/models';
-const VedioPlayer: FC = () => {
+interface Props {
+  title:string
+}
+const VedioPlayer: FC<Props>= ({title}) => {
   const [streamUrl, setStreamUrl] = useState<string>(null);
   const [authentication, setAuthentication] = useState<string>(null);
 
@@ -19,16 +22,20 @@ const VedioPlayer: FC = () => {
     })
   }, [])
 
-  const videoUrl = 'http://amssamples.streaming.mediaservices.windows.net/634cd01c-6822-4630-8444-8dd6279f94c6/CaminandesLlamaDrama4K.ism/manifest(format=m3u8-aapl)'; // Replace with your DirectShow camera stream URL
+  const videoUrl = 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8'; // Replace with your DirectShow camera stream URL
 
   return (
-    <div>
+    <>
       {!streamUrl ? (
-        <ReactPlayer url={videoUrl} controls={true} width="100%" height="auto" />
+        <div className='my-4 shadow-lg p-md-6 bg-body rounded'>
+          <p className='fs-md-2 fs-sm-4'>{title}</p>
+          <ReactPlayer url={videoUrl} controls={true} width={"440px"} height="auto" />
+        </div>
+
       ) : (
         <Spinner />
       )}
-    </div>
+    </>
   );
 }
 

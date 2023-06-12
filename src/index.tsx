@@ -39,7 +39,16 @@ import ErrorHandler from './_metronic/helpers/common/components/ErrorHandler';
 setupAxios(axios)
 Chart.register(...registerables)
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: 0,
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
 const container = document.getElementById('root')
 if (container) {
   createRoot(container).render(

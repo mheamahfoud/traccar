@@ -15,6 +15,9 @@ export const ReportTripCustomerPath = baseRoute + 'trip-customer-report';
 export const ReporSummeryPath = baseRoute + 'summery-report';
 
 export const ReporShiftDriveryPath = baseRoute + 'shift-driver-report';
+export const ReporLogPath = baseRoute + 'log-path-report';
+export const ReporLogTerminalm  = baseRoute + 'log-terminal-report';
+export const ReporCarOutService = baseRoute + 'car-out-service-report';
 export const Breadcrumbs: Array<PageLink> = [
   {
     title: 'Reports',
@@ -139,6 +142,50 @@ export const summeryReportBreadcrumbs: Array<PageLink> = [
 export const shiftDriverReportBreadcrumbs: Array<PageLink> = [
   {
     title: 'Manage Shift Driver  Report',
+    path: ReporShiftDriveryPath,
+    isSeparator: false,
+    isActive: false,
+  },
+  {
+    title: '',
+    path: '',
+    isSeparator: true,
+    isActive: false,
+  },
+]
+
+export const LogPathReportBreadcrumbs: Array<PageLink> = [
+  {
+    title: 'Manage Log Path',
+    path: ReporShiftDriveryPath,
+    isSeparator: false,
+    isActive: false,
+  },
+  {
+    title: '',
+    path: '',
+    isSeparator: true,
+    isActive: false,
+  },
+]
+
+export const LogTerminalReportBreadcrumbs: Array<PageLink> = [
+  {
+    title: 'Manage Log Terminal',
+    path: ReporShiftDriveryPath,
+    isSeparator: false,
+    isActive: false,
+  },
+  {
+    title: '',
+    path: '',
+    isSeparator: true,
+    isActive: false,
+  },
+]
+export const CarOutServiceReportBreadcrumbs: Array<PageLink> = [
+  {
+    title: 'Manage Car Out Service',
     path: ReporShiftDriveryPath,
     isSeparator: false,
     isActive: false,

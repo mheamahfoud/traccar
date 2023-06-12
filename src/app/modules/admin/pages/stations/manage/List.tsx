@@ -7,7 +7,7 @@ import { QueryResponseProvider, useQueryResponseData, useQueryResponseLoading, u
 import { columnsTable } from './table/columns/_columns'
 import { DataTable } from '../../../components/table/Table'
 import { ListPagination } from '../../../components/table/pagination/ListPagination'
-import { ListLoading } from '../../../components/table/loading/ListLoading'
+import { Spinner } from '../../../../../../_metronic/helpers/components/Spinner'
 
 
 const List = () => {
@@ -25,7 +25,7 @@ const List = () => {
         <KTCardBody className='py-4'>
           <DataTable data={data} columns={columns} />
           <ListPagination isLoading={isLoading} pagination={pagination} updateState={updateState} />
-          {isLoading && <ListLoading />}
+          {isLoading && <Spinner />}
         </KTCardBody>
 
       </KTCard>
