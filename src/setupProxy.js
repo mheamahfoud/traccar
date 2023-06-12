@@ -4,6 +4,7 @@ const { createProxyMiddleware }  = require('http-proxy-middleware');
 module.exports = (app) => {
   app.use(createProxyMiddleware('/api/socket', { target: `ws://173.249.51.233:8082`, ws: true }));
   app.use(createProxyMiddleware('/api', { target: `http://173.249.51.233:8082` }));
+  app.use(createProxyMiddleware('/livevedio', { target: `https://37.224.70.180:18001/artemis/api/video/v2/cameras/previewURLs` }));
 };
 
 

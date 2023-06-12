@@ -1,20 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useEffect, useState} from 'react'
-import {Link} from 'react-router-dom'
-
 import {useLocation} from 'react-router'
-import {KTIcon, QUERIES, toAbsoluteUrl} from '../../../../_metronic/helpers'
-import {CurrentTripsPath, OldTripsPath} from './routes/RouteNames'
+import {GenderType, KTIcon, QUERIES, toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {useQuery} from 'react-query'
-import {DriverInfo} from './core/Model'
+import {PilotInfo} from './core/Model'
 import {getPilotInfo} from './core/request'
 import {useIntl} from 'react-intl'
-import InputDetail from './components/InputDetail'
+import { useNavigate } from 'react-router-dom'
+import {  UpdateProfilePath } from './routes/RouteNames'
+
 
 const AccountHeader: React.FC = () => {
   const intl = useIntl()
+  const navigate = useNavigate();
   const location = useLocation()
-  const [data, setData] = useState<DriverInfo>(null)
+  const [data, setData] = useState<PilotInfo>(null)
   const {data: dataInfo, isLoading} = useQuery(
     `${QUERIES.PILOT_INFO_DETAILS}`,
     () => {
@@ -22,19 +22,18 @@ const AccountHeader: React.FC = () => {
     },
     {cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false}
   )
+
+
+
   useEffect(() => {
     if (dataInfo) {
-      let initData = dataInfo
       setData({
-        id: initData?.id,
-        name: initData?.name,
-        email: initData?.email,
-        phone: initData?.mobile,
-        // emp_id: initData?.meta_data.emp_id,
-        // license_number: initData?.meta_data.license_number,
-        // issue_date: initData?.meta_data.issue_date,
-        // exp_date: initData?.meta_data.exp_date,
-        // contract_number: initData?.meta_data.contract_number,
+        id: dataInfo?.id,
+        name: dataInfo?.name,
+        email: dataInfo?.email,
+        mobile: dataInfo?.mobile,
+        gender:GenderType[dataInfo?.gender]
+
       })
     }
     //, 'purchase_info',
@@ -43,7 +42,7 @@ const AccountHeader: React.FC = () => {
   return (
     <>
       {data && (
-        <div className='card mb-5 mb-xl-10'>
+        <div className='card mb-5 mb-xl-3'>
           <div className='card-body pt-9 pb-0'>
             <div className='d-flex flex-wrap flex-sm-nowrap mb-3'>
               <div className='me-7 mb-4'>
@@ -70,7 +69,7 @@ const AccountHeader: React.FC = () => {
                       className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
                     >
                       <KTIcon iconName='phone' className='fs-4 me-1' />
-                      {data.phone}
+                      {data.mobile}
                     </a>
                     <a
                       href='#'
@@ -78,6 +77,13 @@ const AccountHeader: React.FC = () => {
                     >
                       <KTIcon iconName='sms' className='fs-4 me-1' />
                       {data.email}
+                    </a>
+                    <a
+                      href='#'
+                      className='d-flex align-items-center text-gray-400 text-hover-primary mb-2 mx-3'
+                    >
+                      <i className='bi bi-person fs-4 me-1' />
+                      {data.gender}
                     </a>
                   </div>
                 </div>
@@ -88,7 +94,9 @@ const AccountHeader: React.FC = () => {
 
           <div className='d-flex overflow-auto h-55px mx-5'>
             {
-              <button type='button' className='btn btn-primary my-2 m-auto' onClick={() => {}}>
+              <button type='button' className='btn btn-primary my-2 m-auto' onClick={() => {
+                navigate(UpdateProfilePath , {state:dataInfo})
+              }}>
                 <KTIcon iconName='edit' className='fs-2' />
                 {intl.formatMessage(
                   {id: 'edit_object'},

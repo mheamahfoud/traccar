@@ -3,10 +3,14 @@ import {FC} from 'react'
 import {TripDriverReport} from '../../core/_models'
 import {KTIcon} from '../../../../../../../_metronic/helpers'
 import {Link} from 'react-router-dom'
+import { TripWithStatusPath } from '../../../../trips/routes/RoutesNames'
 type Props = {
-  count?: number
+  data: {
+    id:number,
+    count:number
+  }
 }
-const CustomCell: FC<Props> = ({count}) => {
+const CustomCell: FC<Props> = ({data}) => {
   return (
     <div className='d-inline-flex justify-content-center align-items-center'>
       <Link
@@ -14,12 +18,12 @@ const CustomCell: FC<Props> = ({count}) => {
           `nav-link text-active-primary me-2 ` +
           (location.pathname === '/driver/account/current-trip' && 'active')
         }
-        to={'#'}
+        to={TripWithStatusPath+data?.id}
       >
         <KTIcon iconName='eye' className='fs-1' />
       </Link>
 
-      <span> {count}</span>
+      <span> {data?.count}</span>
     </div>
   )
 }

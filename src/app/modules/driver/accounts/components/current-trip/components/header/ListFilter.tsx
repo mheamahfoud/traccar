@@ -27,11 +27,11 @@ const ListFilter = () => {
   const [date, setDate] = useState<string | undefined>("")
   const [type, setType] = useState<number | undefined>(null)
   const [region, setRegion] = useState<string | undefined>(null)
-
   const [from, setFrom] = useState<string | undefined>(null)
   const [to, setTo] = useState<string | undefined>(null)
-
   const [enableApi, setEnableApi] = useState<boolean>(true);
+
+
   useEffect(() => {
     if (type) {
       setTo(null)
@@ -42,12 +42,13 @@ const ListFilter = () => {
   const {
     data: regiosList,
   } = useQuery(
-    `${QUERIES.ALL_REGION_TYPE_LIST_VALUES}-${type}`,
+    `${QUERIES.ALL_REGION_TYPE_LIST_VALUES}`,
     () => {
       return getRegionsByTypeList(1)
     },
     {
       // enabled: enableApi
+      enabled: enableApi,  cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false 
     }
   )
   const {
@@ -58,7 +59,8 @@ const ListFilter = () => {
       return getRegionTrips(region)
     },
     {
-      // enabled: enableApi
+      enabled: region!=null , 
+      cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false 
     }
   )
 
@@ -70,9 +72,15 @@ const ListFilter = () => {
       return geExternalRegionTrips()
     },
     {
-      enabled: type == 2
+      enabled: type == 2,cacheTime: 0, keepPreviousData: true, refetchOnWindowFocus: false 
     }
   )
+
+  useEffect(() => {
+   if(regiosList){
+    setEnableApi(false)
+   }
+  }, [regiosList])
 
   useEffect(() => {
     MenuComponent.reinitialization()

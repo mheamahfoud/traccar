@@ -1,8 +1,8 @@
-import axios, {AxiosResponse} from 'axios'
-import {ConvertStringToObject, ID, ResponeApiCheck} from '../../../../../_metronic/helpers'
-import {TripDriverQueryResponse} from './Model'
+import axios, { AxiosResponse } from 'axios'
+import { ConvertStringToObject, ID, ResponeApiCheck } from '../../../../../_metronic/helpers'
+import { AddTrip, TripDriverQueryResponse } from './Model'
 const getPilotInfo = (): Promise<any> => {
-  return axios.get(`driver_info`).then((d: any) => {
+  return axios.get(`one_customer`).then((d: any) => {
     return d.data?.data
   })
 }
@@ -26,14 +26,20 @@ const getTripList = (query: string, page: number): Promise<TripDriverQueryRespon
       }
     })
 }
-const startTrip = (id:ID): Promise<any> => {
+const addTrip = (object: AddTrip): Promise<any> => {
   return axios
-    .get(`trip_status_ok/${id}`)
+    .post(`customer_store_trip`, { ...object })
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
 }
 const cancelTrip = (object): Promise<any> => {
   return axios
-    .post(`customer_cancel_trip`,{object})
+    .post(`customer_cancel_trip`, { ...object })
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
 }
-export {getPilotInfo,getTripList, startTrip, cancelTrip}
+
+const updateProfile = (object): Promise<any> => {
+  return axios
+    .post(`update_customer`, { ...object })
+    .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
+}
+export { getPilotInfo, getTripList, addTrip, cancelTrip,updateProfile }

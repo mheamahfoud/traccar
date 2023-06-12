@@ -262,5 +262,8 @@
    "in_Progress":"In Progress",
    "done":"Done",
    "cancel":"Cancel",
-   "end":"End"
+   "end":"End",
+   "profile":"Profile",
+   "session":"Session",
+   "live_stream":"Live Stream"
 }

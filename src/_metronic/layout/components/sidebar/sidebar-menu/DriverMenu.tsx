@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-no-target-blank */
-import {useIntl} from 'react-intl'
-import {SidebarMenuItemWithSub} from './SidebarMenuItemWithSub'
-import {SidebarMenuItem} from './SidebarMenuItem'
-import {useSelector} from 'react-redux'
-import {useAuth} from '../../../../../app/modules/auth'
+import { useIntl } from 'react-intl'
+import { SidebarMenuItemWithSub } from './SidebarMenuItemWithSub'
+import { SidebarMenuItem } from './SidebarMenuItem'
+import { useSelector } from 'react-redux'
+import { useAuth } from '../../../../../app/modules/auth'
 import {
   ReportPermissions,
   RolesPermissions,
@@ -15,8 +15,7 @@ import {
 
 const DriverMenu = () => {
   const intl = useIntl()
-  const userTypes = useSelector((state: any) => state.pageTimeManager?.userTypes)
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth()
   return (
     <>
       <div className='menu-item'>
@@ -24,36 +23,36 @@ const DriverMenu = () => {
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Driver</span>
         </div>
       </div>
-      {
+      {currentUser?.roles.includes('profile_driver') &&
         <SidebarMenuItem
           to='/driver/account'
           icon='abstract-28'
-          title={intl.formatMessage({id: 'profile'})}
+          title={intl.formatMessage({ id: 'profile' })}
           fontIcon='bi-layers'
         />
       }
 
-      {
+      {currentUser?.roles.includes('session_driver') &&
         <SidebarMenuItem
           to='/driver/session'
           icon='abstract-28'
-          title={intl.formatMessage({id: 'session'})}
+          title={intl.formatMessage({ id: 'session' })}
           fontIcon='bi-layers'
         />
       }
-         {
+      {currentUser?.roles.includes('report_driver') &&
         <SidebarMenuItem
           to='/driver/report'
           icon='abstract-28'
-          title={intl.formatMessage({id: 'report'})}
+          title={intl.formatMessage({ id: 'report' })}
           fontIcon='bi-layers'
         />
       }
-   {
+      {currentUser?.roles.includes('working_day_driver') &&
         <SidebarMenuItem
           to='driver/working/days'
           icon='abstract-28'
-          title={intl.formatMessage({id: 'working_day'})}
+          title={intl.formatMessage({ id: 'working_day' })}
           fontIcon='bi-layers'
         />
       }
@@ -63,4 +62,4 @@ const DriverMenu = () => {
   )
 }
 
-export {DriverMenu}
+export { DriverMenu }

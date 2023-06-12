@@ -1,50 +1,57 @@
-import {lazy, FC, Suspense} from 'react'
-import {Route, Routes, Navigate} from 'react-router-dom'
-import {MasterLayout} from '../../_metronic/layout/MasterLayout'
-import TopBarProgress from 'react-topbar-progress-indicator'
-import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
-import {MenuTestPage} from '../pages/MenuTestPage'
-import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
-import {WithChildren} from '../../_metronic/helpers'
-import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
-import MyPage from '../pages/MyPage'
-import {useAuth} from '../modules/auth'
-import {UserType} from '../../_metronic/utlis/constants'
-
-import {CarPage} from '../modules/car'
-import TripPage from '../modules/admin/pages/trips'
-import WorkingDaysPage from '../modules/admin/pages/workingTime'
-import SettingPage from '../modules/admin/pages/setting'
-import AdsPage from '../modules/admin/pages/ads'
-import UsersPage from '../modules/admin/pages/users'
-import AccountDriverPage from '../modules/driver/accounts/AccountPage'
-import SessionDriverPage from '../modules/driver/sessions/SessionPage'
-import {ReportTripDriver} from '../modules/driver/reports/report-trip-driver/List'
-import WorkingDaysDriverPage from '../modules/driver/work-days'
+import { Route, Routes, Navigate } from 'react-router-dom'
+import { MasterLayout } from '../../_metronic/layout/MasterLayout'
+import { useAuth } from '../modules/auth'
+import { UserType } from '../../_metronic/utlis/constants'
+import { CarPage } from '../modules/car'
 import AccountPilotPage from '../modules/pilot/accounts/AccountPage'
+import { AdminRoutes } from './AdminRoutes'
+import { SuspensedView } from '../../_metronic/helpers/components/SuspensedView'
+import TerminalPage from '../modules/terminal/TerminalPage'
+import DriverRoutes from './DriverRoutes'
+import { lazy, } from 'react'
+
+import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
+import React from 'react'
+
+// const DashboardWrapper = lazy(() => import('../pages/dashboard/DashboardWrapper'))
+const TripPage = lazy(() => import('../modules/admin/pages/trips'))
+const WorkingDaysPage = lazy(() => import('../modules/admin/pages/workingTime'))
+const SettingPage = lazy(() => import('../modules/admin/pages/setting'))
+const AdsPage = lazy(() => import('../modules/admin/pages/ads'))
+const UsersPage = lazy(() => import('../modules/admin/pages/users'))
+
+const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
+const WizardsPage = lazy(() => import('../modules/wizards/WizardsPage'))
+const AccountPage = lazy(() => import('../modules/accounts/AccountPage'))
+const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
+const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
+// const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
+
+const VechilesPage = lazy(() => import('../modules/admin/pages/vehicles'))
+const StationPage = lazy(() => import('../modules/admin/pages/stations'))
+
+const PublicMapPage = lazy(() => import('../modules/admin/pages/publicMap/map'))
+const ReportsPage = lazy(() => import('../modules/admin/pages/reports/Index'))
+const TerminalListPage = lazy(() => import('../modules/admin/pages/terminals'))
+const PathPage = lazy(() => import('../modules/admin/pages/path'))
+const RolePage = lazy(() => import('../modules/admin/pages/role'))
+const LiveVedioPage = lazy(() => import('../modules/admin/pages/vedio-stream'))
+
+
+
+import { ReportTripDriver } from '../modules/driver/reports/report-trip-driver/List';
+const AccountDriverPage = lazy(() => import('../modules/driver/accounts/AccountPage'))
+const SessionDriverPage = lazy(() => import('../modules/driver/sessions/SessionPage'))
+const WorkingDaysDriverPage = lazy(() => import('../modules/driver/work-days'))
+const TripsDriverPage = lazy(() => import('../modules/driver/trips'))
 
 const PrivateRoutes = () => {
-  const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
-  const WizardsPage = lazy(() => import('../modules/wizards/WizardsPage'))
-  const AccountPage = lazy(() => import('../modules/accounts/AccountPage'))
-  const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
-  const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
-  // const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
+  const { currentUser } = useAuth()
 
-  const VechilesPage = lazy(() => import('../modules/admin/pages/vehicles'))
-  const StationPage = lazy(() => import('../modules/admin/pages/stations'))
-  const TerminalPage = lazy(() => import('../modules/terminal/TerminalPage'))
-  const PublicMapPage = lazy(() => import('../modules/admin/pages/publicMap/map'))
-  const ReportsPage = lazy(() => import('../modules/admin/pages/reports/Index'))
-  const TerminalListPage = lazy(() => import('../modules/admin/pages/terminals'))
-  const PathPage = lazy(() => import('../modules/admin/pages/path'))
-  const RolePage = lazy(() => import('../modules/admin/pages/role'))
-
-  const {currentUser} = useAuth()
   return (
     <Routes>
-      //#region Admin
       {currentUser?.type == UserType.ADMIN && (
+
         <Route element={<MasterLayout />}>
           <Route path='dashboard' element={<DashboardWrapper />} />
           <Route path='auth/*' element={<Navigate to='/dashboard' />} />
@@ -193,24 +200,23 @@ const PrivateRoutes = () => {
             }
           />
 
-          {/* <Route
-            path='apps/user-management/*'
+          <Route
+            path='/admin/live-vedio'
             element={
               <SuspensedView>
-                <UsersPage />
+                <LiveVedioPage />
               </SuspensedView>
             }
-          /> */}
+          />
 
-          {/* Page Not Found */}
         </Route>
+
+
+
+
       )}
-      //#endregion //#region Driver
       {currentUser?.type == UserType.DRIVER && (
         <Route element={<MasterLayout />}>
-          {/* <Route path='dashboard' element={<DashboardWrapper />} />
-          <Route path='auth/*' element={<Navigate to='/dashboard' />} /> */}
-
           <Route path='auth/*' element={<Navigate to='/driver/account/' />} />
           <Route
             path='driver/account/*'
@@ -237,6 +243,14 @@ const PrivateRoutes = () => {
             }
           ></Route>
           <Route
+            path='driver/trips/*'
+            element={
+              <SuspensedView>
+                <TripsDriverPage />
+              </SuspensedView>
+            }
+          ></Route>
+          <Route
             path='driver/working/*'
             element={
               <SuspensedView>
@@ -246,7 +260,7 @@ const PrivateRoutes = () => {
           ></Route>
         </Route>
       )}
-      {currentUser?.type == UserType.PILOT && (
+      {(currentUser?.type == UserType.OTHER) && (
         <Route element={<MasterLayout />}>
           <Route path='auth/*' element={<Navigate to='/pilot/account/' />} />
           <Route
@@ -299,16 +313,6 @@ const PrivateRoutes = () => {
   )
 }
 
-const SuspensedView: FC<WithChildren> = ({children}) => {
-  const baseColor = getCSSVariableValue('--bs-primary')
-  TopBarProgress.config({
-    barColors: {
-      '0': baseColor,
-    },
-    barThickness: 1,
-    shadowBlur: 5,
-  })
-  return <Suspense fallback={<TopBarProgress />}>{children}</Suspense>
-}
 
-export {PrivateRoutes}
+
+export { PrivateRoutes }

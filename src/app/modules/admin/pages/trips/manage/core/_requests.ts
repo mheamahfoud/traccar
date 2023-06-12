@@ -64,7 +64,7 @@ const geRegionTripCars = (region_id: string): Promise<SelectList[]> => {
       })
     })
 }
-const getRegionTrips = (region_id: string): Promise<SelectList[]> => {
+const getRegionTrips = (region_id: string): Promise<any[]> => {
   return axios
     .get(`region_trip/${region_id}`)
     .then((d: any) => {

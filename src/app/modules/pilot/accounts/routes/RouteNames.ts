@@ -2,15 +2,16 @@ import { PageLink } from "../../../../../_metronic/layout/core";
 
 const baseRoute = '/pilot/account/'
 
-export const DashBoardPath = baseRoute + 'current-trip';
+export const ListPath = baseRoute + 'current-trip';
 
-export const CurrentTripsPath = baseRoute + 'current-trip';
-export const OldTripsPath = baseRoute + 'old-trip';
+export const AddTripPath = baseRoute + 'add-trip';
+export const UpdateProfilePath=baseRoute + 'update-profile'
+
 
 
 export const accountBreadCrumbs: Array<PageLink> = [
     {
-      title: 'Account',
+      title: 'Trips',
       path: '/pilot/account/current-trip',
       isSeparator: false,
       isActive: false,

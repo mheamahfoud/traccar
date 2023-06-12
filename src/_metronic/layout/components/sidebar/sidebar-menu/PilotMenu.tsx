@@ -28,7 +28,7 @@ const PilotMenu = () => {
         <SidebarMenuItem
           to='/pilot/account'
           icon='abstract-28'
-          title={intl.formatMessage({id: 'profile'})}
+          title={intl.formatMessage({id: 'trips'})}
           fontIcon='bi-layers'
         />
       }

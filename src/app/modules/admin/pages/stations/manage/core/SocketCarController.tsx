@@ -53,7 +53,8 @@ const SocketCarController = () => {
     // const socket = new WebSocket(
     //   `${protocol}//${window.location.host}/api/socket`
     // );
-  const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}/api/socket`);
+    const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
+
 
     socketRef.current = socket;
 
