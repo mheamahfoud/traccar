@@ -9,7 +9,6 @@ import { DataTable } from '../../../components/table/Table'
 import { ListPagination } from '../../../components/table/pagination/ListPagination'
 import { Spinner } from '../../../../../../_metronic/helpers/components/Spinner'
 
-
 const List = () => {
   const items = useQueryResponseData()
   const isLoading = useQueryResponseLoading()
