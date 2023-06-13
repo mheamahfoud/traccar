@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import FormikInputLabel from '../../../../../components/formik/FormikInputLabel';
+import FormikInputLabel from '../../../../../../../../_metronic/helpers/components/formik/FormikInputLabel';
 const PhysicalInfo = () => {
 //#endregion fetch data
     const intel = useIntl()

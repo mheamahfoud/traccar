@@ -1,14 +1,14 @@
 import {FC} from 'react'
 import {useFormikContext} from 'formik'
-import SubmitButton from '../../../../components/buttons/SubmitButton'
-import ResetButton from '../../../../components/buttons/ResetButton'
 import {useIntl} from 'react-intl'
-import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
 import { useQuery } from 'react-query'
 import { QUERIES } from '../../../../../../../_metronic/helpers'
 import { getVehicleList } from '../../../core/commonRequests'
-import FormikSelectInput from '../../../../components/formik/FormikSelectInput'
 import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+import FormikSelectInput from '../../../../../../../_metronic/helpers/components/formik/FormikSelectInput'
+import FormikInputLabel from '../../../../../../../_metronic/helpers/components/formik/FormikInputLabel'
+import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
+import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
 
 const Form: FC = () => {
 

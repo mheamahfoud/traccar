@@ -1,13 +1,13 @@
 import { FC} from 'react'
 import { useFormikContext } from 'formik'
-import { ListLoading } from '../../../../components/table/loading/ListLoading'
-import SubmitButton from '../../../../components/buttons/SubmitButton'
-import ResetButton from '../../../../components/buttons/ResetButton'
 import { useIntl } from 'react-intl'
-import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
-import FormikFile from '../../../../components/formik/FormikFile'
-import FormikSwitch from '../../../../components/formik/FormikCheckBox'
 import { FieldImage } from '../../../../../../../_metronic/utlis/formik'
+import FormikInputLabel from '../../../../../../../_metronic/helpers/components/formik/FormikInputLabel'
+import FormikFile from '../../../../../../../_metronic/helpers/components/formik/FormikFile'
+import FormikSwitch from '../../../../../../../_metronic/helpers/components/formik/FormikCheckBox'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
+import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
 
 
 const Form: FC = () => {
@@ -84,7 +84,7 @@ const Form: FC = () => {
                 </div>
                 {/* end::Actions */}
             </form>
-            {(isSubmitting) && <ListLoading />}
+            {(isSubmitting) && <Spinner />}
         </>
     )
 }

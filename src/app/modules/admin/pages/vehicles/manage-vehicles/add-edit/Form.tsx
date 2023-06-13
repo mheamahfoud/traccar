@@ -1,14 +1,14 @@
 import {FC, useEffect, useState} from 'react'
 import {useFormikContext} from 'formik'
-import {ListLoading} from '../../../../components/table/loading/ListLoading'
-import SubmitButton from '../../../../components/buttons/SubmitButton'
-import ResetButton from '../../../../components/buttons/ResetButton'
-import CustomAppBar from '../../../../components/appbar/CustomAppBar'
 import GeneralInfo from './Tabs/GeneralInfo'
-import {TabWrapper} from '../../../../components/appbar/TabWrapper'
 import Insurance from './Tabs/Insurance'
 import Purchase from './Tabs/Purchase'
 import PhysicalInfo from './Tabs/physicalInfo'
+import CustomAppBar from '../../../../../../../_metronic/helpers/components/appbar/CustomAppBar'
+import { TabWrapper } from '../../../../../../../_metronic/helpers/components/appbar/TabWrapper'
+import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
+import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
 interface Props {
   purshase_info:any
 }
@@ -54,7 +54,7 @@ const Form: FC<Props> = ({purshase_info}) => {
             </div>
           </div>
         </form>
-        {isSubmitting && <ListLoading />}
+        {isSubmitting && <Spinner />}
       </div>
     </>
   )

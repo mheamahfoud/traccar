@@ -1,21 +1,14 @@
 import { Formik } from 'formik';
 import { KTCard, KTCardBody, QUERIES, ResponeApiCheck, SuccessMsg, initialResponseError } from '../../../../../../../_metronic/helpers';
-import { Form } from './Form';
-//import { update } from '../core/_requests';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
 import { AccountForm } from './AccountForm';
 import { SaveAccountCar, getAccountCar } from '../core/_requests';
 import { useQuery } from 'react-query';
 import * as Yup from 'yup'
-import { ListLoading } from '../../../../components/table/loading/ListLoading';
 import { ListVehiclesPath } from '../../routes/RoutesNames';
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner';
 const roleSchema = Yup.object().shape({
-    //email: Yup.string()
-       // .email('Wrong email format')
-      //  .min(3, 'Minimum 3 symbols')
-     //   .max(50, 'Maximum 50 symbols')
-      //  .required('Email is required'),
     password: Yup.string()
         .required('Field is required'),
 
@@ -78,7 +71,7 @@ const AccountVehicle = () => {
                 </Formik>
 
             </KTCardBody>
-            {isLoading && <ListLoading />}
+            {isLoading && <Spinner />}
         </KTCard>
 
     );

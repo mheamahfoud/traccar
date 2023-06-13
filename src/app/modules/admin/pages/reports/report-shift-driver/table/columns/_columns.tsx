@@ -1,14 +1,10 @@
 // @ts-nocheck
 import { Column } from 'react-table'
-import { ActionsCell } from './ActionsCell'
 import { SelectionCell } from './SelectionCell'
 import { SelectionHeader } from './SelectionHeader'
 import { CustomHeader } from './CustomHeader'
 import { ShiftDriverReport } from '../../core/_models'
 import { Localize } from '../../../../../../../../_metronic/i18n/Localize';
-import { CustomCell } from './CustomCell'
-
-
 
 const columnsTable: ReadonlyArray<Column<ShiftDriverReport>> = [
   {

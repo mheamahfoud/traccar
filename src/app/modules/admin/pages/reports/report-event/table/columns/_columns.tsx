@@ -1,6 +1,5 @@
 // @ts-nocheck
 import {Column} from 'react-table'
-import {ActionsCell} from './ActionsCell'
 import {SelectionCell} from './SelectionCell'
 import {SelectionHeader} from './SelectionHeader'
 import { CustomHeader } from './CustomHeader'

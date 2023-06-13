@@ -1,4 +1,3 @@
-import {KTIcon} from '../../../../../../../../_metronic/helpers'
 import {ListFilter} from './ListFilter'
 import {useNavigate} from 'react-router-dom'
 import {useIntl} from 'react-intl'

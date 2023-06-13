@@ -1,12 +1,7 @@
 import { lazy, } from 'react'
-import { Route, Navigate, Router } from 'react-router-dom'
+import {  Navigate,  RouteProps } from 'react-router-dom'
 import { SuspensedView } from '../../_metronic/helpers/components/SuspensedView'
-
-import { MasterLayout } from '../../_metronic/layout/MasterLayout'
 import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
-import React from 'react'
-
-// const DashboardWrapper = lazy(() => import('../pages/dashboard/DashboardWrapper'))
 const TripPage = lazy(() => import('../modules/admin/pages/trips'))
 const WorkingDaysPage = lazy(() => import('../modules/admin/pages/workingTime'))
 const SettingPage = lazy(() => import('../modules/admin/pages/setting'))
@@ -18,8 +13,6 @@ const WizardsPage = lazy(() => import('../modules/wizards/WizardsPage'))
 const AccountPage = lazy(() => import('../modules/accounts/AccountPage'))
 const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
 const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
-// const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
-
 const VechilesPage = lazy(() => import('../modules/admin/pages/vehicles'))
 const StationPage = lazy(() => import('../modules/admin/pages/stations'))
 
@@ -28,170 +21,201 @@ const ReportsPage = lazy(() => import('../modules/admin/pages/reports/Index'))
 const TerminalListPage = lazy(() => import('../modules/admin/pages/terminals'))
 const PathPage = lazy(() => import('../modules/admin/pages/path'))
 const RolePage = lazy(() => import('../modules/admin/pages/role'))
+
 const LiveVedioPage = lazy(() => import('../modules/admin/pages/vedio-stream'))
+const CameraPage = lazy(() => import('../modules/admin/pages/camera'))
+const CarOutServicePage = lazy(() => import('../modules/admin/pages/car-out-service'))
+export const adminRoutes: (RouteProps & { permission?: string | null })[] = [
+    { path: 'dashboard', element: <DashboardWrapper />, permission: 'admin' },
+    { path: 'auth/*', element: <Navigate to='/dashboard' />, permission: 'admin' },
+    {
+        path: 'crafted/pages/profile/*',
+        element: (
+            <SuspensedView>
+                <ProfilePage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: 'crafted/pages/wizards/*',
+        element: (
+            <SuspensedView>
+                <WizardsPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: 'crafted/widgets/*',
+        element: (
+            <SuspensedView>
+                <WidgetsPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: 'crafted/account/*',
+        element: (
+            <SuspensedView>
+                <AccountPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: 'apps/chat/*',
+        element: (
+            <SuspensedView>
+                <ChatPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/vehicles/*',
+        element: (
+            <SuspensedView>
+                <VechilesPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/stations/*',
+        element: (
+            <SuspensedView>
+                <StationPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/terminals/*',
+        element: (
+            <SuspensedView>
+                <TerminalListPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/trips/*',
+        element: (
+            <SuspensedView>
+                <TripPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/reports/*',
+        element: (
+            <SuspensedView>
+                <ReportsPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/public-map/*',
+        element: (
+            <SuspensedView>
+                <PublicMapPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/working-days/*',
+        element: (
+            <SuspensedView>
+                <WorkingDaysPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/setting/*',
+        element: (
+            <SuspensedView>
+                <SettingPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/path/*',
+        element: (
+            <SuspensedView>
+                <PathPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/ads/*',
+        element: (
+            <SuspensedView>
+                <AdsPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/users/*',
+        element: (
+            <SuspensedView>
+                <UsersPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
 
 
-export const  AdminRoutes=  ()=>
+    {
+        path: '/admin/roles/*',
+        element: (
+            <SuspensedView>
+                <RolePage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/live-vedio',
+        element: (
+            <SuspensedView>
+                <LiveVedioPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/camera/*',
+        element: (
+            <SuspensedView>
+                <CameraPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    {
+        path: '/admin/car-out-service/*',
+        element: (
+            <SuspensedView>
+                <CarOutServicePage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
 
-        <Route element={<MasterLayout />}>
-            <Route path='dashboard' element={<DashboardWrapper />} />
-            <Route path='auth/*' element={<Navigate to='/dashboard' />} />
-            <Route
-                path='crafted/pages/profile/*'
-                element={
-                    <SuspensedView>
-                        <ProfilePage />
-                    </SuspensedView>
-                }
-            />
-            <Route
-                path='crafted/pages/wizards/*'
-                element={
-                    <SuspensedView>
-                        <WizardsPage />
-                    </SuspensedView>
-                }
-            />
-            <Route
-                path='crafted/widgets/*'
-                element={
-                    <SuspensedView>
-                        <WidgetsPage />
-                    </SuspensedView>
-                }
-            />
-            <Route
-                path='crafted/account/*'
-                element={
-                    <SuspensedView>
-                        <AccountPage />
-                    </SuspensedView>
-                }
-            />
-            <Route
-                path='apps/chat/*'
-                element={
-                    <SuspensedView>
-                        <ChatPage />
-                    </SuspensedView>
-                }
-            />
 
-            <Route
-                path='/admin/vehicles/*'
-                element={
-                    <SuspensedView>
-                        <VechilesPage />
-                    </SuspensedView>
-                }
-            />
 
-            <Route
-                path='/admin/stations/*'
-                element={
-                    <SuspensedView>
-                        <StationPage />
-                    </SuspensedView>
-                }
-            />
-            <Route
-                path='/admin/terminals/*'
-                element={
-                    <SuspensedView>
-                        <TerminalListPage />
-                    </SuspensedView>
-                }
-            />
-            <Route
-                path='/admin/trips/*'
-                element={
-                    <SuspensedView>
-                        <TripPage />
-                    </SuspensedView>
-                }
-            />
 
-            <Route
-                path='/admin/reports/*'
-                element={
-                    <SuspensedView>
-                        <ReportsPage />
-                    </SuspensedView>
-                }
-            />
-            <Route
-                path='/admin/public-map/*'
-                element={
-                    <SuspensedView>
-                        <PublicMapPage />
-                    </SuspensedView>
-                }
-            />
 
-            <Route
-                path='/admin/working-days/*'
-                element={
-                    <SuspensedView>
-                        <WorkingDaysPage />
-                    </SuspensedView>
-                }
-            />
-
-            <Route
-                path='/admin/setting/*'
-                element={
-                    <SuspensedView>
-                        <SettingPage />
-                    </SuspensedView>
-                }
-            />
-
-            <Route
-                path='/admin/path/*'
-                element={
-                    <SuspensedView>
-                        <PathPage />
-                    </SuspensedView>
-                }
-            />
-
-            <Route
-                path='/admin/ads/*'
-                element={
-                    <SuspensedView>
-                        <AdsPage />
-                    </SuspensedView>
-                }
-            />
-
-            <Route
-                path='/admin/users/*'
-                element={
-                    <SuspensedView>
-                        <UsersPage />
-                    </SuspensedView>
-                }
-            />
-            <Route
-                path='/admin/roles/*'
-                element={
-                    <SuspensedView>
-                        <RolePage />
-                    </SuspensedView>
-                }
-            />
-
-            <Route
-                path='/admin/live-vedio'
-                element={
-                    <SuspensedView>
-                        <LiveVedioPage />
-                    </SuspensedView>
-                }
-            />
-
-        </Route>
-   
+];
 
 
 

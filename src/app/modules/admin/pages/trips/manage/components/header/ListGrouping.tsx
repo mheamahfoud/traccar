@@ -5,7 +5,7 @@ import { useQueryResponse } from '../../core/QueryResponseProvider'
 import { destroySelectedItems } from '../../core/_requests'
 import { useState } from 'react'
 import Swal from 'sweetalert2'
-import { ListGroupingHoc } from '../../../../../components/table/header/ListGrouping'
+import { ListGroupingHoc } from '../../../../../../../../_metronic/helpers/components/table/header/ListGrouping'
 
 
 const ListGrouping = () => {

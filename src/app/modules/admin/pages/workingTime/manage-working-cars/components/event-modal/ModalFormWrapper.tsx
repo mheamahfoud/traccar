@@ -3,7 +3,8 @@ import {ModalForm} from './ModalForm'
 import { QUERIES, isNotEmpty } from '../../../../../../../../_metronic/helpers'
 import { useListView } from '../../core/ListViewProvider'
 import { getEventDetail } from '../../core/_requests'
-import { Spinner } from '../../../../../components/Spinner'
+import { Spinner } from '../../../../../../../../_metronic/helpers/components/Spinner'
+
 
 
 

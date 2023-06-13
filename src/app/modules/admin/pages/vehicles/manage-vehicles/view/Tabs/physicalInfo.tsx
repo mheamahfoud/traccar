@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import InputDetail from '../../../../../components/fields/InputDetail';
+import InputDetail from '../../../../../../../../_metronic/helpers/components/fields/InputDetail';
 const PhysicalInfo = ({...props}) => {
     const {data}=props;
 //#endregion fetch data

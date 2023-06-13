@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
-import ImageDetail from '../../../../../components/fields/ImageDetail';
-import CheckBoxDetail from '../../../../../components/fields/CheckBoxDetail';
-import InputDetail from '../../../../../components/fields/InputDetail';
+import InputDetail from '../../../../../../../../_metronic/helpers/components/fields/InputDetail';
+import CheckBoxDetail from '../../../../../../../../_metronic/helpers/components/fields/CheckBoxDetail';
+import ImageDetail from '../../../../../../../../_metronic/helpers/components/fields/ImageDetail';
 const GeneralInfo = ({ ...props }) => {
     const { data } = props;
     //#region fetch data

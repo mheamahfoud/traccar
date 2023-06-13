@@ -1,8 +1,6 @@
-import React from 'react';
-import FormikInputLabel from '../../../../../components/formik/FormikInputLabel';
-import FormikFile from '../../../../../components/formik/FormikFile';
 import { useIntl } from 'react-intl';
 import { ManagePurshaseInfoListWrapper } from '../../purchase-info/List';
+import FormikInputLabel from '../../../../../../../../_metronic/helpers/components/formik/FormikInputLabel';
 
 const Purchase = ({ purshase_info }) => {
     const intel = useIntl()

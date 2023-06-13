@@ -1,14 +1,12 @@
-import React from 'react';
-import FormikInputLabel from '../../../../../components/formik/FormikInputLabel';
-import FormikFile from '../../../../../components/formik/FormikFile';
-import FormikSelectInput from '../../../../../components/formik/FormikSelectInput';
-import clsx from 'clsx';
 import { useIntl } from 'react-intl';
 import { useQuery } from 'react-query';
 import { getColorList, getEngineTypeList, getGroupList, getMakerList, getModelList, getStationList, getTypeList } from '../../../core/_requests';
 import { QUERIES } from '../../../../../../../../_metronic/helpers';
-import FormikSwitch from '../../../../../components/formik/FormikCheckBox';
 import { FieldImage } from '../../../../../../../../_metronic/utlis/formik';
+import FormikSelectInput from '../../../../../../../../_metronic/helpers/components/formik/FormikSelectInput';
+import FormikInputLabel from '../../../../../../../../_metronic/helpers/components/formik/FormikInputLabel';
+import FormikFile from '../../../../../../../../_metronic/helpers/components/formik/FormikFile';
+import FormikSwitch from '../../../../../../../../_metronic/helpers/components/formik/FormikCheckBox';
 
 const GeneralInfo = () => {
     //#region fetch data

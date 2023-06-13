@@ -1,20 +1,21 @@
 import { FC, Fragment, useEffect, useState } from 'react'
 import { useFormikContext, FieldArray } from 'formik'
-import { ListLoading } from '../../../../components/table/loading/ListLoading'
-import SubmitButton from '../../../../components/buttons/SubmitButton'
-import ResetButton from '../../../../components/buttons/ResetButton'
 import { useIntl } from 'react-intl'
-import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
-import FormikSelectInput from '../../../../components/formik/FormikSelectInput'
-import { KTIcon, QUERIES } from '../../../../../../../_metronic/helpers'
-import { getStationList } from '../../../vehicles/core/_requests'
 import { useQuery } from 'react-query'
 import { TripType, initialPath, tripTypeList } from '../core/_models'
-import IconButton from '../../../../components/buttons/IconButton'
 import { getPassengers, getRegiosList } from '../../../core/commonRequests'
 import { getRegionTrips, geRegionTripCars, geExternalRegionTrips, getRegionsByTypeList } from '../core/_requests'
-import FormikCustomSelectInput from '../../../../components/formik/FormikCustomSelectInput'
-import FormikMultiSelectInput from '../../../../components/formik/FormikMultiSelectInput'
+import FormikCustomSelectInput from '../../../../../../../_metronic/helpers/components/formik/FormikCustomSelectInput'
+import FormikInputLabel from '../../../../../../../_metronic/helpers/components/formik/FormikInputLabel'
+import FormikSelectInput from '../../../../../../../_metronic/helpers/components/formik/FormikSelectInput'
+import FormikMultiSelectInput from '../../../../../../../_metronic/helpers/components/formik/FormikMultiSelectInput'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
+import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
+import { QUERIES } from '../../../../../../../_metronic/helpers/crud-helper/consts'
+import IconButton from '../../../../../../../_metronic/helpers/components/buttons/iconButton'
+
+
 
 const Form: FC = () => {
   const { handleSubmit, resetForm, isSubmitting, isValid, touched, values, setFieldValue } = useFormikContext()
@@ -222,7 +223,7 @@ const Form: FC = () => {
         </div>
         {/* end::Actions */}
       </form>}
-      {(isSubmitting || !regiosList ||!passengersList) && <ListLoading />}
+      {(isSubmitting || !regiosList ||!passengersList) && <Spinner />}
     </>
   )
 }

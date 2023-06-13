@@ -1,8 +1,7 @@
 
 
 import { useIntl } from 'react-intl';
-import { FieldDocument, FieldImage } from '../../../../../../../../_metronic/utlis/formik';
-import InputDetail from '../../../../../components/fields/InputDetail';
+import InputDetail from '../../../../../../../../_metronic/helpers/components/fields/InputDetail';
 
 const Insurance = ({ ...props }) => {
 

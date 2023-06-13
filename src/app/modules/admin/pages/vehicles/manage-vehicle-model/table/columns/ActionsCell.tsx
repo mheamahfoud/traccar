@@ -9,10 +9,10 @@ import Swal from 'sweetalert2'
 import {useNavigate} from 'react-router-dom'
 import {EditModelPath} from '../../../routes/RoutesNames'
 import {useIntl} from 'react-intl'
-import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
-import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
-import {ActionButton} from '../../../../../components/buttons/ActionButton'
 import { useAuth } from '../../../../../../auth'
+import { ActionButton } from '../../../../../../../../_metronic/helpers/components/buttons/ActionButton'
+import { MenuActionItem } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionItem'
+import { MenuActionWrapper } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionWrapper'
 type Props = {
   id: ID
 }

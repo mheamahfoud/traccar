@@ -1,14 +1,7 @@
-import React from 'react';
-import FormikInputLabel from '../../../../../components/formik/FormikInputLabel';
-import FormikFile from '../../../../../components/formik/FormikFile';
-import FormikSelectInput from '../../../../../components/formik/FormikSelectInput';
-import clsx from 'clsx';
 import { useIntl } from 'react-intl';
-import { useQuery } from 'react-query';
-import { getColorList, getEngineTypeList, getGroupList, getMakerList, getModelList, getTypeList } from '../../../core/_requests';
-import { QUERIES } from '../../../../../../../../_metronic/helpers';
-import FormikSwitch from '../../../../../components/formik/FormikCheckBox';
 import { FieldDocument, FieldImage } from '../../../../../../../../_metronic/utlis/formik';
+import FormikInputLabel from '../../../../../../../../_metronic/helpers/components/formik/FormikInputLabel';
+import FormikFile from '../../../../../../../../_metronic/helpers/components/formik/FormikFile';
 
 const Insurance = () => {
 

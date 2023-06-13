@@ -1,7 +1,7 @@
 import { KTIcon } from '../../../../../../../../_metronic/helpers'
 import { ListFilter } from './ListFilter';
 import { useNavigate } from "react-router-dom";
-import {  AddModelPath, AddTypesPath } from '../../../routes/RoutesNames';
+import {AddTypesPath } from '../../../routes/RoutesNames';
 import { useIntl } from 'react-intl';
 import { useAuth } from '../../../../../../auth';
 const ListToolbar = () => {

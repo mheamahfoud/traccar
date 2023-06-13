@@ -1,18 +1,17 @@
 
-import { QUERIES, ResponeApiCheck, addFieldsToFormData, initialResponseError } from '../../../../../../../_metronic/helpers';
-import { initialVehicle } from '../core/_models';
-import { create, getVehicleInfo } from '../core/_requests';
-import { ListVehiclesPath } from '../../routes/RoutesNames';
+import { QUERIES, } from '../../../../../../../_metronic/helpers';
+import {  getVehicleInfo } from '../core/_requests';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import CustomAppBar from '../../../../components/appbar/CustomAppBar';
-import { TabWrapper } from '../../../../components/appbar/TabWrapper';
 import GeneralInfo from './Tabs/GeneralInfo';
 import PhysicalInfo from './Tabs/physicalInfo';
 import Insurance from './Tabs/Insurance';
 import Purchase from './Tabs/Purchase';
 import { useQuery } from 'react-query';
-import { ListLoading } from '../../../../components/table/loading/ListLoading';
+import { TabWrapper } from '../../../../../../../_metronic/helpers/components/appbar/TabWrapper';
+import CustomAppBar from '../../../../../../../_metronic/helpers/components/appbar/CustomAppBar';
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner';
+
 
 const View = () => {
     const navigate = useNavigate();
@@ -32,24 +31,6 @@ const View = () => {
     )
     const [tab, setTab] = useState(0)
 
-
-    // useEffect(() => {
-    //     if (data) {
-    //         console.log(data)
-    //         setData({
-    //             ...data, insurance_number: data.meta_data.ins_number, exp_date: data.meta_data.ins_exp_date,
-
-    //             exp_name: '', exp_amount: '',
-    //             average:data.meta_data?.average
-    //         }
-    //         )
-    //         setPurshaseInfo(data.meta_data.purchase_info)
-    //     }
-    //     else {
-    //         navigate(ListVehiclesPath)
-    //     }
-
-    // }, [payloadData])
 
 
     useEffect(() => {
@@ -108,7 +89,7 @@ const View = () => {
                 </div>
 
             </div>
-            {isLoading && <ListLoading />}
+            {isLoading && <Spinner />}
         </>
 
 
