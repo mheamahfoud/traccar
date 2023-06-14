@@ -10,8 +10,8 @@ import SelectField from '../../../../../../_metronic/helpers/common/components/S
 import SplitButton from '../../../../../../_metronic/helpers/common/components/SplitButton';
 import { useRestriction } from '../../../../../../_metronic/helpers/common/util/permissions';
 import useReportStyles from './useReportStyles';
-
-
+import { useQuery } from 'react-query'
+import { getDeviceList } from '../../core/commonRequests';
 const ReportFilter = ({ children, handleSubmit, handleSchedule, showOnly, ignoreDevice, multiDevice, includeGroups ,loading }) => {
   const classes = useReportStyles();
   const dispatch = useDispatch();
@@ -35,7 +35,14 @@ const ReportFilter = ({ children, handleSubmit, handleSchedule, showOnly, ignore
 
   const scheduleDisabled = button === 'schedule' && (!description || !calendarId);
   const disabled = (!ignoreDevice && !deviceId && !deviceIds.length && !groupIds.length) || scheduleDisabled;
-
+  const {
+    data: vehicleList,
+  } = useQuery(
+    `MAP_REPLY`,
+    () => {
+      return getDeviceList()
+    },
+  )
   const handleClick = (type) => {
     if (type === 'schedule') {
       handleSchedule(deviceIds, groupIds, {
@@ -101,8 +108,12 @@ const ReportFilter = ({ children, handleSubmit, handleSchedule, showOnly, ignore
               onChange={(e) => dispatch(multiDevice ? devicesActions.selectIds(e.target.value) : devicesActions.selectId(e.target.value))}
               multiple={multiDevice}
             >
-              {Object.values(devices).sort((a, b) => a.name.localeCompare(b.name)).map((device) => (
+               {/* {Object.values(devices).sort((a, b) => a.name.localeCompare(b.name)).map((device) => (
                 <MenuItem key={device.id} value={device.id}>{device.name}</MenuItem>
+              ))} */}
+
+              {(vehicleList||[]).map((device) => (
+                <MenuItem key={device.deviceId} value={device.deviceId}>{device.license_plate}</MenuItem>
               ))}
             </Select>
           </FormControl>

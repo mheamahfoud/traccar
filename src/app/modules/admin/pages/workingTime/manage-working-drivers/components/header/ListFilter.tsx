@@ -83,7 +83,7 @@ const ListFilter = () => {
         <div className="row">
 
           <div className="col-12">
-            <InputSelectFilter value={driver_id} setValue={setDriver} title={intl.formatMessage({ id: 'vehicle' })} options={driverList || []} />
+            <InputSelectFilter value={driver_id} setValue={setDriver} title={intl.formatMessage({ id: 'driver' })} options={driverList || []} />
           </div>
           <div className="col">
             <InputSelectFilter value={region_id} setValue={setRegion} title={intl.formatMessage({ id: 'region' })} options={regiosList || []} />

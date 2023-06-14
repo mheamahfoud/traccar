@@ -26,7 +26,7 @@ export default makeStyles((theme) => ({
   },
   filter: {
     display: 'flex',
-   // flexWrap: 'wrap',
+    flexWrap: 'wrap',
     gap: theme.spacing(2),
     padding: theme.spacing(3, 2, 2),
   },

@@ -43,7 +43,7 @@ const ListFilter = () => {
 
   const filterData = () => {
     updateState({
-      filtter: {name},
+      filtter: {name,region,parent},
       ...initialQueryState,
     })
   }

@@ -118,14 +118,14 @@ const Form: FC = () => {
                 options={regiosList || []}
               />
             </div>
-            <div className='col-md-6 col-sm-12'>
+            {/* <div className='col-md-6 col-sm-12'>
               <FormikSelectInput
                 title={intel.formatMessage({ id: 'vehicles' })}
                 name='vehicles'
                 isRequired={false}
                 options={vehicle_list || []}
               />
-            </div>
+            </div> */}
             <div className='col-md-6 col-sm-12'>
               <FormikSelectInput
                 title={intel.formatMessage({ id: 'from' })}

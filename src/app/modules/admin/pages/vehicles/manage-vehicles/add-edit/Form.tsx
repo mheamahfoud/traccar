@@ -1,5 +1,5 @@
-import {FC, useEffect, useState} from 'react'
-import {useFormikContext} from 'formik'
+import { FC, useEffect, useState } from 'react'
+import { useFormikContext } from 'formik'
 import GeneralInfo from './Tabs/GeneralInfo'
 import Insurance from './Tabs/Insurance'
 import Purchase from './Tabs/Purchase'
@@ -9,13 +9,16 @@ import { TabWrapper } from '../../../../../../../_metronic/helpers/components/ap
 import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
 import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
 import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+
+import { escape } from 'querystring'
+import { validationTab1, validationTab2 } from './Tabs/FieldTabs'
 interface Props {
-  purshase_info:any
+  purshase_info: any
 }
-const Form: FC<Props> = ({purshase_info}) => {
-//, 'purchase_info'
+const Form: FC<Props> = ({ purshase_info }) => {
+  //, 'purchase_info'
   const [tab, setTab] = useState(0)
-  const {handleSubmit, resetForm, isSubmitting, isValid, touched} = useFormikContext()
+  const { handleSubmit, resetForm, isSubmitting, isValid, touched, errors } = useFormikContext()
   return (
     <>
       <div className='mb-10'></div>
@@ -25,7 +28,22 @@ const Form: FC<Props> = ({purshase_info}) => {
           setSelectedTab={setTab}
           selectedTab={tab}
         />
-        <form className='form' onSubmit={handleSubmit} noValidate encType='multipart/form-data'>
+        <form className='form'
+
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (Object.keys(errors).some((value) => validationTab1.includes(value))) {
+              setTab(0)
+            }
+            else if (Object.keys(errors).some((value) => validationTab2.includes(value))) {
+              setTab(1)
+            }
+            else{
+              handleSubmit()
+            }
+          }}
+
+          noValidate encType='multipart/form-data'>
           <div className='card-body py-4'>
             <div className='tab-content pt-3'>
               <TabWrapper index={0} selectedTab={tab}>
@@ -55,9 +73,9 @@ const Form: FC<Props> = ({purshase_info}) => {
           </div>
         </form>
         {isSubmitting && <Spinner />}
-      </div>
+      </div >
     </>
   )
 }
 
-export {Form}
+export { Form }

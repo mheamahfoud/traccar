@@ -380,7 +380,7 @@ const AdminMenu = () => {
              {currentUser?.roles.includes('log_terminal_report') && (
             <SidebarMenuItem
               to='/admin/reports/log-terminal-report'
-              title={intl.formatMessage({ id: 'log_terminal_path' })}
+              title={intl.formatMessage({ id: 'log_terminal_report' })}
               hasBullet={true}
             />
           )}

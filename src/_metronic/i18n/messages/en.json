@@ -223,8 +223,8 @@
   "reason_report": "Reason Report",
   "trip_driver_report": "Trip Driver Report",
   "trip_customer_report": "Trip Customer Report",
-  "log_path_report": "Log Path Report",
-  "log_terminal_path": "Log Terminal  Report",
+  "log_path_report": "Path Report",
+  "log_terminal_report": "Terminal  Report",
   "car_out_service_report": "Car Out Service Report",
 
 

@@ -58,6 +58,14 @@ const getVehicleList = (): Promise<SelectList[]> => {
             })
         })
 }
+const getDeviceList = (): Promise<SelectList[]> => {
+    return axios
+        .get(`vehicles_use_report`)
+        .then((d: any) => {
+            return d.data?.data
+        })
+}
+
 
 const getDriverList = (): Promise<SelectList[]> => {
     return axios
@@ -198,4 +206,4 @@ export { getRegiosList, getPassengers,getShiftList,
     getVehicleList,getGroupListByRegion,
     getDriverList,getCountryList ,getTerminalList,getVehiclePathList,
     getAdsList,getVehicleGroupList,getCityList,getGroupList,
-    getBuildingListList,getReasonCancelList}
+    getBuildingListList,getReasonCancelList,getDeviceList}

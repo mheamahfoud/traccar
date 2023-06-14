@@ -73,7 +73,7 @@ export async function getUserByToken(token: string): Promise<any> {
 }
 //http://173.249.51.233:8082/
 export async function getSessionGPS(): Promise<SessionGpsModel> {
-  const response: any = await fetch(`http://173.249.51.233:8082/api/session`, {
+  const response: any = await fetch(`/api/session`, {
     method: "POST",
     body: new URLSearchParams(
       `email=${encodeURIComponent(

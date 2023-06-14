@@ -29,6 +29,7 @@ import {layoutManagerActions} from '../../../../../../store'
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
+    position:'relative'
   },
   sidebar: {
     display: 'flex',
@@ -202,7 +203,7 @@ const ReplayMap = () => {
         )}
       </MapView>
       <MapCamera positions={positions} />
-      <div className={classes.sidebar}>
+     
         {/* <Paper elevation={3} square>
           <Toolbar>
             <IconButton edge="start" sx={{ mr: 2 }} onClick={() => navigate(-1)}>
@@ -221,8 +222,8 @@ const ReplayMap = () => {
             )}
           </Toolbar>
         </Paper> */}
-        <Paper className={classes.content} square>
-          {!expanded ? (
+        <Paper className='w-100'  style={{position:'absolute', top:'0'}}>
+        {!expanded ? (
             <>
               <Typography variant='subtitle1' align='center'>
                 {deviceName}
@@ -261,8 +262,10 @@ const ReplayMap = () => {
           ) : (
             <ReportFilter handleSubmit={handleSubmit} fullScreen showOnly loading={loading} />
           )}
+  
+          
         </Paper>
-      </div>
+      
       {showCard && index < positions.length && (
         <StatusCard
           deviceId={selectedDeviceId}
