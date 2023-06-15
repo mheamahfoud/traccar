@@ -2,6 +2,7 @@ import { lazy, } from 'react'
 import {  Navigate,  RouteProps } from 'react-router-dom'
 import { SuspensedView } from '../../_metronic/helpers/components/SuspensedView'
 import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
+
 const TripPage = lazy(() => import('../modules/admin/pages/trips'))
 const WorkingDaysPage = lazy(() => import('../modules/admin/pages/workingTime'))
 const SettingPage = lazy(() => import('../modules/admin/pages/setting'))
@@ -25,6 +26,8 @@ const RolePage = lazy(() => import('../modules/admin/pages/role'))
 const LiveVedioPage = lazy(() => import('../modules/admin/pages/vedio-stream'))
 const CameraPage = lazy(() => import('../modules/admin/pages/camera'))
 const CarOutServicePage = lazy(() => import('../modules/admin/pages/car-out-service'))
+const FuelHistoryPage = lazy(() => import('../modules/admin/pages/fuel-history'))
+
 export const adminRoutes: (RouteProps & { permission?: string | null })[] = [
     { path: 'dashboard', element: <DashboardWrapper />, permission: 'admin' },
     { path: 'auth/*', element: <Navigate to='/dashboard' />, permission: 'admin' },
@@ -210,8 +213,16 @@ export const adminRoutes: (RouteProps & { permission?: string | null })[] = [
         ),
         permission: 'admin',
     },
-
-
+    {
+        path: '/admin/fuel-history/*',
+        element: (
+            <SuspensedView>
+                <FuelHistoryPage />
+            </SuspensedView>
+        ),
+        permission: 'admin',
+    },
+    
 
 
 

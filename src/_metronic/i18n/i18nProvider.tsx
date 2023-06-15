@@ -1,6 +1,6 @@
 import {FC} from 'react'
-import {useLang} from './Metronici18n'
-import {IntlProvider} from 'react-intl'
+import {getConfig, useLang} from './Metronici18n'
+import {IntlProvider, createIntl, createIntlCache} from 'react-intl'
 import '@formatjs/intl-relativetimeformat/polyfill'
 import '@formatjs/intl-relativetimeformat/locale-data/en'
 import '@formatjs/intl-relativetimeformat/locale-data/de'
@@ -8,7 +8,7 @@ import '@formatjs/intl-relativetimeformat/locale-data/es'
 import '@formatjs/intl-relativetimeformat/locale-data/fr'
 import '@formatjs/intl-relativetimeformat/locale-data/ja'
 import '@formatjs/intl-relativetimeformat/locale-data/zh'
-
+const cache = createIntlCache();
 import deMessages from './messages/de.json'
 import enMessages from './messages/en.json'
 import esMessages from './messages/es.json'
@@ -36,5 +36,8 @@ const I18nProvider: FC<WithChildren> = ({children}) => {
     </IntlProvider>
   )
 }
+const intlNonCom = createIntl({ locale:getConfig().selectedLang, messages: allMessages[getConfig().selectedLang], }, cache);
 
-export {I18nProvider}
+export {I18nProvider,intlNonCom}
+
+

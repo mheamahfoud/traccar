@@ -41,12 +41,20 @@ const Edit = () => {
                 {!isLoading && <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
-                    initialValues={data}
+                    initialValues={{
+                        driver_id: data.driver_id,
+                        shift_id: data.shift_id,
+                        type: data.type,
+                        region_id: data.region_id,
+                        group_id: data.group_id,
+                        date: data.date,
+                    }}
+
                     initialStatus={{ edit: true }}
                     onSubmit={async (values, { setSubmitting }) => {
                         setSubmitting(true)
                         try {
-                            const res: ResponeApiCheck = await update(values);
+                            const res: ResponeApiCheck = await update(values,id);
                             if (res.result == 'success') {
                                 navigate(ListWorkingDriversDaysPath)
                             }

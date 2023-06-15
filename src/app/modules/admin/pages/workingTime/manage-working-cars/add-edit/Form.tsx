@@ -5,11 +5,11 @@ import {QUERIES} from '../../../../../../../_metronic/helpers'
 import {useQuery} from 'react-query'
 import {getGroupListByRegion, getShiftList, getVehicleList} from '../../../core/commonRequests'
 import {WorkingDayType} from '../../core/model'
-import { getRegionsBytype } from '../../core/request'
+import {getRegionsBytype} from '../../core/request'
 import FormikSelectInput from '../../../../../../../_metronic/helpers/components/formik/FormikSelectInput'
 import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
 import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
-import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+import {Spinner} from '../../../../../../../_metronic/helpers/components/Spinner'
 import FormikInputLabel from '../../../../../../../_metronic/helpers/components/formik/FormikInputLabel'
 
 const Form: FC = () => {
@@ -65,6 +65,8 @@ const Form: FC = () => {
   const intel = useIntl()
 
   const {handleSubmit, resetForm, isSubmitting, isValid, touched} = useFormikContext()
+
+
   return (
     <>
       {!enableApi && (
@@ -85,7 +87,7 @@ const Form: FC = () => {
                 <FormikSelectInput
                   title={intel.formatMessage({id: 'type'})}
                   name={'type'}
-                  relatedName={'region_id'}
+                  relatedName={['region_id','group_id']}
                   isRequired={true}
                   options={WorkingDayType}
                 />
@@ -95,7 +97,6 @@ const Form: FC = () => {
                 <FormikSelectInput
                   title={intel.formatMessage({id: 'region'})}
                   name={'region_id'}
-                  relatedName={'group_id'}
                   isRequired={true}
                   options={regionList || []}
                 />

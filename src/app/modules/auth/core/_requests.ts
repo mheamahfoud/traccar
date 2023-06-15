@@ -91,7 +91,7 @@ export async function getServerGPS(): Promise<any> {
   let email = "test@test.test";
   let password = "test";
   const auth1: any = btoa(`${email}:${password}`);
-  const response: any = await fetch(`http://173.249.51.233:8082/api/server`, {
+  const response: any = await fetch(`/api/server`, {
     credentials: 'include',
     headers: {
       Authorization: `Basic ${auth1}`,

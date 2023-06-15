@@ -50,10 +50,10 @@ const SocketCarController = () => {
   const connectSocket = () => {
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
 
-    const socket = new WebSocket(
-      `${protocol}//${window.location.host}/api/socket`
-    );
-   // const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
+    // const socket = new WebSocket(
+    //   `${protocol}//${window.location.host}/api/socket`
+    // );
+    const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
 
 
     socketRef.current = socket;
@@ -79,6 +79,7 @@ const SocketCarController = () => {
         let temp = data.positions.filter(
           (x: any) => x.deviceId == currentDevice
         );
+      console.log(temp)
         if (temp && temp.length > 0) {
           if (checkInitPath.current) {
             dispatch(checkNearStation(
@@ -87,6 +88,8 @@ const SocketCarController = () => {
                 currentPos: [temp[0]?.longitude, temp[0]?.latitude]
               }
             ))
+            dispatch(sessionActions.initPositions())
+            dispatch(sessionActions.setRefresh())
             checkInitPath.current = false;
           }
           else {

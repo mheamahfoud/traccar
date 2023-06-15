@@ -39,4 +39,4 @@ const MetronicI18nProvider: FC<WithChildren> = ({children}) => {
   return <I18nContext.Provider value={lang}>{children}</I18nContext.Provider>
 }
 
-export {MetronicI18nProvider, useLang}
+export {MetronicI18nProvider, useLang,getConfig}

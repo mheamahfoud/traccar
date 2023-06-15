@@ -21,7 +21,7 @@ export const initialCarsTImeModel: DriverWorkingTime = {
 
 export type AddDriverWorkingTime = {
   shift_id: string,
-  vehicles_id: string,
+  driver_id: string,
   type: string,
   region_id: string,
   group_id: string,
@@ -32,7 +32,7 @@ export type AddDriverWorkingTime = {
 
 export const initialAddDriverWorkingTime: AddDriverWorkingTime = {
   shift_id: '',
-  vehicles_id: '',
+  driver_id: '',
   type: '',
   region_id: '',
   group_id: '',

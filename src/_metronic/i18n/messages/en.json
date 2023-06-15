@@ -276,5 +276,12 @@
    "car_out_service":"Car Out Service",
    "start_path":"Start Path",
    "end_path":"End Path",
-   "vehicles_count":"Vehicles Count"
+   "vehicles_count":"Vehicles Count",
+   "fuel_history":"Fuel History",
+   "qty":"QTY",
+   "cost":"Cost",
+   "meter":"Meter",
+   "consumption":"Consumption",
+   "province":"Province"
+
 }

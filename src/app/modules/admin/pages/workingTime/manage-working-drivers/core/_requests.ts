@@ -42,8 +42,8 @@ const dublicate = (object: any) => {
   // .then((response: ResponeApiCheck) => response)
 }
 
-const update = (object: any) => {
-  return axios.post(`update_shift_driver/${object.id}`, object)
+const update = (object: any,id:ID) => {
+  return axios.post(`update_shift_driver/${id}`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
   // .then((response: ResponeApiCheck) => response)
 }

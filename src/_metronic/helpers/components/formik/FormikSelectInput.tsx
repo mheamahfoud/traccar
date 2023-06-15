@@ -7,7 +7,7 @@ interface props {
     type?: string,
     isRequired: boolean,
     options?: SelectList[],
-    relatedName?: string,
+    relatedName?: string[],
 }
 const FormikSelectInput = (props: props) => {
     const [value, setValue] = useState(null)
@@ -32,7 +32,10 @@ const FormikSelectInput = (props: props) => {
                     setValue(event.target.value)
                     setFieldValue(name ,event.target.value)
                     if(relatedName){
-                        setFieldValue(relatedName,undefined)
+                        relatedName.map((name)=>{
+                            setFieldValue(name,undefined)
+                        })
+                       
                     }
                 }}
                 value={value}

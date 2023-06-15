@@ -25,6 +25,7 @@ import { map } from '../../../../apps/map/core/MapView'
 import { DeviceLIstTemp } from './DeviceLIstTemp'
 import { useEffectAsync } from '../../../../../../reactHelper'
 import { object } from 'yup'
+import { Spinner } from '../../../../../../_metronic/helpers/components/Spinner'
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
@@ -140,9 +141,9 @@ const MapStationPage = () => {
   return (
     <>
       {loading ? (
-        <ListLoading />
+        <Spinner />
       ) : (
-        <div className='h-100 w-100'>
+        <div className='h-100 w-100 position-relative'>
           <MainMap
             filteredPositions={filteredPositions}
             selectedPosition={selectedPosition}

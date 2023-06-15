@@ -33,18 +33,18 @@ const Add = () => {
                         console.log(values)
                         // delete values[path]
                         setSubmitting(true)
-                        try {
-                            const res: ResponeApiCheck = await create(values);
-                            if(res.result=='success'){
-                                navigate(ListPath)
-                            }
-                            showNotification(res)
-                        } catch (ex) {
-                            showNotification({ error_description: ex, ...initialResponseError })
-                            console.error(ex)
-                        } finally {
-                            setSubmitting(true)
-                        }
+                        // try {
+                        //     const res: ResponeApiCheck = await create(values);
+                        //     if(res.result=='success'){
+                        //         navigate(ListPath)
+                        //     }
+                        //     showNotification(res)
+                        // } catch (ex) {
+                        //     showNotification({ error_description: ex, ...initialResponseError })
+                        //     console.error(ex)
+                        // } finally {
+                        //     setSubmitting(true)
+                        // }
 
                     }}
                     onReset={(values) => {

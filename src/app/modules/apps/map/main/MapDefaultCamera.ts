@@ -14,6 +14,7 @@ const MapDefaultCamera = () => {
   const defaultLongitude = usePreference('longitude')
   const defaultZoom = usePreference('zoom', 0)
   useEffect(() => {
+   
       if (defaultLatitude && defaultLongitude) {
         map.jumpTo({
           center: [defaultLongitude, defaultLatitude],
@@ -24,11 +25,11 @@ const MapDefaultCamera = () => {
           item.longitude,
           item.latitude,
         ])
-          stations.map((item, index) => {
-          coordinates.push(
-            [item.longitude, item.latitude]
-          )
-        })
+        //   stations.map((item, index) => {
+        //   coordinates.push(
+        //     [item.longitude, item.latitude]
+        //   )
+        // })
 
         console.log(coordinates)
         if (coordinates.length > 1) {

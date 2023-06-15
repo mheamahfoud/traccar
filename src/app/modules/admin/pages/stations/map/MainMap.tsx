@@ -19,6 +19,7 @@ import MapSelectedDevice from '../../../../apps/map/main/MapSelectedDevice';
 import PoiMap from '../../../../apps/map/main/PoiMap';
 import MapGeofence from '../../../../apps/map/MapGeofence';
 import SocketController from '../manage/core/SocketController';
+import PublicMapCamera from '../../../../apps/map/main/PublicMapCamera';
 
 
 // import MapOverlay from '../map/overlay/MapOverlay';
@@ -58,7 +59,8 @@ const MainMap = ({ filteredPositions, selectedPosition, onEventsClick }) => {
           showStatus
           titleField={undefined}
         />
-        <MapDefaultCamera />
+        {/* <MapDefaultCamera /> */}
+        <PublicMapCamera />
         <MapSelectedDevice />
         <PoiMap />
       </MapView>

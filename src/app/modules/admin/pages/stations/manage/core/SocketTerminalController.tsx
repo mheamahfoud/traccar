@@ -19,7 +19,7 @@ const SocketTerminalController = () => {
 
   const socketRef = useRef<any>();
 
-
+  const checkInitPath = useRef(true)
 
 
 
@@ -38,10 +38,10 @@ const SocketTerminalController = () => {
   const connectSocket = () => {
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
 
-    const socket = new WebSocket(
-      `${protocol}//${window.location.host}/api/socket`
-    );
-   // const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
+    // const socket = new WebSocket(
+    //   `${protocol}//${window.location.host}/api/socket`
+    // );
+  const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
 
     socketRef.current = socket;
 
@@ -68,6 +68,13 @@ const SocketTerminalController = () => {
           (x: any) => devices?.includes(x.deviceId)
         );
         if (temp && temp.length > 0) {
+          if (checkInitPath.current) {
+            checkInitPath.current = false;
+            dispatch(sessionActions.initPositions())
+            dispatch(sessionActions.setRefresh())
+          }
+          dispatch(terminalPathsActions.updateDeviceLocation(temp))
+          
           dispatch(terminalPathsActions.updateDeviceLocation(temp))
           dispatch(sessionActions.updatePositions(temp));
         }
