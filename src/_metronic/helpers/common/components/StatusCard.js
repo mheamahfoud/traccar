@@ -249,7 +249,7 @@ const StatusCard = ({ deviceId, position, onClose, desktopPadding = 0, ...props 
       </div>
       {position && (
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
-          {(!ishow) && <MenuItem disabled={!permissions?.map(x => x.code).includes('View_Vehicle_Account')} onClick={() => {
+          {(!ishow && permissions != undefined) && <MenuItem disabled={!permissions?.map(x => x.code).includes('View_Vehicle_Account')} onClick={() => {
             navigate(MapCarPath, { state: deviceId })
           }}>{'Move To Car'}</MenuItem>}
 

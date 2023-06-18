@@ -5,8 +5,10 @@ import {PageLink, PageTitle} from '../../../../_metronic/layout/core'
 import {CurrentTripsPath, accountBreadCrumbs} from './routes/RouteNames'
 import {ManageCurrentTripListWrapper} from './components/current-trip/List'
 import { ManageOldTripListWrapper } from './components/old-trip/List'
+import { useIntl } from 'react-intl'
 
 const AccountDriverPage: React.FC = () => {
+  const intl=useIntl()
   return (
     <Routes>
       <Route
@@ -21,7 +23,7 @@ const AccountDriverPage: React.FC = () => {
           path='current-trip'
           element={
             <>
-              <PageTitle breadcrumbs={accountBreadCrumbs}>Current Trip</PageTitle>
+              <PageTitle breadcrumbs={accountBreadCrumbs}> {intl.formatMessage({id:'current_trip'})}</PageTitle>
               <ManageCurrentTripListWrapper />
             </>
           }
@@ -30,7 +32,7 @@ const AccountDriverPage: React.FC = () => {
           path='old-trip'
           element={
             <>
-              <PageTitle breadcrumbs={accountBreadCrumbs}>Old Trip</PageTitle>
+              <PageTitle breadcrumbs={accountBreadCrumbs}>{intl.formatMessage({id:'old_trip'})}</PageTitle>
               <ManageOldTripListWrapper />
             </>
           }

@@ -1,7 +1,7 @@
-import React, {useEffect, useRef} from 'react'
-import {useDispatch, useSelector, connect} from 'react-redux'
-import {sessionActions} from '../../../../../../store'
-import {useEffectAsync} from '../../../../../../reactHelper'
+import React, { useEffect, useRef } from 'react'
+import { useDispatch, useSelector, connect } from 'react-redux'
+import { sessionActions } from '../../../../../../store'
+import { useEffectAsync } from '../../../../../../reactHelper'
 
 // import { sessionActions, terminalPathsActions, truckPathActions } from "../../../store";
 
@@ -34,7 +34,7 @@ const SocketController = () => {
 
   const connectSocket = () => {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-    
+
     //const socket = new WebSocket(`${protocol}//${window.location.host}/api/socket`)
        const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
 

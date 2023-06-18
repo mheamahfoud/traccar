@@ -46,7 +46,7 @@ const { reducer, actions } = createSlice({
 
 
         setTerminals(state, action) {
-        
+
             state.path = action.payload?.id
             let terminals = action.payload?.terminal;
             let stopStation: TerminalType = terminals.find((x: TerminalType) => x.status == 1)
@@ -102,19 +102,19 @@ const { reducer, actions } = createSlice({
             let terminals = state.terminals;
             state.terminals = terminals.map((item: TerminalType) => {
                 if (state.nextTerminal.priority == 1) {
-                    if(item.priority==terminals.length){
+                    if (item.priority == terminals.length) {
                         return {
                             ...item,
                             status: TerminalStatus.IN
                         }
                     }
-                    else{
+                    else {
                         return {
                             ...item,
                             status: TerminalStatus.BEFORE
                         }
                     }
-                   
+
                 }
                 else {
                     if (item.priority == state.currentTerminal.priority) {
@@ -238,10 +238,10 @@ const { reducer, actions } = createSlice({
                     (x) => x.priority == tempNextTerminal.priority - 1
                 ) || initTerminal;
             }
-       
+
             state.durationStation = durationStation
             state.predectedTime = formatSeconds(durationStation[tempNextTerminal?.id]);
-          // state.loading = false;
+            // state.loading = false;
         })
         builder.addCase(checkNearStation.rejected, (state, { payload }) => {
             //state.error = payload
@@ -258,7 +258,6 @@ const { reducer, actions } = createSlice({
             const distance = payload?.routes[0]?.distance;
             //get duration
             const duration = payload?.routes[0]?.duration;
-
             //update predicted time
             state.predectedTime = formatSeconds(duration);
 

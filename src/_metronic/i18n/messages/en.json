@@ -282,6 +282,17 @@
    "cost":"Cost",
    "meter":"Meter",
    "consumption":"Consumption",
-   "province":"Province"
+   "province":"Province",
+   "start_meter":"Start Meter",
+   "meter_reading_at_time_of_fuel_up":"Meter reading at time of fuel-up",
+   "reference":"Reference",
+   "qty_liter":"Qty(liter)",
+   "cost_unit":"Cost/Unit",
+   "fuel_from":"Fuel is coming from",
+   "complete":"Complete",
+   "reason_car_out_service":"Reason Car Out Service",
+   "approve":"Approve",
+   "reject":"Reject"
+
 
 }

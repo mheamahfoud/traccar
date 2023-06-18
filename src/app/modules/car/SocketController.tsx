@@ -28,8 +28,8 @@ const SocketController = () => {
 
   useEffect(() => {
 
-    if (currentPosition && speed > 0 && nextTerminal) {
-      
+    if (currentPosition?.latitude != 0 && speed > 0 && nextTerminal?.latitude!=0) {
+   //   alert(speed)
       let obj: CoordDistance = {
         currentLat: currentPosition.latitude,
         currentLon: currentPosition.longitude,
@@ -46,7 +46,7 @@ const SocketController = () => {
     // const socket = new WebSocket(
     //   `${protocol}//${window.location.host}/api/socket`
     // );
-   const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
+  const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
 
 
     socketRef.current = socket;
@@ -72,6 +72,7 @@ const SocketController = () => {
         let temp = data.positions.filter(
           (x: any) => x.deviceId == currentDevice
         );
+ 
         if (temp && temp.length > 0) {
           if (checkInitPath.current) {
             dispatch(checkNearStation(

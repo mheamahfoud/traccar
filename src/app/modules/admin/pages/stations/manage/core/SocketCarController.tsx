@@ -35,7 +35,7 @@ const SocketCarController = () => {
 
   useEffect(() => {
 
-    if (currentPosition && speed > 0 && nextTerminal) {
+    if (currentPosition?.latitude != 0 && speed > 0 && nextTerminal?.latitude!=0) {
       
       let obj: CoordDistance = {
         currentLat: currentPosition.latitude,
@@ -53,7 +53,7 @@ const SocketCarController = () => {
     // const socket = new WebSocket(
     //   `${protocol}//${window.location.host}/api/socket`
     // );
-    const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
+   const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
 
 
     socketRef.current = socket;

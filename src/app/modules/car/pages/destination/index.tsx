@@ -76,6 +76,7 @@ const Destination = () => {
     const currentTerminal = useSelector((state: any) => state.truckPath.currentTerminal);
     const nextTerminal = useSelector((state: any) => state.truckPath.nextTerminal)
     const checkArriveTerminal = useSelector((state: any) => state.truckPath.checkArriveTerminal)
+    const terminals = useSelector((state: any) => state.truckPath.terminals)
     const destinationTime = useSelector((state: any) => state.pageTimeManager.destinationTime);
     const audioRef = useRef<AudioRefObject | null>(null);
 
@@ -108,8 +109,8 @@ const Destination = () => {
             dispatch(ArriveStation({
                 "path_id": path,
                 "terminal_id": currentTerminal?.id,
-                "start": 0,
-                "end": 0,
+                "start":currentTerminal?.priority==1 ? 1 :0,
+                "end": currentTerminal?.priority==terminals?.length ? 1 :0,
             }))
 
             const audio = new Audio(currentTerminal?.voice);

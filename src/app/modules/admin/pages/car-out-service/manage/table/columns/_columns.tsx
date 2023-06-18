@@ -31,6 +31,15 @@ const columnsTable :  ReadonlyArray<Column<CarOutService>> = [
     accessor: 'end',
   },
   {
+    Header: (props) => <CustomHeader<CarOutService>  tableProps={props} title={<Localize value='period' />} className='min-w-125px' />,
+    accessor: 'period',
+  },
+  {
+    Header: (props) => <CustomHeader<CarOutService>  tableProps={props} title={<Localize value='reason' />} className='min-w-125px' />,
+    accessor: 'reason',
+  },
+
+  {
     Header: (props) => (
       <CustomHeader<CarOutService>  tableProps={props} title='Actions' className='text-end min-w-100px' />
     ),
