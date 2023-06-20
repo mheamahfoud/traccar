@@ -68,11 +68,11 @@ export function Login() {
         if (res.result == 'success') {
           var auth : AuthModel={api_token : res?.data?.token}
        
-          // const resposeServer = await getServerGPS();
-          // dispatch(sessionActions.updateServer(resposeServer));
+          const resposeServer = await getServerGPS();
+          dispatch(sessionActions.updateServer(resposeServer));
 
-          // const resposeSession: any = await getSessionGPS();
-          // dispatch(sessionActions.updateUser(resposeSession));
+          const resposeSession: any = await getSessionGPS();
+          dispatch(sessionActions.updateUser(resposeSession));
 
           saveAuth(auth)
           const data: any = await getUserByToken(auth.api_token);

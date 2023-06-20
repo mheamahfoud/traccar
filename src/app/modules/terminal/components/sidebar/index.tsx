@@ -75,7 +75,8 @@ export const Sidebar = () => {
       {Object.keys(deviceDistance).map((key, index) => {
           return (
             <TruckPath key={index} distance={parseFloat(deviceDistance[key].distance).toFixed(2) + 'km' } duration={formatSeconds(deviceDistance[key].duration)}>
-              {generateName(index)}
+           {/* //   {generateName(index)} */}
+           {deviceDistance[key].name  +   '---------------'+ deviceDistance[key].deviceId}
             </TruckPath>
           );
         })}

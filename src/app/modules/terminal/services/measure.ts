@@ -7,6 +7,7 @@ const API_URL = 'https://api.mapbox.com/directions/v5/mapbox/driving' // process
 interface Value {
   distance: number
   duration: number
+  deviceId:number
 }
 
 interface MyObject {
@@ -23,7 +24,7 @@ export const checkArrivedDevices: any = createAsyncThunk(
       var tempLoc: MyObject = {}
       for (const key in devicesLocaton) {
         let loc = devicesLocaton[key]
-        const apiUrl = `${API_URL}/${terminalLoc.lon},${terminalLoc.lat};${loc.lon},${loc.lat}?annotations=duration&access_token=${accessToken}`
+        const apiUrl = `${API_URL}/${loc.lon},${loc.lat};${terminalLoc.lon},${terminalLoc.lat}?annotations=duration&access_token=${accessToken}`
 
         const response = await fetch(apiUrl)
         const tem = await response.json()
@@ -32,6 +33,7 @@ export const checkArrivedDevices: any = createAsyncThunk(
         tempLoc[key] = {
           distance: distance,
           duration: duration,
+          deviceId:parseInt(key)
         }
       }
 

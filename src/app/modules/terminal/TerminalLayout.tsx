@@ -28,7 +28,7 @@ const TerminalLayout = () => {
         if (res.payload.length > 0) {
           dispatch(
             terminalPathsActions.setDevices({
-              devices: res?.payload[0].devices?.map((x) => x.id),
+              devices: res?.payload[0].devices,
               terminal: res?.payload[0].terminal,
             })
           )

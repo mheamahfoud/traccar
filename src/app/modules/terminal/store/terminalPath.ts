@@ -16,6 +16,7 @@ const initialState: TerminalPath = {
     devicesStatus: {},
     deviceDistance: {},
     checkArriveTerminal: false,
+    deviceTemp: []
 }
 
 
@@ -26,10 +27,14 @@ const { reducer, actions } = createSlice({
         setDevices(state, action) {
             let terminal = action.payload?.terminal;
             //set devices of terminal
-            state.devices = action.payload?.devices;
+            state.deviceTemp = action.payload?.devices;
+            state.devices = action.payload?.devices?.map((x) => x.id);
+            console.log('action.payload?.devices')
+            console.log(action.payload?.devices)
             //set status of devices
             action.payload?.devices?.forEach((item: any) => state.devicesStatus[item] = false);
             //set terminal info
+           
             if (terminal?.length > 0) {
                 state.terminalInfo = terminal[0];
                 state.terminalLoc = {
@@ -45,6 +50,7 @@ const { reducer, actions } = createSlice({
                     lat: item.latitude,
                     lon: item.longitude,
                     speed: item.speed,
+
                 }
                 state.devicesLocaton[item.deviceId] = loc
             })
@@ -58,12 +64,20 @@ const { reducer, actions } = createSlice({
         builder.addCase(checkArrivedDevices.pending, (state) => {
         })
         builder.addCase(checkArrivedDevices.fulfilled, (state, { payload }) => {
-            state.deviceDistance = payload;
-            Object.keys(payload)?.map((key, index) => {
-                if (payload[key]?.distance < 100) {
+
+            //  state.deviceDistance = payload;
+            var temp = payload
+            Object.keys(temp)?.map((key, index) => {
+                // alert(JSON.stringify( Object.keys(temp)))
+                // alert(JSON.stringify(state.deviceTemp.map(x=>x.id)))
+                temp[key] = { ...temp[key], name:state.deviceTemp.find(x=>x.id==temp[key]?.deviceId)?.name }
+                if (temp[key]?.distance < 20) {
                     state.checkArriveTerminal = true;
                 }
             })
+           
+            state.deviceDistance = temp;
+          
             //state.error = payload
             //state.loading = false
         })

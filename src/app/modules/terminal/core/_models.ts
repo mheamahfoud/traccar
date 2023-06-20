@@ -9,7 +9,8 @@ export interface TerminalPath {
   devicesLocaton: any,
   devicesStatus:any,
   deviceDistance:any,
-  checkArriveTerminal:boolean
+  checkArriveTerminal:boolean,
+  deviceTemp?:any[]
 }
 
 export interface Coordinate {
