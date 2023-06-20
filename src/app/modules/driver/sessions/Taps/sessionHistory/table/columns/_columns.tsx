@@ -18,7 +18,11 @@ const columnsTable :  ReadonlyArray<Column<SessionHistory>> = [
     Header: (props) => <CustomHeader<SessionHistory>  tableProps={props} title={<Localize value='end_time' />} className='min-w-125px' />,
     accessor: 'end_time',
   },
-
+  {
+    Header: (props) => <CustomHeader<SessionHistory>  tableProps={props} title={<Localize value='vehicles' />} className='min-w-125px' />,
+    accessor: 'vehicles',
+  },
+  
 
 ]
 

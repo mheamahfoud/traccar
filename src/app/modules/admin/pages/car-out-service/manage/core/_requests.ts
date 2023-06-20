@@ -33,4 +33,10 @@ const update = (object: CarOutService) => {
 }
 
 
-export { getList, create,update }
+const acceptReject = (object:{status:number},id:ID): Promise<any> => {
+  return axios
+    .post(`car_out_of_service_status/${id}`,{...object})
+    .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
+}
+
+export { getList, create,update,acceptReject }

@@ -186,15 +186,15 @@ export const adminRoutes: (RouteProps & { permission?: string | null })[] = [
         ),
         permission: 'admin',
     },
-    {
-        path: '/admin/live-vedio',
-        element: (
-            <SuspensedView>
-                <LiveVedioPage />
-            </SuspensedView>
-        ),
-        permission: 'admin',
-    },
+    // {
+    //     path: '/admin/live-vedio',
+    //     element: (
+    //         <SuspensedView>
+    //             <LiveVedioPage />
+    //         </SuspensedView>
+    //     ),
+    //     permission: 'admin',
+    // },
     {
         path: '/admin/camera/*',
         element: (

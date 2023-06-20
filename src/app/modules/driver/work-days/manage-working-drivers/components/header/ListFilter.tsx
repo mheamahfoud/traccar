@@ -15,21 +15,8 @@ const ListFilter = () => {
   const { updateState } = useQueryRequest()
   const { isLoading } = useQueryResponse()
   const [enableApi, setEnableApi] = useState(true)
-  const [driver_id, setDriver] = useState<string | undefined>("")
   const [region_id, setRegion] = useState<string | undefined>("")
   const [shift_id, setShift] = useState<string | undefined>("")
-
-  const {
-    data: driverList,
-  } = useQuery(
-    `${QUERIES.ALL_Vehicle_LIST_VALUES}`,
-    () => {
-      return getDriverList()
-    },
-    {
-      enabled: enableApi
-    }
-  )
 
 
   const {
@@ -59,7 +46,7 @@ const ListFilter = () => {
 
   useEffect(() => {
     MenuComponent.reinitialization()
-    if (regiosList &&shiftList && driverList ) {
+    if (regiosList &&shiftList  ) {
       setEnableApi(false)
     }
   }, [regiosList])
@@ -70,7 +57,7 @@ const ListFilter = () => {
 
   const filterData = () => {
     updateState({
-      filtter: { driver_id, region_id,shift_id },
+      filtter: {  region_id,shift_id },
       //  ...initialQueryState,
     })
   }
@@ -80,9 +67,7 @@ const ListFilter = () => {
         {/* begin::Input group */}
         <div className="row">
 
-          <div className="col-12">
-            <InputSelectFilter value={driver_id} setValue={setDriver} title={intl.formatMessage({ id: 'driver' })} options={driverList || []} />
-          </div>
+    
           <div className="col">
             <InputSelectFilter value={region_id} setValue={setRegion} title={intl.formatMessage({ id: 'region' })} options={regiosList || []} />
           </div>

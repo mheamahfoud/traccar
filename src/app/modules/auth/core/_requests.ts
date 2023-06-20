@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { AuthModel, SessionGpsModel, UserModel } from './_models'
-const APP_TRUCKGPS_API_URL = process.env.APP_TRUCKGPS_API_URL
+const APP_TRUCKGPS_API_URL = process.env.REACT_APP_TRUCKGPS_API_URL
 const API_URL = process.env.REACT_APP_API_URL
 
 //export const GET_USER_BY_ACCESSTOKEN_URL = `${API_URL}/verify_token`
@@ -73,7 +73,7 @@ export async function getUserByToken(token: string): Promise<any> {
 }
 //http://173.249.51.233:8082/
 export async function getSessionGPS(): Promise<SessionGpsModel> {
-  const response: any = await fetch(`/api/session`, {
+  const response: any = await fetch(`${APP_TRUCKGPS_API_URL}/session`, {
     method: "POST",
     body: new URLSearchParams(
       `email=${encodeURIComponent(
@@ -91,7 +91,7 @@ export async function getServerGPS(): Promise<any> {
   let email = "test@test.test";
   let password = "test";
   const auth1: any = btoa(`${email}:${password}`);
-  const response: any = await fetch(`/api/server`, {
+  const response: any = await fetch(`${APP_TRUCKGPS_API_URL}/server`, {
     credentials: 'include',
     headers: {
       Authorization: `Basic ${auth1}`,

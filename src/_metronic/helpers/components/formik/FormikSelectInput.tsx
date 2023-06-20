@@ -1,12 +1,12 @@
 import { useFormikContext } from 'formik';
 import { useEffect, useState } from 'react';
-import { SelectList } from '../..';
+import { SelectList, SelectListStringValues } from '../..';
 interface props {
     title: string,
     name: string,
     type?: string,
     isRequired: boolean,
-    options?: SelectList[],
+    options?: SelectListStringValues[],
     relatedName?: string[],
 }
 const FormikSelectInput = (props: props) => {

@@ -9,7 +9,7 @@ import { CustomRow } from '../table/columns/CustomRow'
 
 const DataTable = ({ ...props }) => {
     const { data, columns } = props;
-    const { getTableProps, getTableBodyProps, headers, rows, prepareRow } = useTable({
+    const { getTableProps, getTableBodyProps, headers, rows, prepareRow ,headerGroups} = useTable({
         columns,
         data,
     })
@@ -22,11 +22,22 @@ const DataTable = ({ ...props }) => {
                 {...getTableProps()}
             >
                 <thead>
-                    <tr className='text-start text-muted fw-bolder fs-7 text-uppercase gs-0'>
+                    {/* <tr className='text-start text-muted fw-bolder fs-7 text-uppercase gs-0'>
                         {headers.map((column: ColumnInstance) => (
                             <CustomHeaderColumn key={column.id} column={column} />
-                        ))}
-                    </tr>
+                        ))} */}
+
+                    {headerGroups.map((headerGroup) => (
+                        <tr {...headerGroup.getHeaderGroupProps()} className='text-start text-muted fw-bolder fs-7 text-uppercase gs-0 fw-bold'>
+                            {headerGroup.headers.map((column) => (
+                                <th {...column.getHeaderProps()}>
+                                    {column.render('Header')}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+
+                    {/* </tr> */}
                 </thead>
                 <tbody className='text-gray-600 fw-bold' {...getTableBodyProps()}>
                     {rows.length > 0 ? (

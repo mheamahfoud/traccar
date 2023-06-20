@@ -32,7 +32,7 @@ const ActionsCell: FC<Props> = ({data}) => {
     <>
       <ActionButton />
       <MenuActionWrapper>
-      { currentUser?.roles.includes('update_car_out_service') &&    <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />}
+      { currentUser?.roles.includes('update_fuel_history') &&    <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} />}
       </MenuActionWrapper>
 
     </>

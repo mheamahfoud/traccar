@@ -1,6 +1,4 @@
 /* eslint-disable react/jsx-no-target-blank */
-import {useIntl} from 'react-intl'
-import {useSelector} from 'react-redux'
 import {useAuth} from '../../../../../app/modules/auth'
 import { AdminMenu } from './AdminMenu'
 import { UserType } from '../../../../utlis/constants'

@@ -3,12 +3,13 @@ import clsx from 'clsx'
 interface props {
     title: string,
     name: string,
-    type?:string,
-    isRequired:boolean,
-    disabled?:boolean
+    type?: string,
+    isRequired: boolean,
+    disabled?: boolean
+    hint ?:string
 }
-const FormikInputLabel = (props :props) => {
-    const { title, name ,type,isRequired,disabled} = props;
+const FormikInputLabel = (props: props) => {
+    const { title, name, type, isRequired, disabled ,hint } = props;
     const { errors, touched, getFieldProps, isSubmitting } = useFormikContext();
     return (
         <div className='fv-row mb-7'>
@@ -17,7 +18,7 @@ const FormikInputLabel = (props :props) => {
             <input
                 placeholder={title}
                 {...getFieldProps({ name })}
-                type={type||"text"}
+                type={type || "text"}
                 name={name}
                 className={clsx(
                     'form-control form-control-solid mb-3 mb-lg-0',
@@ -28,11 +29,19 @@ const FormikInputLabel = (props :props) => {
                 )}
                 autoComplete='off'
                 disabled={isSubmitting || disabled}
+
             />
             {touched[name] && errors[name] && (
                 <div className='fv-plugins-message-container'>
                     <div className='fv-help-block'>
                         <span role='alert'>{errors[name]}</span>
+                    </div>
+                </div>
+            )}
+            {hint && (
+                <div className='fv-plugins-message-container'>
+                    <div className='text-dark'>
+                        <span role='alert'>{hint}</span>
                     </div>
                 </div>
             )}

@@ -1,7 +1,7 @@
 
 import axios, { AxiosResponse } from 'axios'
 import { ConvertStringToObject, ID, ResponeApiCheck, } from '../../../../../../../_metronic/helpers'
-import { CarOutService,FuelHistoryQueryResponse} from './_models'
+import { AddFuel, CarOutService,FuelHistoryQueryResponse} from './_models'
 const getList = (query: string, page: number): Promise<FuelHistoryQueryResponse> => {
   return axios
     .post(`list_fuel_history?${'page=' + page}`, {
@@ -21,14 +21,14 @@ const getList = (query: string, page: number): Promise<FuelHistoryQueryResponse>
     })
 }
 
-const create = (object: CarOutService) => {
+const create = (object: AddFuel) => {
   return axios
-    .post('store_car_out_of_service', object)
+    .post('store_fuel_history', object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
 }
-const update = (object: CarOutService) => {
+const update = (object: AddFuel , id:ID) => {
   return axios
-    .post(`update_car_out_of_service/${object.id}`, object)
+    .post(`update_fuel_history/${id}`, object)
     .then((response: AxiosResponse<ResponeApiCheck>) => response.data)
 }
 

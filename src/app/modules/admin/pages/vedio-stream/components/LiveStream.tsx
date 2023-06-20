@@ -10,17 +10,19 @@ const VedioPlayer: FC<Props>= ({title}) => {
   const [streamUrl, setStreamUrl] = useState<string>(null);
   const [authentication, setAuthentication] = useState<string>(null);
 
-  useEffect(() => {
-    getLiveStream().then((res: LiveStreamModel) => {
-      if (!res.code) {
-        setStreamUrl(res.data.url);
-        setAuthentication(res.data.authentication)
-      }
-      else {
+  // useEffect(() => {
+  //   getLiveStream().then((res: LiveStreamModel) => {
+  //     alert(JSON.stringify(res))
+  //     if (!res.code) {
 
-      }
-    })
-  }, [])
+  //       // setStreamUrl(res.data.url);
+  //       // setAuthentication(res.data.authentication)
+  //     }
+  //     else {
+
+  //     }
+  //   })
+  // }, [])
 
   const videoUrl = 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8'; // Replace with your DirectShow camera stream URL
 

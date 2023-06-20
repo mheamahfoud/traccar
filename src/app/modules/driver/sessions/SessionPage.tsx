@@ -22,7 +22,7 @@ const breadCrumbs: Array<PageLink> = [
 ]
 const SessionDriverPage: React.FC = () => {
   const [tab, setTab] = useState(0)
-  const {vehicles_name} = useSession()
+
 
   return (
     <SessionProvider>

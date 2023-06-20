@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import { KTCard, KTCardBody, ResponeApiCheck, addFieldsToFormData, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
-import { initialCarServiceModel } from '../core/_models';
+import { initialAddFuelModel } from '../core/_models';
 import { roleSchema } from './validationForm';
 import { create } from '../core/_requests';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
@@ -19,7 +19,7 @@ const Add = () => {
                 <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
-                    initialValues={initialCarServiceModel}
+                    initialValues={initialAddFuelModel}
                     initialStatus={{ edit: false }}
                     onSubmit={async (values, { setSubmitting }) => {
                         setSubmitting(true)

@@ -97,6 +97,11 @@ export const AddDepartmentPath = BaseUrl + 'add-department';
 export const EditDepartmentPath = BaseUrl + 'edit-department'; 
 
 
+export const ListReasonCarOutServicePath = BaseUrl + 'reason-car-out-service';
+export const AddReasonCarOutServicePath = BaseUrl + 'add-reason-car-out-service';
+export const EditReasonCarOutServicePath = BaseUrl + 'edit-reason-car-out-service'; 
+
+
 export const WorkTimeBreadcrumbs: Array<PageLink> = [
     {
         title: 'Manage Working Time',

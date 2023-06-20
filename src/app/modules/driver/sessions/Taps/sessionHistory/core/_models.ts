@@ -5,6 +5,7 @@ export type SessionHistory = {
   date: string
   start_time: string
   end_time: string
+  vehicles:string
 }
 
 export type SessionHistoryQueryResponse = Response<Array<SessionHistory>>

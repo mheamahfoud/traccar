@@ -90,6 +90,7 @@ import { ManageRegionListWrapper } from './manage-region/List';
 
 import { ManageBuildingListWrapper } from './manage-building/List';
 import { ManageDepartmentListWrapper } from './manage-department/List';
+import ReasonRoutes, { reasonRoutes } from './routes/resonRoutes'
 //import { ManageVehiclesListWrapper } from './manage-vehicles/List';
 
 const SettingPage = () => {
@@ -834,6 +835,13 @@ const SettingPage = () => {
         }
       />
       //#endregion
+      {reasonRoutes.map((route, index) => {
+        //if (route.permission == 'admin') {
+        return (
+          <Route key={index} {...route} />
+        )
+        // }
+      })}
 
       <Route index element={<Navigate to={ListWorkTimePath} />} />
     </Routes>

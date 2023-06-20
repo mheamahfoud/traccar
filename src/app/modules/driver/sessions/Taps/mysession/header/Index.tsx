@@ -17,7 +17,7 @@ const Header = () => {
   const queryClient = useQueryClient()
   const intl = useIntl()
 
-  const {is_running, running_time, setError, setRunningSession, setTotalTime, setRunningTime} =
+  const {is_running, running_time, setError, setRunningSession, setTotalTime, setRunningTime,setVehicleName} =
     useSession()
   const [counter, setCounter] = useState(running_time)
 
@@ -36,6 +36,7 @@ const Header = () => {
   const handleStart = async () => {
     const res: ResponeApiCheck = await StartSession()
     if (res.result == 'success') {
+      setVehicleName(res.data?.vehicles)
       setRunningSession(true)
       setError(null)
      // queryClient.invalidateQueries([`${QUERIES.DRIVER_MY_SESSION}`])

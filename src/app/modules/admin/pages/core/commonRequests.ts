@@ -202,8 +202,22 @@ const getBuildingListList = (): Promise<SelectList[]> => {
             })
         })
 }
+
+const getReasonCarOutServiceList = (): Promise<SelectList[]> => {
+    return axios
+        .get(`list_active_reason_out_of_service`)
+        .then((d: any) => {
+            return d.data?.data.map((item) => {
+                return {
+                    value: item.id,
+                    text: item.reason
+                }
+            })
+        })
+}
 export { getRegiosList, getPassengers,getShiftList,
     getVehicleList,getGroupListByRegion,
     getDriverList,getCountryList ,getTerminalList,getVehiclePathList,
     getAdsList,getVehicleGroupList,getCityList,getGroupList,
-    getBuildingListList,getReasonCancelList,getDeviceList}
+    getBuildingListList,getReasonCancelList,getDeviceList,
+    getReasonCarOutServiceList}

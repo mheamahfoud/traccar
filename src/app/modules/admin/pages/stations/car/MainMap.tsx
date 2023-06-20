@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,7 +9,7 @@ import MapAccuracy from '../../../../apps/map/main/MapAccuracy';
 // import MapCurrentLocation from '../map/MapCurrentLocation';
 
 // import MapPadding from '../map/MapPadding';
-import { devicesActions } from '../../../../../../store';
+import { devicesActions, truckPathActions } from '../../../../../../store';
 import MapView from '../../../../apps/map/core/MapView';
 import MapOverlay from '../../../../apps/map/overlay/MapOverlay';
 import MapLiveRoutes from '../../../../apps/map/main/MapLiveRoutes';
@@ -19,6 +19,7 @@ import MapSelectedDevice from '../../../../apps/map/main/MapSelectedDevice';
 import PoiMap from '../../../../apps/map/main/PoiMap';
 import MapGeofence from '../../../../apps/map/MapGeofence';
 import SocketCarController from '../manage/core/SocketCarController';
+import { ArriveStation } from '../../../../car/services/truck';
 
 
 // import MapOverlay from '../map/overlay/MapOverlay';
@@ -31,7 +32,10 @@ import SocketCarController from '../manage/core/SocketCarController';
 const MainMap = ({ filteredPositions, selectedPosition, onEventsClick }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
-
+  const checkArriveTerminal = useSelector((state: any) => state.truckPath.checkArriveTerminal)
+  const terminals = useSelector((state: any) => state.truckPath.terminals)
+  const path = useSelector((state: any) => state.truckPath.path);
+  const currentTerminal = useSelector((state: any) => state.truckPath.currentTerminal);
   // const desktop = useMediaQuery(theme.breakpoints.up('md'));
 
   // const eventsAvailable = useSelector((state:any) => !!state.events.items.length);
@@ -41,6 +45,20 @@ const MainMap = ({ filteredPositions, selectedPosition, onEventsClick }) => {
   const onMarkerClick = useCallback((_, deviceId) => {
     dispatch(devicesActions.selectId(deviceId));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (checkArriveTerminal) {
+      dispatch(ArriveStation({
+        "path_id": path,
+        "terminal_id": currentTerminal?.id,
+        "start":currentTerminal?.priority==1 ? 1 :0,
+        "end": currentTerminal?.priority==terminals?.length ? 1 :0,
+    })).then(()=>{
+      dispatch(truckPathActions.updateArriveTerminal())
+    })
+     
+    }
+  }, [checkArriveTerminal])
 //alert(JSON.stringify(filteredPositions.length))
 //console.log(filteredPositions)
   return (
