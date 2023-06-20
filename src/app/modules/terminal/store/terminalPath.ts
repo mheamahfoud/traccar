@@ -1,3 +1,4 @@
+
 import { createSlice } from '@reduxjs/toolkit';
 import { TerminalPath, deviceLocation } from '../core/_models';
 import { checkArrivedDevices } from '../services/measure';
@@ -58,8 +59,8 @@ const { reducer, actions } = createSlice({
         })
         builder.addCase(checkArrivedDevices.fulfilled, (state, { payload }) => {
             state.deviceDistance = payload;
-            Object.keys(payload).map((key, index) => {
-                if (payload[key] < 50) {
+            Object.keys(payload)?.map((key, index) => {
+                if (payload[key]?.distance < 100) {
                     state.checkArriveTerminal = true;
                 }
             })

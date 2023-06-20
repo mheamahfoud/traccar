@@ -25,11 +25,11 @@ const MapDefaultCamera = () => {
           item.longitude,
           item.latitude,
         ])
-        //   stations.map((item, index) => {
-        //   coordinates.push(
-        //     [item.longitude, item.latitude]
-        //   )
-        // })
+          stations.map((item, index) => {
+          coordinates.push(
+            [item.longitude, item.latitude]
+          )
+        })
 
         console.log(coordinates)
         if (coordinates.length > 1) {
