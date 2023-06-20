@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { getServerGPS, getSessionGPS, getUserByToken, login } from '../core/_requests'
-import { toAbsoluteUrl } from '../../../../_metronic/helpers'
+import { ResponeApiCheck, toAbsoluteUrl } from '../../../../_metronic/helpers'
 import { useAuth } from '../core/Auth'
 import { AuthModel, UserModel } from '../core/_models'
 import { useDispatch } from 'react-redux'
@@ -62,22 +62,57 @@ export function Login() {
         // const {data: user} = await getUserByToken(auth.api_token)
         // setCurrentUser(user)
         //certifcate session gps
-        const auth: AuthModel = await login(values.email, values.password)
-        const resposeServer=await getServerGPS();
-        dispatch(sessionActions.updateServer(resposeServer));
 
-        const resposeSession :any =await getSessionGPS();
-        dispatch(sessionActions.updateUser(resposeSession));
-      
 
+        const res: ResponeApiCheck = await login(values.email, values.password)
+        if (res.result == 'success') {
+          var auth : AuthModel={api_token : res?.data?.token}
+       
+          // const resposeServer = await getServerGPS();
+          // dispatch(sessionActions.updateServer(resposeServer));
+
+          // const resposeSession: any = await getSessionGPS();
+          // dispatch(sessionActions.updateUser(resposeSession));
+
+          saveAuth(auth)
+          const data: any = await getUserByToken(auth.api_token);
       
-        saveAuth(auth)
-        const data: any = await getUserByToken(auth.api_token);
-        let temp=data;
-        temp['roles']=data?.roles.map((item)=>item.code)
-         setCurrentUser(temp)
-        dispatch(GetUserTypes());
-     //   setCurrentTime(data.path[0]?.current_time)
+          let temp = data;
+          temp['roles'] = data?.roles.map((item) => item.code)
+          setCurrentUser(temp)
+          dispatch(GetUserTypes());
+          //   setCurrentTime(data.path[0]?.current_time)
+        }
+        else {
+          setStatus(res.error_description)
+          saveAuth(undefined)
+          setSubmitting(false)
+          setLoading(false)
+         // alert(JSON.stringify(res.error_description))
+        }
+        // let res: AuthModel = {
+        //   api_token: response?.data?.data?.token
+        // }
+        // return res
+
+
+
+        // const resposeServer = await getServerGPS();
+        // dispatch(sessionActions.updateServer(resposeServer));
+
+        // const resposeSession: any = await getSessionGPS();
+        // dispatch(sessionActions.updateUser(resposeSession));
+
+
+
+        // saveAuth(auth)
+        // const data: any = await getUserByToken(auth.api_token);
+        // alert(JSON.stringify(data))
+        // let temp = data;
+        // temp['roles'] = data?.roles.map((item) => item.code)
+        // setCurrentUser(temp)
+        // dispatch(GetUserTypes());
+        // //   setCurrentTime(data.path[0]?.current_time)
 
       } catch (error) {
         console.error(error)
@@ -97,7 +132,7 @@ export function Login() {
       id='kt_login_signin_form'
     >
       {/* begin::Heading */}
-      { <div className='text-center mb-11'>
+      {<div className='text-center mb-11'>
         <h1 className='text-dark fw-bolder mb-3 fs-md-4'>Sign In</h1>
         {/* <div className='text-gray-500 fw-semibold fs-6'>Your Social Campaigns</div> */}
       </div>}
@@ -108,7 +143,7 @@ export function Login() {
         {/* begin::Col */}
         {/* <div className='col-md-6'>
           {/* begin::Google link */}
-          {/* <a
+        {/* <a
             href='#'
             className='btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100'
           >
@@ -119,14 +154,14 @@ export function Login() {
             />
             Sign in with Google
           </a> */}
-          {/* end::Google link }
+        {/* end::Google link }
         </div> */}
         {/* end::Col */}
 
         {/* begin::Col */}
         {/* <div className='col-md-6'>
           {/* begin::Google link */}
-          {/* <a
+        {/* <a
             href='#'
             className='btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100'
           >
@@ -142,7 +177,7 @@ export function Login() {
             />
             Sign in with Apple
           </a> */}
-          {/* end::Google link }
+        {/* end::Google link }
         </div> */}
         {/* end::Col */}
       </div>
@@ -168,6 +203,11 @@ export function Login() {
       )} */}
 
       {/* begin::Form group */}
+      {formik.status && (
+        <div className='mb-lg-15 alert alert-danger'>
+          <div className='alert-text font-weight-bold'>{formik.status}</div>
+        </div>
+      )}
       <div className='fv-row mb-8'>
         <label className='form-label fs-6 fw-bolder text-dark'>UserName</label>
         <input

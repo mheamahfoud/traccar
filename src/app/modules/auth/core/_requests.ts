@@ -1,5 +1,6 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { AuthModel, SessionGpsModel, UserModel } from './_models'
+import { ResponeApiCheck } from '../../../../_metronic/helpers'
 const APP_TRUCKGPS_API_URL = process.env.REACT_APP_TRUCKGPS_API_URL
 const API_URL = process.env.REACT_APP_API_URL
 
@@ -22,17 +23,13 @@ export const REQUEST_PASSWORD_URL = `/forgot_password`
 // }
 
 // Server should return AuthModel
-export async function login(email: string, password: string): Promise<AuthModel> {
-  const response: any = await axios.post(LOGIN_URL, {
+export async function login(email: string, password: string) {
+  return  axios.post(LOGIN_URL, {
     email,
     password,
-  });
-  let res: AuthModel = {
-    api_token: response?.data?.data?.token
-  }
-  return res
-}
+  }).then((response: AxiosResponse<ResponeApiCheck>) => response.data);
 
+}
 
 // Server should return AuthModel
 export function register(

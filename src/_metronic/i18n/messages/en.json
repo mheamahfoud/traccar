@@ -292,7 +292,12 @@
    "complete":"Complete",
    "reason_car_out_service":"Reason Car Out Service",
    "approve":"Approve",
-   "reject":"Reject"
+   "reject":"Reject",
+   "object_required":"The Field is Required",
+   "invalid_email":"Invalid Email",
+   "invalid_mobile":"Phone number is not valid",
+   "too_long":"Too Long",
+   "too short":"Too Short"
 
 
 }

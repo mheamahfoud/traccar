@@ -81,11 +81,11 @@ const AuthInit: FC<WithChildren> = ({ children }) => {
     const requestUser = async (apiToken: string) => {
       try {
 
-        const resposeServer=await getServerGPS();
-        dispatch(sessionActions.updateServer(resposeServer));
+        // const resposeServer=await getServerGPS();
+        // dispatch(sessionActions.updateServer(resposeServer));
 
-        const resposeSession :any =await getSessionGPS();
-        dispatch(sessionActions.updateUser(resposeSession));
+        // const resposeSession :any =await getSessionGPS();
+        // dispatch(sessionActions.updateUser(resposeSession));
 
   
         dispatch(GetUserTypes());

@@ -404,7 +404,7 @@ const AdminMenu = () => {
 
       {currentUser?.roles.includes('manage_path') && (
         <SidebarMenuItem
-          to='/admin/path'
+          to='/admin/path/manage-path'
           icon='abstract-28'
           title={intl.formatMessage(
             { id: 'manage_object' },
@@ -441,7 +441,7 @@ const AdminMenu = () => {
 
       {currentUser?.roles.includes('manage_vehicle_camera') && (
         <SidebarMenuItem
-          to='/admin/camera'
+          to='/admin/camera/manage-camera'
           icon='abstract-28'
           title={intl.formatMessage(
             { id: 'manage_object' },
@@ -452,7 +452,7 @@ const AdminMenu = () => {
       )}
       {currentUser?.roles.includes('manage_car_out_service') && (
         <SidebarMenuItem
-          to='/admin/car-out-service'
+          to='/admin/car-out-service/manage-car-out-service'
           icon='abstract-28'
           title={intl.formatMessage(
             { id: 'manage_object' },
@@ -464,7 +464,7 @@ const AdminMenu = () => {
 
       {currentUser?.roles.includes('manage_fuel_history') && (
         <SidebarMenuItem
-          to='/admin/fuel-history'
+          to='/admin/fuel-history/manage-fuel-history'
           icon='abstract-28'
           title={intl.formatMessage(
             { id: 'manage_object' },
