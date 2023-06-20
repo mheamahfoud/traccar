@@ -55,10 +55,10 @@
     width: 100%;
   } */
   
-  .maplibregl-ctrl-top-right {
+  /* .maplibregl-ctrl-top-right {
     display: none;
   }
-  
+   */
   #ads {
     position: fixed;
     top: 0;

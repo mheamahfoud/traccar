@@ -83,9 +83,10 @@ const MapTerminalPage = () => {
     dispatch(GetCurrentTerminal(id)).then((res) => {
       if (res.type == 'terminal/fulfilled') {
         if (res.payload.length > 0) {
+      
           dispatch(
             terminalPathsActions.setDevices({
-              devices: res?.payload[0].devices?.filter((x) => x.id == 6).map((x) => x.id),
+              devices: res?.payload[0].devices?.map((x) => x.id),
               terminal: res?.payload[0].terminal,
             })
           )
