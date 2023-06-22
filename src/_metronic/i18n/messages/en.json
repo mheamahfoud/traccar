@@ -297,7 +297,9 @@
    "invalid_email":"Invalid Email",
    "invalid_mobile":"Phone number is not valid",
    "too_long":"Too Long",
-   "too short":"Too Short"
+   "too short":"Too Short",
+   "view_camera":"View Camera",
+   "vehicle_map":"Vehicle Map"
 
 
 }

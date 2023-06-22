@@ -20,6 +20,7 @@ import {ActionButton} from '../../../../../components/buttons/ActionButton'
 import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
 import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
 import {useAuth} from '../../../../../../auth'
+import {ViewCameraVehiclePath} from '../../../../camera/routes/RoutesNames'
 type Props = {
   id: ID
 }
@@ -62,6 +63,14 @@ const ActionsCell: FC<Props> = ({id}) => {
   const handleView = () => {
     navigate(ViewVehiclesPath, {state: id})
   }
+
+  const handleViewCamera = () => {
+    navigate(ViewCameraVehiclePath, {state: id})
+  }
+
+  const handleVehicleMap = () => {
+    navigate('/car', {state: id})
+  }
   return (
     <>
       <ActionButton />
@@ -72,6 +81,19 @@ const ActionsCell: FC<Props> = ({id}) => {
         {currentUser?.roles.includes('account_vehicle') && (
           <MenuActionItem title={intl.formatMessage({id: 'account'})} onCLick={handleAccount} />
         )}
+
+        {currentUser?.roles.includes('view_camera_vehicle') && (
+          <MenuActionItem
+            title={intl.formatMessage({id: 'view_camera'})}
+            onCLick={handleViewCamera}
+          />
+        )}
+        {
+          <MenuActionItem
+            title={intl.formatMessage({id: 'vehicle_map'})}
+            onCLick={handleVehicleMap}
+          />
+        }
         {/* <MenuActionItem title={intl.formatMessage({id: 'edit'})} onCLick={handleEdit} /> */}
         <MenuActionItem title={intl.formatMessage({id: 'view'})} onCLick={handleView} />
       </MenuActionWrapper>
