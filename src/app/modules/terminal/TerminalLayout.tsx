@@ -17,6 +17,8 @@ const TerminalLayout = () => {
   const navigate = useNavigate()
   const loading = useSelector((state: any) => state.terminalPath.loading)
   const checkArriveTerminal = useSelector((state: any) => state.terminalPath.checkArriveTerminal)
+  const devicesStatus = useSelector((state: any) => state.terminalPath.devicesStatus)
+  
   const showAds = useSelector((state: any) => state.adsManager?.showAds)
   const location = useLocation()
   const id: any = location.state
@@ -48,7 +50,7 @@ const TerminalLayout = () => {
       }
     })
   }, [])
-
+  
   ///check arrival
   useEffect(() => {
     if (checkArriveTerminal) {

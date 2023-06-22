@@ -32,9 +32,9 @@ const { reducer, actions } = createSlice({
             console.log('action.payload?.devices')
             console.log(action.payload?.devices)
             //set status of devices
-            action.payload?.devices?.forEach((item: any) => state.devicesStatus[item] = false);
+            action.payload?.devices?.forEach((item: any) => state.devicesStatus[item?.id] = false);
             //set terminal info
-           
+
             if (terminal?.length > 0) {
                 state.terminalInfo = terminal[0];
                 state.terminalLoc = {
@@ -42,6 +42,7 @@ const { reducer, actions } = createSlice({
                     lon: terminal[0].longitude,
                 }
             }
+
             state.loading = false;
         },
         updateDeviceLocation(state, action) {
@@ -56,6 +57,12 @@ const { reducer, actions } = createSlice({
             })
         },
         updateArriveTerminal(state, action) {
+
+            // for (const key in state.devicesStatus) {
+            //     if (state.devicesStatus.hasOwnProperty(key)) {
+            //         state.devicesStatus[key] = false;
+            //     }
+            // }
             state.checkArriveTerminal = action.payload;
         },
 
@@ -70,14 +77,22 @@ const { reducer, actions } = createSlice({
             Object.keys(temp)?.map((key, index) => {
                 // alert(JSON.stringify( Object.keys(temp)))
                 // alert(JSON.stringify(state.deviceTemp.map(x=>x.id)))
-                temp[key] = { ...temp[key], name:state.deviceTemp.find(x=>x.id==temp[key]?.deviceId)?.name }
-                if (temp[key]?.distance < 20) {
+                temp[key] = { ...temp[key], name: state.deviceTemp.find(x => x.id == temp[key]?.deviceId)?.name }
+                if (temp[key]?.distance < 50 && !state.devicesStatus[temp[key]?.deviceId]) {
                     state.checkArriveTerminal = true;
+                    state.devicesStatus[temp[key]?.deviceId] = true;
+                    for (const key1 in state.devicesStatus) {
+                     //   alert(key == temp[key]?.deviceId)
+                        if (state.devicesStatus.hasOwnProperty(key1) && key1 != temp[key]?.deviceId) {
+                            state.devicesStatus[key] = false;
+                        }
+                    }
+
                 }
             })
-           
+
             state.deviceDistance = temp;
-          
+
             //state.error = payload
             //state.loading = false
         })
