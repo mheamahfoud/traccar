@@ -5,11 +5,14 @@ import { QUERIES, isNotEmpty } from '../../../../../../../_metronic/helpers';
 import { getCameraToVehicle } from '../core/_requests';
 import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner';
 import VedioPlayer from '../../../vedio-stream/components/LiveStream';
+import { CameraShow } from '../core/_models';
+import SplitStyle from './SplitStyle';
+import SingleStyle from './SingleStyle';
 
-const VeiewCameraVehicle: FC = () => {
+const ViewCameraVehicle: FC = () => {
     const location = useLocation();
     const id: any = location.state;
-    const [displayStyle, setDisplayStyle] = useState('four'); // Default display style is 'four'
+    const [displayStyle, setDisplayStyle] = useState(CameraShow.Four); // Default display style is 'four'
 
     const handleStyleChange = (style) => {
         setDisplayStyle(style);
@@ -28,26 +31,16 @@ const VeiewCameraVehicle: FC = () => {
             {
                 data && (
 
-                    // <div className='d-flex flex-wrap justify-content-evenly'>
-                    //     {
-                    //         data.map((item, index) => {
-                    //             return (
-                    //                 < VedioPlayer title={`camera ${index}`} />
-                    //             )
-                    //         })
-                    //     }
-                    // </div>
                     <div className="container">
                         <header>
-                            {/* Header content */}
-                            <button onClick={() => handleStyleChange('four')}>Option 1</button>
-                            <button onClick={() => handleStyleChange('three')}>Option 2</button>
-                            <button onClick={() => handleStyleChange('split')}>Option 3</button>
-                            <button onClick={() => handleStyleChange('single')}>Option 4</button>
+                            <button className={`btn ${displayStyle == CameraShow.Four ? 'btn-danger' : 'btn-primary'} mx-1`} onClick={() => handleStyleChange(CameraShow.Four)}>Option 1</button>
+                            <button className={`btn ${displayStyle == CameraShow.Three ? 'btn-danger' : 'btn-primary'}  mx-1`} onClick={() => handleStyleChange(CameraShow.Three)}>Option 2</button>
+                            <button className={`btn ${displayStyle == CameraShow.Split ? 'btn-danger' : 'btn-primary'}  mx-1`} onClick={() => handleStyleChange(CameraShow.Split)}>Option 3</button>
+                            <button className={`btn ${displayStyle == CameraShow.Single ? 'btn-danger' : 'btn-primary'}  mx-1` } onClick={() => handleStyleChange(CameraShow.Single)}>Option 4</button>
                         </header>
                         <div className="row d-flex">
 
-                            {displayStyle === 'four' && (
+                            {displayStyle === CameraShow.Four && (
                                 <>
                                     {
                                         data.map((item, index) => {
@@ -62,7 +55,7 @@ const VeiewCameraVehicle: FC = () => {
                             )}
 
 
-                            {displayStyle === 'three' && (
+                            {displayStyle === CameraShow.Three && (
                                 <>
                                     {
                                         data.map((item, index) => {
@@ -77,36 +70,13 @@ const VeiewCameraVehicle: FC = () => {
                             )}
 
 
-                            {displayStyle === 'split' && (
-                                <>
-                                    <div className="col-md-10">
-                                        < VedioPlayer title={`camera ${1}`} />
-                                    </div>
-                                    <div className="col-md-2">
-                                        <div className="row">
-                                            <>
-                                                {
-                                                    data.map((item, index) => {
-                                                        return (
-                                                            <div className="col-md-12">
-                                                                < VedioPlayer title={`camera ${index}`} />
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-                                            </>
-                                        </div>
-                                    </div>
-                                </>
+                            {displayStyle === CameraShow.Split && (
+                                <SplitStyle data={data} />
                             )}
 
 
-                            {displayStyle === 'single' && (
-                                <div className="col-md-12">
-                                    <div>
-                                        < VedioPlayer title={`camera ${1}`} />
-                                    </div>
-                                </div>
+                            {displayStyle === CameraShow.Single && (
+                                <SingleStyle />
                             )}
                         </div>
                     </div>
@@ -122,4 +92,4 @@ const VeiewCameraVehicle: FC = () => {
     );
 }
 
-export default VeiewCameraVehicle;
+export default ViewCameraVehicle;

@@ -29,3 +29,10 @@ export const initialAddCamera: AddCameraVehicle = {
   "code": null,
   "link": null
 }
+
+export enum CameraShow {
+  Four =1,
+  Three=2,
+  Split=3,
+  Single=4
+}

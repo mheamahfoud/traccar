@@ -6,7 +6,7 @@ import Add from './manage/add-edit/Add'
 import {Breadcrumbs, ListPath} from './routes/RoutesNames'
 import {ManageListWrapper} from './manage/List'
 import theme from '../../../../../_metronic/helpers/common/theme'
-import VeiewCameraVehicle from './manage/view'
+import ViewCameraVehicle from './manage/view'
 const CameraPage = () => {
   const intl = useIntl()
   return (
@@ -53,7 +53,7 @@ const CameraPage = () => {
                         {name: intl.formatMessage({id: 'camera'})}
                       )}
                     </PageTitle>
-                    <VeiewCameraVehicle />
+                    <ViewCameraVehicle />
                   </>
                 }
               />
