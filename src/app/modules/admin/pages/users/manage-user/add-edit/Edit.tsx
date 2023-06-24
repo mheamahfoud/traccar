@@ -21,7 +21,7 @@ const Edit = () => {
                 <Formik
                     enableReinitialize={true}
                     validationSchema={roleSchema}
-                    initialValues={{ ...data, role_id: 1, first_name :data?.meta_data?.first_name , last_name:data?.meta_data?.last_name,password:null }}
+                    initialValues={{ ...data, role_id: 1, first_name :data?.meta_data?.first_name , last_name:data?.meta_data?.last_name,password:null,group_id:data?.group_id }}
                     initialStatus={{ edit: true }}
                     onSubmit={async (values, { setSubmitting }) => {
                         const formData = new FormData();

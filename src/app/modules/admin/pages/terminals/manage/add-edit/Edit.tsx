@@ -13,7 +13,6 @@ const Edit = () => {
     const location = useLocation();
     const data: any = location.state;
     const { showNotification } = useNotification();
-
     return (
         <KTCard>
 

@@ -209,7 +209,7 @@ const StatusCard = ({ deviceId, position, onClose, desktopPadding = 0, ...props 
                         .split(',')
                         .filter(
                           (key) =>
-                            position.hasOwnProperty(key) || position.attributes.hasOwnProperty(key)
+                            (position.hasOwnProperty(key) || position.attributes.hasOwnProperty(key)) && key != 'course'
                         )
                         .map((key) => (
                           <StatusRow

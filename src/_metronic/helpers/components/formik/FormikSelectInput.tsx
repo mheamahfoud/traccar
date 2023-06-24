@@ -1,6 +1,17 @@
 import { useFormikContext } from 'formik';
 import { useEffect, useState } from 'react';
 import { SelectList, SelectListStringValues } from '../..';
+import Select2 from 'react-select2-wrapper';
+import { styled } from "@mui/material";
+import './style.css'
+const InputStyle = styled(Select2)({
+    width: '100%',
+    background: 'red',
+    '& .select2  .select2-selection': {
+        background: 'red'
+
+    }
+})
 interface props {
     title: string,
     name: string,
@@ -8,6 +19,7 @@ interface props {
     isRequired: boolean,
     options?: SelectListStringValues[],
     relatedName?: string[],
+    multiple?:boolean
 }
 const FormikSelectInput = (props: props) => {
     const [value, setValue] = useState(null)

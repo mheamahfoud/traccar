@@ -8,6 +8,9 @@ import VedioPlayer from '../../../vedio-stream/components/LiveStream';
 import { CameraShow } from '../core/_models';
 import SplitStyle from './SplitStyle';
 import SingleStyle from './SingleStyle';
+const videoUrl1 = 'https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8';
+const videoUrl2 = 'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8';
+
 
 const ViewCameraVehicle: FC = () => {
     const location = useLocation();
@@ -31,12 +34,12 @@ const ViewCameraVehicle: FC = () => {
             {
                 data && (
 
-                    <div className="container">
-                        <header>
+                    <div className="container p-2 bg-body">
+                        <header className='my-2'>
                             <button className={`btn ${displayStyle == CameraShow.Four ? 'btn-danger' : 'btn-primary'} mx-1`} onClick={() => handleStyleChange(CameraShow.Four)}>Option 1</button>
                             <button className={`btn ${displayStyle == CameraShow.Three ? 'btn-danger' : 'btn-primary'}  mx-1`} onClick={() => handleStyleChange(CameraShow.Three)}>Option 2</button>
                             <button className={`btn ${displayStyle == CameraShow.Split ? 'btn-danger' : 'btn-primary'}  mx-1`} onClick={() => handleStyleChange(CameraShow.Split)}>Option 3</button>
-                            <button className={`btn ${displayStyle == CameraShow.Single ? 'btn-danger' : 'btn-primary'}  mx-1` } onClick={() => handleStyleChange(CameraShow.Single)}>Option 4</button>
+                            <button className={`btn ${displayStyle == CameraShow.Single ? 'btn-danger' : 'btn-primary'}  mx-1`} onClick={() => handleStyleChange(CameraShow.Single)}>Option 4</button>
                         </header>
                         <div className="row d-flex">
 
@@ -46,7 +49,7 @@ const ViewCameraVehicle: FC = () => {
                                         data.map((item, index) => {
                                             return (
                                                 <div className="col-md-3 ">
-                                                    < VedioPlayer title={`camera ${index}`} />
+                                                    < VedioPlayer title={`camera ${index}`} videoUrl={videoUrl1} />
                                                 </div>
                                             )
                                         })
@@ -61,7 +64,7 @@ const ViewCameraVehicle: FC = () => {
                                         data.map((item, index) => {
                                             return (
                                                 <div className="col-md-4">
-                                                    < VedioPlayer title={`camera ${index}`} />
+                                                    < VedioPlayer title={`camera ${index}`} videoUrl={videoUrl1} />
                                                 </div>
                                             )
                                         })
@@ -71,12 +74,22 @@ const ViewCameraVehicle: FC = () => {
 
 
                             {displayStyle === CameraShow.Split && (
-                                <SplitStyle data={data} />
+                                <SplitStyle data={data.map((item, index) => {
+                                    return {
+                                        code: item.code,
+                                        videoUrl: index % 2 == 0 ? videoUrl1 : videoUrl2
+                                    }
+                                })} />
                             )}
 
 
                             {displayStyle === CameraShow.Single && (
-                                <SingleStyle />
+                                <SingleStyle data={data.map((item, index) => {
+                                    return {
+                                        code: item.code,
+                                        videoUrl: index % 2 == 0 ? videoUrl1 : videoUrl2
+                                    }
+                                })} />
                             )}
                         </div>
                     </div>

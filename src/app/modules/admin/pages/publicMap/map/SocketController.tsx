@@ -1,42 +1,20 @@
-import React, { useEffect, useRef } from 'react'
-import { useDispatch, useSelector, connect } from 'react-redux'
+import React, {  useRef } from 'react'
+import { useDispatch,  connect } from 'react-redux'
 import { sessionActions } from '../../../../../../store'
 import { useEffectAsync } from '../../../../../../reactHelper'
-
-// import { sessionActions, terminalPathsActions, truckPathActions } from "../../../store";
-
-// import { isObjectEmpty, useEffectAsync } from "../../../reactHelper";
-// import { checkArrivedDevices } from "./services/measure";
-// import { TerminalType, CoordDistance, Coordinate } from "./core/_models";
 
 const logoutCode = 4000
 
 const SocketController = () => {
   const dispatch = useDispatch()
-  const staionDevices = useSelector((state: any) => state.devices.staionDevices)
   const checkInitPath = useRef(true)
-  //   const terminalLoc: Coordinate = useSelector((state: any) => state.terminalPath.terminalLoc);
-  //   const devicesLocaton: Coordinate = useSelector((state: any) => state.terminalPath.devicesLocaton);
-
   const socketRef = useRef<any>()
 
-  //   useEffect(() => {
-  //     //  alert(JSON.stringify(currentPosition))
-  //     if (!isObjectEmpty(devicesLocaton) && !isObjectEmpty(terminalLoc)) {
-  //       dispatch(checkArrivedDevices(
-  //         {
-  //           devicesLocaton,
-  //           terminalLoc
-  //         }
-  //       ))
-  //     }
-  //   }, [dispatch, devicesLocaton]);
 
   const connectSocket = () => {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
 
-    //const socket = new WebSocket(`${protocol}//${window.location.host}/api/socket`)
-    const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
+    const socket = new WebSocket(`${protocol}//${window.location.host}/api/socket`)
 
     socketRef.current = socket
 

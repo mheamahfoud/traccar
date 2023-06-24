@@ -126,13 +126,6 @@ const Main = () => {
     setFilteredPositions
   )
 
-  // useEffect(() => {
-  //   dispatch(devicesActions.initStations([]));
-  //   dispatch(layoutManagerActions.setToolbar(false))
-  //   return () => {
-  //     dispatch(layoutManagerActions.setToolbar(true))
-  //   }
-  // }, [])
 
   useEffectAsync(async () => {
     let email = "test@test.test";
@@ -175,25 +168,13 @@ const Main = () => {
             onEventsClick={onEventsClick}
           />
 
-          {/* <Paper square elevation={3} className={classes.header}>
-              { <MainToolbar
-                keyword={keyword}
-                setKeyword={setKeyword}
-              /> }
-            </Paper> */}
           <DeviceLIstTemp  devices={filteredDevices} keyword={keyword} setKeyword={setKeyword}/>
-          {/* <div className=''>
-            <DeviceList devices={filteredDevices} />
-          </div> */}
-
-          {/* { <EventsDrawer open={eventsOpen} onClose={() => setEventsOpen(false)} /> } */}
           {selectedDeviceId && (
             <StatusCard
               deviceId={selectedDeviceId}
               position={selectedPosition}
               onClose={() => dispatch(devicesActions.selectId(null))}
               desktopPadding={360}
-              //theme.dimensions.drawerWidthDesktop
             />
           )}
         </div>

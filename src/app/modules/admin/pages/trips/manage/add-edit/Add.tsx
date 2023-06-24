@@ -7,8 +7,7 @@ import { create } from '../core/_requests';
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
 import { useNavigate } from 'react-router-dom';
 import { ListPath } from '../../routes/RoutesNames';
-import { useQuery } from 'react-query';
-import { getPassengers, getRegiosList } from '../../../core/commonRequests';
+
 
 
 const Add = () => {

@@ -25,6 +25,7 @@ const Add = () => {
                         addFieldsToFormData(formData,values )
                         setSubmitting(true)
                         try {
+                            console.log(formData)
                             const res: ResponeApiCheck = await create(formData);
                             if(res.result=='success'){
                                 navigate(ListMakerPath)

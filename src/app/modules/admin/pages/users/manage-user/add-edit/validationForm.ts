@@ -6,7 +6,8 @@ export const roleSchema = Yup.object().shape({
     last_name: Yup.string()
     .required(intlNonCom.formatMessage({id:'object_required'})),
     email: Yup.string().email(intlNonCom.formatMessage({id:'invalid_email'})).required(intlNonCom.formatMessage({id:'object_required'})),
-
+    group_id:Yup.string()
+    .required(intlNonCom.formatMessage({id:'object_required'})),
 })
 
 

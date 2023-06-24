@@ -25,6 +25,7 @@ import store from './store'
 import ErrorBoundary from './ErrorBoundry'
 import ErrorHandler from './_metronic/helpers/common/components/ErrorHandler';
 
+
 /**
  * Creates `axios-mock-adapter` instance for provided `axios` instance, add
  * basic Metronic mocks and returns it.

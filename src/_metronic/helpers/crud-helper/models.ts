@@ -123,7 +123,7 @@ export const initialResponseError: ResponeApiCheck = {
 
 
 export type SelectList = {
-  value: number,
+  value: any,
   text: string,
 }
 export type SelectListStringValues = {

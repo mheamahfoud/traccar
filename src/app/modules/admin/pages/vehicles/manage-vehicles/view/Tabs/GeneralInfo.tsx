@@ -5,7 +5,7 @@ import ImageDetail from '../../../../../../../../_metronic/helpers/components/fi
 const GeneralInfo = ({ ...props }) => {
     const { data } = props;
     //#region fetch data
-
+  
     //#endregion fetch data
     const intel = useIntl()
     return (

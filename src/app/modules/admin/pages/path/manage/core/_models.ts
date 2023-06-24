@@ -38,6 +38,7 @@ export const AddinitialPathModel: AddPath = {
       terminal: null,
       priority: null,
       voice: null,
+      voice_file:null,
     },
   ],
 }

@@ -7,6 +7,7 @@ import { CustomHeader } from './CustomHeader'
 import {User} from '../../core/_models'
 import { Localize } from '../../../../../../../../_metronic/i18n/Localize'
 import { CustomCell  } from './CustomCell'
+import { EnableCell } from '../../../../../../../../_metronic/helpers/components/table/columns/EnableCell'
 const columnsTable :  ReadonlyArray<Column<User>> = [
   {
     Header: (props) => <SelectionHeader tableProps={props} />,
@@ -37,7 +38,13 @@ const columnsTable :  ReadonlyArray<Column<User>> = [
     id: 'gender',
     Cell: ({...props}) => <CustomCell  gender={props.data[props.row.index]?.gender} />,
   },
- 
+  {
+    Header: (props) => (
+      <CustomHeader<User> tableProps={props} title={<Localize value='is_enable' />} className='min-w-125px' />
+    ),
+    id: 'status',
+    Cell: ({ ...props }) => <EnableCell isenable={props.data[props.row.index].status} />,
+  },
   {
     Header: (props) => (
       <CustomHeader<User>  tableProps={props} title='Actions' className='text-end min-w-100px' />

@@ -10,7 +10,7 @@ import { CustomCellDate } from './CustomCellDate'
 import { CustomCell } from './CustomCell'
 import { CustomCellData } from '../../../../path/manage/table/columns/CustomCellData'
 import { genderEnum } from '../../../../core/models'
-
+import { EnableCell } from '../../../../../../../../_metronic/helpers/components/table/columns/EnableCell'
 const columnsTable: ReadonlyArray<Column<User>> = [
   {
     Header: (props) => <SelectionHeader tableProps={props} />,
@@ -47,13 +47,14 @@ const columnsTable: ReadonlyArray<Column<User>> = [
     Cell: ({ ...props }) => <CustomCellDate date={props.data[props.row.index]?.created_at} />,
 
   },
-  // {
-  //   Header: (props) => (
-  //     <CustomHeader<VehicleType>  tableProps={props} title= {<Localize value='is_enable' /> }   className='min-w-125px' />
-  //   ),
-  //   id: 'isenable',
-  //   Cell: ({...props}) => <EnableCell isenable={props.data[props.row.index].isenable} />,
-  // },
+  {
+    Header: (props) => (
+      <CustomHeader<User> tableProps={props} title={<Localize value='is_enable' />} className='min-w-125px' />
+    ),
+    id: 'status',
+    Cell: ({ ...props }) => <EnableCell isenable={props.data[props.row.index].status} />,
+  },
+
   {
     Header: (props) => (
       <CustomHeader<User> tableProps={props} title='Actions' className='text-end min-w-100px' />

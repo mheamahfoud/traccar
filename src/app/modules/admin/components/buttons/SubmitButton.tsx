@@ -11,7 +11,7 @@ const SubmitButton = (props) => {
             type='submit'
             className='btn btn-primary'
             data-kt-users-modal-action='submit'
-            disabled={isSubmitting || !isValid || !touched}
+       
         >
             {!isSubmitting && <span  className='indicator-label'>Submit</span>}
             {

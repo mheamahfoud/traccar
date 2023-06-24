@@ -206,7 +206,7 @@ const calculateTimeDifference = (apiDate: string, apiTime: string): number => {
 
   const apiDateTime = new Date(
     parseInt(apiYear),
-    parseInt(apiMonth) , // Month is zero-based
+    parseInt(apiMonth), // Month is zero-based
     parseInt(apiDay),
     parseInt(apiHour),
     parseInt(apiMinute),
@@ -231,8 +231,8 @@ const convertTimeToMilliseconds = (time: string): number => {
   return (hours * 60 * 60 + minutes * 60 + seconds) * 1000;
 };
 enum GenderType {
-  Male=1,
-  Female=2
+  Male = 1,
+  Female = 2
 }
 
 const Months = [
@@ -249,6 +249,23 @@ const Months = [
   { value: '11', text: 'November' },
   { value: '12', text: 'December' },
 ];
+
+const checkImageSource = (src: string): boolean => {
+ 
+  const image = new Image();
+  image.src = src;
+
+  image.onload = () => {
+    return true
+  };
+
+  image.onerror = () => {
+    return false
+  };
+
+  return false
+
+};
 export {
   createResponseContext,
   stringifyRequestQuery,
@@ -266,9 +283,10 @@ export {
   createResponseContext1,
   deleteAttributeObjArray,
   addFieldsToArrayFormData,
-  calculateTimeDifference ,
+  calculateTimeDifference,
   formatTime,
   convertTimeToMilliseconds,
   GenderType,
-  Months
+  Months,
+  checkImageSource
 }

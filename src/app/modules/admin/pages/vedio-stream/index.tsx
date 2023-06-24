@@ -4,7 +4,7 @@ import VedioPlayer from "./components/LiveStream";
 const LiveStream: FC = () => {
     return (
         <div>
-            <VedioPlayer  title="camera"/>
+            <VedioPlayer  title="camera" videoUrl=""/>
         </div>
     )
 }

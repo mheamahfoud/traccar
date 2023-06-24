@@ -44,9 +44,18 @@ const Add = () => {
                     initialStatus={{ edit: false }}
                     onSubmit={async (values: any, { setSubmitting }) => {
                         values['count'] = values['terminal'].length;
-                        // const formData = new FormData();
-                        // addFieldsToArrayFormData(formData, values)
-                        // console.log(formData)
+                    
+                        //  values.terminal.forEach((item, index) => {
+                        //     formData.append('terminal[]', JSON.stringify(item));
+
+                        //  //   formData.append('terminal[]', JSON.stringify(item));
+
+                        //     // formData.append(`terminal[${index}].voice`, item.voice_file);
+                        //     // formData.append(`terminal[${index}].terminal`, item.terminal);
+                        // //    formData.append(`terminal[${index}].voice_file`, item.voice_file);
+                        // //    formData.append(`terminal[${index}].name`, item.terminal);
+                        // //    formData.append(`terminal[${index}].priority`, item.priority);
+                        //  });
                         setSubmitting(true)
                         try {
                             const res: ResponeApiCheck = await create(values);
