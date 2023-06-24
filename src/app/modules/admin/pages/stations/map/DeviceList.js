@@ -32,16 +32,7 @@ const DeviceList = ({devices}) => {
     }
   }, [])
 
-  // useEffectAsync(async () => {
-  //   const response = await fetch('/api/devices');
-  //   if (response.ok) {
-  //     dispatch(devicesActions.refresh(await response.json()));
-  //   } else {
-  //     throw Error(await response.text());
-  //   }
-  // }, []);
 
- 
   return <div className='d-flex flex-grow justify-conten-center' style={{overflowX:'auto'}}>
     {devices.map((item, index) => {
       return <DeviceRow  item={item}  index={index}/>

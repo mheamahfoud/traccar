@@ -72,10 +72,11 @@ export const Sidebar = () => {
     <Container>
       <Top>
 
-      {Object.keys(deviceDistance).map((key, index) => {
+      {Object.keys(deviceDistance).slice(0, 4).map((key, index) => {
           return (
-            <TruckPath key={index} distance={parseFloat(deviceDistance[key].distance).toFixed(2) + 'km' } duration={formatSeconds(deviceDistance[key].duration)}>
-           {/* //   {generateName(index)} */}
+            <TruckPath key={index} distance={deviceDistance[key].distance } duration={formatSeconds(deviceDistance[key].duration)}>
+           {/* //   {generateName(index)} parseFloat(deviceDistance[key].distance).toFixed(2) + 'km'  */}
+       
            {deviceDistance[key].name }
             </TruckPath>
           );

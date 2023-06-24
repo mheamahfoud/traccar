@@ -1,10 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector, connect } from "react-redux";
-
-
-//import { useEffectAsync } from "../../../reactHelper";
-//import { checkArriveNextStation, checkNearStation } from "./services/measure";
-//import { TerminalType, CoordDistance, Coordinate } from "./core/_models";
 import { useAuth } from "../../../../../auth";
 import {  TerminalType, CoordDistance} from "../../../../../terminal/core/_models";
 import { checkArriveNextStation ,checkNearStation} from "../../../../../car/services/measure";
@@ -13,8 +8,6 @@ import { sessionActions, truckPathActions } from "../../../../../../../store";
 import { Coordinate } from "../../../../../car/core/_models";
 
 ;
-
-
 
 
 const logoutCode = 4000;
@@ -50,10 +43,10 @@ const SocketCarController = () => {
   const connectSocket = () => {
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
 
-    // const socket = new WebSocket(
-    //   `${protocol}//${window.location.host}/api/socket`
-    // );
-   const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
+    const socket = new WebSocket(
+      `${protocol}//${window.location.host}/api/socket`
+    );
+  // const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
 
 
     socketRef.current = socket;

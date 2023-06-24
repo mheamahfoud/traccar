@@ -3,16 +3,16 @@ import {makeStyles} from '@mui/styles'
 import {useTheme} from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import {useDispatch, useSelector} from 'react-redux'
-import {devicesActions, terminalPathsActions, } from '../../../../../../store'
+import {devicesActions, terminalPathsActions} from '../../../../../../store'
 import useFilter from './useFilter'
 import MainMap from './MainMap'
 import {useAttributePreference} from '../../../../../../_metronic/helpers/common/util/preferences'
 import usePersistedState from '../../../../../../_metronic/helpers/common/util/usePersistedState'
 import StatusCard from '../../../../../../_metronic/helpers/common/components/StatusCard'
-import { GetCurrentTerminal, } from '../../../../../../services/traccargps'
+import {GetCurrentTerminal} from '../../../../../../services/traccargps'
 import {useLocation} from 'react-router-dom'
-import {DeviceLIstTemp} from './DeviceLIstTemp'
-import { Spinner } from '../../../../../../_metronic/helpers/components/Spinner'
+import {BusListWrapper, DeviceLIstTemp} from './BusListWrapper'
+import {Spinner} from '../../../../../../_metronic/helpers/components/Spinner'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,26 +72,24 @@ const MapTerminalPage = () => {
     dispatch(GetCurrentTerminal(id)).then((res) => {
       if (res.type == 'terminal/fulfilled') {
         if (res.payload.length > 0) {
-      
           dispatch(
             terminalPathsActions.setDevices({
-              devices: res?.payload[0].devices?.map((x) => x.id),
+              devices: res?.payload[0].devices,
               terminal: res?.payload[0].terminal,
             })
           )
-
-        }
-        else{
+          dispatch(adsManagerActions.setAds(res?.payload[0]?.ads))
+        } else {
           dispatch(
             terminalPathsActions.setDevices({
               devices: [],
               terminal: [],
             })
           )
-     
+          dispatch(adsManagerActions.setAds([]))
         }
 
-      
+        dispatch(GetPageTimes())
       }
     })
   }, [])
@@ -145,17 +143,6 @@ const MapTerminalPage = () => {
     setFilteredPositions
   )
 
-  // useEffect(() => {
-  //   dispatch(layoutManagerActions.setToolbar(false))
-  //   return () => {
-  //     dispatch(layoutManagerActions.setToolbar(true))
-  //   }
-  // }, [])
-
-  // useEffect(() => {
-  //   dispatch(GetStationInfo(station_info?.id))
-  // }, [])
-
   return (
     <>
       {loading ? (
@@ -168,26 +155,15 @@ const MapTerminalPage = () => {
             onEventsClick={onEventsClick}
           />
 
-          {/* <Paper square elevation={3} className={classes.header}>
-              { <MainToolbar
-                keyword={keyword}
-                setKeyword={setKeyword}
-              /> }
-            </Paper> */}
-          <DeviceLIstTemp devices={filteredDevices} keyword={keyword} setKeyword={setKeyword} />
-          {/* <div className=''>
-            <DeviceList devices={filteredDevices} />
-          </div> */}
+          <BusListWrapper devices={filteredDevices} keyword={keyword} setKeyword={setKeyword} />
 
-          {/* { <EventsDrawer open={eventsOpen} onClose={() => setEventsOpen(false)} /> } */}
           {selectedDeviceId && (
             <StatusCard
               deviceId={selectedDeviceId}
               position={selectedPosition}
               onClose={() => dispatch(devicesActions.selectId(null))}
               desktopPadding={360}
-               ishow={true}
-              //theme.dimensions.drawerWidthDesktop
+              ishow={true}
             />
           )}
         </div>

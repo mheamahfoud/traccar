@@ -3,20 +3,15 @@ import {makeStyles} from '@mui/styles'
 import {useTheme} from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import {useDispatch, useSelector} from 'react-redux'
-
 import {devicesActions,  truckPathActions} from '../../../../../../store'
-
 import useFilter from './useFilter'
-
 import MainMap from './MainMap'
 import {useAttributePreference} from '../../../../../../_metronic/helpers/common/util/preferences'
 import usePersistedState from '../../../../../../_metronic/helpers/common/util/usePersistedState'
 import StatusCard from '../../../../../../_metronic/helpers/common/components/StatusCard'
-
 import {GetCurrentDevice,} from '../../../../../../services/traccargps'
 import {useLocation} from 'react-router-dom'
-
-import {DeviceLIstTemp} from './DeviceLIstTemp'
+import {TerminalListWrapper} from './TerminalListWrapper'
 import { Spinner } from '../../../../../../_metronic/helpers/components/Spinner'
 
 const useStyles = makeStyles((theme) => ({
@@ -83,15 +78,12 @@ const MapCarPage = () => {
               terminal: res?.payload[0]?.terminal,
             })
           )
-          //  dispatch(adsManagerActions.setAds(res?.payload[0]?.ads))
         }
 
-        // dispatch(GetPageTimes())
+  
       }
     })
   }, [])
-
-  //const loading = useSelector((state) => state.devices.loading)
 
   const dispatch = useDispatch()
   const theme = useTheme()
@@ -116,14 +108,10 @@ const MapCarPage = () => {
   })
   const [filterSort, setFilterSort] = usePersistedState('filterSort', '')
   const [filterMap, setFilterMap] = usePersistedState('filterMap', false)
-
   const [devicesOpen, setDevicesOpen] = useState(desktop)
   const [eventsOpen, setEventsOpen] = useState(false)
-
   const onEventsClick = useCallback(() => setEventsOpen(true), [setEventsOpen])
-
   const [filterDevices, setFilterDevices] = useState([])
-
   useEffect(() => {
     if (!desktop && mapOnSelect && selectedDeviceId) {
       setDevicesOpen(false)
@@ -140,16 +128,7 @@ const MapCarPage = () => {
     setFilteredPositions
   )
 
-  // useEffect(() => {
-  //   dispatch(layoutManagerActions.setToolbar(false))
-  //   return () => {
-  //     dispatch(layoutManagerActions.setToolbar(true))
-  //   }
-  // }, [])
 
-  // useEffect(() => {
-  //   dispatch(GetStationInfo(station_info?.id))
-  // }, [])
 
   return (
     <>
@@ -162,19 +141,9 @@ const MapCarPage = () => {
             selectedPosition={selectedPosition}
             onEventsClick={onEventsClick}
           />
+        
+          <TerminalListWrapper devices={filteredDevices} keyword={keyword} setKeyword={setKeyword} />
 
-          {/* <Paper square elevation={3} className={classes.header}>
-              { <MainToolbar
-                keyword={keyword}
-                setKeyword={setKeyword}
-              /> }
-            </Paper> */}
-          <DeviceLIstTemp devices={filteredDevices} keyword={keyword} setKeyword={setKeyword} />
-          {/* <div className=''>
-            <DeviceList devices={filteredDevices} />
-          </div> */}
-
-          {/* { <EventsDrawer open={eventsOpen} onClose={() => setEventsOpen(false)} /> } */}
           {selectedDeviceId && (
             <StatusCard
               deviceId={selectedDeviceId}
@@ -182,7 +151,6 @@ const MapCarPage = () => {
               onClose={() => dispatch(devicesActions.selectId(null))}
               desktopPadding={360}
                ishow={true}
-              //theme.dimensions.drawerWidthDesktop
             />
           )}
         </div>

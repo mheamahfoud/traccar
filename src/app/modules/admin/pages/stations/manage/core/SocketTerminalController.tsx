@@ -4,10 +4,6 @@ import { checkArrivedDevices } from "../../../../../terminal/services/measure";
 import { Coordinate } from "../../../../../terminal/core/_models";
 import { sessionActions, terminalPathsActions } from "../../../../../../../store";
 import { isObjectEmpty, useEffectAsync } from "../../../../../../../reactHelper";
-
-
-
-
 const logoutCode = 4000;
 
 const SocketTerminalController = () => {
@@ -38,10 +34,10 @@ const SocketTerminalController = () => {
   const connectSocket = () => {
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
 
-    // const socket = new WebSocket(
-    //   `${protocol}//${window.location.host}/api/socket`
-    // );
-  const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
+    const socket = new WebSocket(
+      `${protocol}//${window.location.host}/api/socket`
+    );
+  //const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
 
     socketRef.current = socket;
 

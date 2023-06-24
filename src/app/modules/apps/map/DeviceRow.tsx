@@ -5,17 +5,16 @@ import {
   IconButton, Tooltip, Avatar, ListItemAvatar, ListItemText, ListItemButton,
 } from '@mui/material';
 import moment from 'moment';
-
+import { ReactComponent as EngineIcon } from '../../../../_metronic/helpers/resources/images/data/engine.svg';
+import { useTranslation } from '../../../../_metronic/helpers/common/components/LocalizationProvider';
+import { useAttributePreference } from '../../../../_metronic/helpers/common/util/preferences';
+import { formatBoolean, formatStatus, getStatusColor } from '../../../../_metronic/helpers/common/util/formatter';
+import { useAdministrator } from '../../../../_metronic/helpers/common/util/permissions';
+import { devicesActions } from '../../../../store';
+import { mapIconKey, mapIcons } from './core/preloadImages';
 import {
-  formatAlarm, formatBoolean, formatPercentage, formatStatus, getStatusColor,
-} from '../../../../../../_metronic/helpers/common/util/formatter';
-
-import { useAdministrator } from '../../../../../../_metronic/helpers/common/util/permissions';
-import { useTranslation } from '../../../../../../_metronic/helpers/common/components/LocalizationProvider';
-import { mapIconKey, mapIcons } from '../../../../apps/map/core/preloadImages';
-import { useAttributePreference } from '../../../../../../_metronic/helpers/common/util/preferences';
-import { devicesActions } from '../../../../../../store';
-import { ReactComponent as EngineIcon } from '../../../../../../_metronic/helpers/resources/images/data/engine.svg';
+  amber, grey, green, indigo, red, common,
+} from '@mui/material/colors';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -29,16 +28,16 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '0.875rem',
   },
   positive: {
-    color: theme.palette.colors.positive,
+    color: green[500],
   },
   medium: {
-    color: theme.palette.colors.medium,
+    color: amber[700],
   },
   negative: {
-    color: theme.palette.colors.negative,
+    color:  red[500],
   },
   neutral: {
-    color: theme.palette.colors.neutral,
+    color: grey[500],
   },
 }));
 
@@ -49,9 +48,9 @@ const DeviceRow = ({ item, index }) => {
 
   const admin = useAdministrator();
 
-  const position = useSelector((state) => state?.session?.positions[item.id]);
+  const position = useSelector((state:any) => state?.session?.positions[item.id]);
 
-  const geofences = useSelector((state) => state?.geofences?.items);
+  const geofences = useSelector((state:any) => state?.geofences?.items);
 
   const devicePrimary = useAttributePreference('devicePrimary', 'name');
   const deviceSecondary = useAttributePreference('deviceSecondary', '');
@@ -102,13 +101,6 @@ const DeviceRow = ({ item, index }) => {
         />
         {position && (
           <>
-            {/* {position.attributes.hasOwnProperty('alarm') && (
-              <Tooltip title={`${t('eventAlarm')}: ${formatAlarm(position.attributes.alarm, t)}`}>
-                <IconButton size="small">
-                  <ErrorIcon fontSize="small" className={classes.negative} />
-                </IconButton>
-              </Tooltip>
-            )} */}
             {position.attributes.hasOwnProperty('ignition') && (
               <Tooltip title={`${t('positionIgnition')}: ${formatBoolean(position.attributes.ignition, t)}`}>
                 <IconButton size="small">
@@ -120,25 +112,6 @@ const DeviceRow = ({ item, index }) => {
                 </IconButton>
               </Tooltip>
             )}
-            {/* {position.attributes.hasOwnProperty('batteryLevel') && (
-              <Tooltip title={`${t('positionBatteryLevel')}: ${formatPercentage(position.attributes.batteryLevel)}`}>
-                <IconButton size="small">
-                  {position.attributes.batteryLevel > 70 ? (
-                    position.attributes.charge
-                      ? (<BatteryChargingFullIcon fontSize="small" className={classes.positive} />)
-                      : (<BatteryFullIcon fontSize="small" className={classes.positive} />)
-                  ) : position.attributes.batteryLevel > 30 ? (
-                    position.attributes.charge
-                      ? (<BatteryCharging60Icon fontSize="small" className={classes.medium} />)
-                      : (<Battery60Icon fontSize="small" className={classes.medium} />)
-                  ) : (
-                    position.attributes.charge
-                      ? (<BatteryCharging20Icon fontSize="small" className={classes.negative} />)
-                      : (<Battery20Icon fontSize="small" className={classes.negative} />)
-                  )}
-                </IconButton>
-              </Tooltip>
-            )} */}
           </>
         )}
       </ListItemButton>

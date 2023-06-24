@@ -1,27 +1,18 @@
 import React, {useState, useCallback, useEffect, FC} from 'react'
-import {Paper} from '@mui/material'
 import {makeStyles} from '@mui/styles'
 import {useTheme} from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import {useDispatch, useSelector} from 'react-redux'
-import DeviceList from './DeviceList'
-
-// import StatusCard from '../common/components/StatusCard';
 import {devicesActions, layoutManagerActions} from '../../../../../../store'
 import useFilter from './useFilter'
 import MainMap from './MainMap'
 import {useAttributePreference} from '../../../../../../_metronic/helpers/common/util/preferences'
 import usePersistedState from '../../../../../../_metronic/helpers/common/util/usePersistedState'
 import StatusCard from '../../../../../../_metronic/helpers/common/components/StatusCard'
-
 import {GetStationInfo} from '../../../../../../services/traccargps'
-
 import {useLocation} from 'react-router-dom'
-
-// import { useAttributePreference } from '../common/util/preferences';
-import { DeviceLIstTemp } from './DeviceLIstTemp'
-
 import { Spinner } from '../../../../../../_metronic/helpers/components/Spinner'
+import { DeviceListWrapper } from '../../../../apps/map/DeviceListWrapper'
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
@@ -146,18 +137,8 @@ const MapStationPage = () => {
             onEventsClick={onEventsClick}
           />
 
-          {/* <Paper square elevation={3} className={classes.header}>
-              { <MainToolbar
-                keyword={keyword}
-                setKeyword={setKeyword}
-              /> }
-            </Paper> */}
-          <DeviceLIstTemp  devices={filteredDevices} keyword={keyword} setKeyword={setKeyword}/>
-          {/* <div className=''>
-            <DeviceList devices={filteredDevices} />
-          </div> */}
-
-          {/* { <EventsDrawer open={eventsOpen} onClose={() => setEventsOpen(false)} /> } */}
+          <DeviceListWrapper  devices={filteredDevices} keyword={keyword} setKeyword={setKeyword}/>
+   
           {selectedDeviceId && (
             <StatusCard
               deviceId={selectedDeviceId}
