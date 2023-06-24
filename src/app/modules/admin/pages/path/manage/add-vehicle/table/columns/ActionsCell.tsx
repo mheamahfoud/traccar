@@ -8,10 +8,11 @@ import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import { useIntl } from 'react-intl'
 import { VehiclePath } from '../../core/_models'
-import { ActionButton } from '../../../../../../components/buttons/ActionButton'
-import { MenuActionWrapper } from '../../../../../../components/Menu/MenuActionWrapper'
-import { MenuActionItem } from '../../../../../../components/Menu/MenuActionItem'
+
 import { QUERIES, optionAlertConfirm } from '../../../../../../../../../_metronic/helpers'
+import { MenuActionWrapper } from '../../../../../../../../../_metronic/helpers/components/Menu/MenuActionWrapper'
+import { ActionButton } from '../../../../../../../../../_metronic/helpers/components/buttons/ActionButton'
+import { MenuActionItem } from '../../../../../../../../../_metronic/helpers/components/Menu/MenuActionItem'
 
 type Props = {
   data: VehiclePath

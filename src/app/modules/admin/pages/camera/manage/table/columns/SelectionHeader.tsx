@@ -2,13 +2,11 @@ import { FC, PropsWithChildren } from 'react'
 import { HeaderProps } from 'react-table'
 import { useListView } from '../../core/ListViewProvider'
 import { Camera } from '../../core/_models'
-import SelectionHoc from '../../../../../components/table/columns/SelectionHoc'
-
+import SelectionHoc from '../../../../../../../../_metronic/helpers/components/table/columns/SelectionHoc'
 
 type Props = {
   tableProps: PropsWithChildren<HeaderProps<Camera>>
 }
-
 const SelectionHeader: FC<Props> = ({ tableProps }) => {
   const { isAllSelected, onSelectAll } = useListView()
   return (

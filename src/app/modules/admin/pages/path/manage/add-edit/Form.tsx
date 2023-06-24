@@ -1,16 +1,15 @@
 import { FC, Fragment, useState } from 'react'
 import { FieldArray, useFormikContext } from 'formik'
-import { ListLoading } from '../../../../components/table/loading/ListLoading'
-import SubmitButton from '../../../../components/buttons/SubmitButton'
-import ResetButton from '../../../../components/buttons/ResetButton'
 import { useIntl } from 'react-intl'
-import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
-import FormikSelectInput from '../../../../components/formik/FormikSelectInput'
-import IconButton from '../../../../components/buttons/IconButton'
 import { initialPathModel, prorities } from '../core/_models'
 import { initialPath } from '../../../trips/manage/core/_models'
-import FormikInputSelectArray from '../../../../components/formik/FormikInputSelectArray'
-import FormikFile from '../../../../components/formik/FormikFile'
+import IconButton from '../../../../../../../_metronic/helpers/components/buttons/iconButton'
+import FormikSelectInput from '../../../../../../../_metronic/helpers/components/formik/FormikSelectInput'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
+import FormikInputLabel from '../../../../../../../_metronic/helpers/components/formik/FormikInputLabel'
+import FormikFile from '../../../../../../../_metronic/helpers/components/formik/FormikFile'
+import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
 
 
 const Form = ({ ...props }) => {
@@ -55,7 +54,7 @@ const Form = ({ ...props }) => {
                           <div className='row'>
                             <div className='col-md-10 col-sm-12 row'>
                               <div className='col-md-6 col-sm-12'>
-                                <FormikInputSelectArray
+                                <FormikSelectInput
                                   title={intel.formatMessage({ id: 'terminal' })}
                                   name={`terminal.${index}.terminal`}
                                   isRequired={false}
@@ -63,7 +62,7 @@ const Form = ({ ...props }) => {
                                 />
                               </div>
                               <div className='col-md-6 col-sm-12'>
-                                <FormikInputSelectArray
+                                <FormikSelectInput
                                   title={intel.formatMessage({ id: 'priority' })}
                                   name={`terminal.${index}.priority`}
                                   isRequired={false}
@@ -122,7 +121,7 @@ const Form = ({ ...props }) => {
           {/* end::Actions */}
         </form>
       )}
-      {(isSubmitting) && <ListLoading />}
+      {(isSubmitting) && <Spinner />}
     </>
   )
 }

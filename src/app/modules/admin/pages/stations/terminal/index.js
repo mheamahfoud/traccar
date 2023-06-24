@@ -1,30 +1,19 @@
 import React, {useState, useCallback, useEffect, FC} from 'react'
-import {Paper} from '@mui/material'
 import {makeStyles} from '@mui/styles'
 import {useTheme} from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import {useDispatch, useSelector} from 'react-redux'
-import DeviceList from './DeviceList'
-
-// import StatusCard from '../common/components/StatusCard';
-import {devicesActions, layoutManagerActions, terminalPathsActions, truckPathActions} from '../../../../../../store'
-// import usePersistedState from '../common/util/usePersistedState';
-import EventsDrawer from './EventsDrawer'
+import {devicesActions, terminalPathsActions, } from '../../../../../../store'
 import useFilter from './useFilter'
-import MainToolbar from './MainToolbar'
 import MainMap from './MainMap'
 import {useAttributePreference} from '../../../../../../_metronic/helpers/common/util/preferences'
 import usePersistedState from '../../../../../../_metronic/helpers/common/util/usePersistedState'
 import StatusCard from '../../../../../../_metronic/helpers/common/components/StatusCard'
-import {KTCard} from '../../../../../../_metronic/helpers'
-import {GetCurrentDevice, GetCurrentTerminal, GetStationInfo} from '../../../../../../services/traccargps'
-import {ListLoading} from '../../../components/table/loading/ListLoading'
+import { GetCurrentTerminal, } from '../../../../../../services/traccargps'
 import {useLocation} from 'react-router-dom'
-import {map} from '../../../../apps/map/core/MapView'
-// import { useAttributePreference } from '../common/util/preferences';
 import {DeviceLIstTemp} from './DeviceLIstTemp'
-import {useEffectAsync} from '../../../../../../reactHelper'
-import {object} from 'yup'
+import { Spinner } from '../../../../../../_metronic/helpers/components/Spinner'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
@@ -170,7 +159,7 @@ const MapTerminalPage = () => {
   return (
     <>
       {loading ? (
-        <ListLoading />
+        <Spinner />
       ) : (
         <div className='h-100 w-100 position-relative'>
           <MainMap

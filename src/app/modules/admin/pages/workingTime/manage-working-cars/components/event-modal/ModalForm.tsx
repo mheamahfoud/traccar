@@ -1,15 +1,12 @@
 import { FC, useState } from 'react'
-
-import clsx from 'clsx'
 import { useListView } from '../../core/ListViewProvider'
-
 import { useIntl } from 'react-intl'
 import { useNavigate } from 'react-router-dom'
 import { EditWorkingCarspath } from '../../../routes/RoutesNames'
-import InputDetail from '../../../../../components/fields/InputDetail'
 import { KTIcon } from '../../../../../../../../_metronic/helpers'
 import { WorkingDayTypeEnum } from '../../../core/model'
 import { useAuth } from '../../../../../../auth'
+import InputDetail from '../../../../../../../../_metronic/helpers/components/fields/InputDetail'
 
 
 type Props = {

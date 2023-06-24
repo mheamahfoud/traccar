@@ -1,17 +1,13 @@
 import {FC} from 'react'
 import {useFormikContext} from 'formik'
-import {ListLoading} from '../../../../components/table/loading/ListLoading'
-import SubmitButton from '../../../../components/buttons/SubmitButton'
-import ResetButton from '../../../../components/buttons/ResetButton'
 import {useIntl} from 'react-intl'
-import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
-import FormikSelectInput from '../../../../components/formik/FormikSelectInput'
-import {QUERIES} from '../../../../../../../_metronic/helpers'
-import {getStationList} from '../../../vehicles/core/_requests'
-import {useQuery} from 'react-query'
-import FormikFile from '../../../../components/formik/FormikFile'
 import { FieldLink } from '../../../../../../../_metronic/utlis/formik'
-import FormikAudio from '../../../../components/formik/FormikAudio'
+import FormikAudio from '../../../../../../../_metronic/helpers/components/formik/FormikAudio'
+import FormikInputLabel from '../../../../../../../_metronic/helpers/components/formik/FormikInputLabel'
+import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
+
 
 const Form: FC = () => {
 
@@ -60,7 +56,7 @@ const Form: FC = () => {
           {/* end::Actions */}
         </form>
       )}
-      {(isSubmitting) && <ListLoading />}
+      {(isSubmitting) && <Spinner />}
     </>
   )
 }

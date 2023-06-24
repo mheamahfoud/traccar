@@ -9,11 +9,12 @@ import Swal from 'sweetalert2'
 import {useNavigate} from 'react-router-dom'
 import {EditBuildingPath} from '../../../routes/RoutesNames'
 import {useIntl} from 'react-intl'
-import {ActionButton} from '../../../../../components/buttons/ActionButton'
-import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
-import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
+
 import { Building } from '../../core/_models'
 import { useAuth } from '../../../../../../auth'
+import { MenuActionWrapper } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionWrapper'
+import { ActionButton } from '../../../../../../../../_metronic/helpers/components/buttons/ActionButton'
+import { MenuActionItem } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionItem'
 type Props = {
   data: Building
 }

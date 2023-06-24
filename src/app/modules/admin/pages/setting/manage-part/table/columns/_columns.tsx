@@ -6,7 +6,7 @@ import {SelectionHeader} from './SelectionHeader'
 import { CustomHeader } from './CustomHeader'
 import {Part} from '../../core/_models'
 import { Localize } from '../../../../../../../../_metronic/i18n/Localize'
-import { EnableCell } from '../../../../../components/table/columns/EnableCell'
+import { EnableCell } from '../../../../../../../../_metronic/helpers/components/table/columns/EnableCell'
 
 
 const columnsTable :  ReadonlyArray<Column<Part>> = [

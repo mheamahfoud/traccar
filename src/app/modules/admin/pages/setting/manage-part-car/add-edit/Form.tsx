@@ -1,15 +1,15 @@
 import {FC, useState} from 'react'
 import {useFormikContext} from 'formik'
-import {ListLoading} from '../../../../components/table/loading/ListLoading'
-import SubmitButton from '../../../../components/buttons/SubmitButton'
-import ResetButton from '../../../../components/buttons/ResetButton'
 import {useIntl} from 'react-intl'
-import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
-import FormikSelectInput from '../../../../components/formik/FormikSelectInput'
 import {useQuery} from 'react-query'
 import {QUERIES} from '../../../../../../../_metronic/helpers'
 import { getVehicleList} from '../../../core/commonRequests'
-import FormikSwitch from '../../../../components/formik/FormikCheckBox'
+import FormikSwitch from '../../../../../../../_metronic/helpers/components/formik/FormikCheckBox'
+import FormikInputLabel from '../../../../../../../_metronic/helpers/components/formik/FormikInputLabel'
+import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
+import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+
 
 const Form: FC = () => {
   const [enableApi, setEnableApi] = useState<boolean>(true)
@@ -52,7 +52,7 @@ const Form: FC = () => {
         </div>
         {/* end::Actions */}
       </form>
-      {isSubmitting && <ListLoading />}
+      {isSubmitting && <Spinner />}
     </>
   )
 }

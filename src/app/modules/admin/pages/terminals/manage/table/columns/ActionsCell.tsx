@@ -12,13 +12,13 @@ import {destroy} from '../../core/_requests'
 import Swal from 'sweetalert2'
 import {useNavigate} from 'react-router-dom'
 import {useIntl} from 'react-intl'
-import {ActionButton} from '../../../../../components/buttons/ActionButton'
-import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
-import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
 import {EditPath} from '../../../routes/RoutesNames'
 import {Terminal} from '../../core/_models'
 import {MapTerminalPath} from '../../../../stations/routes/RoutesNames'
 import {useAuth} from '../../../../../../auth'
+import { ActionButton } from '../../../../../../../../_metronic/helpers/components/buttons/ActionButton'
+import { MenuActionItem } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionItem'
+import { MenuActionWrapper } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionWrapper'
 type Props = {
   data: Terminal
 }

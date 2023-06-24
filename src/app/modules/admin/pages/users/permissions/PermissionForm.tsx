@@ -1,16 +1,13 @@
 import {FC, Fragment, useEffect} from 'react'
 import {FieldArray, useFormikContext} from 'formik'
-
 import {useIntl} from 'react-intl'
 import { useQuery } from 'react-query'
-import FormikCheckBoxArray from '../../../components/formik/FormikCheckBoxArray'
-import ResetButton from '../../..//components/buttons/ResetButton'
-import SubmitButton from '../../../components/buttons/SubmitButton'
 import { QUERIES } from '../../../../../../_metronic/helpers'
-import { ListLoading } from '../../../components/table/loading/ListLoading'
-import { getPermissions } from '../../role/manage-role/core/_requests'
-import FormikCheckBoxGroup from '../../../components/formik/FormikCheckBoxGroup'
 import { getPermissionRoles } from '../core/_requests'
+import FormikCheckBoxGroup from '../../../../../../_metronic/helpers/components/formik/FormikCheckBoxGroup'
+import ResetButton from '../../../../../../_metronic/helpers/components/buttons/ResetButton'
+import { Spinner } from '../../../../../../_metronic/helpers/components/Spinner'
+import SubmitButton from '../../../../../../_metronic/helpers/components/buttons/SubmitButton'
 interface Props {
   name:string
 }
@@ -51,7 +48,7 @@ const PermissionForm: FC<Props> = ({name}) => {
           {/* end::Actions */}
         </form>
       }
-      {(isSubmitting  || !listRoles) && <ListLoading />}
+      {(isSubmitting  || !listRoles) && <Spinner />}
     </>
   )
 }

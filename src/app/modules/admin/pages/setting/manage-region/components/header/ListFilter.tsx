@@ -3,12 +3,13 @@ import { MenuComponent } from '../../../../../../../../_metronic/assets/ts/compo
 import { QUERIES, initialQueryState } from '../../../../../../../../_metronic/helpers'
 import { useQueryRequest } from '../../core/QueryRequestProvider'
 import { useQueryResponse } from '../../core/QueryResponseProvider'
-import { FilterMenuHoc } from '../../../../../components/table/filter/FilterMenuHoc'
-import { InputFilter } from '../../../../../components/fields/InputFilter'
 import { useIntl } from 'react-intl'
 import { useQuery } from 'react-query'
 import { getCityList } from '../../../../core/commonRequests'
-import { InputSelectFilter } from '../../../../../components/fields/inputSelectFilter'
+import { InputSelectFilter } from '../../../../../../../../_metronic/helpers/components/fields/inputSelectFilter'
+import { FilterMenuHoc } from '../../../../../../../../_metronic/helpers/components/table/filter/FilterMenuHoc'
+import { InputFilter } from '../../../../../../../../_metronic/helpers/components/fields/InputFilter'
+
 
 
 

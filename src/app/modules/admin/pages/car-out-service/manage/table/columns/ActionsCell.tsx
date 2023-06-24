@@ -4,9 +4,7 @@ import {MenuComponent} from '../../../../../../../../_metronic/assets/ts/compone
 import {ID, QUERIES, optionAlertConfirm, } from '../../../../../../../../_metronic/helpers'
 import {useNavigate} from 'react-router-dom'
 import {useIntl} from 'react-intl'
-import {ActionButton} from '../../../../../components/buttons/ActionButton'
-import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
-import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
+
 import { EditPath } from '../../../routes/RoutesNames'
 import { useAuth } from '../../../../../../auth'
 import { CarOutService, CarOutStatus } from '../../core/_models'
@@ -15,6 +13,9 @@ import { useQueryResponse, useQueryResponseSetLoading } from '../../core/QueryRe
 import { useMutation, useQueryClient } from 'react-query'
 import Swal from 'sweetalert2'
 import { acceptReject } from '../../core/_requests'
+import { MenuActionWrapper } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionWrapper'
+import { ActionButton } from '../../../../../../../../_metronic/helpers/components/buttons/ActionButton'
+import { MenuActionItem } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionItem'
 type Props = {
   data: CarOutService
 }

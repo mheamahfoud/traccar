@@ -9,8 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { ListDriverPath } from '../../routes/RoutesNames';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { Spinner } from '../../../../components/Spinner';
-import { ListLoading } from '../../../../components/table/loading/ListLoading';
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner';
 const Edit = () => {
     const navigate=useNavigate();
     const location = useLocation();
@@ -99,7 +98,7 @@ const Edit = () => {
                     <Form />
                 </Formik>}
 
-                {!editData && <ListLoading/>}
+                {!editData && <Spinner/>}
 
 
             </KTCardBody>

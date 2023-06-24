@@ -2,25 +2,23 @@
 import {FC, useEffect} from 'react'
 import {useMutation, useQueryClient} from 'react-query'
 import {MenuComponent} from '../../../../../../../../_metronic/assets/ts/components'
-import {ID, KTIcon, QUERIES, optionAlertConfirm} from '../../../../../../../../_metronic/helpers'
+import {ID,  QUERIES, optionAlertConfirm} from '../../../../../../../../_metronic/helpers'
 import {useListView} from '../../core/ListViewProvider'
 import {useQueryResponse, useQueryResponseData} from '../../core/QueryResponseProvider'
-import {destroy, getAccountCar} from '../../core/_requests'
+import {destroy} from '../../core/_requests'
 import Swal from 'sweetalert2'
 import {useNavigate} from 'react-router-dom'
 import {
   AccountVehiclesPath,
-  EditMakerPath,
-  EditModelPath,
   EditVehiclesPath,
   ViewVehiclesPath,
 } from '../../../routes/RoutesNames'
 import {useIntl} from 'react-intl'
-import {ActionButton} from '../../../../../components/buttons/ActionButton'
-import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
-import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
 import {useAuth} from '../../../../../../auth'
 import {ViewCameraVehiclePath} from '../../../../camera/routes/RoutesNames'
+import { MenuActionItem } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionItem'
+import { MenuActionWrapper } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionWrapper'
+import { ActionButton } from '../../../../../../../../_metronic/helpers/components/buttons/ActionButton'
 type Props = {
   id: ID
 }

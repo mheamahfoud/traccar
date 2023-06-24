@@ -1,15 +1,12 @@
 import {FC} from 'react'
 import {useFormikContext} from 'formik'
-import {ListLoading} from '../../../../components/table/loading/ListLoading'
-import SubmitButton from '../../../../components/buttons/SubmitButton'
-import ResetButton from '../../../../components/buttons/ResetButton'
+
 import {useIntl} from 'react-intl'
-import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
-import {useQuery} from 'react-query'
-import {QUERIES} from '../../../../../../../_metronic/helpers'
-import {getRoleList} from '../core/_requests'
-import FormikSwitch from '../../../../components/formik/FormikCheckBox'
 import { RoleResponse } from '../core/_models'
+import FormikSwitch from '../../../../../../../_metronic/helpers/components/formik/FormikCheckBox'
+import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
+import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
 interface Props {
     roleList :RoleResponse
 }
@@ -42,7 +39,7 @@ const FormPermission: FC<Props> = ({roleList}) => {
         </div>
         {/* end::Actions */}
       </form>
-      {(isSubmitting || !roleList) && <ListLoading />}
+      {(isSubmitting || !roleList) && <Spinner />}
     </>
   )
 }

@@ -1,8 +1,7 @@
 import {useListView} from '../../core/ListViewProvider'
 import {ListToolbar} from './ListToolbar'
-import {ListGrouping} from './ListGrouping'
 import { useQueryRequest } from '../../core/QueryRequestProvider'
-import { InputFilterSearch } from '../../../../../components/fields/inputFilterSearch'
+
 
 
 const ListHeader = () => {

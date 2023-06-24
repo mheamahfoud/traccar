@@ -1,16 +1,14 @@
-import {FC, Fragment, useState} from 'react'
-import {FieldArray, useFormikContext} from 'formik'
-import {ListLoading} from '../../../../components/table/loading/ListLoading'
-import SubmitButton from '../../../../components/buttons/SubmitButton'
-import ResetButton from '../../../../components/buttons/ResetButton'
+import {FC, useState} from 'react'
+import { useFormikContext} from 'formik'
 import {useIntl} from 'react-intl'
-import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
-import FormikSelectInput from '../../../../components/formik/FormikSelectInput'
 import {useQuery} from 'react-query'
 import {QUERIES} from '../../../../../../../_metronic/helpers'
 import {getAdsList} from '../../../core/commonRequests'
-import {useLocation} from 'react-router-dom'
-import {Spinner} from '../../../../components/Spinner'
+import FormikSelectInput from '../../../../../../../_metronic/helpers/components/formik/FormikSelectInput'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+import FormikInputLabel from '../../../../../../../_metronic/helpers/components/formik/FormikInputLabel'
+import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
+import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
 
 const FormAds : FC  = () => {
   const intel = useIntl()

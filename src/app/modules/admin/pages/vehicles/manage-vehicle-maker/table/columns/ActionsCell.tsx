@@ -2,18 +2,18 @@
 import {FC, useEffect} from 'react'
 import {useMutation, useQueryClient} from 'react-query'
 import {MenuComponent} from '../../../../../../../../_metronic/assets/ts/components'
-import {ID, KTIcon, QUERIES, optionAlertConfirm} from '../../../../../../../../_metronic/helpers'
-import {useListView} from '../../core/ListViewProvider'
+import {ID,  QUERIES, optionAlertConfirm} from '../../../../../../../../_metronic/helpers'
 import {useQueryResponse, useQueryResponseData, useQueryResponseSetLoading} from '../../core/QueryResponseProvider'
 import {destroy} from '../../core/_requests'
 import Swal from 'sweetalert2'
 import {useNavigate} from 'react-router-dom'
 import {EditMakerPath} from '../../../routes/RoutesNames'
 import {useIntl} from 'react-intl'
-import {ActionButton} from '../../../../../components/buttons/ActionButton'
-import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
-import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
+
 import { useAuth } from '../../../../../../auth'
+import { ActionButton } from '../../../../../../../../_metronic/helpers/components/buttons/ActionButton'
+import { MenuActionWrapper } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionWrapper'
+import { MenuActionItem } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionItem'
 type Props = {
   id: ID
 }

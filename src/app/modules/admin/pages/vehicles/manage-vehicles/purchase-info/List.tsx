@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
 import { columnsTable } from './table/columns/_columns'
 import { KTCard, KTCardBody } from '../../../../../../../_metronic/helpers'
-import { DataTable } from '../../../../components/table/Table'
+import { DataTable } from '../../../../../../../_metronic/helpers/components/table/Table';
+
 
 const ManagePurshaseInfoListWrapper = ({data}) => {
   const columns = useMemo(() => columnsTable, []);

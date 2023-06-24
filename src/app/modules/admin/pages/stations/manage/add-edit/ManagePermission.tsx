@@ -6,16 +6,15 @@ import {
   ResponeApiCheck,
   initialResponseError,
 } from '../../../../../../../_metronic/helpers'
-import {Form} from './Form'
-import {roleSchema} from './validationForm'
-import {getPermissionStation, getRoleList, update, updatePermission} from '../core/_requests'
+import { getRoleList, update, updatePermission} from '../core/_requests'
 import {useLocation} from 'react-router-dom'
 import {useNotification} from '../../../../../../../_metronic/hooks/useNotification'
 import {useNavigate} from 'react-router-dom'
 import {useQuery} from 'react-query'
-import {ListLoading} from '../../../../components/table/loading/ListLoading'
+
 import {FormPermission} from './FormPermission'
 import {ListPath} from '../../routes/RoutesNames'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
 const ManagePermission = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -73,7 +72,7 @@ const ManagePermission = () => {
           </Formik>
         </KTCardBody>
       )}
-      {( !roleList) && <ListLoading />}
+      {( !roleList) && <Spinner />}
     </KTCard>
   )
 }

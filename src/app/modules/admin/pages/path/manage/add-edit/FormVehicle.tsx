@@ -1,15 +1,15 @@
-import {FC, Fragment, useState} from 'react'
-import {FieldArray, useFormikContext} from 'formik'
-import {ListLoading} from '../../../../components/table/loading/ListLoading'
-import SubmitButton from '../../../../components/buttons/SubmitButton'
-import ResetButton from '../../../../components/buttons/ResetButton'
+import {FC,  useState} from 'react'
+import { useFormikContext} from 'formik'
 import {useIntl} from 'react-intl'
-import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
 import {useQuery} from 'react-query'
 import {QUERIES} from '../../../../../../../_metronic/helpers'
-import {getAdsList, getVehicleList} from '../../../core/commonRequests'
-import {Spinner} from '../../../../components/Spinner'
-import FormikMultiSelectInput from '../../../../components/formik/FormikMultiSelectInput'
+import { getVehicleList} from '../../../core/commonRequests'
+import FormikMultiSelectInput from '../../../../../../../_metronic/helpers/components/formik/FormikMultiSelectInput'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+import FormikInputLabel from '../../../../../../../_metronic/helpers/components/formik/FormikInputLabel'
+import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
+import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
+
 
 const FormVehicle : FC  = () => {
   const intel = useIntl()

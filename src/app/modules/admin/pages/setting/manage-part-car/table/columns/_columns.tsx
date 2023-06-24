@@ -4,9 +4,8 @@ import {ActionsCell} from './ActionsCell'
 import {SelectionCell} from './SelectionCell'
 import {SelectionHeader} from './SelectionHeader'
 import { CustomHeader } from './CustomHeader'
-import {PartCarCar} from '../../core/_models'
 import { Localize } from '../../../../../../../../_metronic/i18n/Localize'
-import { EnableCell } from '../../../../../components/table/columns/EnableCell'
+import { EnableCell } from '../../../../../../../../_metronic/helpers/components/table/columns/EnableCell'
 
 
 const columnsTable :  ReadonlyArray<Column<PartCar>> = [

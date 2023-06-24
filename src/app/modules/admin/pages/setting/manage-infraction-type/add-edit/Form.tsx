@@ -1,11 +1,10 @@
 import { FC } from 'react'
 import { useFormikContext } from 'formik'
-import { ListLoading } from '../../../../components/table/loading/ListLoading'
-import SubmitButton from '../../../../components/buttons/SubmitButton'
-import ResetButton from '../../../../components/buttons/ResetButton'
 import { useIntl } from 'react-intl'
-import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
-import FormikSelectInput from '../../../../components/formik/FormikSelectInput'
+import FormikInputLabel from '../../../../../../../_metronic/helpers/components/formik/FormikInputLabel'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
+import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
 
 
 
@@ -46,7 +45,7 @@ const Form: FC = () => {
                 </div>
                 {/* end::Actions */}
             </form>
-            {(isSubmitting) && <ListLoading />}
+            {(isSubmitting) && <Spinner />}
         </>
     )
 }

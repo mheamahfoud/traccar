@@ -9,10 +9,11 @@ import Swal from 'sweetalert2'
 import {useNavigate} from 'react-router-dom'
 import {EditMaintenanceStatusPath} from '../../../routes/RoutesNames'
 import {useIntl} from 'react-intl'
-import {ActionButton} from '../../../../../components/buttons/ActionButton'
-import {MenuActionItem} from '../../../../../components/Menu/MenuActionItem'
-import {MenuActionWrapper} from '../../../../../components/Menu/MenuActionWrapper'
+
 import { Maintenance } from '../../core/_models'
+import { ActionButton } from '../../../../../../../../_metronic/helpers/components/buttons/ActionButton'
+import { MenuActionWrapper } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionWrapper'
+import { MenuActionItem } from '../../../../../../../../_metronic/helpers/components/Menu/MenuActionItem'
 type Props = {
   data: Maintenance
 }

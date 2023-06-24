@@ -2,7 +2,8 @@ import {useListView} from '../../core/ListViewProvider'
 import {ListToolbar} from './ListToolbar'
 
 import { useQueryRequest } from '../../core/QueryRequestProvider'
-import { InputFilterSearch } from '../../../../../components/fields/inputFilterSearch'
+import { InputFilterSearch } from '../../../../../../../../_metronic/helpers/components/fields/inputFilterSearch';
+
 
 
 const ListHeader = () => {

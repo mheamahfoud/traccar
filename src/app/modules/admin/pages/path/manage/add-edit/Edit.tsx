@@ -16,7 +16,8 @@ import { ListPath } from '../../routes/RoutesNames'
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { getTerminalList } from '../../../core/commonRequests'
-import { Spinner } from '../../../../components/Spinner'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+
 
 const Edit = () => {
   const navigate = useNavigate()

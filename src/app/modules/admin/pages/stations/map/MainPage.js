@@ -8,23 +8,19 @@ import DeviceList from './DeviceList'
 
 // import StatusCard from '../common/components/StatusCard';
 import {devicesActions, layoutManagerActions} from '../../../../../../store'
-// import usePersistedState from '../common/util/usePersistedState';
-import EventsDrawer from './EventsDrawer'
 import useFilter from './useFilter'
-import MainToolbar from './MainToolbar'
 import MainMap from './MainMap'
 import {useAttributePreference} from '../../../../../../_metronic/helpers/common/util/preferences'
 import usePersistedState from '../../../../../../_metronic/helpers/common/util/usePersistedState'
 import StatusCard from '../../../../../../_metronic/helpers/common/components/StatusCard'
-import {KTCard} from '../../../../../../_metronic/helpers'
+
 import {GetStationInfo} from '../../../../../../services/traccargps'
-import {ListLoading} from '../../../components/table/loading/ListLoading'
+
 import {useLocation} from 'react-router-dom'
-import { map } from '../../../../apps/map/core/MapView'
+
 // import { useAttributePreference } from '../common/util/preferences';
 import { DeviceLIstTemp } from './DeviceLIstTemp'
-import { useEffectAsync } from '../../../../../../reactHelper'
-import { object } from 'yup'
+
 import { Spinner } from '../../../../../../_metronic/helpers/components/Spinner'
 const useStyles = makeStyles((theme) => ({
   root: {

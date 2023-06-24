@@ -7,14 +7,14 @@ import { KTIcon, QUERIES } from '../../../../../../../_metronic/helpers'
 import { getPassengers, getVehicleList } from '../../../../../admin/pages/core/commonRequests'
 import { useQuery } from 'react-query'
 import { geExternalRegionTrips, geRegionTripCars, getRegionTrips, getRegionsByTypeList } from '../../../../../admin/pages/trips/manage/core/_requests'
-import FormikCustomSelectInput from '../../../../../admin/components/formik/FormikCustomSelectInput'
 import { tripTypeList } from '../../../../../admin/pages/trips/manage/core/_models'
 import FormikInputLabel from '../../../../../../../_metronic/helpers/components/formik/FormikInputLabel'
 import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
 import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
 import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
-import FormikSelectInput from '../../../../../admin/components/formik/FormikSelectInput'
+
 import { TripType } from '../../../core/Model'
+import FormikSelectInput from '../../../../../../../_metronic/helpers/components/formik/FormikSelectInput'
 
 
 

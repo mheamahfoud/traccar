@@ -3,10 +3,11 @@ import { MenuComponent } from '../../../../../../../../_metronic/assets/ts/compo
 import { initialQueryState } from '../../../../../../../../_metronic/helpers'
 import { useQueryRequest } from '../../core/QueryRequestProvider'
 import { useQueryResponse } from '../../core/QueryResponseProvider'
-import { FilterMenuHoc } from '../../../../../components/table/filter/FilterMenuHoc'
-import { InputFilter } from '../../../../../components/fields/InputFilter'
 import { useIntl } from 'react-intl'
-import CheckBoxFilter from '../../../../../components/fields/checkBoxFilter'
+import CheckBoxFilter from '../../../../../../../../_metronic/helpers/components/fields/checkBoxFilter'
+import { InputFilter } from '../../../../../../../../_metronic/helpers/components/fields/InputFilter'
+import { FilterMenuHoc } from '../../../../../../../../_metronic/helpers/components/table/filter/FilterMenuHoc'
+
 
 
 

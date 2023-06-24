@@ -1,12 +1,12 @@
 import { FC } from 'react'
 import { useFormikContext } from 'formik'
-import { ListLoading } from '../../../../components/table/loading/ListLoading'
-import SubmitButton from '../../../../components/buttons/SubmitButton'
-import ResetButton from '../../../../components/buttons/ResetButton'
 import { useIntl } from 'react-intl'
-import FormikInputLabel from '../../../../components/formik/FormikInputLabel'
-import FormikFile from '../../../../components/formik/FormikFile'
 import { FieldImage } from '../../../../../../../_metronic/utlis/formik'
+import FormikFile from '../../../../../../../_metronic/helpers/components/formik/FormikFile'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+import SubmitButton from '../../../../../../../_metronic/helpers/components/buttons/SubmitButton'
+import ResetButton from '../../../../../../../_metronic/helpers/components/buttons/ResetButton'
+import FormikInputLabel from '../../../../../../../_metronic/helpers/components/formik/FormikInputLabel'
 
 
 
@@ -56,7 +56,7 @@ const Form: FC= () => {
                 </div>
                 {/* end::Actions */}
             </form>
-            {(isSubmitting) && <ListLoading />}
+            {(isSubmitting) && <Spinner />}
         </>
     )
 }

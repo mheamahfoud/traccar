@@ -4,9 +4,9 @@ import { QueryRequestProvider, useQueryRequest } from './core/QueryRequestProvid
 import { QueryResponseProvider, useQueryResponseData, useQueryResponseLoading, useQueryResponsePagination } from './core/QueryResponseProvider'
 import { columnsTable } from './table/columns/_columns'
 import { KTCard, KTCardBody } from '../../../../../../../_metronic/helpers'
-import { DataTable } from '../../../../components/table/Table'
-import { Spinner } from '../../../../components/Spinner'
-import { ListPagination } from '../../../../components/table/pagination/ListPagination'
+import { ListPagination } from '../../../../../../../_metronic/helpers/components/table/pagination/ListPagination'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+import { DataTable } from '../../../../../../../_metronic/helpers/components/table/Table'
 const List = () => {
   const items = useQueryResponseData()
   const isLoading = useQueryResponseLoading()

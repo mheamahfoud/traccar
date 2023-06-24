@@ -6,19 +6,19 @@ import {
   ResponeApiCheck,
   initialResponseError,
 } from '../../../../../../../_metronic/helpers'
-import { roleSchema } from './validationForm'
-import { addAds, create, getAdsPathList } from '../core/_requests'
+
+import { addAds, getAdsPathList } from '../core/_requests'
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { ListPath } from '../../routes/RoutesNames'
+
 import { FormAds } from './FormAds'
 import { roleAdsSchema } from './adsValidation'
 import { useState } from 'react'
 import { useQuery, useQueryClient } from 'react-query'
 
-import { Spinner } from '../../../../components/Spinner'
 import { ManageAdsListWrapper } from '../ads-path/List'
 import { useIntl } from 'react-intl'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
 
 const AddAds = () => {
   const queryClient = useQueryClient()

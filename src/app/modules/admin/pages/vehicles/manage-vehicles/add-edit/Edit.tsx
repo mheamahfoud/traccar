@@ -1,18 +1,16 @@
 import { Formik } from 'formik';
-import { KTCard, KTCardBody, ResponeApiCheck, addFieldsToFormData, initialResponseError } from '../../../../../../../_metronic/helpers';
+import {  ResponeApiCheck, addFieldsToFormData, initialResponseError } from '../../../../../../../_metronic/helpers';
 import { Form } from './Form';
-import { initialVehicle } from '../core/_models';
-import { roleSchema } from './validationForm';
-//import { update } from '../core/_requests';
+
 import { useLocation } from 'react-router-dom';
-import { useToasts } from 'react-toast-notifications';
+
 import { useNotification } from '../../../../../../../_metronic/hooks/useNotification';
 import { ListVehiclesPath } from '../../routes/RoutesNames';
 import { useNavigate } from 'react-router-dom';
 import { update } from '../core/_requests';
 import { useEffect, useState } from 'react';
-import { ListLoading } from '../../../../components/table/loading/ListLoading';
-import { Spinner } from '../../../../components/Spinner';
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner';
+
 const Edit = () => {
     const navigate = useNavigate();
     const location = useLocation();

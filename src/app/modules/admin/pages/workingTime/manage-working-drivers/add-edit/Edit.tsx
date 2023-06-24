@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { ListWorkingDriversDaysPath } from '../../routes/RoutesNames';
 import { useQuery } from 'react-query';
 import { useEffect, useState } from 'react';
-import { Spinner } from '../../../../components/Spinner';
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner';
 
 const Edit = () => {
     const navigate = useNavigate();

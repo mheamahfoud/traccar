@@ -15,7 +15,8 @@ import {
 import { PermissionForm } from '../../permissions/PermissionForm'
 import { addPermissionToUser, getPermissionRolesByUsers } from '../../core/_requests'
 import { ListUserPath } from '../../routes/RoutesNames'
-import { Spinner } from '../../../../components/Spinner'
+import { Spinner } from '../../../../../../../_metronic/helpers/components/Spinner'
+
 
 const AddPermissionRoleUser = () => {
   const navigate = useNavigate()

@@ -3,9 +3,9 @@ import { ListHeader } from './components/header/ListHeader'
 import { ListViewProvider, useListView, } from './core/ListViewProvider'
 import { QueryRequestProvider } from './core/QueryRequestProvider'
 import { QueryResponseProvider, useQueryResponseLoading, } from './core/QueryResponseProvider'
-import { ListLoading } from '../../../components/table/loading/ListLoading'
 import { MYCalendar } from './calendar'
 import { ModalView } from './components/event-modal/ModalView'
+import { Spinner } from '../../../../../../_metronic/helpers/components/Spinner'
 
 
 
@@ -18,7 +18,7 @@ const List = () => {
         <ListHeader />
         <KTCardBody className='py-4'>
           <MYCalendar />
-          {isLoading && <ListLoading />}
+          {isLoading && <Spinner />}
         </KTCardBody>
         {itemIdForUpdate !== undefined && <ModalView />}
       </KTCard>
