@@ -7,9 +7,6 @@ import { checkArriveNextStation, checkNearStation } from "./services/measure";
 import { TerminalType, CoordDistance, Coordinate } from "./core/_models";
 import { useAuth } from "../auth";
 
-
-
-
 const logoutCode = 4000;
 
 const SocketController = () => {

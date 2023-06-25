@@ -45,15 +45,15 @@ const Desc = styled.p`
 `;
 const startTime = new Date('2023-03-28T15:04:02');
 const generateName = (index) => {
-  const numbers = ["الأول", "الثاني", " الثالث", "الرابع", "الخامس" , "السادس","السابع","الثامن","التاسع","العاشر"];
+  const numbers = ["الأول", "الثاني", " الثالث", "الرابع", "الخامس", "السادس", "السابع", "الثامن", "التاسع", "العاشر"];
   return `الباص ${numbers[index]}`;
 };
 export const Sidebar = () => {
- const deviceDistance = useSelector((state:any) => state.terminalPath.deviceDistance);
+  const deviceStatus = useSelector((state: any) => state.terminalPath.deviceStatus);
   const { currentUser } = useAuth();
   const [clockTime, setClockTime] = useState<any>(new Date());
   useEffect(() => {
-    const [hours, minutes, seconds] = currentUser? currentUser.current_time.split(":") : [];
+    const [hours, minutes, seconds] = currentUser ? currentUser.current_time.split(":") : [];
     const initialTime = new Date();
     initialTime.setHours(parseInt(hours));
     initialTime.setMinutes(parseInt(minutes));
@@ -71,13 +71,11 @@ export const Sidebar = () => {
   return (
     <Container>
       <Top>
-
-      {Object.keys(deviceDistance).slice(0, 4).map((key, index) => {
+        {deviceStatus?.slice(0, 4)?.map((item, index) => {
           return (
-            <TruckPath key={index} distance={deviceDistance[key].distance } duration={formatSeconds(deviceDistance[key].duration)}>
-           {/* //   {generateName(index)} parseFloat(deviceDistance[key].distance).toFixed(2) + 'km'  */}
-       
-           {deviceDistance[key].name }
+            item?.distance &&
+            <TruckPath key={index} distance={item.distance} duration={formatSeconds(item.duration)}>
+              {item.name}
             </TruckPath>
           );
         })}

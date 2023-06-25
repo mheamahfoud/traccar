@@ -26,7 +26,7 @@ const AdsPage = () => {
                         {name: intl.formatMessage({id: 'ads'})}
                       )}{' '}
                     </PageTitle>
-                    <ManageListWrapper />
+                 
                   </>
                 }
               />

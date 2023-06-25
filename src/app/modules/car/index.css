@@ -1,52 +1,54 @@
-
 .container-car {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    direction: rtl;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-  }
-  .main-car {
-    overflow-x: clip;
-    position: relative;
-    height: calc(100% - 90px);
-    width: 100%;
-    overflow-y: hidden;
-  }
-  .sidebar-car {
-    position: absolute;
-    background-color: white;
-    border-bottom-right-radius: 8%;
-    border-bottom-left-radius: 8%;
-    width: 300px;
-    height: 100%;
-    left: 0;
-    right: 0;
-    z-index: 2;
-  }
-  .content-car {
-    height: 100%;
-  }
-  
-  
-  
-  #ads {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 5;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* #video-player {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.main-car {
+  overflow-x: clip;
+  position: relative;
+  height: calc(100% - 90px);
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.sidebar-car {
+  position: absolute;
+  background-color: white;
+  border-bottom-right-radius: 8%;
+  border-bottom-left-radius: 8%;
+  width: 300px;
+  height: 100%;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.content-car {
+  height: 100%;
+}
+
+
+
+#ads {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* #video-player {
     width: 80%;
     height: auto;
   }
@@ -54,38 +56,46 @@
   #advertisement {
     width: 100%;
   } */
-  
-  /* .maplibregl-ctrl-top-right {
-    display: none;
-  }
-   */
-  #ads {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 5;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #video-player {
-    width: 100%;
-    height: auto;
-  }
-  .vidio{
-    width: calc(100%-300px);
-    height:calc(100%-100);;
-    margin-right: 300px;
-  }
-  #advertisement {
-    width: 100%;
-    height: auto;
-  }
-  
-  .hidden {
-    display: none;
-  }
+
+.maplibregl-ctrl-top-right {
+  left: 2px;
+}
+
+.maplibregl-ctrl-group {
+  left: 5px;
+  position: absolute;
+}
+
+#ads {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#video-player {
+  width: 100%;
+  height: auto;
+}
+
+.vidio {
+  width: calc(100%-300px);
+  height: calc(100%-100);
+  ;
+  margin-right: 300px;
+}
+
+#advertisement {
+  width: 100%;
+  height: auto;
+}
+
+.hidden {
+  display: none;
+}

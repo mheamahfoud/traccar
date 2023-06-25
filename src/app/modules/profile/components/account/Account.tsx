@@ -129,7 +129,6 @@ export function Account() {
             <div className='col-lg-9'>
               <select
                 className='form-select form-select-lg form-select-solid'
-                data-control='select2'
                 data-placeholder='Select Timezone...'
                 value={data.timeZone}
                 defaultValue={data.timeZone}
