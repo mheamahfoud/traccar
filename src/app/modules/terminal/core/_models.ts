@@ -7,7 +7,7 @@ export interface TerminalPath {
   terminalInfo:TerminalType,
   devices: number[],
   devicesLocaton: any,
-  devicesStatus:any,
+  deviceStatus:any[],
   deviceDistance:any,
   checkArriveTerminal:boolean,
 

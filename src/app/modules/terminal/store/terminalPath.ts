@@ -1,6 +1,6 @@
-import {createSlice} from '@reduxjs/toolkit'
-import {TerminalPath, deviceLocation} from '../core/_models'
-import {checkArrivedDevices} from '../services/measure'
+import { createSlice } from '@reduxjs/toolkit'
+import { TerminalPath, deviceLocation } from '../core/_models'
+import { checkArrivedDevices } from '../services/measure'
 
 enum StatusArrive {
   Arrived = 1,
@@ -15,12 +15,12 @@ const initialState: TerminalPath = {
   terminalInfo: {},
   devices: [],
   devicesLocaton: {},
-  devicesStatus: {},
   deviceDistance: {},
+  deviceStatus: [],
   checkArriveTerminal: false,
 }
 
-const {reducer, actions} = createSlice({
+const { reducer, actions } = createSlice({
   name: 'terminalPath',
   initialState,
   reducers: {
@@ -29,7 +29,6 @@ const {reducer, actions} = createSlice({
       state.devices = action.payload?.devices?.map((x) => x.id)
       console.log('action.payload?.devices')
       console.log(action.payload?.devices)
-      action.payload?.devices?.forEach((item: any) => (state.devicesStatus[item?.id] = false))
       if (terminal?.length > 0) {
         state.terminalInfo = terminal[0]
         state.terminalLoc = {
@@ -41,8 +40,6 @@ const {reducer, actions} = createSlice({
       action.payload?.devices?.forEach((item: any) => {
         state.deviceDistance[item?.id] = {
           name: item.name,
-        //  distance: null,
-         // duration: null,
           deviceId: item?.id,
           status: StatusArrive.NotArrived,
         }
@@ -62,51 +59,61 @@ const {reducer, actions} = createSlice({
     },
     updateArriveTerminal(state, action) {
       state.checkArriveTerminal = action.payload
+      state.devices?.forEach((item: any) => {
+        state.deviceDistance[item] = {
+          ...state.deviceDistance[item][item],
+          status: StatusArrive.NotArrived,
+        }
+      })
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(checkArrivedDevices.pending, (state) => {})
-    builder.addCase(checkArrivedDevices.fulfilled, (state, {payload}) => {
+    builder.addCase(checkArrivedDevices.pending, (state) => { })
+    builder.addCase(checkArrivedDevices.fulfilled, (state, { payload }) => {
       var temp = payload
-      var distance = state.deviceDistance
-      Object.keys(temp)?.map((key, index) => {
-        distance[temp[key]?.deviceId] = {
-          ...distance[temp[key]?.deviceId],
-          distance: temp[key]?.distance,
-          duration: temp[key]?.duration,
-
-          //  status: StatusArrive.Arrived,
-        }
-        if (temp[key]?.distance < 50 && temp[key]?.status != StatusArrive.Arrived) {
-          // state.checkArriveTerminal = true
-          //    state.devicesStatus[temp[key]?.deviceId] = true
-          distance[temp[key]?.deviceId] = {
-            ...distance[temp[key]?.deviceId],
+      if (temp) {
+        var deviceStatus = [];
+        var deviceDistance = state.deviceDistance
+        Object.keys(temp)?.map((key, index) => {
+          deviceDistance[temp[key]?.deviceId] = {
+            index: index,
+            ...deviceDistance[temp[key]?.deviceId],
             distance: temp[key]?.distance,
             duration: temp[key]?.duration,
-            status: StatusArrive.Arrived,
+            //  status: StatusArrive.NotArrived,
           }
-
-          /*  for (const key1 in state.devicesStatus) {
-            if (state.devicesStatus.hasOwnProperty(key1) && key1 != temp[key]?.deviceId) {
-              state.devicesStatus[key] = false
+          if (temp[key]?.distance < 50 && temp[key]?.status != StatusArrive.Arrived) {
+            state.checkArriveTerminal = true
+            deviceDistance[temp[key]?.deviceId] = {
+              ...deviceDistance[temp[key]?.deviceId],
+              status: StatusArrive.Arrived,
             }
-          }*/
-        }
-      })
 
-      state.deviceDistance = distance
+
+          }
+        })
+
+        Object.keys(deviceDistance)?.map((key, index) => {
+          deviceStatus.push(deviceDistance[key])
+        })
+        state.deviceStatus = deviceStatus.sort((a, b) => {
+          return a.index - b.index;
+        });
+      }
+
+
+
     })
 
-    builder.addCase(checkArrivedDevices.rejected, (state, {payload}) => {
+    builder.addCase(checkArrivedDevices.rejected, (state, { payload }) => {
       //state.error = payload
       //state.loading = false
     })
   },
 })
 
-export {actions as terminalPathsActions}
-export {reducer as terminalPathReducer}
+export { actions as terminalPathsActions }
+export { reducer as terminalPathReducer }
 
 // {
 //     loading: false,

@@ -68,10 +68,10 @@ export async function getUserByToken(token: string): Promise<any> {
   let res = response?.data?.data;
   return res
 }
-//${APP_TRUCKGPS_API_URL}${APP_TRUCKGPS_API_URL}
+//${APP_TRUCKGPS_API_URL}
 export async function getSessionGPS(): Promise<SessionGpsModel> {
 
-  const response: any = await fetch(`api/session`, {
+  const response: any = await fetch(`${APP_TRUCKGPS_API_URL}/session`, {
 
     method: "POST",
     body: new URLSearchParams(
@@ -91,7 +91,7 @@ export async function getServerGPS(): Promise<any> {
   let password = "test";
   const auth1: any = btoa(`${email}:${password}`);
 
-  const response: any = await fetch(`api/server`, {
+  const response: any = await fetch(`${APP_TRUCKGPS_API_URL}/server`, {
 
     credentials: 'include',
     headers: {
