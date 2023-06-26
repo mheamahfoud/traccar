@@ -2,9 +2,9 @@
 //import { createProxyMiddleware } from 'http-proxy-middleware';
 const { createProxyMiddleware }  = require('http-proxy-middleware');
 module.exports = (app) => {
-  app.use(createProxyMiddleware('/api/socket', { target: `ws://173.249.51.233:8082`, ws: true }));
-  app.use(createProxyMiddleware('/api', { target: `http://173.249.51.233:8082` }));
-  app.use(createProxyMiddleware('/livevedio', { target: `http://37.224.70.178:18012/artemis/api/video/v1/cameras/previewURLs` }));
+  app.use(createProxyMiddleware('/api/socket', { target: `${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`, ws: true }));
+  app.use(createProxyMiddleware('/api', { target: `${process.env.REACT_APP_TRUCKGPS_API_URL}` }));
+  
 };
 
 

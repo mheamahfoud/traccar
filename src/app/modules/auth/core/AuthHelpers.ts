@@ -48,7 +48,7 @@ const removeAuth = () => {
 }
 
 export function setupAxios(axios: any) {
-  const baseUrl ='https://tmbo.app/cars/fleet/api';// process.env.REACT_APP_API_URL
+  const baseUrl = process.env.REACT_APP_API_URL
   axios.defaults.baseURL = baseUrl;
   axios.defaults.headers.Accept = 'application/json'
   axios.interceptors.request.use(

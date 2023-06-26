@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector, connect } from "react-redux";
 import { useAuth } from "../../../../../auth";
 import {  TerminalType, CoordDistance} from "../../../../../terminal/core/_models";
-import { checkArriveNextStation ,checkNearStation} from "../../../../../car/services/measure";
+import { checkArriveNextStation ,checkNearTerminal} from "../../../../../car/services/measure";
 import { useEffectAsync } from "../../../../../../../reactHelper";
 import { sessionActions, truckPathActions } from "../../../../../../../store";
 import { Coordinate } from "../../../../../car/core/_models";
@@ -75,7 +75,7 @@ const SocketCarController = () => {
       console.log(temp)
         if (temp && temp.length > 0) {
           if (checkInitPath.current) {
-            dispatch(checkNearStation(
+            dispatch(checkNearTerminal(
               {
                 stations: stations,
                 currentPos: [temp[0]?.longitude, temp[0]?.latitude]

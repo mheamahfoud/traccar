@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-import { calculateDuration, findSmallestAttribute, formatSeconds, getClosestCoordinate, getTimeDifferenceInSeconds } from "../../../../reactHelper";
+import { formatSeconds, getTimeDifferenceInSeconds } from "../../../../reactHelper";
 import { TerminalStatus } from "../../../../_metronic/utlis/constants";
-import { checkArriveNextStation, checkNearStation } from "../services/measure";
+import { checkArriveNextStation, checkNearTerminal } from "../services/measure";
 import { TerminalType, TruckState } from "../core/_models";
 
 
@@ -86,70 +85,14 @@ const { reducer, actions } = createSlice({
 
             state.checkArriveTerminal = false;
         },
-        updateCurrentPath(state) {
-
-            state.currentTerminal = state.nextTerminal;
-            //check last terminal;
-            let final = state.terminals.find((x) => x.priority == state.nextTerminal.priority + 1)
-
-            if (final) {
-                state.nextTerminal = final;
-            }
-            else {
-                state.nextTerminal = state.terminals.find(x => x.priority == 1) || initTerminal;
-            }
-
-            let terminals = state.terminals;
-            state.terminals = terminals.map((item: TerminalType) => {
-                if (state.nextTerminal.priority == 1) {
-                    if (item.priority == terminals.length) {
-                        return {
-                            ...item,
-                            status: TerminalStatus.IN
-                        }
-                    }
-                    else {
-                        return {
-                            ...item,
-                            status: TerminalStatus.BEFORE
-                        }
-                    }
-
-                }
-                else {
-                    if (item.priority == state.currentTerminal.priority) {
-                        return {
-                            ...item,
-                            status: TerminalStatus.IN
-                        }
-                    }
-                    else if (item.priority < state.currentTerminal.priority) {
-                        return {
-                            ...item,
-                            status: TerminalStatus.AFTER
-                        }
-                    }
-                    else {
-                        return {
-                            ...item,
-                            status: TerminalStatus.BEFORE
-                        }
-                    }
-                }
-
-            });
-            state.checkArriveTerminal = true;
-
-
-
-        },
+       
     },
 
     extraReducers: (builder) => {
-        builder.addCase(checkNearStation.pending, (state) => {
+        builder.addCase(checkNearTerminal.pending, (state) => {
         })
 
-        builder.addCase(checkNearStation.fulfilled, (state, { payload }) => {
+        builder.addCase(checkNearTerminal.fulfilled, (state, { payload }) => {
 
             // define TEmp  for current and next terminal
             let tempNextTerminal: TerminalType;
@@ -243,7 +186,7 @@ const { reducer, actions } = createSlice({
             state.predectedTime = formatSeconds(durationStation[tempNextTerminal?.id]);
             // state.loading = false;
         })
-        builder.addCase(checkNearStation.rejected, (state, { payload }) => {
+        builder.addCase(checkNearTerminal.rejected, (state, { payload }) => {
             //state.error = payload
             //state.loading = false
         })

@@ -25,13 +25,10 @@ const { reducer, actions } = createSlice({
   reducers: {
 
     updateServer(state, action) {
-      console.log(`server :  `)
-      console.log(action.payload)
       state.server = action.payload;
     },
     updateUser(state, action) {
-      console.log(`user : `)
-      console.log(action.payload)
+
       state.user = action.payload;
     },
     updateSocket(state, action) {

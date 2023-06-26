@@ -7,7 +7,7 @@ import styled from "styled-components";
 import './style.css';
 import { json } from "stream/consumers";
 import { errorsActions, truckPathActions } from "../../../../../store";
-import { ArriveStation } from "../../services/truck";
+import { ArriveTerminal } from "../../services/truck";
 
 
 const Container = styled.div`
@@ -106,7 +106,7 @@ const Destination = () => {
         {
 
             //update current path
-            dispatch(ArriveStation({
+            dispatch(ArriveTerminal({
                 "path_id": path,
                 "terminal_id": currentTerminal?.id,
                 "start":currentTerminal?.priority==1 ? 1 :0,

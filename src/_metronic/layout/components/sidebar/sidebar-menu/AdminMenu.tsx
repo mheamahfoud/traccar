@@ -416,7 +416,7 @@ const AdminMenu = () => {
 
       {currentUser?.roles.includes('manage_ads') && (
         <SidebarMenuItem
-          to='/admin/ads'
+          to='/admin/ads/manage-ads'
           icon='abstract-28'
           title={intl.formatMessage({ id: 'manage_object' }, { name: intl.formatMessage({ id: 'ads' }) })}
           fontIcon='bi-layers'

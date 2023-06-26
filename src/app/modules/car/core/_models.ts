@@ -1,8 +1,5 @@
 import { TerminalStatus } from "../../../../_metronic/utlis/constants";
-export interface AuthModel {
-  api_token: string
-  refreshToken?: string
-}
+
 
 export interface TerminalType {
   id: number,

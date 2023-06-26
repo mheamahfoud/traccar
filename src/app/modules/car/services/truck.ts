@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-export const ArriveStation: any = createAsyncThunk(
-    "ArriveStation",
+export const ArriveTerminal: any = createAsyncThunk(
+    "ArriveTerminal",
     async (values ,thunkAPI: any) => {
         try {
             const res = await axios.post('/edit_path', values)

@@ -19,7 +19,7 @@ import MapSelectedDevice from '../../../../apps/map/main/MapSelectedDevice';
 import PoiMap from '../../../../apps/map/main/PoiMap';
 import MapGeofence from '../../../../apps/map/MapGeofence';
 import SocketCarController from '../manage/core/SocketCarController';
-import { ArriveStation } from '../../../../car/services/truck';
+import { ArriveTerminal } from '../../../../car/services/truck';
 
 
 // import MapOverlay from '../map/overlay/MapOverlay';
@@ -48,7 +48,7 @@ const MainMap = ({ filteredPositions, selectedPosition, onEventsClick }) => {
 
   useEffect(() => {
     if (checkArriveTerminal) {
-      dispatch(ArriveStation({
+      dispatch(ArriveTerminal({
         "path_id": path,
         "terminal_id": currentTerminal?.id,
         "start":currentTerminal?.priority==1 ? 1 :0,

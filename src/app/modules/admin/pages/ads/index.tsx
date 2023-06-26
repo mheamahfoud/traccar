@@ -11,8 +11,7 @@ const AdsPage = () => {
   const intl = useIntl()
   return (
     <>
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={theme}>
+     
           <Routes>
             <Route element={<Outlet />}>
               //#region Manage Vehicles
@@ -62,8 +61,7 @@ const AdsPage = () => {
             </Route>
             <Route index element={<Navigate to={ListPath} />} />
           </Routes>
-        </ThemeProvider>
-      </StyledEngineProvider>
+    
     </>
   )
 }

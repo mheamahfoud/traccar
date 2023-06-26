@@ -9,7 +9,7 @@ export enum UserType {
   OTHER="other"
 }
 
-export const domainUrl = 'http://173.249.51.233:8082'
+
 export const SUPERVISORTYPE = 3
 export const DRIVERTYPE = 2
 export const STATIONTYPE = 3
