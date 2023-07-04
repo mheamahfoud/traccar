@@ -31,19 +31,17 @@ const Container = styled.div`
   overflow: auto;
 `
 export const BusListWrapper = ({devices, keyword, setKeyword}) => {
-  const deviceDistance = useSelector((state: any) => state.terminalPath.deviceDistance)
+  const deviceStatus = useSelector((state: any) => state.terminalPath.deviceStatus)
+
   return (
     <Container className='d-flex '>
-      {Object.keys(deviceDistance).map((key, index) => {
+      {deviceStatus.map((item, index) => {
         return (
-          <TruckPath
-            key={index}
-            distance={parseFloat(deviceDistance[key].distance).toFixed(2) + 'km'}
-            duration={formatSeconds(deviceDistance[key].duration)}
-          >
-            {/* //   {generateName(index)} */}
-            {deviceDistance[key].name}
-          </TruckPath>
+          item?.distance && (
+            <TruckPath key={index} distance={item.distance} duration={formatSeconds(item.duration)}>
+              {item.name}
+            </TruckPath>
+          )
         )
       })}
     </Container>

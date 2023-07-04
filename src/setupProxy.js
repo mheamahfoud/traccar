@@ -2,8 +2,8 @@
 //import { createProxyMiddleware } from 'http-proxy-middleware';
 const { createProxyMiddleware }  = require('http-proxy-middleware');
 module.exports = (app) => {
-  app.use(createProxyMiddleware('/api/socket', { target: `${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`, ws: true }));
-  app.use(createProxyMiddleware('/api', { target: `${process.env.REACT_APP_TRUCKGPS_API_URL}` }));
+  app.use(createProxyMiddleware('/api/socket', { target: `ws://173.249.51.233:8082`, ws: true }));
+  app.use(createProxyMiddleware('/api', { target: `http://173.249.51.233:8082` }));
   
 };
 

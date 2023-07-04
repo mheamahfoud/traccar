@@ -27,8 +27,6 @@ const { reducer, actions } = createSlice({
     setDevices(state, action) {
       let terminal = action.payload?.terminal
       state.devices = action.payload?.devices?.map((x) => x.id)
-      console.log('action.payload?.devices')
-      console.log(action.payload?.devices)
       if (terminal?.length > 0) {
         state.terminalInfo = terminal[0]
         state.terminalLoc = {
