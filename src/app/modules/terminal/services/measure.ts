@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
 import {Coordinate} from '../core/_models'
 const accessToken =
-  'pk.eyJ1IjoicmloYWEiLCJhIjoiY2pzZDBlNjNjMDVnNDQ5dGhoNW5teXExbiJ9.YUqVQBbawc44VFKVwaXw0w' // process.env.ACCESSTOKEN;
+  'pk.eyJ1IjoicmloYWEiLCJhIjoiY2xqbXk2MjlmMTI3YTNlbnU2amUzanVmZSJ9.Di26J21JYik1Ayen9n-LyA' // process.env.ACCESSTOKEN;
 const API_URL = 'https://api.mapbox.com/directions/v5/mapbox/driving' // process.env.MAP_URL;
 
 interface Value {
