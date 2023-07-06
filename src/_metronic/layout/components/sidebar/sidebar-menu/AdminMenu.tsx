@@ -212,6 +212,14 @@ const AdminMenu = () => {
           )}
           fontIcon='bi-layers'
         >
+          
+          
+            <SidebarMenuItem
+              to='/admin/setting/user-type'
+              title={intl.formatMessage({ id: 'user_type' })}
+              hasBullet={true}
+            />
+          
           {currentUser?.roles.includes('manage_working_time') && (
             <SidebarMenuItem
               to='/admin/setting/work-time'

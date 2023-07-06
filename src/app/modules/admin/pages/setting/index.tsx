@@ -63,6 +63,7 @@ import {
   PartBreadcrumbs,
   ReasonCancelBreadcrumbs,
   TimezoneBreadcrumbs,
+  UserTypeBreadcrumbs,
   WorkTimeBreadcrumbs,
   WorkshopBreadcrumbs,
   buildingBreadcrumbs,
@@ -495,7 +496,7 @@ const SettingPage = () => {
         path='user-type'
         element={
           <>
-            <PageTitle breadcrumbs={WorkshopBreadcrumbs}>
+            <PageTitle breadcrumbs={UserTypeBreadcrumbs}>
               {intl.formatMessage({ id: 'user_type' })}
             </PageTitle>
             <ManageUserTypeListWrapper />
@@ -506,7 +507,7 @@ const SettingPage = () => {
         path='add-user-type'
         element={
           <>
-            <PageTitle breadcrumbs={WorkshopBreadcrumbs}>
+            <PageTitle breadcrumbs={UserTypeBreadcrumbs}>
               {intl.formatMessage(
                 { id: 'add_object' },
                 { name: intl.formatMessage({ id: 'user_type' }) }
@@ -520,7 +521,7 @@ const SettingPage = () => {
         path='edit-user-type'
         element={
           <>
-            <PageTitle breadcrumbs={WorkshopBreadcrumbs}>
+            <PageTitle breadcrumbs={UserTypeBreadcrumbs}>
               {intl.formatMessage(
                 { id: 'edit_object' },
                 { name: intl.formatMessage({ id: 'user_type' }) }

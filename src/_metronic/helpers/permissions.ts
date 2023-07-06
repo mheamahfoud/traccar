@@ -47,6 +47,7 @@ export const SettingPermission = [
     "manage_region",
     "manage_building",
     "manage_department",
+    "user_type"
     
 
 
