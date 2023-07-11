@@ -17,45 +17,33 @@
   overflow-y: hidden;
 }
 
-.sidebar-car1 {
 
-}
-.concave {
-  width: 200px;
-  height: 200px;
-  background-color: rgb(217, 217, 217);
-  position: relative;
-  overflow: hidden;
-}
 
-.sinusoidal-border {
-  width: 200px;
-  height: 200px;
-  border-left: 2px solid;
-  background: linear-gradient(to bottom, transparent 45%, black 45%, black 55%, transparent 55%),
-              linear-gradient(to bottom, transparent 45%, black 45%, black 55%, transparent 55%),
-              linear-gradient(to bottom, transparent 45%, black 45%, black 55%, transparent 55%),
-              linear-gradient(to bottom, transparent 45%, black 45%, black 55%, transparent 55%);
-  background-size: 100% 10px;
-  background-repeat: repeat-x;
-  animation: wave 2s linear infinite;
-}
-
-@keyframes wave {
-  0% {
-    background-position: 0 0, 0 20px, 0 40px, 0 60px;
-  }
-  100% {
-    background-position: 0 -20px, 0 0, 0 20px, 0 40px;
-  }
-}
-
-.concave::after {
-  bottom: 0;
-  left: 0;
-}
 .content-car {
   height: 100%;
+}
+
+
+.saw-tooth-container::before{
+
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 102px; /* Adjust the width of the sawtooth */
+  height: 100%;
+  background-image:
+    linear-gradient(152deg, #d9d9d9    50%, transparent 50%),
+    linear-gradient(42deg, #d9d9d9    50%, transparent 50%);
+
+  background-position:
+    top left, top left,
+    top right, top right;
+  background-size: 10px 10px;
+  background-repeat: repeat-y;
+}
+
+.saw-tooth-container::before {
+  left: 0;
 }
 
 

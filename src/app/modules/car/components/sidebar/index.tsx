@@ -1,109 +1,170 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import TruckPath from "./TruckPath";
-import { useSelector } from "react-redux";
-import { useAuth } from "../../../auth";
-import Logo from "../../../../../_metronic/assets/driver/1KKIA-logo.png"
-import back2 from "../../../../../_metronic/assets/driver/back2.png"
+import React, {useState, useEffect} from 'react'
+import styled from 'styled-components'
+import TruckPath from './TruckPath'
+import {useSelector} from 'react-redux'
+import {useAuth} from '../../../auth'
+import PatternLogo from '../../../../../_metronic/assets/car/pattern.png'
+import TrianglesLogo from '../../../../../_metronic/assets/car/triangles2.png'
+import PlaneLogo from '../../../../../_metronic/assets/car/plane-icon.png'
+import StarsLogo from '../../../../../_metronic/assets/car/triangles1.png'
+import Logo from '../../../../../_metronic/assets/car/KKIA-LOGO.png'
+import Truck from '../../../../../_metronic/assets/car/point.png';
+import Arrive_Truck from '../../../../../_metronic/assets/car/point.png';
 const Wrapper = styled.div`
   position: fixed;
   top: 0;
- background-image: url(${back2});
-background-size: cover;
-background-repeat: no-repeat;
-  width: 400px;
+  height: 100vh;
+  background-color: #04615c;
+  width: 430px;
   height: 100vh;
   right: 0;
   z-index: 2;
+`
+const Front = styled.div`
+  content: '';
+  position: absolute;
+  top: 55px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  transform: rotate(90deg);
+  transform-origin: left;
+  background-size: 40px;
+`
+const Topleftconcave = styled.div`
+  position: absolute;
+  background: #d9d9d9;
+  width: 63px;
+  height: 69px;
+  left: 0;
+  top: 0;
+  border-bottom-right-radius: 500px;
+`
+const Bottomleftconcave = styled.div`
+  position: absolute;
+  background: #d9d9d9;
+  width: 65px;
+  height: 65px;
+  bottom: 0;
+  left: 0;
+  border-top-right-radius: 500px;
+`
+const ImageLogo = styled.img`
+  right: 10px;
+  top: 0;
+  position: absolute;
+  width: 300px;
+  height: 81px;
+`
+const Pattern = styled.img`
+  left: 40px;
+  top: -659px;
+  position: absolute;
+  width: 1049px;
+  height: 1095px;
+  z-index: 5;
+`
+const Triangles = styled.img`
+  top: 40%;
+  left: 20px;
+  position: absolute;
+  width: 166px;
+  height: 210px;
+  z-index: 20;
+`
 
+const PLane = styled.img`
+  right: 40%;
+  top: 89%;
+  bottom: 50%;
+  position: relative;
+  width: 129px;
+  height: 67px;
+  z-index: 22;
+  bottom: 550px;
+`
+const Stars = styled.img`
+  right: 2px;
+  top: 28%;
+  position: absolute;
+  width: 13%;
+  height: 70%;
+  z-index: 21;
+`
 
-
-`;
 const Container = styled.div`
   height: 100%;
   width: 100%;
 
   font-family: sans-serif;
-
-`;
+`
 
 const Top = styled.div`
   height: 400px;
-
-
-`;
+`
 
 const Bottom = styled.div`
   position: relative;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-const ImageLogo = styled.img`
-  background-size: cover;
-  object-fit: fill;
-  height: 100px;
-  width: 100%;
-`;
+  margin-top: 50px;
+`
+
 const Desc = styled.p`
   font-size: 25px;
   font-weight: 400;
   display: inline-flex;
   gap: 10px;
   color: blue;
-`;
-const startTime = new Date('2023-03-28T15:04:02');
+`
+const startTime = new Date('2023-03-28T15:04:02')
 
 export const Sidebar = () => {
-  const terminals = useSelector((state: any) => state.truckPath.terminals);
-  const { currentUser } = useAuth();
-  const [clockTime, setClockTime] = useState<any>(new Date());
+  const terminals = useSelector((state: any) => state.truckPath.terminals)
+  const {currentUser} = useAuth()
+  const [clockTime, setClockTime] = useState<any>(new Date())
   useEffect(() => {
-    const [hours, minutes, seconds] = currentUser ? currentUser.current_time.split(":") : [];
-    const initialTime = new Date();
-    initialTime.setHours(parseInt(hours));
-    initialTime.setMinutes(parseInt(minutes));
-    initialTime.setSeconds(parseInt(seconds));
-    setClockTime(initialTime);
+    const [hours, minutes, seconds] = currentUser ? currentUser.current_time.split(':') : []
+    const initialTime = new Date()
+    initialTime.setHours(parseInt(hours))
+    initialTime.setMinutes(parseInt(minutes))
+    initialTime.setSeconds(parseInt(seconds))
+    setClockTime(initialTime)
 
     const intervalId = setInterval(() => {
-      setClockTime((prevTime) => new Date(prevTime.getTime() + 1000));
-    }, 1000);
+      setClockTime((prevTime) => new Date(prevTime.getTime() + 1000))
+    }, 1000)
 
-    return () => clearInterval(intervalId);
-  }, []);
+    return () => clearInterval(intervalId)
+  }, [])
 
   return (
-    <Wrapper className="">
-      <Container className="d-flex flex-column align-items-center " >
-        <Top >
-          {/* <ImageLogo src={Logo} /> */}
-          {/* {terminals.map((item, index) => {
-            return (
+    <Wrapper className='saw-tooth-container'>
+      {<Front />}
+      <ImageLogo src={Logo} />
+      <Pattern src={PatternLogo} />
+      <Triangles src={TrianglesLogo} />
+      <PLane src={PlaneLogo} />
+      <Stars src={StarsLogo} />
+      <Topleftconcave />
+      <Bottomleftconcave />
+      <Bottom className='d-flex flex-column gap-5 align-items-center py-6'>
+        {terminals.map((item, index) => {
+          return (
+            <div className='d-flex align-items-center gap-6'>
+              <img
+                src={item.status == 0 ? Arrive_Truck : Truck}
+                style={{width: '18px', height: '18px'}}
+              ></img>
               <TruckPath key={index} status={item.status}>
                 {item.name}
               </TruckPath>
-            );
-          })} */}
-        </Top>
-        <Bottom className="d-flex flex-column gap-5 align-items-center py-6">
-          {terminals.map((item, index) => {
-            return (
-              <TruckPath key={index} status={item.status}>
-                {item.name}
-              </TruckPath>
-            );
-          })}
-          {/* <Desc>
-            <span> الوقت الحالي </span>
-            <span style={{ color: "red" }}>
-              {clockTime.toLocaleTimeString([], { hour12: false })}
-            </span>
-          </Desc> */}
-        </Bottom>
-      </Container>
+            </div>
+          )
+        })}
+      </Bottom>
     </Wrapper>
-  );
-};
+  )
+}

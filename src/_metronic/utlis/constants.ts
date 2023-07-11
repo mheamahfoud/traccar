@@ -19,9 +19,9 @@ export enum TerminalStatus {
   AFTER = 2,
 }
 export const TruckPathBackgrounColors = {
-  0: '#bd2d3c',
-  1: '#194172',
-  2: '#f2f2f2',
+  0: '#47c1bb',
+  1: '#bebebe',
+  2: '#47c1bb',
 }
 export const TruckPathColors = {
   0: 'white',

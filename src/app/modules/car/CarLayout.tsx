@@ -1,16 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useEffect, useState } from 'react'
-import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom'
-import { Header } from './components/header'
-import { Sidebar } from './components/sidebar'
+import {useEffect, useState} from 'react'
+import {Outlet, Link, useNavigate, useLocation} from 'react-router-dom'
+import {Header} from './components/header'
+import {Sidebar} from './components/sidebar'
 import './index.css'
 import Advertisement from './pages/advertisment'
-import { useDispatch, useSelector } from 'react-redux'
-import { LinearProgress } from '@mui/material'
-import { adsManagerActions } from '../../../store'
-import { truckPathActions } from '../../../store'
+import {useDispatch, useSelector} from 'react-redux'
+import {LinearProgress} from '@mui/material'
+import {adsManagerActions} from '../../../store'
+import {truckPathActions} from '../../../store'
 import SocketController from './SocketController'
-import { GetCurrentDevice, GetPageTimes } from '../../../services/traccargps'
+import {GetCurrentDevice, GetPageTimes} from '../../../services/traccargps'
+import { Footer } from './components/footer'
 
 const CarLayout = () => {
   const dispatch = useDispatch()
@@ -38,7 +39,6 @@ const CarLayout = () => {
         dispatch(GetPageTimes())
       }
     })
-
   }, [])
 
   ///check arrival
@@ -68,17 +68,18 @@ const CarLayout = () => {
       <SocketController />
       <div className='container-car'>
         <Header />
-        <div className='main-car'>
-            <Sidebar />
-          <div className='content-car'>
+
+        <div className='main-car d-flex '>
+          <Sidebar />
+          <div className='content-car flex-grow' style={{flexGrow:'1' , marginRight:'430px'}}>
             {!showAds && <Outlet />}
             {showAds && <Advertisement closeAds={closeAds} />}
           </div>
         </div>
-        <Header />
+        <Footer />
       </div>
     </>
   )
 }
 
-export { CarLayout }
+export {CarLayout}

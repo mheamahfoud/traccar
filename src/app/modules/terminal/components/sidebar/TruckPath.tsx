@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Arrive_Truck from '../../../../../_metronic/assets/driver/Arrive_Truck.png';
+import Arrive_Truck from '../../../../../_metronic/assets/car/Arrive_Truck.png';
 import { TruckPathBackgrounColors,TruckPathColors } from "../../../../../_metronic/utlis/constants";
 interface Props {
     distance:number

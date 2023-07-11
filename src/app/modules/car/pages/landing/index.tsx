@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Bus from "../../../../../_metronic/assets/driver/airside.png"
+import Bus from "../../../../../_metronic/assets/car/airside.png"
 import "./style.css";
 import { toAbsoluteUrl } from '../../../../../_metronic/helpers'
 import { useSelector } from "react-redux";
@@ -24,7 +24,7 @@ const Landing = () => {
 
 
   return (
-    <div className="image-container-driver">
+    <div className="image-container-car">
       <img src={Bus} />
 
     </div>

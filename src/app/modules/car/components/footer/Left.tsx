@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { toAbsoluteUrl } from "../../../../../_metronic/helpers";
 
 
 const Conatiner = styled.div`
@@ -30,7 +31,7 @@ export const Left = () => {
   return (
     <Conatiner>
       <Top>
-        
+      
       </Top>
 
     </Conatiner>
