@@ -118,8 +118,8 @@ const Destination = () => {
             // audioRef.current.muted = true;
             if (!isPlaying()) {
                 audioRef?.current?.play().catch((error) => {
-                    dispatch(errorsActions.push(error.message))
-                    throw Error(error?.message);
+                  //  dispatch(errorsActions.push(error.message))
+                //    throw Error(error?.message);
                     //  alert(JSON.stringify)
                 });
             }
@@ -144,7 +144,7 @@ const Destination = () => {
 
 
     return (
-        <div className="finalcontainer" >
+        <div className="finalcontainer1" >
             <Container>
 
                 <Top>

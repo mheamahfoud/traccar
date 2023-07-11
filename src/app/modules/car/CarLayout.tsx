@@ -43,6 +43,7 @@ const CarLayout = () => {
 
   ///check arrival
   useEffect(() => {
+    
     if (checkArriveTerminal) {
       closeAds()
       navigate('/car/dest')

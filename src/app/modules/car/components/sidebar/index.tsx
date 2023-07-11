@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import TruckPath from './TruckPath'
-import {useSelector} from 'react-redux'
-import {useAuth} from '../../../auth'
+import { useSelector } from 'react-redux'
+import { useAuth } from '../../../auth'
 import PatternLogo from '../../../../../_metronic/assets/car/pattern.png'
 import TrianglesLogo from '../../../../../_metronic/assets/car/triangles2.png'
 import PlaneLogo from '../../../../../_metronic/assets/car/plane-icon.png'
@@ -119,11 +119,27 @@ const Desc = styled.p`
   gap: 10px;
   color: blue;
 `
+
+const ImageIcon = styled.div`
+
+:after {
+  content:"";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  right: 50px;
+  height: 100%;
+  height: inherit;
+  border-left: 2px dotted #047d76;
+  border-left: ${(props) => props.status ? '2px dotted #047d76' : ''};
+}
+`;
 const startTime = new Date('2023-03-28T15:04:02')
 
 export const Sidebar = () => {
   const terminals = useSelector((state: any) => state.truckPath.terminals)
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth()
   const [clockTime, setClockTime] = useState<any>(new Date())
   useEffect(() => {
     const [hours, minutes, seconds] = currentUser ? currentUser.current_time.split(':') : []
@@ -154,10 +170,11 @@ export const Sidebar = () => {
         {terminals.map((item, index) => {
           return (
             <div className='d-flex align-items-center gap-6'>
-              <img
-                src={item.status == 0 ? Arrive_Truck : Truck}
-                style={{width: '18px', height: '18px'}}
-              ></img>
+              <ImageIcon status={index == 0 ? false :true }>
+                <img
+                  src={item.status == 0 ? Arrive_Truck : Truck}
+                  style={{ width: '18px', height: '18px' }}
+                /></ImageIcon>
               <TruckPath key={index} status={item.status}>
                 {item.name}
               </TruckPath>

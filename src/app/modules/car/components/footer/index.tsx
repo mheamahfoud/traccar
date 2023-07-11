@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import {Left} from './Left'
-import {Right} from './Right'
-import {useSelector} from 'react-redux'
+import { Left } from './Left'
+import { Right } from './Right'
+import { useSelector } from 'react-redux'
 import ArrowLogo from '../../../../../_metronic/assets/car/arrow1.png'
-import {useAuth} from '../../../auth'
+import Logo from '../../../../../_metronic/assets/car/Asset-3powered-saas.png'
+
+import { useAuth } from '../../../auth'
 const Conatainer = styled.div`
   height: 90px;
   width: calc(100% - 400px);
@@ -13,7 +15,9 @@ const Conatainer = styled.div`
   padding-bottom: 8px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  padding-right: 7rem;
+  
 `
 const ArriveTime = styled.div`
   display: flex;
@@ -39,9 +43,22 @@ const Icon = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  margin: 0 30px;
+`
+const CurrentTime1 = styled.div`
+  color: white;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #04615c;
+  height: 70%;
+  font-style: revert;
+  gap: 20px;
+  align-items: center;
 `
 export const Footer = () => {
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth()
   const predectedTime = useSelector((state: any) => state.truckPath.predectedTime)
   const [clockTime, setClockTime] = useState<any>(new Date())
   useEffect(() => {
@@ -65,17 +82,23 @@ export const Footer = () => {
   }
   return (
     <Conatainer>
-      <ArriveTime className='mx-3'>
-        <p className='m-auto'>الوقت المتوقع للوصول</p>
-        {/* <p className='m-auto'>5 Minutes, 34 Seconds </p> */}
-        {<span className='arrival-time'>{convertTimeFormat(predectedTime)}</span>}
-      </ArriveTime>
-      <Icon>
-        <img src={ArrowLogo}></img>
-      </Icon>
-      <CurrentTime className="">
-        <span className='arrival-title w-150'>الوقت الحالي</span>
-        <span className='arrival-time w-150'> {clockTime.toLocaleTimeString([], {hour12: false})}</span>
+      <div className='d-flex align-items-center'>
+        <ArriveTime >
+          <p className='m-auto'>الوقت المتوقع للوصول</p>
+          {/* <p className='m-auto'>5 Minutes, 34 Seconds </p> */}
+          {<span className='arrival-time'>{convertTimeFormat(predectedTime)}</span>}
+        </ArriveTime>
+        <Icon>
+          <img src={ArrowLogo}></img>
+        </Icon>
+        <CurrentTime1>
+          <span className='w-150'>الوقت الحالي</span>
+          <span className='w-150'> {clockTime.toLocaleTimeString([], { hour12: false })}</span>
+        </CurrentTime1>
+      </div>
+
+      <CurrentTime className={"px-4"} style={{position:'absolute' , left:'0'}} >
+        <img src={Logo}  style={{marginRight:'auto'}}  width={'120px'}></img>
       </CurrentTime>
     </Conatainer>
   )

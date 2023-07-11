@@ -32,8 +32,8 @@
   width: 102px; /* Adjust the width of the sawtooth */
   height: 100%;
   background-image:
-    linear-gradient(152deg, #d9d9d9    50%, transparent 50%),
-    linear-gradient(42deg, #d9d9d9    50%, transparent 50%);
+    linear-gradient(10deg, #d9d9d9    50%, transparent 50%),
+    linear-gradient(134deg, #d9d9d9    50%, transparent 50%);
 
   background-position:
     top left, top left,
@@ -47,6 +47,7 @@
 }
 
 
+.dotted-line
 
 #ads {
   position: fixed;
@@ -112,3 +113,13 @@
 .hidden {
   display: none;
 }
+
+@font-face {
+  font-family: 'MyFont';
+  src: url('../../../_metronic//assets//frutiger-lt-arabic-cufonfonts/FrutigerLTArabic55Roman.ttf') format('truetype');
+}
+
+body {
+  font-family: 'MyFont', sans-serif;
+}
+

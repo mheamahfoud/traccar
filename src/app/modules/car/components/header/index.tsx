@@ -7,17 +7,19 @@ const Conatainer = styled.div`
   display: flex;
   height: 90px;
   background-color: #d9d9d9;
-  padding-bottom: 8px;
   width: calc(100% - 400px);
   margin-right: auto;
+  padding-right: 8rem;
+  justify-content: center;
+  
 `
 const Station = styled.div`
-  flex-grow: 1;
   display: flex;
   align-items: center;
   color: white;
-  margin-right: 20px;
-  gap: 25px;
+  gap: 20px;
+ 
+
 `
 
 const NextStation = styled.div`
@@ -30,9 +32,9 @@ const Icon = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  margin: 0 30px;
 `
 const HallName = styled.h1`
-  font-family: sans-serif;
   color: white;
   font-weight: 700;
   font-size: 4rem;
@@ -57,9 +59,9 @@ const ImageMap = styled.img`
 export const Header = () => {
   const nextTerminal = useSelector((state: any) => state.truckPath.nextTerminal)
   return (
-    <Conatainer>
+    <Conatainer >
       <Station>
-        <NextStation style={{display: 'flex', gap: '20px'}} className='mx-3'>
+        <NextStation style={{display: 'flex', gap: '20px'}}  >
           <div style={{display: 'flex', flexDirection: 'column',textAlign:'center'}}>
             <div> المحطة القادمة </div>
             <div>Next Station </div>
