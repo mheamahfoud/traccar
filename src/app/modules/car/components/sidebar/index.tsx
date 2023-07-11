@@ -3,38 +3,50 @@ import styled from "styled-components";
 import TruckPath from "./TruckPath";
 import { useSelector } from "react-redux";
 import { useAuth } from "../../../auth";
+import Logo from "../../../../../_metronic/assets/driver/1KKIA-logo.png"
+import back2 from "../../../../../_metronic/assets/driver/back2.png"
+const Wrapper = styled.div`
+  position: fixed;
+  top: 0;
+ background-image: url(${back2});
+background-size: cover;
+background-repeat: no-repeat;
+  width: 400px;
+  height: 100vh;
+  right: 0;
+  z-index: 2;
+
+
+
+`;
 const Container = styled.div`
   height: 100%;
   width: 100%;
-  gap: 10px;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  padding: 25px 0;
+
   font-family: sans-serif;
+
 `;
 
 const Top = styled.div`
   height: 400px;
-  display: flex;
-  gap: 5px;
-  flex-direction: column;
-  align-items: center;
+
 
 `;
 
 const Bottom = styled.div`
-  border-top: 1px solid gray;
   position: relative;
-  margin-top: 25px;
-  width: 80%;
   flex-grow: 1;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
-
+const ImageLogo = styled.img`
+  background-size: cover;
+  object-fit: fill;
+  height: 100px;
+  width: 100%;
+`;
 const Desc = styled.p`
   font-size: 25px;
   font-weight: 400;
@@ -45,11 +57,11 @@ const Desc = styled.p`
 const startTime = new Date('2023-03-28T15:04:02');
 
 export const Sidebar = () => {
- const terminals = useSelector((state:any) => state.truckPath.terminals);
+  const terminals = useSelector((state: any) => state.truckPath.terminals);
   const { currentUser } = useAuth();
   const [clockTime, setClockTime] = useState<any>(new Date());
   useEffect(() => {
-    const [hours, minutes, seconds] = currentUser? currentUser.current_time.split(":") : [];
+    const [hours, minutes, seconds] = currentUser ? currentUser.current_time.split(":") : [];
     const initialTime = new Date();
     initialTime.setHours(parseInt(hours));
     initialTime.setMinutes(parseInt(minutes));
@@ -64,24 +76,34 @@ export const Sidebar = () => {
   }, []);
 
   return (
-    <Container>
-      <Top>
-        {terminals.map((item,index) => {
-          return (
-            <TruckPath key={index} status={item.status}>
-              {item.name}
-            </TruckPath>
-          );
-        })}
-      </Top>
-      <Bottom>
-        <Desc>
-          <span> الوقت الحالي </span>
-          <span style={{ color: "red" }}>
-            {clockTime.toLocaleTimeString([], { hour12: false })}
-          </span>
-        </Desc>
-      </Bottom>
-    </Container>
+    <Wrapper className="">
+      <Container className="d-flex flex-column align-items-center " >
+        <Top >
+          {/* <ImageLogo src={Logo} /> */}
+          {/* {terminals.map((item, index) => {
+            return (
+              <TruckPath key={index} status={item.status}>
+                {item.name}
+              </TruckPath>
+            );
+          })} */}
+        </Top>
+        <Bottom className="d-flex flex-column gap-5 align-items-center py-6">
+          {terminals.map((item, index) => {
+            return (
+              <TruckPath key={index} status={item.status}>
+                {item.name}
+              </TruckPath>
+            );
+          })}
+          {/* <Desc>
+            <span> الوقت الحالي </span>
+            <span style={{ color: "red" }}>
+              {clockTime.toLocaleTimeString([], { hour12: false })}
+            </span>
+          </Desc> */}
+        </Bottom>
+      </Container>
+    </Wrapper>
   );
 };

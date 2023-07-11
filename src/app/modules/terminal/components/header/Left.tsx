@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { toAbsoluteUrl } from "../../../../../_metronic/helpers";
-import Logo from "../../../../../_metronic/assets/driver/logo.jpg"
+// import Logo from "../../../../../_metronic/assets/driver/logo.jpg"
 
 const Conatiner = styled.div`
   width: 300px;
@@ -31,7 +31,7 @@ export const Left = () => {
   return (
     <Conatiner>
       <Top>
-        <ImageLogo src={Logo} />
+        {/* <ImageLogo src={Logo} /> */}
       </Top>
 
     </Conatiner>

@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Bus from "../../../../../_metronic/assets/driver/Bus.jpg"
+import Bus from "../../../../../_metronic/assets/driver/airside.png"
 import "./style.css";
 import { toAbsoluteUrl } from '../../../../../_metronic/helpers'
 import { useSelector } from "react-redux";

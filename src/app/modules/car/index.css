@@ -17,18 +17,43 @@
   overflow-y: hidden;
 }
 
-.sidebar-car {
-  position: absolute;
-  background-color: white;
-  border-bottom-right-radius: 8%;
-  border-bottom-left-radius: 8%;
-  width: 300px;
-  height: 100%;
-  left: 0;
-  right: 0;
-  z-index: 2;
+.sidebar-car1 {
+
+}
+.concave {
+  width: 200px;
+  height: 200px;
+  background-color: rgb(217, 217, 217);
+  position: relative;
+  overflow: hidden;
 }
 
+.sinusoidal-border {
+  width: 200px;
+  height: 200px;
+  border-left: 2px solid;
+  background: linear-gradient(to bottom, transparent 45%, black 45%, black 55%, transparent 55%),
+              linear-gradient(to bottom, transparent 45%, black 45%, black 55%, transparent 55%),
+              linear-gradient(to bottom, transparent 45%, black 45%, black 55%, transparent 55%),
+              linear-gradient(to bottom, transparent 45%, black 45%, black 55%, transparent 55%);
+  background-size: 100% 10px;
+  background-repeat: repeat-x;
+  animation: wave 2s linear infinite;
+}
+
+@keyframes wave {
+  0% {
+    background-position: 0 0, 0 20px, 0 40px, 0 60px;
+  }
+  100% {
+    background-position: 0 -20px, 0 0, 0 20px, 0 40px;
+  }
+}
+
+.concave::after {
+  bottom: 0;
+  left: 0;
+}
 .content-car {
   height: 100%;
 }

@@ -7,7 +7,7 @@ import Triangle from "../../../../../_metronic/assets/driver/Triangle.svg";
 import "./right.css";
 const Container = styled.div`
   flex-grow: 1;
-  background-color: #194172;
+  background-color: #d9d9d9;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -5,9 +5,9 @@ import { Right } from "./Right";
 
 const Conatainer = styled.div`
   display: flex;
-  height: 100px;
+  height: 120px;
   width: 100%;
-  background-color: #d6d5da;
+  background-color: #d9d9d9;
   padding-bottom: 8px;
  
 `;
@@ -16,8 +16,8 @@ const Conatainer = styled.div`
 export const Header = () => {
   return (
     <Conatainer>
-      <Left />
-      <Right />
+      {/* <Left />
+      <Right /> */}
     </Conatainer>
   );
 };
