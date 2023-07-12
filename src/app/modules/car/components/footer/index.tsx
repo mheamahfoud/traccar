@@ -15,9 +15,11 @@ const Conatainer = styled.div`
   align-items: center;
   justify-content: center;
   padding-right: 7rem;
+  font-weight: 600;
 `
 const Right = styled.div`
   gap: 60px;
+  margin-left:50px;
 `
 const ArriveTime = styled.div`
   display: flex;

@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   height: 100vh;
   right: 0;
   z-index: 2;
+  font-weight: 600;
 `
 const Front = styled.div`
   content: '';

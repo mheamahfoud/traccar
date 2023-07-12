@@ -95,6 +95,9 @@ const { reducer, actions } = createSlice({
         Object.keys(deviceDistance)?.map((key, index) => {
           deviceStatus.push(deviceDistance[key])
         })
+        console.log(deviceStatus.sort((a, b) => {
+          return a.index - b.index;
+        }))
         state.deviceStatus = deviceStatus.sort((a, b) => {
           return a.index - b.index;
         });

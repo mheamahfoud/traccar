@@ -12,16 +12,18 @@ const Conatainer = styled.div`
   padding-right: 8rem;
   justify-content: center;
   text-transform:capitalize;
+  font-weight: 600;
 `
 const Right = styled.div`
   display: flex;
   align-items: center;
   color: white;
   gap: 60px;
+ margin-left:50px;
 `
 
 const NextStation = styled.div`
-  font-weight: 300;
+  font-weight: 600;
   color: #04615c;
   font-size: 25px;
 
@@ -56,7 +58,7 @@ export const Header = () => {
   const nextTerminal = useSelector((state: any) => state.truckPath.nextTerminal)
   return (
     <Conatainer>
-      <Right className='d-flex align-items-center'>
+      <Right className='d-flex align-items-center' >
         <NextStation >
           <div style={{display: 'flex', flexDirection: 'column', textAlign: 'center'}}>
             <div> المحطة القادمة </div>

@@ -15,10 +15,12 @@ const Conatainer = styled.div`
   align-items: center;
   justify-content: center;
   padding-right: 7rem;
+  font-weight: 600;
   text-transform: capitalize;
 `
 const Right = styled.div`
-  gap: 20px;
+  gap: 15px;
+  margin-left:130px;
 `
 const CurrentLocation = styled.div`
   display: flex;
@@ -26,7 +28,7 @@ const CurrentLocation = styled.div`
   color: white;
   flex-direction: column;
   color: #04615c;
-  font-size: 25px;
+  font-size: 23px;
   direction: ltr;
 
 `
@@ -37,7 +39,7 @@ const ArriveTime = styled.div`
   color: white;
   flex-direction: column;
   color: #04615c;
-  font-size: 25px;
+  font-size: 23px;
   direction: ltr;
 `
 
@@ -48,7 +50,7 @@ const Icon = styled.div`
 `
 const CurrentTime = styled.div`
   color: white;
-  font-size: 25px;
+  font-size: 23px;
   display: flex;
   align-items: center;
   justify-content: space-around;

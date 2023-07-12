@@ -42,7 +42,6 @@ const SocketController = () => {
     //   `${protocol}//${window.location.host}/api/socket`
     // );
     const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`)
-
     socketRef.current = socket
 
     socket.onopen = () => {
