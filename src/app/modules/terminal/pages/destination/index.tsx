@@ -132,7 +132,7 @@ const Destination = () => {
 
 
     return (
-        <div className="finalcontainer">
+        <div className="finalcontainer1">
         <Container>
             <Top>
                 <Title>

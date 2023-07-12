@@ -11,6 +11,7 @@ import {adsManagerActions, terminalPathsActions} from '../../../store'
 import {truckPathActions} from '../../../store'
 import SocketController from './SocketController'
 import {GetCurrentDevice, GetCurrentTerminal, GetPageTimes} from '../../../services/traccargps'
+import { Footer } from './components/footer'
 
 const TerminalLayout = () => {
   const dispatch = useDispatch()
@@ -32,6 +33,7 @@ const TerminalLayout = () => {
             terminalPathsActions.setDevices({
               devices: res?.payload[0].devices,
               terminal: res?.payload[0].terminal,
+              next_terminal: res?.payload[0]?.next_terminal,
             })
           )
           dispatch(adsManagerActions.setAds(res?.payload[0]?.ads))
@@ -79,14 +81,13 @@ const TerminalLayout = () => {
       <div className='container-car'>
         <Header />
         <div className='main-car'>
-          <div className='sidebar-car'>
             <Sidebar />
-          </div>
-          <div className='content-car'>
+            <div className='content-car flex-grow' style={{flexGrow:'1' , marginRight:'430px'}}>
             {!showAds && <Outlet />}
             { showAds && <Advertisement closeAds={closeAds} />}
           </div>
         </div>
+        <Footer />
       </div>
     </>
   )

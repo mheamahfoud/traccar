@@ -55,6 +55,7 @@ const ImageLogo = styled.img`
   position: absolute;
   width: 300px;
   height: 81px;
+  z-index: 99;
 `
 const Pattern = styled.img`
   left: 40px;
@@ -110,6 +111,7 @@ const Bottom = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+  z-index: 99;
 `
 
 const Desc = styled.p`

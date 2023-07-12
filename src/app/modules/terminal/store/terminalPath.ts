@@ -18,6 +18,7 @@ const initialState: TerminalPath = {
   deviceDistance: {},
   deviceStatus: [],
   checkArriveTerminal: false,
+  next_terminal:''
 }
 
 const { reducer, actions } = createSlice({
@@ -42,7 +43,7 @@ const { reducer, actions } = createSlice({
           status: StatusArrive.NotArrived,
         }
       })
-
+      state.next_terminal = action.payload?.next_terminal
       state.loading = false
     },
     updateDeviceLocation(state, action) {

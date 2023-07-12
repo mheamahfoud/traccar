@@ -24,7 +24,7 @@ function Advertisement(props: Props) {
 
   useEffect(() => {
     if (!showAds) {
-      navigate('/driver')
+      navigate('/car')
     }
     const videoElement = videoRef.current;
 
@@ -102,7 +102,7 @@ function Advertisement(props: Props) {
       {showAds && currentAd && (
 
 
-        <div className='vidio'>
+        <div className='vidio1'>
           <video id="video-player" ref={videoRef} onEnded={handleVideoEnd} onLoadedData={handleCanPlayThrough}  >
             <source id="advertisement" src={currentAd.link} type="video/mp4" />
             Your browser does not support the video tag.

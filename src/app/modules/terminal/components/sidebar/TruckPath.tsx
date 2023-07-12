@@ -6,10 +6,11 @@ interface Props {
     distance:number
   }
 
-const Container = styled.div<Props>`
-  border-radius: 10px;
-  width: 250px;
-  padding: 15px 8px;
+
+  const Container = styled.div`
+  border-radius: 30px;
+  width: 200px;
+  padding: 20px 12px;
   font-size: 18px;
   font-weight: 400;
   color: ${(props) => TruckPathColors[0]};
@@ -17,10 +18,31 @@ const Container = styled.div<Props>`
   display: flex;
   gap: 5px;
   align-items: center;
-  justify-content: space-between;
   position: relative;
   height: 60px;
+  margin-left:150px;
+  text-transform: capitalize;
+  text-align:center;
+
+
 `;
+
+
+// const Container = styled.div<Props>`
+//   border-radius: 10px;
+//   width: 250px;
+//   padding: 15px 8px;
+//   font-size: 18px;
+//   font-weight: 400;
+//   color: ${(props) => TruckPathColors[0]};
+//   background-color: ${(props) => props.distance < 800 ? TruckPathBackgrounColors[0] :TruckPathBackgrounColors[1]};
+//   display: flex;
+//   gap: 5px;
+//   align-items: center;
+//   justify-content: space-between;
+//   position: relative;
+//   height: 60px;
+// `;
 const TruckPath = ({ ...props }) => {
 
     const { distance ,duration} = props;

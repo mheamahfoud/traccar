@@ -10,6 +10,7 @@ export interface TerminalPath {
   deviceStatus:any[],
   deviceDistance:any,
   checkArriveTerminal:boolean,
+  next_terminal?:string
 
 }
 

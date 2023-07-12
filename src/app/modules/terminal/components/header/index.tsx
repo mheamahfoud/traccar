@@ -1,23 +1,76 @@
-import React from "react";
+import React from 'react'
 import styled from 'styled-components'
-import { Left } from "./Left";
-import { Right } from "./Right";
-
+import {useSelector} from 'react-redux'
+import ArrowIcon from '../../../../../_metronic/assets/car/arrow.png'
+import MapICon from '../../../../../_metronic/assets/car/map-icon.png'
 const Conatainer = styled.div`
   display: flex;
-  height: 100px;
-  width: 100%;
-  background-color: #d6d5da;
-  padding-bottom: 8px;
- 
-`;
+  height: 90px;
+  background-color: #d9d9d9;
+  width: calc(100% - 400px);
+  margin-right: auto;
+  padding-right: 8rem;
+  justify-content: center;
+`
+const Right = styled.div`
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 60px;
+`
 
+const NextStation = styled.div`
+  font-weight: 300;
+  color: #04615c;
+  font-size: 25px;
+`
+const Icon = styled.div`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+`
+const HallName = styled.h1`
+  color: white;
+  font-weight: 700;
+  font-size: 4rem;
+  color: #04615c;
+  text-transform: capitalize;
+`
+const Left = styled.div`
+  position: absolute;
+  left: 0;
+`
+
+const ImageMap = styled.img`
+  left: 20px;
+  top: 3px;
+  position: absolute;
+  width: 92px;
+  height: 76px;
+
+`
 
 export const Header = () => {
+  const nextTerminal = useSelector((state: any) => state.terminalPath.next_terminal)
   return (
     <Conatainer>
-      <Left />
-      <Right />
+      <Right className='d-flex align-items-center'>
+        { <NextStation >
+          <div style={{display: 'flex', flexDirection: 'column', textAlign: 'center'}}>
+            <div> الحفلة القادمة متجهة إلى</div>
+            <div>Next Destination </div>
+          </div>
+        </NextStation> }
+         <Icon>
+          <img src={ArrowIcon}></img>
+        </Icon>
+        <HallName>{nextTerminal}</HallName> 
+      </Right>
+
+   
+        <ImageMap src={MapICon} />
+    
     </Conatainer>
-  );
-};
+  )
+}

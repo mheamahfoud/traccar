@@ -40,11 +40,11 @@ const SocketController = () => {
   const connectSocket = () => {
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
 
-    const socket = new WebSocket(
-      `${protocol}//${window.location.host}/api/socket`
-    );
+    // const socket = new WebSocket(
+    //   `${protocol}//${window.location.host}/api/socket`
+    // );
 
-  //const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
+  const socket = new WebSocket(`${process.env.REACT_APP_TRUCKGPS_SOCKET_URL}`);
     socketRef.current = socket;
 
     socket.onopen = () => {
