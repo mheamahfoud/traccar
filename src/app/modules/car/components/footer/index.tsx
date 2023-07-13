@@ -19,7 +19,7 @@ const Conatainer = styled.div`
 `
 const Right = styled.div`
   gap: 60px;
-  margin-left:50px;
+  margin-left: 50px;
 `
 const ArriveTime = styled.div`
   display: flex;
@@ -35,7 +35,6 @@ const Icon = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-
 `
 const CurrentTime = styled.div`
   color: white;
@@ -76,20 +75,23 @@ export const Footer = () => {
 
   useEffect(() => {
     const [hours, minutes, seconds] = currentUser ? currentUser.current_time.split(':') : []
-    const [hours1, minutes1, seconds1] = predectedTime.split(':').map(Number)
     const initialTime = new Date()
-    initialTime.setHours(parseInt(hours)+parseInt(hours1))
-    initialTime.setMinutes(parseInt(minutes)+parseInt(minutes1))
-    initialTime.setSeconds(parseInt(seconds)+parseInt(seconds1))
+    initialTime.setHours(parseInt(hours))
+    initialTime.setMinutes(parseInt(minutes))
+    initialTime.setSeconds(parseInt(seconds))
     setArriveTime(initialTime)
 
-    const intervalId = setInterval(() => {
-      setArriveTime((prevTime) => new Date(prevTime.getTime() + 1000))
-    }, 1000)
+    // const intervalId = setInterval(() => {
+    //   setArriveTime((prevTime) => new Date(prevTime.getTime() + 1000))
+    // }, 1000)
 
-    return () => clearInterval(intervalId)
+    // return () => clearInterval(intervalId)
+  }, [])
+  useEffect(() => {
+    const [hours, minutes, seconds] = predectedTime.split(':').map(Number)
+    const totalSeconds = (parseInt(minutes)*60 + parseInt(seconds) + parseInt(hours)*60*60-1) * 1000;
+    setArriveTime(new Date(clockTime.getTime() + totalSeconds))
   }, [predectedTime])
-
   const convertTimeFormat = (timeStr) => {
     const [hours, minutes, seconds] = timeStr.split(':').map(Number)
     const formattedTime = `${minutes} minutes, ${seconds} seconds`
@@ -106,13 +108,17 @@ export const Footer = () => {
         <Icon>
           <img src={ArrowLogo}></img>
         </Icon>
-        <CurrentTime className={"d-flex flex-column align-items-center"}>
+        <CurrentTime className={'d-flex flex-column align-items-center'}>
           <div>
-            <span className='w-150' style={{position:'relative',bottom:'5px'}}>الوقت الحالي</span>
+            <span className='w-150' style={{position: 'relative', bottom: '5px'}}>
+              الوقت الحالي
+            </span>
             <span className='w-150'> {clockTime.toLocaleTimeString([], {hour12: false})}</span>
           </div>
           <div>
-            <span className='w-150' style={{position:'relative',bottom:'5px'}}>وقت الوصول</span>
+            <span className='w-150' style={{position: 'relative', bottom: '5px'}}>
+              وقت الوصول
+            </span>
             <span className='w-150'> {arriveTime.toLocaleTimeString([], {hour12: false})}</span>
           </div>
         </CurrentTime>

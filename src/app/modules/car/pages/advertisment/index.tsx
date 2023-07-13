@@ -103,7 +103,7 @@ function Advertisement(props: Props) {
 
 
         <div className='vidio1'>
-          <video id="video-player" ref={videoRef} onEnded={handleVideoEnd} onLoadedData={handleCanPlayThrough}  >
+          <video id="video-player" ref={videoRef} onEnded={handleVideoEnd} onCanPlayThrough={handleCanPlayThrough}  muted >
             <source id="advertisement" src={currentAd.link} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

@@ -11,7 +11,7 @@ import {adsManagerActions, terminalPathsActions} from '../../../store'
 import {truckPathActions} from '../../../store'
 import SocketController from './SocketController'
 import {GetCurrentDevice, GetCurrentTerminal, GetPageTimes} from '../../../services/traccargps'
-import { Footer } from './components/footer'
+import {Footer} from './components/footer'
 
 const TerminalLayout = () => {
   const dispatch = useDispatch()
@@ -19,11 +19,16 @@ const TerminalLayout = () => {
   const loading = useSelector((state: any) => state.terminalPath.loading)
   const checkArriveTerminal = useSelector((state: any) => state.terminalPath.checkArriveTerminal)
   const devicesStatus = useSelector((state: any) => state.terminalPath.devicesStatus)
-  
+ // const [showAds, setShowAds] = useState(false)
   const showAds = useSelector((state: any) => state.adsManager?.showAds)
   const location = useLocation()
   const id: any = location.state
 
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setShowAds(true)
+  //   }, 5000)
+  // }, [])
   //start auth
   useEffect(() => {
     dispatch(GetCurrentTerminal(id)).then((res) => {
@@ -37,8 +42,7 @@ const TerminalLayout = () => {
             })
           )
           dispatch(adsManagerActions.setAds(res?.payload[0]?.ads))
-        }
-        else{
+        } else {
           dispatch(
             terminalPathsActions.setDevices({
               devices: [],
@@ -52,7 +56,7 @@ const TerminalLayout = () => {
       }
     })
   }, [])
-  
+
   ///check arrival
   useEffect(() => {
     if (checkArriveTerminal) {
@@ -81,10 +85,10 @@ const TerminalLayout = () => {
       <div className='container-car'>
         <Header />
         <div className='main-car'>
-            <Sidebar />
-            <div className='content-car flex-grow' style={{flexGrow:'1' , marginRight:'430px'}}>
+          <Sidebar />
+          <div className='content-car flex-grow' style={{flexGrow: '1', marginRight: '430px'}}>
             {!showAds && <Outlet />}
-            { showAds && <Advertisement closeAds={closeAds} />}
+            {showAds && <Advertisement closeAds={closeAds} />}
           </div>
         </div>
         <Footer />

@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { TerminalPath, deviceLocation } from '../core/_models'
-import { checkArrivedDevices } from '../services/measure'
+import {createSlice} from '@reduxjs/toolkit'
+import {TerminalPath, deviceLocation} from '../core/_models'
+import {checkArrivedDevices} from '../services/measure'
 
-enum StatusArrive {
+export enum StatusArrive {
   Arrived = 1,
   NotArrived = 2,
 }
@@ -15,13 +15,13 @@ const initialState: TerminalPath = {
   terminalInfo: {},
   devices: [],
   devicesLocaton: {},
-  deviceDistance: {},
-  deviceStatus: [],
+  devicesDistance: [],
+  devicesStatus: {},
   checkArriveTerminal: false,
-  next_terminal:''
+  next_terminal: '',
 }
 
-const { reducer, actions } = createSlice({
+const {reducer, actions} = createSlice({
   name: 'terminalPath',
   initialState,
   reducers: {
@@ -37,7 +37,7 @@ const { reducer, actions } = createSlice({
       }
 
       action.payload?.devices?.forEach((item: any) => {
-        state.deviceDistance[item?.id] = {
+        state.devicesStatus[item?.id] = {
           name: item.name,
           deviceId: item?.id,
           status: StatusArrive.NotArrived,
@@ -58,64 +58,74 @@ const { reducer, actions } = createSlice({
     },
     updateArriveTerminal(state, action) {
       state.checkArriveTerminal = action.payload
-      state.devices?.forEach((item: any) => {
-        state.deviceDistance[item] = {
-          ...state.deviceDistance[item][item],
+      /* state.devices?.forEach((item: any) => {
+        state.devicesStatus[item] = {
+          ...state.devicesStatus[item],
           status: StatusArrive.NotArrived,
         }
-      })
+      })*/
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(checkArrivedDevices.pending, (state) => { })
-    builder.addCase(checkArrivedDevices.fulfilled, (state, { payload }) => {
+    builder.addCase(checkArrivedDevices.pending, (state) => {})
+    builder.addCase(checkArrivedDevices.fulfilled, (state, {payload}) => {
       var temp = payload
       if (temp) {
-        var deviceStatus = [];
-        var deviceDistance = state.deviceDistance
+        var devicesDistance = []
+        var deviceStatus = state.devicesStatus
         Object.keys(temp)?.map((key, index) => {
-          deviceDistance[temp[key]?.deviceId] = {
-            index: index,
-            ...deviceDistance[temp[key]?.deviceId],
+          // deviceStatus[temp[key]?.deviceId] = {
+          //   index: index,
+          //   ...deviceStatus[temp[key]?.deviceId],
+          //   distance: temp[key]?.distance,
+          //   duration: temp[key]?.duration,
+          //   //  status: StatusArrive.NotArrived,
+          // }
+
+          devicesDistance.push({
+            ...deviceStatus[temp[key]?.deviceId],
             distance: temp[key]?.distance,
             duration: temp[key]?.duration,
-            //  status: StatusArrive.NotArrived,
-          }
-          if (temp[key]?.distance < 50 && temp[key]?.status != StatusArrive.Arrived) {
+          })
+          if (
+            temp[key]?.distance < 50 &&
+            deviceStatus[temp[key]?.deviceId]?.status != StatusArrive.Arrived
+          ) {
             state.checkArriveTerminal = true
-            deviceDistance[temp[key]?.deviceId] = {
-              ...deviceDistance[temp[key]?.deviceId],
+            deviceStatus[temp[key]?.deviceId] = {
+              ...deviceStatus[temp[key]?.deviceId],
               status: StatusArrive.Arrived,
             }
-
-
+          } else if (
+            temp[key]?.distance > 200 &&
+            deviceStatus[temp[key]?.deviceId]?.status == StatusArrive.Arrived
+          ) {
+            deviceStatus[temp[key]?.deviceId] = {
+              ...deviceStatus[temp[key]?.deviceId],
+              status: StatusArrive.NotArrived,
+            }
           }
+          //  else {
+          //   deviceStatus[temp[key]?.deviceId] = {
+          //     ...deviceStatus[temp[key]?.deviceId],
+          //     status: StatusArrive.NotArrived,
+          //   }
+          // }
         })
-
-        Object.keys(deviceDistance)?.map((key, index) => {
-          deviceStatus.push(deviceDistance[key])
-        })
-        console.log(deviceStatus.sort((a, b) => {
-          return a.index - b.index;
-        }))
-        state.deviceStatus = deviceStatus.sort((a, b) => {
-          return a.index - b.index;
-        });
+        state.devicesStatus = deviceStatus
+        state.devicesDistance = devicesDistance
       }
-
-
-
     })
 
-    builder.addCase(checkArrivedDevices.rejected, (state, { payload }) => {
+    builder.addCase(checkArrivedDevices.rejected, (state, {payload}) => {
       //state.error = payload
       //state.loading = false
     })
   },
 })
 
-export { actions as terminalPathsActions }
-export { reducer as terminalPathReducer }
+export {actions as terminalPathsActions}
+export {reducer as terminalPathReducer}
 
 // {
 //     loading: false,

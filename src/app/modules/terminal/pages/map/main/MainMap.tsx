@@ -26,6 +26,7 @@ import MapDefaultCamera from '../../../../apps/map/main/MapDefaultCamera';
 import MapOverlay from '../../../../apps/map/overlay/MapOverlay';
 import MapLiveRoutes from '../../../../apps/map/main/MapLiveRoutes';
 import MapPositions from '../../../../apps/map/MapPositions';
+import TerminalMapCamera from '../../../../apps/map/main/TerminalMapCamera';
 
 const MainMap = ({ filteredPositions, selectedPosition, onEventsClick }) => {
   const theme = useTheme();
@@ -56,7 +57,7 @@ const MainMap = ({ filteredPositions, selectedPosition, onEventsClick }) => {
           showStatus
           titleField={undefined}
         />
-        <MapDefaultCamera />
+        <TerminalMapCamera />
         <MapSelectedDevice />
         <PoiMap />
       </MapView>

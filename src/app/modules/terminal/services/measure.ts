@@ -7,7 +7,7 @@ const API_URL = 'https://api.mapbox.com/directions/v5/mapbox/driving' // process
 interface Value {
   distance: number
   duration: number
-  deviceId:number
+  deviceId: number
 }
 
 interface MyObject {
@@ -33,22 +33,22 @@ export const checkArrivedDevices: any = createAsyncThunk(
         tempLoc[key] = {
           distance: distance,
           duration: duration,
-          deviceId:parseInt(key)
+          deviceId: parseInt(key),
         }
       }
 
-
-      const sortedKeys = Object.keys(tempLoc).sort((a, b) => tempLoc[a].duration - tempLoc[b].duration)
+      const sortedKeys = Object.keys(tempLoc).sort(
+        (a, b) => tempLoc[a].duration - tempLoc[b].duration
+      )
       const reorderedObj = {}
 
       sortedKeys.forEach((key, index) => {
         reorderedObj[index + 1] = tempLoc[key]
       })
-   
-      const sortedObj: MyObject = Object.fromEntries(
-        Object.entries(reorderedObj)
-      )
-    
+      console.log('sortedKeys')
+      console.log(Object.fromEntries(Object.entries(reorderedObj)))
+      const sortedObj: MyObject = Object.fromEntries(Object.entries(reorderedObj))
+
       return sortedObj
     } catch {
       thunkAPI.rejectWithValue('There is Error')

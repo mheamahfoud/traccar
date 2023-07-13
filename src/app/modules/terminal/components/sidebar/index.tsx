@@ -11,6 +11,8 @@ import StarsLogo from '../../../../../_metronic/assets/car/triangles1.png'
 import Logo from '../../../../../_metronic/assets/car/KKIA-LOGO.png'
 import Truck from '../../../../../_metronic/assets/car/point.png'
 import Arrive_Truck from '../../../../../_metronic/assets/car/point.png'
+import './style.css'
+import {StatusArrive} from '../../store/terminalPath'
 const Wrapper = styled.div`
   position: fixed;
   top: 0;
@@ -155,9 +157,55 @@ const generateName = (index) => {
   return `الباص ${numbers[index]}`
 }
 export const Sidebar = () => {
-  const deviceStatus = useSelector((state: any) => state.terminalPath.deviceStatus)
+  const devicesDistance = useSelector((state: any) => state.terminalPath.devicesDistance)
   const {currentUser} = useAuth()
   const [clockTime, setClockTime] = useState<any>(new Date())
+  const [content, setContent] = useState('Initial Content')
+  const [isVisibleFirst, setIsVisibleFirst] = useState(true)
+  const [isVisibleSecond, setIsVisibleSecond] = useState(true)
+  const [isVisibleThird, setIsVisibleThird] = useState(true)
+  const [isVisibleFourth, setIsVisibleFourth] = useState(true)
+
+  useEffect(() => {
+    if (devicesDistance[0]?.status == StatusArrive.Arrived) {
+      setIsVisibleFirst(false)
+      setTimeout(() => {
+        setIsVisibleFirst(true)
+      }, 5000)
+    }
+  }, [devicesDistance[0]?.deviceId])
+
+  useEffect(() => {
+    if (devicesDistance[1]?.deviceId) {
+      setIsVisibleSecond(false)
+      setTimeout(() => {
+        setIsVisibleSecond(true)
+      }, 5000)
+    }
+  }, [devicesDistance[1]?.deviceId])
+  useEffect(() => {
+    if (devicesDistance[2]?.deviceId) {
+      setIsVisibleThird(false)
+      setTimeout(() => {
+        setIsVisibleThird(true)
+      }, 5000)
+    }
+  }, [devicesDistance[2]?.deviceId])
+  useEffect(() => {
+    if (devicesDistance[3]?.deviceId) {
+      setIsVisibleFourth(false)
+      setTimeout(() => {
+        setIsVisibleFourth(true)
+      }, 5000)
+    }
+  }, [devicesDistance[3]?.deviceId])
+  // const handleContentChange = () => {
+  //   setIsVisible(false)
+  //   setTimeout(() => {
+  //     setContent('New Content')
+  //     setIsVisible(true)
+  //   }, 5000)
+  // }
   useEffect(() => {
     const [hours, minutes, seconds] = currentUser ? currentUser.current_time.split(':') : []
     const initialTime = new Date()
@@ -173,10 +221,6 @@ export const Sidebar = () => {
     return () => clearInterval(intervalId)
   }, [])
 
-  useEffect(()=>{
-    console.log(deviceStatus)
-console.log(deviceStatus?.slice(0, 4))
-  },[deviceStatus])
   return (
     <Wrapper className='saw-tooth-container'>
       {<Front />}
@@ -188,23 +232,112 @@ console.log(deviceStatus?.slice(0, 4))
       <Topleftconcave />
       <Bottomleftconcave />
       <Bottom className='d-flex flex-column gap-5 align-items-center py-6'>
-        {deviceStatus?.slice(0, 4)?.map((item, index) => {
+        {devicesDistance[0]?.distance && (
+          <div className='d-flex align-items-center gap-6'>
+            <ImageIcon status={false}>
+              <img
+                src={devicesDistance[0]?.status == 0 ? Arrive_Truck : Truck}
+                style={{width: '18px', height: '18px'}}
+              />
+            </ImageIcon>
+            <div className={`content ${isVisibleFirst ? 'fade-in' : 'fade-out'}`}>
+              <TruckPath
+                key={0}
+                status={devicesDistance[0]?.status}
+                distance={devicesDistance[0]?.distance}
+                duration={formatSeconds(devicesDistance[0]?.duration)}
+              >
+                {devicesDistance[0]?.name} 
+              </TruckPath>
+            </div>
+          </div>
+        )}
+
+        {/* {devicesDistance[1]?.distance && (
+          <div className='d-flex align-items-center gap-6'>
+            <ImageIcon status={false}>
+              <img
+                src={devicesDistance[1]?.status == 0 ? Arrive_Truck : Truck}
+                style={{width: '18px', height: '18px'}}
+              />
+            </ImageIcon>
+            <div>
+              <TruckPath
+                status={devicesDistance[1]?.status}
+                key={1}
+                distance={devicesDistance[1]?.distance}
+                duration={formatSeconds(devicesDistance[0]?.duration)}
+              >
+                {devicesDistance[1]?.name} {devicesDistance[1]?.deviceId}
+              </TruckPath>
+            </div>
+          </div>
+        )}
+
+        {devicesDistance[2]?.distance && (
+          <div className='d-flex align-items-center gap-6'>
+            <ImageIcon status={false}>
+              <img
+                src={devicesDistance[2]?.status == 0 ? Arrive_Truck : Truck}
+                style={{width: '18px', height: '18px'}}
+              />
+            </ImageIcon>
+            <div>
+              <div>
+                <TruckPath
+                  key={2}
+                  status={devicesDistance[2]?.status}
+                  distance={devicesDistance[2]?.distance}
+                  duration={formatSeconds(devicesDistance[2]?.duration)}
+                >
+                  {devicesDistance[2]?.name} {devicesDistance[2]?.deviceId}
+                </TruckPath>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {devicesDistance[3]?.distance && (
+          <div className='d-flex align-items-center gap-6'>
+            <ImageIcon status={false}>
+              <img
+                src={devicesDistance[3]?.status == 0 ? Arrive_Truck : Truck}
+                style={{width: '18px', height: '18px'}}
+              />
+            </ImageIcon>
+            <div>
+              <TruckPath
+                key={3}
+                status={devicesDistance[3]?.status}
+                distance={devicesDistance[3]?.distance}
+                duration={formatSeconds(devicesDistance[3]?.duration)}
+              >
+                {devicesDistance[3]?.name} {devicesDistance[3]?.deviceId}
+              </TruckPath>
+            </div>
+          </div>
+        )} */}
+
+        {devicesDistance.slice(1, 4)?.map((item, index) => {
           return (
             item?.distance && (
               <div className='d-flex align-items-center gap-6'>
-                <ImageIcon status={index == 0 ? false : true}>
+                <ImageIcon status={false}>
                   <img
-                    src={item.status == 0 ? Arrive_Truck : Truck}
+                    src={item?.status == 0 ? Arrive_Truck : Truck}
                     style={{width: '18px', height: '18px'}}
                   />
                 </ImageIcon>
-                <TruckPath
-                  key={index}
-                  distance={item.distance}
-                  duration={formatSeconds(item.duration)}
-                >
-                  {item.name}
-                </TruckPath>
+                <div>
+                  <TruckPath
+                    key={index + 1}
+                    status={item?.status}
+                    distance={item?.distance}
+                    duration={formatSeconds(item?.duration)}
+                  >
+                    {item?.name} 
+                  </TruckPath>
+                </div>
               </div>
             )
           )

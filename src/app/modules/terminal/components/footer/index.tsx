@@ -20,7 +20,7 @@ const Conatainer = styled.div`
 `
 const Right = styled.div`
   gap: 15px;
-  margin-left:130px;
+  margin-left: 130px;
 `
 const CurrentLocation = styled.div`
   display: flex;
@@ -30,7 +30,6 @@ const CurrentLocation = styled.div`
   color: #04615c;
   font-size: 23px;
   direction: ltr;
-
 `
 
 const ArriveTime = styled.div`
@@ -66,8 +65,8 @@ const Left = styled.div`
   bottom: 12px;
 `
 export const Footer = () => {
-  const deviceStatus = useSelector((state: any) => state.terminalPath.deviceStatus)
-  const terminalInfo =useSelector((state:any) => state.terminalPath.terminalInfo);
+  const devicesDistance = useSelector((state: any) => state.terminalPath.devicesDistance)
+  const terminalInfo = useSelector((state: any) => state.terminalPath.terminalInfo)
   const {currentUser} = useAuth()
   const predectedTime = useSelector((state: any) => state.truckPath.predectedTime)
   const [clockTime, setClockTime] = useState<any>(new Date())
@@ -80,7 +79,6 @@ export const Footer = () => {
     initialTime.setSeconds(parseInt(seconds))
     setClockTime(initialTime)
 
-    
     const intervalId = setInterval(() => {
       setClockTime((prevTime) => new Date(prevTime.getTime() + 1000))
     }, 1000)
@@ -89,29 +87,29 @@ export const Footer = () => {
   }, [])
 
   useEffect(() => {
-    const totalSeconds=deviceStatus?.[0]?.duration ? deviceStatus?.[0]?.duration :0;
     const [hours, minutes, seconds] = currentUser ? currentUser.current_time.split(':') : []
-    const minutes1 = Math.floor(totalSeconds / 60);
-    const seconds1 = totalSeconds % 60;
-    
     const initialTime = new Date()
-    initialTime.setHours(parseInt(hours) + 0)
-    initialTime.setMinutes(parseInt(minutes) + minutes1)
-    initialTime.setSeconds(parseInt(seconds) + seconds1)
+    initialTime.setHours(parseInt(hours))
+    initialTime.setMinutes(parseInt(minutes))
+    initialTime.setSeconds(parseInt(seconds))
     setArriveTime(initialTime)
 
-    const intervalId = setInterval(() => {
-      setArriveTime((prevTime) => new Date(prevTime.getTime() + 1000))
-    }, 1000)
+    // const intervalId = setInterval(() => {
+    //   setArriveTime((prevTime) => new Date(prevTime.getTime() + 1000))
+    // }, 1000)
 
-    return () => clearInterval(intervalId)
-  }, [deviceStatus])
+    // return () => clearInterval(intervalId)
+  }, [])
 
+  useEffect(() => {
+    const totalSeconds = devicesDistance?.[0]?.duration ? devicesDistance?.[0]?.duration : 0
+    setArriveTime(new Date(clockTime.getTime() + (totalSeconds-1)*1000))
+  }, [devicesDistance])
   function convertSecondsToTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-  
-    return `${minutes} Minutes ${parseInt(remainingSeconds.toLocaleString())} Seconds`;
+    const minutes = Math.floor(seconds / 60)
+    const remainingSeconds = seconds % 60
+
+    return `${minutes} Minutes ${parseInt(remainingSeconds.toLocaleString())} Seconds`
   }
   return (
     <Conatainer>
@@ -119,7 +117,7 @@ export const Footer = () => {
         <CurrentLocation>
           <p className='m-auto'>موقعك الحالي</p>
           {/* <p className='m-auto'>5 Minutes, 34 Seconds </p> */}
-          {<span >{terminalInfo?.name}</span>}
+          {<span>{terminalInfo?.name}</span>}
         </CurrentLocation>
         <Icon>
           <img src={ArrowLogo}></img>
@@ -127,7 +125,7 @@ export const Footer = () => {
         <ArriveTime>
           <p className='m-auto'>الوقت المتبقي للوصول</p>
           {/* <p className='m-auto'>5 Minutes, 34 Seconds </p> */}
-          {<span >{convertSecondsToTime(deviceStatus?.[0]?.duration)}</span>}
+          {<span>{convertSecondsToTime(devicesDistance?.[0]?.duration ? devicesDistance?.[0]?.duration : 0)}</span>}
         </ArriveTime>
         <Icon>
           <img src={ArrowLogo}></img>
